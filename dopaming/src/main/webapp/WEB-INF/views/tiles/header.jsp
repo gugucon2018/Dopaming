@@ -11,16 +11,15 @@
 			</div>					
 			<div class="container">
 				<div class="form-inline" role="form">
-					<input type="text" class="form-control col-md-3 col-xs-3" size="20" placeholder="검색할 파일을 입력하시오">
+					<input type="text" class="form-control col-md-3 col-xs-3" size="26" placeholder="검색할 파일을 입력하시오">
 					<button type="button" class="btn btn-md btn-success col-md-2 col-xs-2">검색</button>
 				</div>
-				<button type="button" class="btn btn-md btn-info col-md-3 col-xs-3 col-md-right">쪽지</button>
+				<button type="button" class="btn btn-md btn-info col-md-4 col-xs-4 col-md-right">쪽지</button>
 				<button type="button" class="btn btn-md btn-danger col-md-3 col-xs-3 col-md-right">고객센터</button>				
 			</div>			
 		</div>			
 		<!--탭-->
-	<div class="container col-sm-12 col-md-12 col-lg-12">
-		<div class="navbar navbar-inverse">
+		<div class="navbar navbar-inverse col-xs-12 col-md-12 col-lg-12">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#">Dopaming</a>
@@ -93,5 +92,4 @@
 			 </div>	
 		   </div>
 		</div>
-	</div>
 </div>

@@ -30,17 +30,17 @@
 			background-image: url(./resources/images/logo2.jpg);
 			background-size: 100px;
 		}
-/* 		@media (min-width: 768px) {
+ 		@media (min-width: 768px) {
   		.container .jumbotron {  			
-	    		width: 1000px;	    		
+	    		width: 100%;	    		
   		}	
 		}
 
 		@media (min-width: 992px) {
  		 .container .jumbotron{ 		 	
-    			width: 1524px;
+    			width: 100%;
   		}
-		}	 */
+		}	 
 		.carousel-caption{
 			position:absolute;
 			right:15%;
@@ -63,12 +63,13 @@
 		}
 		div.footer{
 			clear: both;
-			width: 100%;
+			width: 98%;
 			float: left;
 			background-color: #1f2022;
 			text-align: center;
 			padding-top: 15px;
 			padding-bottom: 15px;
+			margin-left: 10px;
 			color: #E0E0E0;
 		}
 	</style>

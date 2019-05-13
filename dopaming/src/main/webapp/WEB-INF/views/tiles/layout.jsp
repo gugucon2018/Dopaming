@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template -->    
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./resources/fontawesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="./resources/js/ie-emulation-modes-warning.js"></script>        
@@ -30,17 +30,17 @@
 			background-image: url(./resources/images/logo2.jpg);
 			background-size: 100px;
 		}
-		@media (min-width: 768px) {
-  		.container .jumbotron {
-	    		width: 1324px;
+/* 		@media (min-width: 768px) {
+  		.container .jumbotron {  			
+	    		width: 1000px;	    		
   		}	
 		}
 
 		@media (min-width: 992px) {
- 		 .container .jumbotron{
+ 		 .container .jumbotron{ 		 	
     			width: 1524px;
   		}
-		}	
+		}	 */
 		.carousel-caption{
 			position:absolute;
 			right:15%;
@@ -53,6 +53,9 @@
 			display:block;
 			max-width:100%;
 			height:300px;
+		}
+		.navbar{
+			width:100%;
 		}
 		.genre_rank{
 			max-width:100%;

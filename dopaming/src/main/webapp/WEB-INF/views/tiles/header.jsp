@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<div class="container-fluid col-sm-11">
+	<div class="container-fluid col-sm-12 col-md-12">
 		<!--배너 -->
 		<div class="container jumbotron">
 			<div class="container">				
@@ -19,7 +19,7 @@
 			</div>			
 		</div>			
 		<!--탭-->
-	<div class="container col-sm-12 col-md-12">
+	<div class="container col-sm-12 col-md-12 col-lg-12">
 		<div class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">

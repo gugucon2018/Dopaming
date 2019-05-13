@@ -4,10 +4,11 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/spring/root-context.xml</param-value>
   </context-param>
-  <listener>
+  <listener><!-- 이벤트가 발생할때 자동으로 시작됨 -->
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <servlet>
+  <!-- 서블릿이 시작될때  -->
     <servlet-name>appServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>

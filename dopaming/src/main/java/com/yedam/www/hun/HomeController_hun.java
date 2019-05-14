@@ -1,4 +1,5 @@
-package com.hun.www;
+package com.yedam.www.hun;
+
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -22,7 +23,7 @@ public class HomeController_hun {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/mdview", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		//logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -33,7 +34,7 @@ public class HomeController_hun {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "main";
+		return "hun/mdview_hun";
 	}
 	
 }

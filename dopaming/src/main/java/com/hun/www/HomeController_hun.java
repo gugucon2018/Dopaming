@@ -1,4 +1,4 @@
-package com.yedam.www;
+package com.hun.www;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class HomeController_hun {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController_hun.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.

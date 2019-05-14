@@ -33,8 +33,11 @@ tr:nth-child(even) {
 		  <option value="blacklist">블랙리스트</option>
 		  <option value="normaluser">일반회원</option>
 		</select>
-		<INPUT TYPE="text" NAME="name" style="text-align:right"> 
-		<button type="button">검색</button>
+		
+		<span style="float:right">
+			<INPUT TYPE="text" NAME="name" style="text-align:right"> 
+			<button type="button">검색</button>
+		</span>
 		</form>
 	</div>
 	<div>

@@ -41,31 +41,31 @@ tr:nth-child(even) {
 		  <tr>
 		    <td>1</td>
 		    <td>Alfreds Futterkiste</td>
-		    <td>링크 걸기</td>
+		    <td><a href="http://daeguoracle.com">(주)</a></td>
 		    <td>Germany</td>
 		  </tr>
 		  <tr>
 		    <td>2</td>
 		    <td>Alfreds Futterkiste</td>
-		    <td>링크 걸기</td>
+		    <td><a href="http://daeguoracle.com">(주)</a></td>
 		    <td>Germany</td>
 		  </tr>
 		  <tr>
 		    <td>3</td>
 		    <td>Alfreds Futterkiste</td>
-		    <td>링크 걸기</td>
+		    <td><a href="http://daeguoracle.com">(주)</a></td>
 		    <td>Germany</td>
 		  </tr>
 		  <tr>
 		    <td>4</td>
 		    <td>Alfreds Futterkiste</td>
-		    <td>링크 걸기</td>
+		    <td><a href="http://daeguoracle.com">(주)</a></td>
 		    <td>Germany</td>
 		  </tr>
 		  <tr>
 		    <td>5</td>
 		    <td>Alfreds Futterkiste</td>
-		    <td>링크 걸기</td>
+		    <td><a href="http://daeguoracle.com">(주)</a></td>
 		    <td>Germany</td>
 		  </tr>
 		</table>

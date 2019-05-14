@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +37,11 @@ tr:nth-child(even) {
 		  <option value="sliver">실버</option>
 		  <option value="bronze">브론즈</option>
 		</select>
-		<INPUT TYPE="text" NAME="name" style="text-align:right"> 
-		<button type="button">검색</button>
+		
+		<span style="float:right">
+			<INPUT TYPE="text" NAME="name" style="text-align:right"> 
+			<button type="button">검색</button>
+		</span>
 		</form>
 	</div>
 	<div>

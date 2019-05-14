@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3> 로그인 </h3> <hr>
 <form action="adminlogin" method="post">
-	id:<input name="id">
-	pw:<input name="password">
+	아이디:<input name="id"> <br><br>
+	비 번:<input name="password"><hr>
 	<button>관리자로그인</button>
 </form>
 </body>

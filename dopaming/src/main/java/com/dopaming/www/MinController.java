@@ -25,21 +25,30 @@ public class MinController {
 //	@Autowired
 //	com.dopaming.www.login.Userservice service;
 	
+	//(유저)아콘결제페이지
+	@RequestMapping(value= {"/acornForm"}, method=RequestMethod.GET)
+	public String acornFrom() {
+		return "min/useracorn_min";
+	}
+	
 	//(관리자)회원관리 - 등급관리
 	@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
 	public String classFrom() {
 		return "min/adminclass_min";
 	}
+	
 	//(관리자)회원관리 - 사용자관리
 	@RequestMapping(value= {"/userForm"}, method=RequestMethod.GET)
 	public String userFrom() {
 		return "min/adminuser_min";
 	}
+	
 	//(관리자)회원관리 - 업로드한 리스트 뷰
 	@RequestMapping(value= {"/uploadlistForm"}, method=RequestMethod.GET)
 	public String uploadlistFrom() {
 		return "min/adminuploadlist_min";
 	}
+	
 	//(관리자)로그인 폼
 	@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)
 	public String loginFrom() {

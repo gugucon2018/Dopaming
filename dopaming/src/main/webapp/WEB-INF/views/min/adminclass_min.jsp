@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< HEAD
 	<%-- <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %> --%>  
+=======
+	<%-- <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>   --%>
+>>>>>>> branch 'master' of https://github.com/gugucon2018/Dopaming.git
 <!DOCTYPE html>
 <html>
 <head>

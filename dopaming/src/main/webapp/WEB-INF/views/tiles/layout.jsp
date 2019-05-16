@@ -79,6 +79,7 @@
 			<tiles:insertAttribute name="header" />
 			<tiles:insertAttribute name="content" />
 			<tiles:insertAttribute name="footer" />
+			<tiles:insertAttribute name="modal" />
 	</div>
 </body>
 </html>

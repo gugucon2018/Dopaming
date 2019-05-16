@@ -5,8 +5,8 @@
 		<div class="container jumbotron">
 			<div class="container">				
 				<button type="button" class="btn btn-lg btn-success col-md-3 col-xs-3 col-md-right">아콘 충전</button>
-				<button type="button" class="btn btn-lg btn-primary col-md-3 col-xs-3 col-md-right">로그인</button>
-				<button type="button" class="btn btn-lg btn-warning col-md-3 col-xs-3 col-md-right">회원가입</button>
+				<button type="button" id="loginBtn" class="btn btn-lg btn-primary col-md-3 col-xs-3 col-md-right" data-toggle="modal">로그인</button>
+				<button type="button" id="joinBtn" class="btn btn-lg btn-warning col-md-3 col-xs-3 col-md-right" data-toggle="modal">회원가입</button>
 				<button type="button" class="btn btn-lg btn-info col-md-3 col-xs-3 col-md-right">회원정보 수정</button>
 			</div>					
 			<div class="container">

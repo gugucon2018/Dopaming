@@ -25,16 +25,16 @@
 
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
-                    <form>
+                    <form action="login" method="post">
                         <h1 class="heading">ADMINLOGIN</h1>
                         <div class="form-group">
                             <label class="control-label">ID</label>
-                            <input type="text" class="form-control" placeholder="Please enter your ID"/>
+                            <input type="text" name="member_id" value="${members.member_id}" class="form-control" placeholder="Please enter your ID"/>
 
                             <label class=" control-label">Password</label>
-                            <input type="text" class="form-control" placeholder="Please enter a password"/>
+                            <input name="member_password" value="${members.member_password }"  type="text" class="form-control" placeholder="Please enter a password"/>
 
-                            <button type="submit" class="btn btn-default">LOGIN <i class="fa fa-arrow-circle-right fa-2x"></i></button>
+                            <button class="btn btn-default">LOGIN <i class="fa fa-arrow-circle-right fa-2x"></i></button>
                         </div>
                         <span class="form-footer">already have an account? <a href="#">log in</a></span>
                     </form>

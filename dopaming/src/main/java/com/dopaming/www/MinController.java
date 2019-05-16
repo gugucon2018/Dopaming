@@ -22,8 +22,8 @@ public class MinController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MinController.class);
 	
-//	@Autowired
-//	com.dopaming.www.login.Userservice service;
+	@Autowired
+	Adminservice_min service;
 	
 	//(유저)아콘결제페이지
 	@RequestMapping(value= {"/acornForm"}, method=RequestMethod.GET)
@@ -52,28 +52,29 @@ public class MinController {
 	//(관리자)로그인 폼
 	@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)
 	public String loginFrom() {
-		return "min/adminlogin_min";
+		return "min/adminlogin_min.empty";
 	}
 		//로그인 처리
-//		@RequestMapping(value="/login", method=RequestMethod.POST)
-//		public String login(@ModelAttribute("user") MembersVO_min vo, 
-//				HttpServletRequest request,HttpSession session,
-//				HttpServletResponse response) throws IOException{
-//			MembersVO_min user = service.getUser(vo);
-//			if(user == null ){
-//					PrintWriter out = response.getWriter();
-//					out.println("<script>");
-//					out.println("alert('id error');");
-//					out.println("history.go(-1);"); //이전페이지로
-//					out.println("</script>");
-//				return "min/adminlogin_min";	
-//			}
-//			else {
-//				session.setAttribute("id",user.getMember_id());
-//				session.setAttribute("user",user);
-//				return "redirect:boardList";
-//			}
-//		}
+		@RequestMapping(value="/login", method=RequestMethod.POST)
+		public String login(@ModelAttribute("members") MembersVO vo, 
+				HttpServletRequest request,HttpSession session,
+				HttpServletResponse response) throws IOException{
+			MembersVO member = service.getMembers(vo);
+			if(member == null ){
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('id error');");
+					out.println("history.go(-1);"); //이전페이지로
+					out.println("</script>");
+				return "min/adminlogin_min.empty";	
+			}
+			else {
+				session.setAttribute("member_id",member.getMember_id());
+				session.setAttribute("member_password",member.getMember_password());
+				session.setAttribute("member",member);
+				return "min/adminmain_min.empty";
+			}
+		}
 //		
 //		//로그아웃 처리
 //		@RequestMapping("/logout")

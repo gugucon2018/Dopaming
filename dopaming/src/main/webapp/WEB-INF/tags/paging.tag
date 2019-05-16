@@ -6,7 +6,7 @@
 <div class="pagination">
 <c:set var="pre" value="${paging.page-1}"></c:set>
 <c:set var="pre2" value="${paging.page+1}"></c:set>
-
+ 
 <ul>
 <c:if test="${pre == 0}">
 <c:set var="pre" value="${1}"/>

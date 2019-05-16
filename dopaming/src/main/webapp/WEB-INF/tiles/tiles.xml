@@ -12,8 +12,18 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/tiles/footer.jsp" />
 		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
-	</definition>
+	</definition>	
 	
+	<definition name="adminTemplate"
+		template="/WEB-INF/views/admin_tiles/admin_t/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/admin_tiles/admin_t/header.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin_tiles/admin_t/content.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/admin_tiles/admin_t/footer.jsp" />		
+	</definition>
+
 	<definition name="home" extends="mainTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/views/home.jsp" />
@@ -34,8 +44,8 @@
 	<definition name="*/*" extends="mainTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/views/{1}/{2}.jsp" />
-	</definition>
-	<definition name="*/*/*" extends="mainTemplate">
+	</definition>	
+	<definition name="*/*/*" extends="adminTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>

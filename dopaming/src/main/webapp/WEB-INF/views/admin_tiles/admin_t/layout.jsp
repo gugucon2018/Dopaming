@@ -13,7 +13,7 @@
  <link rel="icon" href="../../favicon.ico">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <meta charset="utf-8">
-<title>도파밍 프로젝트</title>
+<title>관리자 도파밍</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
@@ -66,6 +66,7 @@
 		}
 		.navbar{
 			margin: 0px auto 0px auto;
+			background-color: #E56D29;			
 			width:100%;
 		}
 		.genre_rank{
@@ -89,8 +90,7 @@
 	<div class="container">
 			<tiles:insertAttribute name="header" />
 			<tiles:insertAttribute name="content" />
-			<tiles:insertAttribute name="footer" />
-			<tiles:insertAttribute name="modal" />
+			<tiles:insertAttribute name="footer" />			
 	</div>
 </body>
 </html>

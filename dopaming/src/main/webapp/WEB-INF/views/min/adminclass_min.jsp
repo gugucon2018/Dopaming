@@ -95,18 +95,6 @@ tr:nth-child(even) {
 		</table>
 	</div>
 	페이징해야함
-	<span style="float:right">
-		<form action="adminlogin1" method="post">
-		<select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="Diamond">다이아몬드</option>
-		  <option value="gold">골드</option>
-		  <option value="sliver">실버</option>
-		  <option value="bronze">브론즈</option>
-		</select>
-		<button type="button">등급 수정</button>
-		</form>
-	</span>
 	<br>
 	<br>
 	<br>

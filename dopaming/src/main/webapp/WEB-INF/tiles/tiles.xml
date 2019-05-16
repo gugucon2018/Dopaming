@@ -23,7 +23,7 @@
 			value="/WEB-INF/views/main.jsp" />
 	</definition>
 	
-	<!--empty -->
+	<!--empty --> <!-- 타일즈안쓰려면 empty를 적으면 됨 / minController 로그인처리 부분 참고 -->
 	<definition name="*/*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>

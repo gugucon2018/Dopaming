@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page session="false" %>
 <!-- 웹페이지언어 설정 -->
-<html lang="en">
+<html lang="ko">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,11 @@
     <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="./resources/js/ie-emulation-modes-warning.js"></script>        
 	<style>
+
+		.m_col{		
+			float:right;					
+		}
+		
 		.jumbotron{
 			margin: 0px auto 0px auto;
 			background-image: url(./resources/images/logo2.jpg);

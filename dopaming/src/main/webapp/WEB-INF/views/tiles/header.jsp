@@ -1,21 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<div class="container-fluid col-xs-12 col-sm-12 col-md-12 first_col">
+	   <div class="navbar navbar-inverse col-xs-12 col-md-12 col-lg-12 first_col">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"></a>
+				</div>									
+		     <div class="nav navbar-nav m_col">
+		     		<a class="navbar-brand" href="#">아콘충전</a>
+		     		<a class="navbar-brand" id="loginBtn" href="#">로그인</a>
+		     		<a class="navbar-brand" id="joinBtn" href="#">회원가입</a>
+		     		<a class="navbar-brand" href="#">회원정보 수정</a>
+		   	 </div>
+		  </div>
+	   </div>
+	</div>
+	
+	
+	
 	<div class="container-fluid col-sm-12 col-md-12">
 		<!--배너 -->
 		<div class="container jumbotron">
-			<div class="container">				
-				<button type="button" class="btn btn-lg btn-success col-md-3 col-xs-3 col-md-right">아콘 충전</button>
-				<button type="button" id="loginBtn" class="btn btn-lg btn-primary col-md-3 col-xs-3 col-md-right" data-toggle="modal">로그인</button>
-				<button type="button" id="joinBtn" class="btn btn-lg btn-warning col-md-3 col-xs-3 col-md-right" data-toggle="modal">회원가입</button>
-				<button type="button" class="btn btn-lg btn-info col-md-3 col-xs-3 col-md-right">회원정보 수정</button>
-			</div>					
+<!--  			<div class="container first_col">				
+				<button type="button" class="btn btn-lg btn-success">아콘 충전</button>
+				<button type="button" id="loginBtn" class="btn btn-lg btn-primary" data-toggle="modal">로그인</button>
+				<button type="button" id="joinBtn" class="btn btn-lg btn-warning" data-toggle="modal">회원가입</button>
+				<button type="button" class="btn btn-lg btn-info">회원정보 수정</button>
+			</div>  -->					
 			<div class="container">
 				<div class="form-inline" role="form">
-					<input type="text" class="form-control col-md-3 col-xs-3" size="26" placeholder="검색할 파일을 입력하시오">
-					<button type="button" class="btn btn-md btn-success col-md-2 col-xs-2">검색</button>
-				</div>
-				<button type="button" class="btn btn-md btn-info col-md-4 col-xs-4 col-md-right">쪽지</button>
-				<button type="button" class="btn btn-md btn-danger col-md-3 col-xs-3 col-md-right">고객센터</button>				
+					<input type="text" class="form-control" size="50" placeholder="검색할 파일을 입력하시오">
+					<button type="button" class="btn btn-md btn-success">검색</button>				
+				<button type="button" class="btn btn-md btn-info">쪽지</button>
+				<button type="button" class="btn btn-md btn-danger">고객센터</button>
+				</div>				
 			</div>			
 		</div>			
 		<!--탭-->

@@ -14,7 +14,7 @@ public class AdminDAOMybatis_min {
 	@Autowired SqlSessionTemplate mybatis;
 	
 	//단건조회
-	public MembersVO getMembers(MembersVO vo) {
+	public MembersVO_min getMembers(MembersVO_min vo) {
 		return mybatis.selectOne("MembersDAO.getMembers", vo);
 	}
 	

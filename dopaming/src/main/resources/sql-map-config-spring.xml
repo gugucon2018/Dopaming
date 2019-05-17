@@ -7,7 +7,7 @@
 
 	<typeAliases>
 		<!-- min -->
-		<typeAlias type="com.dopaming.www.login.MembersVO" alias="members"/>
+		<typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>
 		<typeAlias type="com.dopaming.www.grade.GradeVO_min" alias="grade"/>
 	</typeAliases>
 

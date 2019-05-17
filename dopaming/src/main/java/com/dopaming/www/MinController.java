@@ -2,6 +2,8 @@ package com.dopaming.www;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +27,51 @@ public class MinController {
 	@Autowired
 	Adminservice_min service;
 	
+	//(관리자)로그인 폼
+		@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)
+		public String loginFrom() {
+			return "min/adminlogin_min.empty";
+		}
+			//로그인 처리
+			@RequestMapping(value="/login", method=RequestMethod.POST)
+			public String login(@ModelAttribute("members") MembersVO_min vo, 
+					HttpServletRequest request,HttpSession session,
+					HttpServletResponse response) throws IOException{
+				MembersVO_min member = service.getMembers(vo);
+				if(member == null ){
+						PrintWriter out = response.getWriter();
+						out.println("<script>");
+						out.println("alert('id error');");
+						out.println("history.go(-1);"); //이전페이지로
+						out.println("</script>");
+					return "min/adminlogin_min.empty";	
+				}
+				else {
+					session.setAttribute("member_id",member.getMember_id());
+					session.setAttribute("member_password",member.getMember_password());
+					session.setAttribute("member",member);
+					return "min/adminmain_min.empty";
+				}
+			}
+			
+			//로그아웃 처리
+			@RequestMapping("/logout")
+			public String logout(HttpSession session) {
+				session.invalidate(); //세션무효화
+				return "min/adminlogin_min.empty";
+			}
+	
+		@ModelAttribute("condMap")			//model.addAttribute(, conditionMap);
+		public Map<String, String> searchConditionMap(){
+			HashMap<String,String> conditionMap = new HashMap<String, String>();
+			conditionMap.put("제목","TITLE");
+			conditionMap.put("내용","CONTENT");
+			conditionMap.put("작성자","WRITER");
+			return conditionMap;
+		}		
+			
+			
+			
 	//(유저)아콘결제페이지
 	@RequestMapping(value= {"/acornForm"}, method=RequestMethod.GET)
 	public String acornFrom() {
@@ -48,38 +95,4 @@ public class MinController {
 	public String uploadlistFrom() {
 		return "min/adminuploadlist_min";
 	}
-	
-	//(관리자)로그인 폼
-	@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)
-	public String loginFrom() {
-		return "min/adminlogin_min.empty";
-	}
-		//로그인 처리
-		@RequestMapping(value="/login", method=RequestMethod.POST)
-		public String login(@ModelAttribute("members") MembersVO vo, 
-				HttpServletRequest request,HttpSession session,
-				HttpServletResponse response) throws IOException{
-			MembersVO member = service.getMembers(vo);
-			if(member == null ){
-					PrintWriter out = response.getWriter();
-					out.println("<script>");
-					out.println("alert('id error');");
-					out.println("history.go(-1);"); //이전페이지로
-					out.println("</script>");
-				return "min/adminlogin_min.empty";	
-			}
-			else {
-				session.setAttribute("member_id",member.getMember_id());
-				session.setAttribute("member_password",member.getMember_password());
-				session.setAttribute("member",member);
-				return "min/adminmain_min.empty";
-			}
-		}
-//		
-//		//로그아웃 처리
-//		@RequestMapping("/logout")
-//		public String logout(HttpSession session) {
-//			session.invalidate(); //세션무효화
-//			return "login";
-//		}
 }

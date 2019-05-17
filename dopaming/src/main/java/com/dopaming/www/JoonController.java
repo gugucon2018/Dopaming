@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,13 +34,14 @@ public class JoonController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JoonController.class);
 	
+	@Autowired
 	NoticeService service;
 	
 	
 	//뷰연결
 	@RequestMapping(value = "/notice_insert", method = RequestMethod.GET)
 	public String notice_insert(Locale locale, Model model) {
-		return "admin_tiles/admin/admin_joon/notice_insert";
+		return "admin_tiles/admin/admin_joon/notice_insert_joon";
 	}
 	
 	//입력값 받아오기
@@ -59,7 +61,7 @@ public class JoonController {
 		else {
 			session.setAttribute("notice_title",vo.getNotice_title());
 			session.setAttribute("notice_content",vo.getNotice_title());
-			return "admin_tiles/admin/admin_joon/notice_selectlist";
+			return "admin_tiles/admin/admin_joon/notice_selectlist_joon";
 		}
 	}
 	

@@ -14,7 +14,7 @@ if("${notice_insert.notice_no}"== -1){
 <body>
 	<h3 align=center>공지사항-등록</h3>
 	
-	<form action="noice_insert" method="post">
+	<form action="notice_insert" method="post">
 	공지제목 : <input type="text" id="notice_title" name="notice_title"   value="${notice_insert.notice_title}" 
 	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 

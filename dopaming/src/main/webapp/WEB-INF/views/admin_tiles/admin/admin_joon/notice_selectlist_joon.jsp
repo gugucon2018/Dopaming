@@ -35,14 +35,13 @@ function notice_delete(){
 
 	<h3 align=left><u>공지사항 목록</u></h3>
 	
-	<table width="100%">
+	<table class="joon_table" border="1" width="100%">
 		<tr align= "center" >
-			<td bgcolor="gray" width="200px">
+			<td bgcolor="" width="200px">
 <label for="th_checkAll"><input type="checkbox" id="th_checkAll" onclick="checkAll();"/>번호</label>
 			</td>
-			<td bgcolor="gray">제목</td>
-			<td width="200px" bgcolor="gray">작성자</td>
-			<td width="200px" bgcolor="gray">날짜</td>
+			<td bgcolor="">제목</td>
+			<td width="200px" bgcolor="">날짜</td>
 		</tr>
 	
 		<c:forEach items="${list}" var="i">
@@ -51,13 +50,12 @@ function notice_delete(){
 				<td><a href="../board/commentPost.jsp?board_no=${ i.getBoard_no()}">
 					${i.getBoard_no() }</a></td>
 				<td>${i.getTitle()}</td>
-				<td>${i.getUser_code() }</td>
 			</tr>
 		</c:forEach>
 </table><br>
 	
-	<button style="float:right;" type="button" class="">공지사항 등록</button>
-	<button style="float:right;" class="btn btn-info" type="button" onclick="notice_delete()">삭제</button>
+	<button style="float:right;" type="button" >공지사항 등록</button>
+	<button style="float:right;" type="button" onclick="notice_delete()">삭제</button>
 
 </body>
 </html>

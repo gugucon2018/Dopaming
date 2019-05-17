@@ -6,9 +6,9 @@
 
 
 	<typeAliases>
-		<!-- <typeAlias type="com.dbal.insa.users.UserVO" alias="user"/> -->
+		<!-- min -->
 		<typeAlias type="com.dopaming.www.login.MembersVO" alias="members"/>
-		<!-- <typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>-->
+		<typeAlias type="com.dopaming.www.grade.GradeVO_min" alias="grade"/>
 	</typeAliases>
 
 </configuration>

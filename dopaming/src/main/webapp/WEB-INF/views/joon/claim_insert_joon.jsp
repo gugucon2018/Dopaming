@@ -1,19 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+//입력되면 알림창을 띄운다
+if("${boardVO.seq}"== -1){
+	alert('${boardVO.msg}');
+}
+</script>
 </head>
 <body>
-<form action="AddNotice.do" method="post">
+<form action="claim_insert" method="post">
 	<h3 align=left><u>고객센터</u></h3>
 	
-	타입:<select name = "menu" onchange="changeMenu_h()">
-			<option value="desc">신고</option>
-			<option value="asc" >건의사항</option>
-			<option value="" >Q&A</option>
+	타입:<select name = "menu" onchange="changeMenu()">
+			<option value="report">신고</option>
+			<option value="suggest">건의사항</option>
+			<option value="qna">Q&A</option>
 		</select><br>
 		
 	신고제목 : <input type="text" id="notice_title" name="notice_title"   value="${notice.notice_title}" 

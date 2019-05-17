@@ -10,7 +10,7 @@
 
 	<h3 align=left><u>고객센터</u></h3>
 	
-	타입: ${notice.notice_title}
+	유형: ${notice.notice_title}
 	<table width="100%" height = "40px">
         <tr>        
             <td bgcolor="gray" width="80p"  align="center">제목</td>
@@ -28,7 +28,8 @@
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
 	onMouseOut="this.style.backgroundColor='ivory'">${notice.notice_contents}</textarea><br><br>
 	
-	<input style="float:right;" type="submit" class="btn btn-info" value="답변하기"/>
-
+	<a href="../board/commentPost.jsp?board_no=${ i.getBoard_no()}">
+	<button style="float:right;" type="button" class="btn btn-info">답변하기</button>
+	</a>
 </body>
 </html>

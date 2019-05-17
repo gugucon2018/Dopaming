@@ -50,6 +50,19 @@ public class JoonController {
 		return "joon/notice_select_joon";
 	}
 	
+	@RequestMapping(value = "/notice_update", method = RequestMethod.GET)
+	public String notice_update(Locale locale, Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "joon/notice_update_joon";
+	}
 	@RequestMapping(value = "/claim_insert", method = RequestMethod.GET)
 	public String claim_insert(Locale locale, Model model) {
 		//logger.info("Welcome home! The client locale is {}.", locale);
@@ -78,4 +91,73 @@ public class JoonController {
 		return "joon/claim_select_joon";
 	}
 	
+	@RequestMapping(value = "/notice_selectlist", method = RequestMethod.GET)
+	public String notice_selectlist(Locale locale, Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "joon/notice_selectlist_joon";
+	}
+	
+	@RequestMapping(value = "/board_selectlist", method = RequestMethod.GET)
+	public String board_selectlist(Locale locale, Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "joon/board_selectlist_joon";
+	}
+	
+	@RequestMapping(value = "/claim_qna_selectlist", method = RequestMethod.GET)
+	public String claim_qna_selectlist(Locale locale, Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "joon/claim_qna_selectlist_joon";
+	}
+	
+	@RequestMapping(value = "/claim_report_selectlist", method = RequestMethod.GET)
+	public String claim_report_selectlist(Locale locale, Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "joon/claim_report_selectlist_joon";
+	}
+	
+	@RequestMapping(value = "/claim_suggest_selectlist", method = RequestMethod.GET)
+	public String claim_suggest_selectlist(Locale locale, Model model) {
+		//logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "joon/claim_suggest_selectlist_joon";
+	}
 }

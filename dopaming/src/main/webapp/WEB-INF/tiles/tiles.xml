@@ -39,21 +39,19 @@
 	</definition>
 	
 	
+	<!-- 타일즈필요없는 관리자로그인 -->
 	<definition name="admin/*/*.empty" template="/WEB-INF/views/admin_tiles/admin_t/layoutEmpty.jsp">
 		<put-attribute name="content"
 			value="/WEB-INF/views/admin_tiles/admin/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="*.empty" template="/WEB-INF/views/admin_tiles/admin_t/layoutEmpty.jsp">
-		<put-attribute name="content" value="/WEB-INF/views/admin_tiles/{1}.jsp" />
-	</definition>
-	
+	<!-- 유저타일즈 -->
 	<definition name="*/*" extends="mainTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 
-
+	<!-- 관리자타일즈 -->
 	<definition name="admin/*/*" extends="adminTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/views/admin_tiles/admin/{1}/{2}.jsp" />

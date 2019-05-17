@@ -23,7 +23,6 @@
 
   <!-- Custom styles for this template-->
   <link href="./resources/admin/admin_css/sb-admin-2.min.css" rel="stylesheet">
- 
 </head>
 <body id="page-top">
 	<div class="container">

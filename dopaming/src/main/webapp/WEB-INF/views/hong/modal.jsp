@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="./resources/css/slider.css">
 <!-- 로그인 모달 -->
-<div class="modal fade loginmodal_warp" id="modalLogin" role="dialog">
+<div class="modal fade" id="modalLogin" role="dialog">
 	<div class="modal-dialog cascading-modal modal-margin" role="document">
 		<div class="modal-content loginmodal_resize">
 			<div class="modal-body loginmodal_body">
@@ -33,7 +33,7 @@
 	</div>
 </div>
 <!-- 회원가입 모달 -->
-<div class="modal fade joinmodal_warp" id="joinModal" role="dialog">
+<div class="modal fade" id="joinModal" role="dialog">
 	<div class="modal-dialog cascading-modal modal-margin" role="document">
 		<div class="modal-content joinmodal_resize">
 			<div class="modal-body joinmodal_body">

@@ -33,6 +33,6 @@ package com.dopaming.www;
 			
 			model.addAttribute("serverTime", formattedDate );
 			
-			return "main";
+			return "admin_tiles/admin/main";
 		}
 }

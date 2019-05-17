@@ -15,7 +15,7 @@ public class AdminServiceImpl_min implements Adminservice_min {
 	//@Autowired private UserDAOSpring userDAO;
 	@Autowired private AdminDAOMybatis_min mambersDAO;
 
-	public MembersVO getMembers(MembersVO vo) {
+	public MembersVO_min getMembers(MembersVO_min vo) {
 		return mambersDAO.getMembers(vo);
 	}
 	

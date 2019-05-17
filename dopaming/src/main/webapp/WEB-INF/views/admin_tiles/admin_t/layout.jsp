@@ -6,87 +6,26 @@
 <!-- 웹페이지언어 설정 -->
 <html lang="ko">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
- <link rel="icon" href="../../favicon.ico">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <meta charset="utf-8">
 <title>관리자 도파밍</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Custom styles for this template -->    
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="./resources/fontawesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="./resources/js/ie-emulation-modes-warning.js"></script>        
-	<style>
+  <title>SB Admin 2 - Cards</title>
 
-		.m_col{		
-			margin: 0px auto 0px auto;
-			float:right;					
-		}
-		.first_col{
-			margin: 0px auto;
-		}
-		
-		.jumbotron{
-			clear:both;
-			margin: 0px auto 0px auto;
-			background-image: url(./resources/images/logo2.jpg);
-			background-size: 100px;
-		}
- 		@media (min-width: 768px) {
-  		.container .jumbotron {  			
-	    		width: 100%;	    		
-  		}	
-		}
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-		@media (min-width: 992px) {
- 		 .container .jumbotron{ 		 	
-    			width: 100%;
-  		}
-		}	 
-		.carousel-caption{
-			position:absolute;
-			right:15%;
-			left:15%;
-			z-index:10;
-			padding-top:20px;
-			padding-bottom: 20px;
-		}
-		.carousel-inner{
-			display:block;
-			max-width:100%;
-			height:300px;
-		}
-		.navbar{
-			margin: 0px auto 0px auto;
-			background-color: #E56D29;			
-			width:100%;
-		}
-		.genre_rank{
-			max-width:100%;
-			height:82px;
-		}
-		div.footer{
-			clear: both;
-			width: 98%;
-			float: left;
-			background-color: #1f2022;
-			text-align: center;
-			padding-top: 15px;
-			padding-bottom: 15px;
-			margin-left: 10px;
-			color: #E0E0E0;
-		}
-	</style>
+  <!-- Custom styles for this template-->
+  <link href="./resources/admin/admin_css/sb-admin-2.min.css" rel="stylesheet">
+ 
 </head>
-<body>
+<body id="page-top">
 	<div class="container">
 			<tiles:insertAttribute name="header" />
 			<tiles:insertAttribute name="content" />

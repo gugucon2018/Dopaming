@@ -33,6 +33,6 @@ public class UploadController_Hwan {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "hwan/upload_hwan";
+		return "admin_tiles/admin/hwan/upload_hwan";
 	}	
 }

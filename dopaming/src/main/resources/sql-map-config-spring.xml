@@ -6,12 +6,17 @@
 
 
 	<typeAliases>
+
 		<!-- <typeAlias type="com.dbal.insa.users.UserVO" alias="user"/> -->
-		<typeAlias type="com.dopaming.www.login.MembersVO" alias="members"/>
+		<typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>
 		<!-- <typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>-->
 		<!-- 준혁_Alias -->
 		<typeAlias type="com.dopaming.www.notice.NoticeVO" alias="NoticeVO"/>	
 	
+
+		<!-- min -->
+		<typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>
+		<typeAlias type="com.dopaming.www.grade.GradeVO_min" alias="grade"/>
 	</typeAliases>
 
 </configuration>

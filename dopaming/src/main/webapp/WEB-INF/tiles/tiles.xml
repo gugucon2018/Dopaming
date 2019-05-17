@@ -28,10 +28,10 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/home.jsp" />
 	</definition>
-	<definition name="main" extends="mainTemplate">
+<!-- 	<definition name="main" extends="mainTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/views/main.jsp" />
-	</definition>
+	</definition> -->
 	
 	<!--empty --> <!-- 타일즈안쓰려면 empty를 적으면 됨 / minController 로그인처리 부분 참고 -->
 	<definition name="*/*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">

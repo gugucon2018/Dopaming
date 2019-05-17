@@ -9,12 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${not empty sessionScope.id }"> 
-	${userName }님 환영합니다.
+<c:if test="${empty sessionScope.id }"> 
+	<h4>환영합니다.</h4>
 	<input type="button" onclick="location='logout'" value="로그아웃">
 </c:if>
-<c:if test="${empty sessionScope.id }"> 
-	<a href="login">로그인</a>
-</c:if>
+
+<%-- <c:if test="${not empty sessionScope.id }">  
+	
+</c:if> --%>
 </body>
 </html>

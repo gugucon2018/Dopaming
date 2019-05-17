@@ -19,9 +19,7 @@ public class JoonController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JoonController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	//뷰연결
 	@RequestMapping(value = "/notice_insert", method = RequestMethod.GET)
 	public String notice_insert(Locale locale, Model model) {
 		//logger.info("Welcome home! The client locale is {}.", locale);
@@ -35,6 +33,9 @@ public class JoonController {
 		
 		return "joon/notice_insert_joon";
 	}
+	
+	//입력값 받아오기
+	
 	
 	@RequestMapping(value = "/notice_select", method = RequestMethod.GET)
 	public String notice_select(Locale locale, Model model) {

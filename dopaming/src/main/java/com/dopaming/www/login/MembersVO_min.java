@@ -2,7 +2,7 @@ package com.dopaming.www.login;
 
 import java.util.Date;
 
-public class MembersVO {
+public class MembersVO_min {
 	private String member_id;
 	private String member_password;
 	private String member_email;

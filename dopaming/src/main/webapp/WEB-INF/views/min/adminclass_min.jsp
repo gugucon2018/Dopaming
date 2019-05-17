@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<<<<<< HEAD
 	<%-- <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %> --%>  
-=======
-	<%-- <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>   --%>
->>>>>>> branch 'master' of https://github.com/gugucon2018/Dopaming.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,13 +29,20 @@ tr:nth-child(even) {
 <div>
 	<h4>등급관리 </h4><hr>
 	<div>
-		<form action="adminlogin" method="post">
-		<select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="Diamond">다이아몬드</option>
-		  <option value="gold">골드</option>
-		  <option value="sliver">실버</option>
-		  <option value="bronze">브론즈</option>
+		<form name="searchFrm">
+		    <input type="hidden" name="page">
+			<select name="searchCondition">
+				<option value="">선택
+				<c:forEach items="${condMap}" var="option">
+					<option value="${option.value}">${option.key}		
+				</c:forEach>
+			</select>
+			<%-- <script>
+				searchFrm.searchCondition.value='${boardVO.searchCondition}';
+			</script>
+			<input name="searchKeyword" value="${boardVO.searchKeyword}"/>
+			<button>검색</button> --%>
+		</form>
 		</select>
 		
 		<span style="float:right">

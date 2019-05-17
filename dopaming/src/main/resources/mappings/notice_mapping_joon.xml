@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--넘길곳 -->
+<mapper namespace="NoticeDAO"> 
+
+<!-- 컬럼지정 -->
+<resultMap id="noticeResult" type="NoticeVO">
+	<result property="notice_title" column="notice_title" />
+	<result property="notice_content" column="notice_content" />
+	<result property="notice_date" column="notice_date" />
+</resultMap>
+   
+<!--공지사항 입력-->
+<insert id="notice_insert">
+    INSERT INTO notice(
+							notice_title
+							,notice_content
+						    ,notict_date
+									)
+				VALUES (<!-- vo에 값들을 땡겨와 넘긴다 -->
+					#{notice_title} 
+					,#{notice_content}
+					,sysdate
+					)
+   </insert>
+</mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,10 +47,10 @@ function notice_delete(){
 	
 		<c:forEach items="${list}" var="i">
 			<tr align = "center">
-				<td><label for="${i.getRn()}"><input type="checkbox" name="board_no_d" id="${i.getRn()}" value="${ i.getBoard_no()}">${i.getRn()}</label></td>
-				<td><a href="../board/commentPost.jsp?board_no=${ i.getBoard_no()}">
-					${i.getBoard_no() }</a></td>
-				<td>${i.getTitle()}</td>
+				<td><label for="${i.getRn()}"><input type="checkbox" name="board_no_d" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
+				<td><a href=".jsp?notice_no=${ i.getNotice_no()}">
+					${i.getNotice_title()}</a></td>
+				<td>${i.getNotice_date()}</td>
 			</tr>
 		</c:forEach>
 </table><br>

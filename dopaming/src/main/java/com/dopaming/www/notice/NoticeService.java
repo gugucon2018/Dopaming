@@ -1,8 +1,14 @@
 package com.dopaming.www.notice;
 
+import java.util.List;
+
 public interface NoticeService {
 
-	// 공지등록
+	// 공지 등록
 	void notice_insert(NoticeVO vo);
+	
+	// 공지 목록 출력
+	List<NoticeVO> notice_select(NoticeVO vo);
+	
 
 }

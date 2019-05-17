@@ -29,6 +29,7 @@ tr:nth-child(even) {
 <div>
 	<h4>등급관리 </h4><hr>
 	<div>
+	<span style="float:right">
 		<form name="searchFrm">
 		    <input type="hidden" name="page">
 			<select name="searchCondition">
@@ -37,19 +38,14 @@ tr:nth-child(even) {
 					<option value="${option.value}">${option.key}		
 				</c:forEach>
 			</select>
-			<%-- <script>
+			<script>
 				searchFrm.searchCondition.value='${boardVO.searchCondition}';
 			</script>
 			<input name="searchKeyword" value="${boardVO.searchKeyword}"/>
-			<button>검색</button> --%>
+			<button>검색</button>
+			</select>
 		</form>
-		</select>
-		
-		<span style="float:right">
-			<INPUT TYPE="text" NAME="name" style="text-align:right"> 
-			<button type="button">검색</button>
-		</span>
-		</form>
+	</span>
 	</div>
 	<div>
 		<table>

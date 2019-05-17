@@ -30,7 +30,7 @@ public class MinController {
 	//(관리자)로그인 폼
 		@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)
 		public String loginFrom() {
-			return "min/adminlogin_min.empty";
+			return "admin/admin_min/adminlogin_min.empty";
 		}
 			//로그인 처리
 			@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -44,13 +44,13 @@ public class MinController {
 						out.println("alert('id error');");
 						out.println("history.go(-1);"); //이전페이지로
 						out.println("</script>");
-					return "min/adminlogin_min.empty";	
+					return "admin/admin_min/adminlogin_min.empty";	
 				}
 				else {
 					session.setAttribute("member_id",member.getMember_id());
 					session.setAttribute("member_password",member.getMember_password());
 					session.setAttribute("member",member);
-					return "min/adminmain_min.empty";
+					return "admin/admin_min/adminmain_min";
 				}
 			}
 			
@@ -58,20 +58,18 @@ public class MinController {
 			@RequestMapping("/logout")
 			public String logout(HttpSession session) {
 				session.invalidate(); //세션무효화
-				return "min/adminlogin_min.empty";
+				return "admin/admin_min/adminlogin_min.empty";
 			}
 	
 		@ModelAttribute("condMap")			//model.addAttribute(, conditionMap);
 		public Map<String, String> searchConditionMap(){
 			HashMap<String,String> conditionMap = new HashMap<String, String>();
-			conditionMap.put("제목","TITLE");
-			conditionMap.put("내용","CONTENT");
-			conditionMap.put("작성자","WRITER");
+			conditionMap.put("아이디","ID");
+			conditionMap.put("등급","GRADE");
+			//conditionMap.put("작성자","WRITER");
 			return conditionMap;
 		}		
-			
-			
-			
+					
 	//(유저)아콘결제페이지
 	@RequestMapping(value= {"/acornForm"}, method=RequestMethod.GET)
 	public String acornFrom() {
@@ -81,18 +79,18 @@ public class MinController {
 	//(관리자)회원관리 - 등급관리
 	@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
 	public String classFrom() {
-		return "min/adminclass_min";
+		return "admin/admin_min/adminclass_min";
 	}
 	
 	//(관리자)회원관리 - 사용자관리
 	@RequestMapping(value= {"/userForm"}, method=RequestMethod.GET)
 	public String userFrom() {
-		return "min/adminuser_min";
+		return "admin/admin_min/adminuser_min";
 	}
 	
 	//(관리자)회원관리 - 업로드한 리스트 뷰
 	@RequestMapping(value= {"/uploadlistForm"}, method=RequestMethod.GET)
 	public String uploadlistFrom() {
-		return "min/adminuploadlist_min";
+		return "admin/admin_min/adminuploadlist_min";
 	}
 }

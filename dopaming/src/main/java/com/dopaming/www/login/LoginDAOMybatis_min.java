@@ -10,14 +10,13 @@ import org.springframework.stereotype.Repository;
 import com.dopaming.www.login.*;;
 
 @Repository
-public class AdminDAOMybatis_min {
+public class LoginDAOMybatis_min {
 	@Autowired SqlSessionTemplate mybatis;
 	
-	//단건조회
+	//로그인
 	public MembersVO_min getMembers(MembersVO_min vo) {
-		return mybatis.selectOne("MembersDAO.getMembers", vo);
+		return mybatis.selectOne("LoginMinDAO.getMembers", vo);
 	}
-	
 //	//전체조회
 //	public List<MembersVO_min> getUserList(){
 //		return mybatis.selectList("UserDAO.getUserList");

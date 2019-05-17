@@ -5,10 +5,10 @@ import java.util.Map;
 
 import com.dopaming.www.login.MembersVO_min;;
 
-public interface Adminservice_min {
+public interface Loginservice_min {
 	
 	//CRUD 기능의 메소드 구현
-	//회원 등록
+	//로그인
 	MembersVO_min getMembers(MembersVO_min vo);
 //	List<MembersVO_min> getUserList();
 //	public Integer userCount();

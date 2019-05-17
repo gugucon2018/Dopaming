@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 import com.dopaming.www.login.*;
 
 @Service("userService")
-public class AdminServiceImpl_min implements Adminservice_min {
+public class LoginServiceImpl_min implements Loginservice_min {
 	
 	//Autowired가 UserDAO 자체를 가져오는것(DAO에 repository로 연결해줬다)
 	//@Autowired private UserDAOSpring userDAO;
-	@Autowired private AdminDAOMybatis_min mambersDAO;
-
+	@Autowired private LoginDAOMybatis_min mambersDAO;
+	
+	//로그인
 	public MembersVO_min getMembers(MembersVO_min vo) {
 		return mambersDAO.getMembers(vo);
 	}

@@ -25,7 +25,7 @@ public class MinController {
 	private static final Logger logger = LoggerFactory.getLogger(MinController.class);
 	
 	@Autowired
-	Adminservice_min service;
+	Loginservice_min service;
 	
 	//(관리자)로그인 폼
 		@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)

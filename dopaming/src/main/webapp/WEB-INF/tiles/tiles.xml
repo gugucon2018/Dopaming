@@ -34,25 +34,29 @@
 	</definition> -->
 	
 	<!--empty --> <!-- 타일즈안쓰려면 empty를 적으면 됨 / minController 로그인처리 부분 참고 -->
-	<definition name="*/*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	<definition name="*/*.empty" template="/WEB-INF/views/admin_tiles/admin_t/layoutEmpty.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/admin_tiles/{1}/{2}.jsp" />
 	</definition>
-	<definition name="*.empty" template="/WEB-INF/views/tiles/layoutEmpty.jsp">
-		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
-	</definition>	
+	
+	
+	<definition name="admin/*/*.empty" template="/WEB-INF/views/admin_tiles/admin_t/layoutEmpty.jsp">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin_tiles/admin/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="*.empty" template="/WEB-INF/views/admin_tiles/admin_t/layoutEmpty.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/admin_tiles/{1}.jsp" />
+	</definition>
 	
 	<definition name="*/*" extends="mainTemplate">
 		<put-attribute name="content"
 			value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 
-	<definition name="*/*/*" extends="adminTemplate">
+
+	<definition name="admin/*/*" extends="adminTemplate">
 		<put-attribute name="content"
-			value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-	</definition>
-		<definition name="*/*/*/*" extends="adminTemplate">
-		<put-attribute name="content"
-			value="/WEB-INF/views/{1}/{2}/{3}/{4}.jsp" />
+			value="/WEB-INF/views/admin_tiles/admin/{1}/{2}.jsp" />
 	</definition>
 	
 </tiles-definitions>

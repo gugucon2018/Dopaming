@@ -13,10 +13,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dopaming.www.grade.GradeVO_min;
+import com.dopaming.www.grade.Gradeservice_min;
 import com.dopaming.www.login.*;
 
 @Controller
@@ -26,9 +29,11 @@ public class MinController {
 	
 	@Autowired
 	Loginservice_min service;
+	@Autowired
+	Gradeservice_min service2;
 	
 	//(관리자)로그인 폼
-		@RequestMapping(value= {"/loginForm","/login"}, method=RequestMethod.GET)
+		@RequestMapping(value= {"/loginForm"}, method=RequestMethod.GET)
 		public String loginFrom() {
 			return "admin/admin_min/adminlogin_min.empty";
 		}
@@ -59,27 +64,23 @@ public class MinController {
 			public String logout(HttpSession session) {
 				session.invalidate(); //세션무효화
 				return "admin/admin_min/adminlogin_min.empty";
-			}
-	
-		@ModelAttribute("condMap")			//model.addAttribute(, conditionMap);
-		public Map<String, String> searchConditionMap(){
-			HashMap<String,String> conditionMap = new HashMap<String, String>();
-			conditionMap.put("아이디","ID");
-			conditionMap.put("등급","GRADE");
-			//conditionMap.put("작성자","WRITER");
-			return conditionMap;
-		}		
+			}	
 					
+	
+	//관리자 - 회원관리 - 등급관리 - 등급List
+		@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
+		public String getClass(Model model, GradeVO_min vo) {
+			System.out.println("requestMapping");
+			model.addAttribute("classList", service2.getClassList(vo));
+			return "admin/admin_min/adminclass_min";
+		}
+		
+		
+		
 	//(유저)아콘결제페이지
 	@RequestMapping(value= {"/acornForm"}, method=RequestMethod.GET)
 	public String acornFrom() {
 		return "min/useracorn_min";
-	}
-	
-	//(관리자)회원관리 - 등급관리
-	@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
-	public String classFrom() {
-		return "admin/admin_min/adminclass_min";
 	}
 	
 	//(관리자)회원관리 - 사용자관리

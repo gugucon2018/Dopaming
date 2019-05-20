@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="GradeMinDAO"> 
+
+   
+   <!-- 로그인 -->
+   <select id="getMembers" resultType="members" >
+    select * from members where member_id=#{member_id} and member_password=#{member_password}
+   </select>
+   
+   <!-- 관리자 - 회원관리 - 등급관리 - 등급List  -->
+   <select id="classList" resultType="grade" >
+    select m.member_id , 
+    		sum(a.acorn_charge) as acron,
+    		g.grade_kor , 
+    		m.upload_count
+	from acorn a join members m
+	on a.member_id = m.member_id 
+	join grade g 
+	on m.member_grade = g.member_grade
+	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+          <if test="member_grade != null and member_grade !=''"> <!-- BoardController에서 public String boardList(Model model, Paging paging, @RequestParam(required=false, defaultValue="TITLE") String searchCondition, @RequestParam(required=false) String searchKeyword) 여기서 searchKeyword값이 null일때 즉, searchCondition만 있어도 조회가능하게 하기 위해 if문 사용 => if문 사용하는 것이 아니면 searchKeyword부분에서 @RequestParam(required=false, defaultValue="") 이렇게 null값이 아닌 빈값을 주면 됨 -->
+           g.member_grade=#{member_grade}
+          </if>
+    </where>
+	group by m.member_id, g.grade_kor, m.upload_count
+	order by grade_kor asc
+   </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 사용중지 -->
+<resultMap id="classResult" type="map">
+    <id property="member_id" column="member_id"/><!--pk는 id로  적는편-->
+    <result property="grade_kor" column="grade_kor"/>
+    <result property="acron" column="acron"/>
+    <result property="upload_count" column="upload_count"/>
+</resultMap>
+
+   <!-- 관리자 - 회원관리 - 등급관리 - select(5개만) -->
+   <!-- <select id="gradelist" resultMap="classResult" >
+select a.* from ( select b.*, rownum rn from ( 
+	    	select m.member_id, g.grade_kor ,sum(a.acorn_charge) as acron, m.upload_count
+            from acorn a inner join members m
+            on a.member_id = m.member_id 
+            inner join grade g 
+            on m.member_grade = g.member_grade
+            group by m.member_id, g.grade_kor, m.upload_count
+            order by m.upload_count desc
+    	) b ) a where rn between #{first} and #{last}
+	</select> -->
+   
+  <!-- Paging count수 -->
+    <!-- <select id="getBoardCount" resultType="int">
+      SELECT COUNT(*) FROM (select m.member_id, g.grade_kor ,sum(a.acorn_charge) as acron, m.upload_count
+            from acorn a inner join members m
+            on a.member_id = m.member_id 
+            inner join grade g 
+            on m.member_grade = g.member_grade
+            group by m.member_id, g.grade_kor, m.upload_count)
+    </select>  -->
+   
+   
+   <!-- 유저 아콘충전 -->   <!-- 조인을 사용하는건 resultType(___VO)보단 map을 사용한다. -->
+   <!-- <select id="acornchange" resultType="acorn">
+    update acorn set acorn_change = acorn_change + #{acorn_change} where member_id=#{member_id}
+   </select> -->
+   
+   <!-- 관리자 등급관리 리스트 -->
+   <select id="classlist33" resultType="map">
+   	조인3개
+   </select>
+   
+   <!-- 관리자 등급관리 수정 -->
+   <select id="classupdate" resultType="map">
+   	조인3개
+   </select>
+   
+   <!-- 관리자 등급관리 검색 -->
+   <select id="classsearch" resultType="map">
+   	조인3개
+   </select>
+   
+   <!-- 관리자 사용자관리 리스트 -->
+   <select id="userlist" resultType="map">
+   	조인3개
+   </select>
+   
+   <!-- 관리자 사용자관리 검색 -->
+   <select id="usersearch" resultType="map">
+   	조인3개
+   </select>
+   
+   <!-- 관리자 사용자관리 탈퇴버튼 -->
+   <select id="usersecession" resultType="map">
+   	조인3개
+   </select>
+   
+   <!-- 관리자 업로드관리 리스트 -->
+   <select id="uploadlist" resultType="map">
+   	조인3개
+   </select>
+  
+</mapper>

@@ -6,6 +6,36 @@ public class GradeVO_min {
 	private int max_upload;
 	private String member_grade_kor; //듣급한글(ex.다이아몬드 도토리)
 	
+	//등급관리를 위한 id, 총결제액, ,현재 등급, 총 업로드수
+	private String member_id;
+	private int acron;
+	private String grade_kor;
+	private int upload_count;
+	
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	public int getAcron() {
+		return acron;
+	}
+	public void setAcron(int acron) {
+		this.acron = acron;
+	}
+	public String getGrade_kor() {
+		return grade_kor;
+	}
+	public void setGrade_kor(String grade_kor) {
+		this.grade_kor = grade_kor;
+	}
+	public int getUpload_count() {
+		return upload_count;
+	}
+	public void setUpload_count(int upload_count) {
+		this.upload_count = upload_count;
+	}
 	public String getMember_grade() {
 		return member_grade;
 	}

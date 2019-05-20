@@ -20,6 +20,9 @@
             <div class="row text-center">
                 <div class="col-lg-12">
                     <h1 class="heading-title"> DOPAMING STYLE</h1>
+                    <!-- session값 확인가능 -->
+                    <%-- <% String id = (String)session.getAttribute("member_id"); %>
+					<%=id %>님 어서오세요. --%>
                 </div>
             </div>
 
@@ -34,7 +37,8 @@
                             <label class=" control-label">Password</label>
                             <input name="member_password" value="${members.member_password }"  type="text" class="form-control" placeholder="Please enter a password"/>
 
-                            <button class="btn btn-default">LOGIN <i class="fa fa-arrow-circle-right fa-2x"></i></button>
+                            <button class="btn btn-default">LOGIN 
+                            <i class="fa fa-arrow-circle-right fa-2x"></i></button>
                         </div>
                         <span class="form-footer">already have an account? <a href="#">log in</a></span>
                     </form>

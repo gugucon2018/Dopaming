@@ -7,7 +7,14 @@ public class NoticeVO {
 	String notice_title;
 	String notice_content;
 	Date notice_date;
+	int rn;
 	
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
 	public int getNotice_no() {
 		return notice_no;
 	}
@@ -32,12 +39,11 @@ public class NoticeVO {
 	public void setNotice_date(Date notice_date) {
 		this.notice_date = notice_date;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "NoticeVO [notice_no=" + notice_no + ", notice_title=" + notice_title + ", notice_content="
 				+ notice_content + ", notice_date=" + notice_date + "]";
 	}
-	
 	
 }

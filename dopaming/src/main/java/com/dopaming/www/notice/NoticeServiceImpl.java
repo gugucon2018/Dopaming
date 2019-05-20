@@ -8,22 +8,27 @@ import org.springframework.stereotype.Service;
 
 @Service("NoticeService") //서비스 등록
 public class NoticeServiceImpl implements NoticeService {
- 
-	/*
-	 * @Autowired//인젝션//DAO부르는것 BoardDAO dao;
-	 */	
-	
+
+	//인젝션//NoticeDAOMybatis(DAO)부르는것 
 	@Autowired NoticeDAOMybatis dao;
-			
-	@Override//DAO를 불러쓰는것
+	
+	//공지 입력
+	@Override//상속받는것
 	public void notice_insert(NoticeVO vo) {
 		//around AOP 트랜잭션처리
 		dao.notice_insert(vo);
 		//commit
 	}
-
-	@Override
-	public List<NoticeVO> notice_select(NoticeVO vo) {
+	
+	//공지 단건 조회
+	@Override//상속받는것
+	public NoticeVO notice_select(NoticeVO vo) {
 		return dao.notice_select(vo);
+	}
+	
+	//공지 목록 조회
+	@Override//상속받는것
+	public List<NoticeVO> notice_selectlist() {
+		return dao.notice_selectlist();
 	}
 }

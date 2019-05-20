@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dopaming.www.grade.GradeDAOMybatis_min;
+import com.dopaming.www.grade.GradeVO_min;
 import com.dopaming.www.login.*;
 
 @Service("userService")
@@ -19,20 +21,4 @@ public class LoginServiceImpl_min implements Loginservice_min {
 	public MembersVO_min getMembers(MembersVO_min vo) {
 		return mambersDAO.getMembers(vo);
 	}
-	
-//	public List<MembersVO_min> getUserList(){
-//		return mambersDAO.getUserList();
-//	}
-//
-//	@Override
-//	public Integer userCount() {
-//		// TODO Auto-generated method stub
-//		return mambersDAO.userCount();
-//	}
-//
-//	@Override
-//	public List<Map<String, Object>> getUserMap(MembersVO_min vo) {
-//		// TODO Auto-generated method stub
-//		return mambersDAO.getUserMap(vo);
-//	}
 }

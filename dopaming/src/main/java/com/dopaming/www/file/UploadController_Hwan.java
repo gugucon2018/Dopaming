@@ -24,15 +24,7 @@ public class UploadController_Hwan {
 	 */
 	@RequestMapping(value = "/upload_hwan", method = RequestMethod.GET)
 	public String hwan(Locale locale, Model model) {
-		//logger.info("Welcome home! The client locale is {}.", locale);
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "admin_tiles/admin/hwan/upload_hwan";
+		return "hwan/upload_hwan";
 	}	
 }

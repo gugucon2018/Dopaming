@@ -8,12 +8,21 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+//전체선택
+function td_checkAll(){
+      if( $("#td_checkAll").is(':checked') ){
+        $("input[name=td_checkbox]").prop("checked", true);
+      }else{
+        $("input[name=td_checkbox]").prop("checked", false);
+      }
+}
+
 //선택삭제 기능
-function notice_delete(){
+function td_delete(){
 	//체크박스 입력 체크
-	var chk = document.getElementsByName("board_no_d"); //태그찾기
+	var chk = document.getElementsByName("td_checkbox"); //태그찾기
 	var cnt = 0; //태그의 배열
-	for (i = 0; i < chk.length; i++) { //board_no_d그룹에서 체크된 값을 찾기위해 for문을 돌려 체크된 값이 있는지를 확인한다.
+	for (i = 0; i < chk.length; i++) { //td_checkbox그룹에서 체크된 값을 찾기위해 for문을 돌려 체크된 값이 있는지를 확인한다.
 		//체크된 카운트
 		if (chk[i].checked == true) { //태그에 체크가 되었는지 확인
 			cnt++ //체크수 증가
@@ -34,12 +43,12 @@ function notice_delete(){
 </head>
 <body>
 
-	<h3 align=left><u>공지사항 목록</u></h3>
+	<h3 align=center><u>공지사항 목록</u></h3><br>
 	
 	<table class="joon_table" border="1" width="100%">
 		<tr align= "center" >
 			<td bgcolor="" width="200px">
-<label for="th_checkAll"><input type="checkbox" id="th_checkAll" onclick="checkAll();"/>번호</label>
+<label for="td_checkAll"><input type="checkbox" id="td_checkAll" onclick="td_checkAll();"/>번호</label>
 			</td>
 			<td bgcolor="">제목</td>
 			<td width="200px" bgcolor="">날짜</td>
@@ -47,7 +56,7 @@ function notice_delete(){
 	
 		<c:forEach items="${list}" var="i">
 			<tr align = "center">
-				<td><label for="${i.getRn()}"><input type="checkbox" name="board_no_d" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
+				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
 				<td><a href=".jsp?notice_no=${ i.getNotice_no()}">
 					${i.getNotice_title()}</a></td>
 				<td>${i.getNotice_date()}</td>
@@ -55,8 +64,8 @@ function notice_delete(){
 		</c:forEach>
 </table><br>
 	
-	<button style="float:right;" type="button" >공지사항 등록</button>
-	<button style="float:right;" type="button" onclick="notice_delete()">삭제</button>
+	<a href="/dopaming/notice_insert"><button style="float:right;" type="button" >공지사항 등록</button></a>
+	<button style="float:right;" type="button" onclick="td_delete()">삭제</button>
 
 </body>
 </html>

@@ -24,84 +24,56 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+<script>
+	function go_page(p) {
+		searchFrm.page.value = p;
+		searchFrm.submit();
+	}
+</script>
 </head>
 <body>
 <div>
 	<h4>등급관리 </h4><hr>
-	<div>
-	<span style="float:right">
-		<form name="searchFrm">
-		    <input type="hidden" name="page">
-			<select name="searchCondition">
-				<option value="">선택
-				<c:forEach items="${condMap}" var="option">
-					<option value="${option.value}">${option.key}		
-				</c:forEach>
-			</select>
-			<script>
-				searchFrm.searchCondition.value='${boardVO.searchCondition}';
-			</script>
-			<input name="searchKeyword" value="${boardVO.searchKeyword}"/>
-			<button>검색</button>
-			</select>
-		</form>
-	</span>
-	</div>
-	<div>
-		<table>
-		  <tr>
-		    <th> </th>
-		    <th>아이디</th>
-		    <th>총결제액</th>
-		    <th>업로드</th>
-		    <th>등급</th>
-		  </tr>
-		  <tr>
-		    <td><input type="checkbox" name="chk_info"></td>
-		    <td>Alfreds Futterkiste</td>
-		    <td>Maria Anders</td>
-		    <td>Germany</td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td><input type="checkbox" name="chk_info"></td>
-		    <td>Alfreds Futterkiste</td>
-		    <td>Maria Anders</td>
-		    <td>Germany</td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-	    <td><input type="checkbox" name="chk_info"></td>
-		    <td>Alfreds Futterkiste</td>
-		    <td>Maria Anders</td>
-		    <td>Germany</td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td><input type="checkbox" name="chk_info"></td>
-		    <td>Alfreds Futterkiste</td>
-		    <td>Maria Anders</td>
-		    <td>Germany</td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-	    	<td><input type="checkbox" name="chk_info"></td>
-		    <td>Alfreds Futterkiste</td>
-		    <td>Maria Anders</td>
-		    <td>Germany</td>
-		    <td>Germany</td>
-		  </tr>
-		</table>
-	</div>
+	<form name="searchFrm">
+		<select name="member_grade">
+			<option value="">선택
+			<option value="g4">다이아도토리
+			<option value="g3">골드도토리
+			<option value="g2">실버도토리
+			<option value="g1">브론즈도토리
+		</select>
+		<script>
+		searchFrm.member_grade.value='${GradeVO_min.member_grade}';
+		</script>
+		<button>검색</button>
+	</form>
+	<table>
+		<tr>
+			<td> </td>
+			<td>아이디</td>
+			<td>총 현질합계</td>
+			<td>등급</td>
+			<td>총 업로드횟수</td>
+		<tr>
+	<c:forEach items="${classList}" var="classs"> <!-- 등급관리 전체조회 -->
+	<tr>
+		<td><input type="checkbox" name="seqs" value="${board.seq }"></td>
+		<td>${classs.member_id }</td>
+		<td>${classs.acron }</td>
+		<td>${classs.grade_kor }</td>
+		<td>${classs.upload_count }</td>
+	</tr>
+	</c:forEach>
+	</table>
 	페이징해야함
 		<span style="float:right">
 		<form action="adminlogin1" method="post">
-		<select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="Diamond">다이아몬드</option>
-		  <option value="gold">골드</option>
-		  <option value="sliver">실버</option>
-		  <option value="bronze">브론즈</option>
+		<select name="member_grade">
+			<option value="">선택
+			<option value="g4">다이아도토리
+			<option value="g3">골드도토리
+			<option value="g2">실버도토리
+			<option value="g1">브론즈도토리
 		</select>
 		<button type="button">등급 수정</button>
 		</form>

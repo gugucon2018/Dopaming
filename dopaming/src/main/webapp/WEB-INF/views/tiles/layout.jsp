@@ -69,7 +69,7 @@
 		}
 		div.footer{
 			clear: both;
-			width: 98%;
+			width: 100%;
 			float: left;
 			background-color: #1f2022;
 			text-align: center;
@@ -81,7 +81,7 @@
 	</style>
 </head>
 <body>
-	<div class="">
+	<div class="container-fluid">
 			<tiles:insertAttribute name="header" />
 			<tiles:insertAttribute name="content" />
 			<tiles:insertAttribute name="footer" />

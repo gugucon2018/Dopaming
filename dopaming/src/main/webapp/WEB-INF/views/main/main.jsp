@@ -8,7 +8,7 @@
 	<title>도파밍 프로젝트</title>
 </head>
 <body>
-<div class="col-sm-8">
+<div class="container col-sm-8">
 	<div class="container col-sm-12">
 		<div id="genreCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
 		<ol class="carousel-indicators">

@@ -24,12 +24,32 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+<script>
+	function go_page(p) {
+		searchFrm.page.value = p;
+		searchFrm.submit();
+	}
+</script>
 </head>
 <body>
 <div>
 	<h4>등급관리 </h4><hr>
+	<form name="searchFrm">
+		<select name="member_grade">
+			<option value="">선택
+			<option value="g4">다이아도토리
+			<option value="g3">골드도토리
+			<option value="g2">실버도토리
+			<option value="g1">브론즈도토리
+		</select>
+		<script>
+		searchFrm.member_grade.value='${GradeVO_min.member_grade}';
+		</script>
+		<button>검색</button>
+	</form>
 	<table>
 		<tr>
+			<td> </td>
 			<td>아이디</td>
 			<td>총 현질합계</td>
 			<td>등급</td>
@@ -37,6 +57,7 @@ tr:nth-child(even) {
 		<tr>
 	<c:forEach items="${classList}" var="classs"> <!-- 등급관리 전체조회 -->
 	<tr>
+		<td><input type="checkbox" name="seqs" value="${board.seq }"></td>
 		<td>${classs.member_id }</td>
 		<td>${classs.acron }</td>
 		<td>${classs.grade_kor }</td>
@@ -47,12 +68,12 @@ tr:nth-child(even) {
 	페이징해야함
 		<span style="float:right">
 		<form action="adminlogin1" method="post">
-		<select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="Diamond">다이아몬드</option>
-		  <option value="gold">골드</option>
-		  <option value="sliver">실버</option>
-		  <option value="bronze">브론즈</option>
+		<select name="member_grade">
+			<option value="">선택
+			<option value="g4">다이아도토리
+			<option value="g3">골드도토리
+			<option value="g2">실버도토리
+			<option value="g1">브론즈도토리
 		</select>
 		<button type="button">등급 수정</button>
 		</form>

@@ -10,16 +10,25 @@
     select * from members where member_id=#{member_id} and member_password=#{member_password}
    </select>
    
-   <!-- 단건조회 -->
+   <!-- 관리자 - 회원관리 - 등급관리 - 등급List  -->
    <select id="classList" resultType="grade" >
-    select m.member_id member_id, sum(a.acorn_charge) as acron,g.grade_kor grade_kor, m.upload_count upload_count
+    select m.member_id , 
+    		sum(a.acorn_charge) as acron,
+    		g.grade_kor , 
+    		m.upload_count
 	from acorn a join members m
 	on a.member_id = m.member_id 
 	join grade g 
 	on m.member_grade = g.member_grade
+	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+          <if test="member_grade != null and member_grade !=''"> <!-- BoardController에서 public String boardList(Model model, Paging paging, @RequestParam(required=false, defaultValue="TITLE") String searchCondition, @RequestParam(required=false) String searchKeyword) 여기서 searchKeyword값이 null일때 즉, searchCondition만 있어도 조회가능하게 하기 위해 if문 사용 => if문 사용하는 것이 아니면 searchKeyword부분에서 @RequestParam(required=false, defaultValue="") 이렇게 null값이 아닌 빈값을 주면 됨 -->
+           g.member_grade=#{member_grade}
+          </if>
+    </where>
 	group by m.member_id, g.grade_kor, m.upload_count
 	order by grade_kor asc
    </select>
+
 
 
 

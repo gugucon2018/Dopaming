@@ -15,14 +15,12 @@ public class GradeServiceImpl_min implements Gradeservice_min {
 	//@Autowired private UserDAOSpring userDAO;
 	@Autowired private GradeDAOMybatis_min mambersDAO;
 
-	//관리자 - 회원관리 - 등급관리 - 등급select	
+	//관리자 - 회원관리 - 등급관리 - 등급List
 	@Override
-	public List<GradeVO_min> getClassList(){
+	public List<GradeVO_min> getClassList(GradeVO_min vo){
 		System.out.println("getClassList");
-		return mambersDAO.getClassList();
+		return mambersDAO.getClassList(vo);
 	}
-	
-	
 	
 //	public List<MembersVO_min> getUserList(){
 //		return mambersDAO.getUserList();

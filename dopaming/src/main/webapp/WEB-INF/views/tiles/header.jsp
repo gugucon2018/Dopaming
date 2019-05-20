@@ -11,6 +11,7 @@
 					<li><a class="navbar-brand" href="#">아콘충전</a></li>
 					<li><a class="navbar-brand" id="joinBtn" href="#">쪽지</a></li>
 					<li><a class="navbar-brand" href="#">고객센터</a></li>
+					<li><a class="navbar-brand" href="loginForm">(임시)관리자로그인페이지</a></li>
 				</ul>
 				<ul class="nav navbar-nav navber-right">
 					<li><a class="navbar-brand" id="loginBtn" href="#">로그인</a></li>

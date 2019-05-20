@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dopaming.www.grade.GradeVO_min;
 import com.dopaming.www.grade.Gradeservice_min;
 import com.dopaming.www.login.*;
 
@@ -63,24 +64,16 @@ public class MinController {
 			public String logout(HttpSession session) {
 				session.invalidate(); //세션무효화
 				return "admin/admin_min/adminlogin_min.empty";
-			}
-	
-		@ModelAttribute("condMap")			//model.addAttribute(, conditionMap);
-		public Map<String, String> searchConditionMap(){
-			HashMap<String,String> conditionMap = new HashMap<String, String>();
-			conditionMap.put("아이디","ID");
-			conditionMap.put("등급","GRADE");
-			//conditionMap.put("작성자","WRITER");
-			return conditionMap;
-		}		
+			}	
 					
-	//관리자)회원관리 - 등급관리 - 등급전체조회
-	@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
-	public String getClassList(Model model) {
-		System.out.println("requestMapping");
-		model.addAttribute("classList", service2.getClassList());
-		return "admin/admin_min/adminclass_min";
-	}
+	
+	//관리자 - 회원관리 - 등급관리 - 등급List
+		@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
+		public String getClass(Model model, GradeVO_min vo) {
+			System.out.println("requestMapping");
+			model.addAttribute("classList", service2.getClassList(vo));
+			return "admin/admin_min/adminclass_min";
+		}
 		
 		
 		

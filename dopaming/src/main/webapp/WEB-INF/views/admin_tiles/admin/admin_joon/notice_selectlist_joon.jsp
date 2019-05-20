@@ -11,9 +11,9 @@
 //선택삭제 기능
 function notice_delete(){
 	//체크박스 입력 체크
-	var chk = document.getElementsByName("board_no_d"); //태그찾기
+	var chk = document.getElementsByName("notice_selectlist"); //태그찾기
 	var cnt = 0; //태그의 배열
-	for (i = 0; i < chk.length; i++) { //board_no_d그룹에서 체크된 값을 찾기위해 for문을 돌려 체크된 값이 있는지를 확인한다.
+	for (i = 0; i < chk.length; i++) { //notice_selectlist그룹에서 체크된 값을 찾기위해 for문을 돌려 체크된 값이 있는지를 확인한다.
 		//체크된 카운트
 		if (chk[i].checked == true) { //태그에 체크가 되었는지 확인
 			cnt++ //체크수 증가
@@ -47,7 +47,7 @@ function notice_delete(){
 	
 		<c:forEach items="${list}" var="i">
 			<tr align = "center">
-				<td><label for="${i.getRn()}"><input type="checkbox" name="board_no_d" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
+				<td><label for="${i.getRn()}"><input type="checkbox" name="notice_selectlist" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
 				<td><a href=".jsp?notice_no=${ i.getNotice_no()}">
 					${i.getNotice_title()}</a></td>
 				<td>${i.getNotice_date()}</td>

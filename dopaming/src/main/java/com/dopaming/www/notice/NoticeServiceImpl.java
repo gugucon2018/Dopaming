@@ -23,7 +23,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> notice_select(NoticeVO vo) {
-		return dao.notice_select(vo);
+	public List<NoticeVO> notice_select() {
+		return dao.notice_select();
 	}
 }

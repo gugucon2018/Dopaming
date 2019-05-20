@@ -23,9 +23,9 @@ public class NoticeDAOMybatis {
 	}
 	
 	//공지사항 목록 출력
-	public List<NoticeVO> notice_select(NoticeVO vo) {
+	public List<NoticeVO> notice_select() {
 		System.out.println("공지사항 목록 실행");
-		return mybatis.selectList("NoticeDAO.notice_select",vo);
+		return mybatis.selectList("NoticeDAO.notice_select");
 	}
 	
 	//페이징 건수 

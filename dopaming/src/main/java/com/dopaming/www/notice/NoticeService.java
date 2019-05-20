@@ -8,7 +8,7 @@ public interface NoticeService {
 	void notice_insert(NoticeVO vo);
 	
 	// 공지 목록 출력
-	List<NoticeVO> notice_select(NoticeVO vo);
+	List<NoticeVO> notice_select();
 	
 
 }

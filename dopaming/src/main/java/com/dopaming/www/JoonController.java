@@ -42,7 +42,7 @@ public class JoonController {
 	
 	//공지 등록 입력값 받아와서 넘겨주기
 	@RequestMapping(value="/notice_insert", method=RequestMethod.POST)//뷰에서 notice_insert의 값이 보내어지면
-	public String notice_insert(NoticeVO vo, 
+	public String notice_insert(NoticeVO vo, Model model,
 			HttpServletRequest request,HttpSession session,
 			HttpServletResponse response) throws IOException{
 		service.notice_insert(vo);
@@ -56,17 +56,11 @@ public class JoonController {
 		}
 		else {
 			session.setAttribute("notice_title",vo.getNotice_title());
-			session.setAttribute("notice_content",vo.getNotice_title());
+			session.setAttribute("notice_content",vo.getNotice_content());
+			model.addAttribute("list", service.notice_select());
 			return "admin/admin_joon/notice_selectlist_joon";
 		}
 	}
-	
-	//공지 목록 뷰 연결
-	@RequestMapping(value = "/notice_selectlist", method = RequestMethod.GET)
-	public String notice_selectlist(Locale locale, Model model) {
-		return "admin/admin_joon/notice_selectlist_joon";
-	}
-	
 	//공지 목록 출력값 받아오기
 		@RequestMapping("/notice_selectlist")
 		public String notice_selectlist(Model model, Paging paging, NoticeVO vo) {
@@ -75,7 +69,7 @@ public class JoonController {
 			// 전체건수
 			//paging.setTotalRecord(service.(vo));
 
-			model.addAttribute("list", service.notice_select(vo));
+			model.addAttribute("list", service.notice_select());
 			return "admin/admin_joon/notice_selectlist_joon";
 		}
 	

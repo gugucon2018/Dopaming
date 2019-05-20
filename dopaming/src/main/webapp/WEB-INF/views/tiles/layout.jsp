@@ -26,14 +26,9 @@
     <script src="./resources/js/ie-emulation-modes-warning.js"></script>        
 	<style>
 
-		.m_col{		
-			margin: 0px auto 0px auto;
-			float:right;					
+		.navber-right{
+			float:right;
 		}
-		.first_col{
-			margin: 0px auto;
-		}
-		
 		.jumbotron{
 			clear:both;
 			margin: 0px auto 0px auto;
@@ -74,7 +69,7 @@
 		}
 		div.footer{
 			clear: both;
-			width: 98%;
+			width: 100%;
 			float: left;
 			background-color: #1f2022;
 			text-align: center;
@@ -86,7 +81,7 @@
 	</style>
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 			<tiles:insertAttribute name="header" />
 			<tiles:insertAttribute name="content" />
 			<tiles:insertAttribute name="footer" />

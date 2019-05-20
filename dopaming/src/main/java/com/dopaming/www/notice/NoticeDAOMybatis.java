@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
 public class NoticeDAOMybatis {
 
@@ -22,15 +23,22 @@ public class NoticeDAOMybatis {
 	                                           //DTO(VO)에 순서대로 인서트 시킨다.
 	}
 	
+	//공지사항 단건 출력
+	public NoticeVO notice_select(NoticeVO vo) {
+		System.out.println("공지사항 단건 출력");
+		return (NoticeVO)mybatis.selectOne("NoticeDAO.notice_select",vo);
+		                          //DTO(VO)에 순서대로 인서트 시킨다.
+	}
+	
 	//공지사항 목록 출력
-	public List<NoticeVO> notice_select() {
+	public List<NoticeVO> notice_selectlist() {
 		System.out.println("공지사항 목록 실행");
-		return mybatis.selectList("NoticeDAO.notice_select");
+		return mybatis.selectList("NoticeDAO.notice_selectlist");
 	}
 	
 	//페이징 건수 
-		public int notice_select_cnt(NoticeVO vo) {
-			return mybatis.selectOne("NoticeDAO.notice_select_cnt", vo);
-		}
+	public int notice_selectlist_cnt() {
+		return mybatis.selectOne("NoticeDAO.notice_selectlist_cnt");
+	}
 
 }

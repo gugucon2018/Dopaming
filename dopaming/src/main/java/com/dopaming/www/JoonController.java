@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,7 +58,7 @@ public class JoonController {
 		else {
 			session.setAttribute("notice_title",vo.getNotice_title());
 			session.setAttribute("notice_content",vo.getNotice_content());
-			model.addAttribute("list", service.notice_select());
+			model.addAttribute("list", service.notice_selectlist());
 			return "admin/admin_joon/notice_selectlist_joon";
 		}
 	}
@@ -69,14 +70,33 @@ public class JoonController {
 			// 전체건수
 			//paging.setTotalRecord(service.(vo));
 
-			model.addAttribute("list", service.notice_select());
+			model.addAttribute("list", service.notice_selectlist());
 			return "admin/admin_joon/notice_selectlist_joon";
 		}
 	
-	@RequestMapping(value = "/notice_select", method = RequestMethod.GET)
-	public String notice_select(Locale locale, Model model) {
-		return "joon/notice_select_joon";
-	}
+	//공지사항 뷰 
+		@RequestMapping(value="/notice_select/{seq}", method=RequestMethod.POST)//뷰에서 notice_select의 값이 보내어지면
+		public String notice_select(NoticeVO vo, Model model,
+				HttpServletRequest request,HttpSession session,
+				HttpServletResponse response) throws IOException{
+			service.notice_select(vo);
+			if(vo == null ){
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('id error');");
+					out.println("history.go(-1);"); //이전페이지로
+					out.println("</script>");
+				return "admin/admin_joon/notice_insert_joon";	
+			}
+			else {
+				//받아오는 값 지정이름으로 셋팅해놓기
+				session.setAttribute("notice_title",vo.getNotice_title());
+				session.setAttribute("notice_content",vo.getNotice_content());
+				session.setAttribute("notice_date",vo.getNotice_date());
+				//보여줄 페이지
+				return "admin/admin_joon/notice_selectlist_joon";
+			}
+		}
 	
 	@RequestMapping(value = "/notice_update", method = RequestMethod.GET)
 	public String notice_update(Locale locale, Model model) {

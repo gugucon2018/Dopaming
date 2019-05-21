@@ -14,8 +14,12 @@
 		<typeAlias type="com.dopaming.www.notice.NoticeVO" alias="notice_vo"/>
 		<!-- 태헌_Alias -->
 		<typeAlias type="com.dopaming.www.file.FileVO" alias="file"/>
+		<!-- 정환 start point Alias -->
+		<typeAlias type="com.dopaming.www.file.FileBoardVO_Hwan" alias="fileBoard_vo"/>
+		<typeAlias type="com.dopaming.www.file.FileUploadVO_Hwan" alias="fileUpload_vo"/>
+		<typeAlias type="com.dopaming.www.file.FileDownloadVO_Hwan" alias="fileDown_vo" />
+		<!-- 정환 end point Alias -->
 		
-	
 		<!-- min -->
 		<typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>
 		<typeAlias type="com.dopaming.www.grade.GradeVO_min" alias="grade"/>

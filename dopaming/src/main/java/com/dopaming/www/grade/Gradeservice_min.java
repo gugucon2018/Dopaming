@@ -3,7 +3,7 @@ package com.dopaming.www.grade;
 import java.util.List;
 import java.util.Map;
 
-import com.dopaming.www.login.MembersVO_min;;
+import com.dopaming.www.admin.login.MembersVO_min;;
 
 public interface Gradeservice_min {
 
@@ -11,5 +11,5 @@ public interface Gradeservice_min {
 	List<GradeVO_min> getClassList(GradeVO_min vo);
 	
 	//
-	
+	public int classListCount(GradeVO_min vo);
 }

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dopaming.www.admin.login.Loginservice_min;
+import com.dopaming.www.admin.login.MembersVO_min;
+import com.dopaming.www.common.Paging;
 import com.dopaming.www.grade.GradeVO_min;
 import com.dopaming.www.grade.Gradeservice_min;
 import com.dopaming.www.login.*;
@@ -70,8 +73,24 @@ public class MinController {
 	
 	//관리자 - 회원관리 - 등급관리 - 등급List
 		@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
-		public String getClass(Model model, GradeVO_min vo) {
-			System.out.println("requestMapping");
+		public String getClass(Model model, GradeVO_min vo, Paging paging) {
+	
+			
+			paging.setPageUnit(5);
+			// 페이지번호 파라미터
+			if( paging.getPage() == 0) {
+				paging.setPage(1); 
+			}
+			
+			// 시작/마지막 레코드 번호
+			vo.setFirst(paging.getFirst());
+			vo.setLast(paging.getLast());
+			
+			//전체 건수
+			paging.setTotalRecord(service2.classListCount(vo));
+			
+			//System.out.println("requestMapping"); //해당 메소드 이름 호출(getClassList가 적혀나옴)
+			model.addAttribute("paging", paging );
 			model.addAttribute("classList", service2.getClassList(vo));
 			return "admin/admin_min/adminclass_min";
 		}

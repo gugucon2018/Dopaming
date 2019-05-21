@@ -48,6 +48,20 @@ th {
 }
 </style>
 </head>
+<!-- 
+제목 
+회원 아이디
+카테고리대제목
+카테고리소제목
+게시글내용
+게시글 이미지 ===> null 허용
+게시글 아콘 ====> null 허용
+
+파일명
+파일확장자
+파일용량
+업로드날짜
+ -->
 <body>
 	<div class="container">
 	<table class="cen_table  table table-striped table-bordered">

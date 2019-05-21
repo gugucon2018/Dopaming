@@ -19,7 +19,7 @@ public class FileBoardVO_Hwan {
 	//게시글 이미지
 	private String boardImg;
 	//게시글 아콘 => null값 허용
-	private String boardAcorn;
+	private int boardAcorn;
 	
 	public int getBoardNO() {
 		return boardNO;
@@ -69,10 +69,10 @@ public class FileBoardVO_Hwan {
 	public void setBoardImg(String boardImg) {
 		this.boardImg = boardImg;
 	}
-	public String getBoardAcorn() {
+	public int getBoardAcorn() {
 		return boardAcorn;
 	}
-	public void setBoardAcorn(String boardAcorn) {
+	public void setBoardAcorn(int boardAcorn) {
 		this.boardAcorn = boardAcorn;
 	}	
 }

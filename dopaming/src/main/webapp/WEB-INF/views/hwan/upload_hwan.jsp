@@ -22,7 +22,7 @@
 }
 
 table {
-	width: 550px;
+	width: 500px;
 }
 
 td {
@@ -30,92 +30,85 @@ td {
 	border: 1px solid #666666;
 	background: #A9F5D0;
 }
+
 th {
 	padding: 10px;
-	border: 1px solid #666666;	
+	border: 1px solid #666666;
 	color: #fff;
 }
- /* Bootstrap 수정 */
-    .table > thead {
-      background-color: #b3c6ff;
-    }
+/* Bootstrap 수정 */
+.table>thead {
+	background-color: #b3c6ff;
+}
 
-.no_border{
+.no_border {
 	border: 0px;
 	background: #FFFFFF;
 }
-.write_on{
-	float:right;
+
+.write_on {
+	float: right;
+}
+textarea{
+	margin-left:85px;
 }
 </style>
 </head>
 <body>
-<div class="container cen_form" >
-<form>
-  <table class="cen_table table table-striped table-bordered">
-  	<tr>
-    <td><label for="title">글 제목 </label>
-    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
-    </td>    
-  	</tr>
-    <tr>
-    <td><label for="money">올릴 아콘</label>
-    <input type="text" class="form-control" id="money" placeholder="올릴 아콘을 입력하세요"></td>
-  	</tr>
-  	<tr>  
-  		<td>		
-  			<div class="content" style="width: 70%">
-  				<div class="row justify-content-md-center">
-  					<div class="col-sm-9">
-  						<div class="input-group-prepend">
-  							<label class="input-group-text">제목</label>  							  						
-  						</div>
-  						<input type="text" class="form-control">
-  					</div>
-  					<div class="col-sm-3">
-  						<div class="input-group mb-3">
-  							<select class="custom-select" id="inputGroupSelect03">
-  								<option selected>분류</option>
-  								<option value="1">영화</option>
-  								<option value="2">드라마</option>
-  								<option value="3">동영상</option>
-  								<option value="4">음악</option>
-  							</select>  						
-  						</div>
-  					</div>
-  				</div>
-  			</div>
-  			</td>
-  		</tr>
-  		<tr>
-  		<td class="no_border">  				
-  		<div class="row justify-content-md-center">
-  			<div style="margin-bottom:30px">
-  						<div class="input-group cen_table">
-  							<textarea class="form-control" id="p_content"></textarea>
-  							<script>
+	<div class="cen_form">
+		<form class="container" action="request_upload" method="post" enctype="multipart/form-data">
+			<table class="cen_table table table-striped table-bordered">
+				<tr>
+					<td>제목<br> <input id="title" size="20" placeholder="제목입력"/></td>
+					<td>회원아이디<br> <input id="member" size="20" placeholder="아이디입력"/></td>
+					<td>파일추가<br><input multiple="multiple" type="file" size="20"/> </td>
+					<td>파일용량<br> <label>100</label></td>
+					<td>업로드날짜<br> <label>2019</label></td>
+				</tr>
+				<tr>
+					<td colspan="3"><select class="form-control">
+							<option>영화</option>
+							<option>드라마</option>
+							<option>동영상</option>
+							<option>음악</option>
+					</select> <select class="form-control">
+							<option>최신</option>
+							<option>국내</option>
+							<option>외국</option>
+					</select>										
+					</td>
+					<td colspan="2">
+						게시글아콘<br>
+						<input placeholder="아콘값 입력"/>						
+					</td>
+				</tr>
+				<tr>
+					<td class="no_border" colspan="6">
+						<div class="row justify-content-md-center">
+							<div style="margin-bottom: 30px">
+								<div class="input-group cen_table">
+									<textarea class="form-control" id="p_content"></textarea>
+									<script>
   								CKEDITOR.replace('p_content', {
   									uiColor:'#9AB8F3',
   									filebrowserUploadUrl:'<%=request.getContextPath()%>/resources/ckeditor/fileUpload.jsp'
-  								});
-  							</script>  							  							
-  						</div>
-  			</div>
-  	 </div>
-  	 </td>
-  	 </tr>
-	<tr>
-  		<td>
-    <label for="S_file">파일 찾아보기</label>
-    <input type="file" id="S_file">
-  		</td>
-  </tr>
-  <tr>
-  <td><button type="submit" class="btn btn-default">제출</button></td>
-  </tr>
-</table>
-</form>
-</div>
+														});
+									</script>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6">
+    						<textarea rows="5" cols="130">	    
+						</textarea><br>						
+						<button type="submit" class="btn btn-danger btn-danger pull-right">업로드 하기</button>										
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 
 </body>
 </html>

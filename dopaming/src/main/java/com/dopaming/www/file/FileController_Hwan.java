@@ -1,5 +1,8 @@
 package com.dopaming.www.file;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class FileController_Hwan {
@@ -17,9 +22,30 @@ public class FileController_Hwan {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/upload_hwan", method = RequestMethod.GET)
-	public String upload_hwan(Locale locale, Model model) {
+	public String upload_hwan(Locale locale, Model model) {	
 		
 		return "hwan/upload_hwan";
+	}	
+
+	@RequestMapping(value = "/request_upload", method = RequestMethod.GET)
+	public String requestUpload_hwan(MultipartHttpServletRequest mtfRequest) {	
+		List<MultipartFile> fileList=mtfRequest.getFiles("file");
+		String path ="./resources/images/";
+		for(MultipartFile mf : fileList) {
+			String originFileName = mf.getOriginalFilename();//원본 파일명
+			long fileSize=mf.getSize();//파일 사이즈
+			System.out.println("originalFileName : "+originFileName);//원본 파일명 출력 
+			System.out.println("fileSize : "+fileSize);//파일 사이즈 출력
+			String safeFile = path+System.currentTimeMillis()+originFileName;
+			try {
+				mf.transferTo(new File(safeFile));
+			} catch(IllegalStateException e) {
+				e.printStackTrace();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}		
+		return "hwan/file_post_hwan";
 	}	
 	
 	@RequestMapping(value = "/download_hwan", method = RequestMethod.GET)

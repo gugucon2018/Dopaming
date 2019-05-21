@@ -1,14 +1,6 @@
-package com.dopaming.www.login;
-
-import java.util.List;
-import java.util.Map;
-
+package com.dopaming.www.admin.login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.dopaming.www.grade.GradeDAOMybatis_min;
-import com.dopaming.www.grade.GradeVO_min;
-import com.dopaming.www.login.*;
 
 @Service("userService")
 public class LoginServiceImpl_min implements Loginservice_min {

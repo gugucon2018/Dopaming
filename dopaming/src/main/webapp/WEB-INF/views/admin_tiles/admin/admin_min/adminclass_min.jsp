@@ -32,9 +32,10 @@ tr:nth-child(even) {
 </script>
 </head>
 <body>
-<div>
+
 	<h4>등급관리 </h4><hr>
 	<form name="searchFrm">
+	 <input type="hidden" name="page" value="1">
 		<select name="member_grade">
 			<option value="">선택
 			<option value="g4">다이아도토리
@@ -65,23 +66,6 @@ tr:nth-child(even) {
 	</tr>
 	</c:forEach>
 	</table>
-	페이징해야함
-		<span style="float:right">
-		<form action="adminlogin1" method="post">
-		<select name="member_grade">
-			<option value="">선택
-			<option value="g4">다이아도토리
-			<option value="g3">골드도토리
-			<option value="g2">실버도토리
-			<option value="g1">브론즈도토리
-		</select>
-		<button type="button">등급 수정</button>
-		</form>
-	</span>
-	<my:paging paging="${paging}"/>
-	<br>
-	<br>
-	<br>
-</div>
+<my:paging paging="${paging}"/>
 </body>
 </html>

@@ -22,7 +22,10 @@
 		
 		<!-- min -->
 		<typeAlias type="com.dopaming.www.admin.login.MembersVO_min" alias="members"/>
-		<typeAlias type="com.dopaming.www.grade.GradeVO_min" alias="grade"/>
+		<typeAlias type="com.dopaming.www.admin.grade.GradeVO_min" alias="grade"/>
+		
+		<!-- hong -->
+		<typeAlias type="com.dopaming.www.login.MemberVO" alias="member"/>
 	</typeAliases>
 
 </configuration>

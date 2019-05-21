@@ -1,13 +1,8 @@
-package com.dopaming.www.login;
-
-import java.util.List;
-import java.util.Map;
+package com.dopaming.www.admin.login;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.dopaming.www.login.*;;
 
 @Repository
 public class LoginDAOMybatis_min {

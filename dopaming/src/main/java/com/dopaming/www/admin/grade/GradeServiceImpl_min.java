@@ -1,12 +1,9 @@
-package com.dopaming.www.grade;
+package com.dopaming.www.admin.grade;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.dopaming.www.login.*;
 
 @Service("gradeService")
 public class GradeServiceImpl_min implements Gradeservice_min {
@@ -21,20 +18,9 @@ public class GradeServiceImpl_min implements Gradeservice_min {
 		System.out.println("getClassList");
 		return mambersDAO.getClassList(vo);
 	}
-	
-//	public List<MembersVO_min> getUserList(){
-//		return mambersDAO.getUserList();
-//	}
-//
-//	@Override
-//	public Integer userCount() {
-//		// TODO Auto-generated method stub
-//		return mambersDAO.userCount();
-//	}
-//
-//	@Override
-//	public List<Map<String, Object>> getUserMap(MembersVO_min vo) {
-//		// TODO Auto-generated method stub
-//		return mambersDAO.getUserMap(vo);
-//	}
+
+	@Override
+	public int classListCount(GradeVO_min vo) {
+		return mambersDAO.classListCount(vo);
+	}
 }

@@ -1,4 +1,4 @@
-package com.dopaming.www.grade;
+package com.dopaming.www.admin.grade;
 
 public class GradeVO_min {
 	private String member_grade;
@@ -12,6 +12,24 @@ public class GradeVO_min {
 	private String grade_kor;
 	private int upload_count;
 	
+	//페이징하기위한 첫,마지막번호
+	private int first;
+	private int last;
+	
+	
+	
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

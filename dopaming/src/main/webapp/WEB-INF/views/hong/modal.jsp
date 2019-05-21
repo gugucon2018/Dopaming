@@ -9,9 +9,9 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<img class="rounded-circle loginmodal_image" src="./resources/images/hong/login.gif">
 				<p class="loginmodal_title">Dopaming</p>
-				<form id="loginForm">
-					<input class="loginmodal_loginid" type="text" name="id" placeholder="아이디 입력">
-                    <input class="loginmodal_loginpass" type="password" name="pass" placeholder="비밀번호 입력">
+				<form id="loginForm" method="post" action="loginA">
+					<input class="loginmodal_loginid" type="text" name="member_id" placeholder="아이디 입력">
+                    <input class="loginmodal_loginpass" type="password" name="member_password" placeholder="비밀번호 입력">
                     <div class="form-check">
 	                    <label class="switch">
 							<input type="checkbox">

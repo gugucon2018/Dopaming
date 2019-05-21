@@ -36,9 +36,9 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
-	public List<FileVO> getFileList(FileVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FileVO> getFileList() {
+		System.out.println("getFileList");
+		return dao.getFileList();
 	}
 
 	@Override

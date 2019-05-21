@@ -5,11 +5,10 @@ import java.sql.Date;
 public class FileVO {
 	private String file_name;
 	private int file_no;
-	private int acorn;
-	private int upload_storage;
+	private int file_storage;
+	private String file_type;
 	private Date upload_date;
 	private String member_id;
-	private int upload_count;
 	
 	public String getFile_name() {
 		return file_name;
@@ -23,17 +22,12 @@ public class FileVO {
 	public void setFile_no(int file_no) {
 		this.file_no = file_no;
 	}
-	public int getAcorn() {
-		return acorn;
+	
+	public int getFile_storage() {
+		return file_storage;
 	}
-	public void setAcorn(int acorn) {
-		this.acorn = acorn;
-	}
-	public int getUpload_storage() {
-		return upload_storage;
-	}
-	public void setUpload_storage(int upload_storage) {
-		this.upload_storage = upload_storage;
+	public void setFile_storage(int file_storage) {
+		this.file_storage = file_storage;
 	}
 	public Date getUpload_date() {
 		return upload_date;
@@ -47,11 +41,18 @@ public class FileVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public int getUpload_count() {
-		return upload_count;
+	
+	public String getFile_type() {
+		return file_type;
 	}
-	public void setUpload_count(int upload_count) {
-		this.upload_count = upload_count;
+	public void setFile_type(String file_type) {
+		this.file_type = file_type;
 	}
+	@Override
+	public String toString() {
+		return "FileVO [file_name=" + file_name + ", file_no=" + file_no + ", file_storage=" + file_storage
+				+ ", file_type=" + file_type + ", upload_date=" + upload_date + ", member_id=" + member_id + "]";
+	}
+	
 	
 }

@@ -1,31 +1,23 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ attribute name="paging" type="com.web.common.Paging" %>
-<%@ attribute name="jsfunc" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<div class="pagination">
-<c:set var="pre" value="${paging.page-1}"></c:set>
-<c:set var="pre2" value="${paging.page+1}"></c:set>
-
-<ul>
-<c:if test="${pre == 0}">
-<c:set var="pre" value="${1}"/>
+<%@ attribute name="paging" type="com.springbook.biz.common.Paging" %>
+<%@ attribute name="jsFunc" required="false" type="java.lang.String" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${empty jsFunc}">
+	<c:set var="jsFunc" value="go_page"></c:set>
 </c:if>
- <li><a href="javascript:${jsfunc}(${pre})">◀</a>
- 
- <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
+<ul>
+<c:if test="${paging.page>1}">
+	<li><a href="javascript:${jsFunc}(${paging.page-1})">이전</a>
+</c:if>
+<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
 	<c:if test="${i != paging.page}">
-		<li><a href="javascript:${jsfunc}(${i})">${i}</a>
+		<li><a href="javascript:${jsFunc}(${i})">${i}</a>
 	</c:if>
 	<c:if test="${i == paging.page}">
 		<li class="active">${i}
 	</c:if>
 </c:forEach>
-
-<%-- <c:if test="${paging.endPage<paging.totalPageCount}"> //페이지째로 넘기는법--%>
-<c:if test="${pre2 > paging.totalPageCount}">
-<c:set var="pre2" value ="${paging.totalPageCount}"/>
+<c:if test="${paging.page<paging.totalPageCount}">
+	<li><a href="javascript:${jsFunc}(${paging.page+1})">다음</a>
 </c:if>
-<li><a href="javascript:${jsfunc}(${pre2})">▶</a>
 </ul>
-</div>

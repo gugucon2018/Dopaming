@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dopaming.www.grade.GradeVO_min;
-import com.dopaming.www.login.*;;
 
 @Repository
 public class GradeDAOMybatis_min {

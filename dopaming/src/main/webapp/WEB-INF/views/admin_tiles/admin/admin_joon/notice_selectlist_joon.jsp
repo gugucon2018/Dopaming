@@ -46,7 +46,7 @@ function td_delete(){
 <h3 align=center><u>공지사항 목록</u></h3><br>
 
 <!-- 로우넘리스트 폼 -->		
-<form name="form" action="notice_rnlist">	
+<form name="form" action="notice_deletelist">	
 	<table class="joon_table" border="1" width="100%">
 		<tr align= "center" >
 			<td bgcolor="" width="200px">

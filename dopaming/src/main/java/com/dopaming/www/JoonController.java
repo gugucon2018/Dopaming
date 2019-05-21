@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,10 +21,6 @@ import com.dopaming.www.common.Paging;
 import com.dopaming.www.notice.NoticeService;
 import com.dopaming.www.notice.NoticeVO;
 
-
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class JoonController {
 	
@@ -54,9 +51,13 @@ public class JoonController {
 			return "admin/admin_joon/notice_insert_joon";	
 		}
 		else {
+			//널이아니면 jsp에서 받은 값들을 vo에 담는다.
 			session.setAttribute("notice_title",vo.getNotice_title());
 			session.setAttribute("notice_content",vo.getNotice_content());
+			
+			//돌려 받은 값들을 list에 받아둔다.
 			model.addAttribute("list", service.notice_selectlist());
+			//돌아갈 화면
 			return "admin/admin_joon/notice_selectlist_joon";
 		}
 	}
@@ -79,9 +80,9 @@ public class JoonController {
 				HttpServletResponse response) throws IOException{
 			service.notice_select(vo);
 		
-				//
+				//돌려 받은 값들을 notice에 받아둔다.
 			model.addAttribute("notice", service.notice_select(vo));
-				//보여줄 페이지
+				//돌아가는 페이지
 				return "admin/admin_joon/notice_select_joon";
 			}
 		
@@ -91,6 +92,34 @@ public class JoonController {
 			service.notice_delete(vo);
 			return "redirect:notice_selectlist";
 		}
+	
+	//선택 삭제
+		@RequestMapping("/notice_deletelist")
+		
+		public String notice_deletelist(NoticeVO vo, HttpServletRequest request)
+				throws ServletException, IOException{
+			// jsp에서 배열값 받는 함수
+			//String[] td_checkbox = request.getParameterValues("td_checkbox"); 
+
+			//for ( vo : td_checkbox) {
+
+				//try {
+			//dao로 하나씩 넘긴다.
+					service.notice_delete(vo);
+
+				//} catch (Exception e) {
+
+					//e.printStackTrace();
+				//}
+
+			//}
+			
+			return "redirect:notice_selectlist";
+		}
+		
+		
+
+	
 	
 	@RequestMapping(value = "/notice_update", method = RequestMethod.GET)
 	public String notice_update(Locale locale, Model model) {

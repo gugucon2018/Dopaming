@@ -17,4 +17,9 @@ public class MemberServiceImpl implements MemberService {
 	public String valueCheckId(String value) {
 		return dao.valueCheckId(value);
 	}
+	
+	@Override
+	public String valueCheckPW(String value) {
+		return dao.valueCheckPW(value);
+	}
 }

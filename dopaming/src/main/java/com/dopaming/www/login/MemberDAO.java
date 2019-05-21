@@ -21,5 +21,10 @@ public class MemberDAO {
 	public String valueCheckId(String value) {
 		return mybatis.selectOne("MemberDAO.valueCheckId", value);
 	}
+	
+	//비밀번호 체크
+	public String valueCheckPW(String value) {
+		return mybatis.selectOne("MemberDAO.valueCheckPW", value);		
+	}
 }
 

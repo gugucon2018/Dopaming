@@ -6,4 +6,7 @@ public interface MemberService {
 
 	// 아이디 체크
 	public String valueCheckId(String value);
+	
+	//비밀번호 체크
+	public String valueCheckPW(String value);
 }

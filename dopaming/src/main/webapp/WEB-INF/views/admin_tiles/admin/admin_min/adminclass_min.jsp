@@ -32,7 +32,6 @@ tr:nth-child(even) {
 </script>
 </head>
 <body>
-
 	<h4>등급관리 </h4><hr>
 	<form name="searchFrm">
 	 <input type="hidden" name="page" value="1">
@@ -44,7 +43,7 @@ tr:nth-child(even) {
 			<option value="g1">브론즈도토리
 		</select>
 		<script>
-		searchFrm.member_grade.value='${GradeVO_min.member_grade}';
+		searchFrm.member_grade.value='${gradeVO_min.member_grade}';
 		</script>
 		<button>검색</button>
 	</form>
@@ -67,5 +66,14 @@ tr:nth-child(even) {
 	</c:forEach>
 	</table>
 <my:paging paging="${paging}"/>
+<div align="right">
+		<select name="member_grade">
+			<option value="">선택
+			<option value="g4">다이아도토리
+			<option value="g3">골드도토리
+			<option value="g2">실버도토리
+			<option value="g1">브론즈도토리
+		</select>
+</div>
 </body>
 </html>

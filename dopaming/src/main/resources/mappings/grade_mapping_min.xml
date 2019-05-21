@@ -36,6 +36,11 @@
 	on a.member_id = m.member_id 
 	join grade g 
 	on m.member_grade = g.member_grade
+	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+          <if test="member_grade != null and member_grade !=''"> 
+           g.member_grade=#{member_grade}
+          </if>
+    </where>
 	order by grade_kor asc
 	</select>
 

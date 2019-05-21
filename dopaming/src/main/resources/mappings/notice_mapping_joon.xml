@@ -19,6 +19,13 @@
 					)
 </insert>
 
+<!-- 단건삭제 -->
+<delete id="notice_delete">
+	DELETE 
+	from notice
+	where notice_no = #{notice_no}
+</delete>
+
 <!--공지사항 단건 출력-->
 <select id="notice_select" resultType="notice_vo">
 select notice_no

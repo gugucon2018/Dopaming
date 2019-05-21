@@ -6,10 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
-
-
-
 @Repository
 public class NoticeDAOMybatis {
 
@@ -40,5 +36,12 @@ public class NoticeDAOMybatis {
 	public int notice_selectlist_cnt() {
 		return mybatis.selectOne("NoticeDAO.notice_selectlist_cnt");
 	}
-
+	
+	//공지 단건 삭제
+	public void notice_delete(NoticeVO vo) {
+		System.out.println("공지사항 단건 삭제");
+		mybatis.delete("NoticeDAO.notice_delete",vo);
+		                          //DTO(VO)에 순서대로 인서트 시킨다.
+	}
+	
 }

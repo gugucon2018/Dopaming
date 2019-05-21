@@ -13,10 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dopaming.www.common.Paging;
 import com.dopaming.www.notice.NoticeService;
@@ -75,27 +73,23 @@ public class JoonController {
 		}
 	
 	//공지사항 뷰 
-		@RequestMapping(value="/notice_select/{seq}", method=RequestMethod.POST)//뷰에서 notice_select의 값이 보내어지면
+		@RequestMapping(value="/notice_select")//뷰에서 notice_select의 값이 보내어지면
 		public String notice_select(NoticeVO vo, Model model,
 				HttpServletRequest request,HttpSession session,
 				HttpServletResponse response) throws IOException{
 			service.notice_select(vo);
-			if(vo == null ){
-					PrintWriter out = response.getWriter();
-					out.println("<script>");
-					out.println("alert('id error');");
-					out.println("history.go(-1);"); //이전페이지로
-					out.println("</script>");
-				return "admin/admin_joon/notice_insert_joon";	
-			}
-			else {
-				//받아오는 값 지정이름으로 셋팅해놓기
-				session.setAttribute("notice_title",vo.getNotice_title());
-				session.setAttribute("notice_content",vo.getNotice_content());
-				session.setAttribute("notice_date",vo.getNotice_date());
+		
+				//
+			model.addAttribute("notice", service.notice_select(vo));
 				//보여줄 페이지
-				return "admin/admin_joon/notice_selectlist_joon";
+				return "admin/admin_joon/notice_select_joon";
 			}
+		
+	//공지 단건 삭제
+		@RequestMapping("/notice_delete")
+		public String deleteBoard(NoticeVO vo) {
+			service.notice_delete(vo);
+			return "redirect:notice_selectlist";
 		}
 	
 	@RequestMapping(value = "/notice_update", method = RequestMethod.GET)

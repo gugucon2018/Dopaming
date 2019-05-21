@@ -31,4 +31,10 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<NoticeVO> notice_selectlist() {
 		return dao.notice_selectlist();
 	}
+	
+	//공지 단건 삭제
+	@Override
+	public void notice_delete(NoticeVO vo) {
+		dao.notice_delete(vo);
+	}
 }

@@ -1,9 +1,6 @@
-package com.dopaming.www.grade;
+package com.dopaming.www.admin.grade;
 
 import java.util.List;
-import java.util.Map;
-
-import com.dopaming.www.admin.login.MembersVO_min;;
 
 public interface Gradeservice_min {
 

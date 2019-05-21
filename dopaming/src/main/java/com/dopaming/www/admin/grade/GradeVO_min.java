@@ -1,4 +1,4 @@
-package com.dopaming.www.grade;
+package com.dopaming.www.admin.grade;
 
 public class GradeVO_min {
 	private String member_grade;

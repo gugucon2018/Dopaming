@@ -1,13 +1,12 @@
-package com.dopaming.www.grade;
+package com.dopaming.www.admin.grade;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dopaming.www.grade.GradeVO_min;
+import com.dopaming.www.admin.grade.GradeVO_min;
 
 @Repository
 public class GradeDAOMybatis_min {

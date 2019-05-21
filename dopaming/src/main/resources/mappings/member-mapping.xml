@@ -10,6 +10,10 @@
     </select>
     <!-- id 체크 -->
     <select id="valueCheckId" resultType="String">
-     	select member_id from members where member_id = #{memberId}
+     	select member_id from members where member_id = #{member_id}
+    </select>
+    <!-- 패스워드 체크 -->
+    <select id="valueCheckPW" resultType="String">
+     	select member_password from members where member_id = #{member_password}
     </select>
 </mapper>

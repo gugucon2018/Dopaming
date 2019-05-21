@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 //전체선택
-function td_checkAll(){
+function checkAll(){
       if( $("#td_checkAll").is(':checked') ){
         $("input[name=td_checkbox]").prop("checked", true);
       }else{
@@ -34,11 +34,10 @@ function td_delete(){
 
 	}
 	if(confirm("삭제할까요?")){
+		form.action = "notice_deletelist"
 		form.submit();
 	}
 }
-//등록폼으로 이동
-
 </script>
 </head>
 <body>
@@ -46,17 +45,19 @@ function td_delete(){
 <h3 align=center><u>공지사항 목록</u></h3><br>
 
 <!-- 로우넘리스트 폼 -->		
-<form name="form" action="notice_deletelist">	
+<form name="form">	
 	<table class="joon_table" border="1" width="100%">
 		<tr align= "center" >
 			<td bgcolor="" width="200px">
-				<label for="td_checkAll"><input type="checkbox" id="td_checkAll" onclick="td_checkAll();"/>번호</label>
+				<label for="td_checkAll"><input type="checkbox" id="td_checkAll" onclick="checkAll();"/>번호</label>
 			</td>
 			<td bgcolor="">제목</td>
 			<td width="200px" bgcolor="">날짜</td>
 		</tr>
 		
 		<c:forEach items="${list}" var="i">
+<!-- Notice_no가 필요가기 때문에 값을 받을 곳을 만들어둔다 -->
+<input type="hidden" name="notice_no" value="${i.getNotice_no()}">
 			<tr align = "center">
 				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
 				<td><a href="/dopaming/notice_select?notice_no=${ i.getNotice_no()}">

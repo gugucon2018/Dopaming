@@ -22,7 +22,7 @@ public class MemberController {
 		//값 받아오기
 		String id = memberVO.getMember_id();
 		String pass = memberVO.getMember_password(); 
-		System.out.println(id + ":" + pass);
+		
 		//기존 login이란 세션 값이 존재한다면
 		if(session.getAttribute("memberSession") != null) {
 			session.removeAttribute("memberSession"); //기존값 제거
@@ -33,16 +33,24 @@ public class MemberController {
 		}else if( id.equals("admin")) {
 			session.setAttribute("error", "관리자로 로그인할 수 없습니다.");
 		}else { //로그인 성공
-			memberVO = service.login(memberVO);
-			// 세션 등록
-			session.setAttribute("memberSession", memberVO);
-			
-			session.setAttribute("Id", memberVO.getMember_id()); 
-			session.setAttribute("Pass", memberVO.getMember_password());
-			 
-			session.setAttribute("message", id + "님, 로그인 되었습니다.");			
+			if(id.equals(service.valueCheckId(id)))
+			{
+				if(pass.equals(service.valueCheckPW(id))){
+					memberVO = service.login(memberVO);
+					// 세션 등록
+					session.setAttribute("memberSession", memberVO);
+					
+					session.setAttribute("Id", memberVO.getMember_id()); 
+					session.setAttribute("Pass", memberVO.getMember_password());
+					 
+					session.setAttribute("message", id + "님, 로그인 되었습니다.");
+				}else {
+					session.setAttribute("error", "비밀번호가 일치하지 않습니다.");
+				}
+			}else {
+				session.setAttribute("error", "아이디가 존재하지 않습니다.");
+			}
 		}
-		
 		return "redirect:/";
 	}
 	

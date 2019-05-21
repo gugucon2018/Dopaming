@@ -68,7 +68,8 @@ public class JoonController {
 
 			// 전체건수
 			//paging.setTotalRecord(service.(vo));
-
+			
+			//돌려 받은 값들을 list에 받아둔다.
 			model.addAttribute("list", service.notice_selectlist());
 			return "admin/admin_joon/notice_selectlist_joon";
 		}
@@ -88,39 +89,30 @@ public class JoonController {
 		
 	//공지 단건 삭제
 		@RequestMapping("/notice_delete")
-		public String deleteBoard(NoticeVO vo) {
+		public String notice_delete(NoticeVO vo) {
 			service.notice_delete(vo);
 			return "redirect:notice_selectlist";
 		}
 	
 	//선택 삭제
 		@RequestMapping("/notice_deletelist")
-		
 		public String notice_deletelist(NoticeVO vo, HttpServletRequest request)
 				throws ServletException, IOException{
 			// jsp에서 배열값 받는 함수
-			//String[] td_checkbox = request.getParameterValues("td_checkbox"); 
-
-			//for ( vo : td_checkbox) {
-
-				//try {
-			//dao로 하나씩 넘긴다.
+			String[] td_checkbox = request.getParameterValues("td_checkbox"); 
+			//받은 배열을 푼다
+			for ( String n : td_checkbox) {
+				try {
+			//string를 int로 바꾼뒤 dao로 하나씩 넘긴다.
+					vo.setNotice_no(Integer.parseInt(n));
 					service.notice_delete(vo);
-
-				//} catch (Exception e) {
-
-					//e.printStackTrace();
-				//}
-
-			//}
-			
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			return "redirect:notice_selectlist";
 		}
 		
-		
-
-	
-	
 	@RequestMapping(value = "/notice_update", method = RequestMethod.GET)
 	public String notice_update(Locale locale, Model model) {
 		return "joon/notice_update_joon";

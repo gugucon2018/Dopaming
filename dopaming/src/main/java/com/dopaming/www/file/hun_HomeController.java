@@ -24,8 +24,12 @@ public class hun_HomeController {
 	FileService service;
 	
 	@RequestMapping(value = "/mdview", method = RequestMethod.GET)
-	public String hwan(Locale locale, Model model) {
-		model.addAttribute("list", service.getFileList());
+	public String hwan(Model model,FileVO vo) {
+		model.addAttribute("list", service.getFileList(vo));
+		/*
+		 * model.addAttribute("list", service.getFileList_k());
+		 * model.addAttribute("list", service.getFileList_f());
+		 */
 		return "hun/mdview_hun";
 	}
 	

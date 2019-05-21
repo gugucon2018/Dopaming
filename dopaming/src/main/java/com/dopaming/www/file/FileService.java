@@ -17,7 +17,9 @@ public interface FileService {
 	FileVO getFile(FileVO vo);
 
 		// 파일 목록 조회
-	List<FileVO> getFileList();
+	List<FileVO> getFileList(FileVO vo);
+	//List<FileVO> getFileList_k();
+	//List<FileVO> getFileList_f();
 		
 	public int getFileCount(FileVO vo);
 

@@ -9,6 +9,8 @@ public class FileVO {
 	private String file_type;
 	private Date upload_date;
 	private String member_id;
+	private String category_small;
+	private String category_big;
 	
 	public String getFile_name() {
 		return file_name;
@@ -48,11 +50,27 @@ public class FileVO {
 	public void setFile_type(String file_type) {
 		this.file_type = file_type;
 	}
+	public String getCategory_small() {
+		return category_small;
+	}
+	public void setCategory_small(String category_small) {
+		this.category_small = category_small;
+	}
+	public String getCategory_big() {
+		return category_big;
+	}
+	public void setCategory_big(String category_big) {
+		this.category_big = category_big;
+	}
+	
 	@Override
 	public String toString() {
 		return "FileVO [file_name=" + file_name + ", file_no=" + file_no + ", file_storage=" + file_storage
-				+ ", file_type=" + file_type + ", upload_date=" + upload_date + ", member_id=" + member_id + "]";
+				+ ", file_type=" + file_type + ", upload_date=" + upload_date + ", member_id=" + member_id
+				+ ", category_small=" + category_small + ", category_big=" + category_big + "]";
 	}
+	
+	
 	
 	
 }

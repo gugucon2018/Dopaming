@@ -18,9 +18,14 @@ public class FileDAOmybatis {
 		return mybatis.selectOne("FileDAO.getFile",vo);
 	}
 	
-	public List<FileVO> getFileList() {
-		return mybatis.selectList("fileDAO.fileList");
+	public List<FileVO> getFileList(FileVO vo) {
+		return mybatis.selectList("fileDAO.fileList",vo);
 	}
+	/*
+	 * public List<FileVO> getFileList_k() { return
+	 * mybatis.selectList("fileDAO.fileList"); } public List<FileVO> getFileList_f()
+	 * { return mybatis.selectList("fileDAO.fileList"); }
+	 */
 	
 	public Integer userCount() {
 		return mybatis.selectOne("FileDAO.userCount");

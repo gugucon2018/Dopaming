@@ -55,6 +55,7 @@ public class MinController {
 					session.setAttribute("member_id",member.getMember_id());
 					session.setAttribute("member_password",member.getMember_password());
 					session.setAttribute("member",member);
+					//System.out.println(member); //세션값이 안들어오네
 					return "admin/admin_min/adminmain_min";
 				}
 			}

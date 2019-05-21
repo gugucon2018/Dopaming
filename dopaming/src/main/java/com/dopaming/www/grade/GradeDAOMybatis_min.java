@@ -14,9 +14,15 @@ import com.dopaming.www.login.*;;
 public class GradeDAOMybatis_min {
 	@Autowired SqlSessionTemplate mybatis;
 
-	//관리자 - 회원관리 - 등급관리 - 등급List
-		public List<GradeVO_min> getClassList(GradeVO_min vo){
-			System.out.println("GradeMinDAO");
-			return mybatis.selectList("GradeMinDAO.classList",vo);
-		}
+//관리자 - 회원관리 - 등급관리 - 등급List
+	public List<GradeVO_min> getClassList(GradeVO_min vo){
+		System.out.println("GradeMinDAO");
+		return mybatis.selectList("GradeMinDAO.classList",vo);
+	}
+		
+//
+	public int classListCount(GradeVO_min vo) {
+		return mybatis.selectOne("GradeMinDAO.classListCount",vo);
+	}
+		
 }

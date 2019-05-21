@@ -29,6 +29,15 @@
 	order by grade_kor asc
    </select>
 
+	<!-- 관리자 - 회원관리 - 등급관리 - 등급List - paging count -->
+	<select id="classListCount" resultType="int">
+	select count(distinct m.member_id)
+	from acorn a join members m
+	on a.member_id = m.member_id 
+	join grade g 
+	on m.member_grade = g.member_grade
+	order by grade_kor asc;
+	</select>
 
 
 

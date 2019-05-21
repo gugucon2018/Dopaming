@@ -55,11 +55,12 @@ th {
   <table class="cen_table table table-striped table-bordered">
   	<tr>
     <td><label for="title">글 제목 </label>
-    <input type="text" class="form-control" size="30" id="title" placeholder="제목을 입력하세요"></td>
+    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+    </td>    
   	</tr>
     <tr>
     <td><label for="money">올릴 아콘</label>
-    <input type="text" class="form-control" size="30" id="money" placeholder="올릴 아콘을 입력하세요"></td>
+    <input type="text" class="form-control" id="money" placeholder="올릴 아콘을 입력하세요"></td>
   	</tr>
   	<tr>  
   		<td>		

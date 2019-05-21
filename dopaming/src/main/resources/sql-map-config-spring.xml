@@ -12,7 +12,7 @@
 		<!-- <typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>-->
 		<!-- 준혁_Alias -->
 		<typeAlias type="com.dopaming.www.notice.NoticeVO" alias="notice_vo"/>	
-	
+
 
 		<!-- min -->
 		<typeAlias type="com.dopaming.www.login.MembersVO_min" alias="members"/>

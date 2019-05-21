@@ -40,11 +40,21 @@ th {
 <body>
 <div class="container cen_form">
 <form>
-	<table class="cen_table">
+	<table class="cen_table table table-striped table-bordered">
 		<tr>
-		<th><label class="cel1">다운로드 위치 지정</label></th>
-		<th><input placeholder="다운로드 위치"/></th>
-		<th><button class="btn btn-danger btn-sm">다운로드 하기</button></th>
+			<th><label class="cel1">다운로드 위치 지정</label></th>
+			<th><input placeholder="다운로드 위치"/></th>
+			<th><button class="btn btn-danger btn-sm">다운로드 하기</button></th>
+		</tr>
+		<tr>
+			<td>다운로드 번호</td>
+			<td>다운로드 아콘</td>
+			<td>회원아이디</td>
+		</tr>
+		<tr>
+			<td>100</td>
+			<td>210</td>
+			<td>홍길동</td>
 		</tr>
 		<tr>
 			<td colspan="3">

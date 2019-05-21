@@ -58,7 +58,7 @@ th {
 			<td class="c1">영화/국내영화</td><td>100</td><td>10GB</td><td>홍길동</td>	
 		</tr>		
 		<tr>
-			<td>업로드한 파일</td><td colspan="3"></td>
+			<td>게시글 파일</td><td colspan="3"></td>
 		</tr>
 		<tr>
 		<td colspan="5" class="no_border">
@@ -107,7 +107,7 @@ th {
 		<tr>
 			<td colspan="4" class="no_border">
            <div>            
-            <a href='#' onClick='fn_write()' class="btn btn-success write_on">글쓰기</a>            
+            <a href='#' onClick='fn_write()' class="btn btn-success write_on">다운로드 하기</a>            
            </div>
            	</td>
 		</tr>

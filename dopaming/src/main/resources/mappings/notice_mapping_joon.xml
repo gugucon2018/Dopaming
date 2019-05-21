@@ -38,11 +38,13 @@ where notice_no= #{notice_no}
    
 <!--공지사항 목록 출력-->
 <select id="notice_selectlist" resultType="notice_vo">
- select rn.*, rownum rn from(select notice_no
+ select a.* from ( select b.*, rownum rn from (
+ 				select notice_no
                                     ,notice_title
                                     ,notice_content
                                     ,notice_date
-						 from notice order by notice_date desc  ) rn
+						 from notice order by notice_date desc
+ ) b) a where rn between #{first} and #{last}
 </select>
 
 <!--페이징 -->

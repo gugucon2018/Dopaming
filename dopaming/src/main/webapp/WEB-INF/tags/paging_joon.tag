@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ attribute name="paging" type="com.web.common.Paging" %>
+<%@ attribute name="paging" type="com.dopaming.www.common.Paging" %>
 <%@ attribute name="jsfunc" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dopaming.www.common.Paging;
+
 
 @Service("NoticeService") //서비스 등록
 public class NoticeServiceImpl implements NoticeService {
@@ -28,8 +30,8 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	//공지 목록 조회
 	@Override//상속받는것
-	public List<NoticeVO> notice_selectlist() {
-		return dao.notice_selectlist();
+	public List<NoticeVO> notice_selectlist(NoticeVO vo) {
+		return dao.notice_selectlist(vo);
 	}
 	
 	//공지 단건 삭제
@@ -37,4 +39,10 @@ public class NoticeServiceImpl implements NoticeService {
 	public void notice_delete(NoticeVO vo) {
 		dao.notice_delete(vo);
 	}
+
+	@Override 
+	public int notice_selectlist_cnt() {
+		return dao.notice_selectlist_cnt();
+	}
+	
 }

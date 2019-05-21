@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dopaming.www.common.Paging;
+
 @Repository
 public class NoticeDAOMybatis {
 
@@ -27,9 +29,9 @@ public class NoticeDAOMybatis {
 	}
 	
 	//공지사항 목록 출력
-	public List<NoticeVO> notice_selectlist() {
+	public List<NoticeVO> notice_selectlist(NoticeVO vo) {
 		System.out.println("공지사항 목록 실행");
-		return mybatis.selectList("NoticeDAO.notice_selectlist");
+		return mybatis.selectList("NoticeDAO.notice_selectlist",vo);
 	}
 	
 	//페이징 건수 

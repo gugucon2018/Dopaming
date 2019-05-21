@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
@@ -38,12 +39,21 @@ function td_delete(){
 		form.submit();
 	}
 }
+
+//페이징 기능
+function goList(p){
+	form2.page.value = p;
+	form2.submit();
+}
 </script>
 </head>
 <body>
 
 <h3 align=center><u>공지사항 목록</u></h3><br>
-
+<!-- 페이징 값 보내는 폼(form2) -->
+<form action = "notice_selectlist" name="form2">
+	<input type="hidden" name="page" value="1"></input>
+</form>
 <!-- 로우넘리스트 폼 -->		
 <form name="form">	
 	<table class="joon_table" border="1" width="100%">
@@ -56,7 +66,8 @@ function td_delete(){
 		</tr>
 		
 		<c:forEach items="${list}" var="i">
-<!-- Notice_no가 필요가기 때문에 값을 받을 곳을 만들어둔다 -->
+		
+<!-- Notice_no가 필요하기 때문에 값을 받을 곳을 만들어둔다 -->
 <input type="hidden" name="notice_no" value="${i.getNotice_no()}">
 			<tr align = "center">
 				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
@@ -71,5 +82,8 @@ function td_delete(){
 
 <button style="float:right;" type="button" onclick="td_delete()">삭제</button>
 </form>
+
+<!-- 페이징버튼 -->
+<my:paging_joon paging="${paging}" jsfunc="goList"/>
 </body>
 </html>

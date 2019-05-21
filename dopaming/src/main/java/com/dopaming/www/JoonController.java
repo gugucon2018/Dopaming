@@ -51,26 +51,28 @@ public class JoonController {
 			return "admin/admin_joon/notice_insert_joon";	
 		}
 		else {
-			//널이아니면 jsp에서 받은 값들을 vo에 담는다.
-			session.setAttribute("notice_title",vo.getNotice_title());
-			session.setAttribute("notice_content",vo.getNotice_content());
-			
-			//돌려 받은 값들을 list에 받아둔다.
-			model.addAttribute("list", service.notice_selectlist());
 			//돌아갈 화면
-			return "admin/admin_joon/notice_selectlist_joon";
+			return "redirect:/notice_selectlist";
 		}
 	}
 	//공지 목록 출력값 받아오기
 		@RequestMapping("/notice_selectlist")
 		public String notice_selectlist(Model model, Paging paging, NoticeVO vo) {
-			// 페이징 처리
-
-			// 전체건수
-			//paging.setTotalRecord(service.(vo));
 			
+			// 페이징 처리
+			paging.setPageUnit(5); // 개당 출력건수
+			// 시작페이지 설정
+			if( paging.getPage() == 0) { 
+				paging.setPage(1); }
+			// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
+			paging.setTotalRecord(service.notice_selectlist_cnt());
+			// 페이지마다 시작/마지막 레코드 번호
+			vo.setFirst(paging.getFirst());
+			vo.setLast(paging.getLast());
+			//페이징 VO의 데이터를 paging으로 담아둔다.
+			model.addAttribute("paging", paging);
 			//돌려 받은 값들을 list에 받아둔다.
-			model.addAttribute("list", service.notice_selectlist());
+			model.addAttribute("list", service.notice_selectlist(vo));
 			return "admin/admin_joon/notice_selectlist_joon";
 		}
 	

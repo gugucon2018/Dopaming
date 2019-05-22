@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dopaming.www.admin.boardlist.BoardListService;
+import com.dopaming.www.admin.boardlist.BoardListVO;
 import com.dopaming.www.common.Paging;
 import com.dopaming.www.notice.NoticeService;
 import com.dopaming.www.notice.NoticeVO;
@@ -26,8 +28,8 @@ public class JoonController {
 
 	private static final Logger logger = LoggerFactory.getLogger(JoonController.class);
 
-	@Autowired
-	NoticeService service;
+	@Autowired NoticeService service;
+	@Autowired BoardListService BoardList_service;
 
 	// 공지 등록 뷰연결
 	@RequestMapping(value = "/notice_insert", method = RequestMethod.GET)
@@ -145,7 +147,29 @@ public class JoonController {
 				return "redirect:notice_selectlist";
 			}
 		}
-	
+		
+	//게시판 목록 연결
+		
+		@RequestMapping("/boardList")
+		public String boardList(Model model, Paging paging, BoardListVO vo) {
+
+			// 페이징 처리
+			paging.setPageUnit(5); // 개당 출력건수
+			// 시작페이지 설정
+			if (paging.getPage() == 0) {
+				paging.setPage(1);
+			}
+			// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
+			paging.setTotalRecord(BoardList_service.boardList_select_cnt());
+			// db에서 받은 정보로 페이지마다 시작/마지막 레코드 번호
+			vo.setFirst(paging.getFirst());
+			vo.setLast(paging.getLast());
+			// 페이징 VO의 데이터를 paging으로 담아둔다.
+			model.addAttribute("paging", paging);
+			// 돌려 받은 값들을 list에 받아둔다.
+			model.addAttribute("list", BoardList_service.boardList_select(vo));
+			return "admin/admin_joon/boardList_joon";
+		}
 	 
 	@RequestMapping(value = "/claim_insert", method = RequestMethod.GET)
 	public String claim_insert(Locale locale, Model model) {

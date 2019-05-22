@@ -99,61 +99,64 @@
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">영화<span class="caret"></span></a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu"><li>
+							<a href="mdview?category_big=영화">전체영화</a></li>
+							<li class="divider"></li>
+							<li><a href="mdview?category_small=국내&category_big=영화">국내영화</a></li>
+							<li><a href="mdview?category_small=외국&category_big=영화">외국영화</a></li>
+							<li class="divider"></li>
 							<li><a class="disabled">최신영화</a></li>
 							<li class="divider"></li>
 							<li><a href="#">국내영화</a></li>
 							<li><a href="#">외국영화</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">전체영화</a></li>
-							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=영화">국내영화</a></li>
-							<li><a href="mdview?category_small=외국&category_big=영화">외국영화</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">드라마<span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							
+							<li><a href="mdview?category_big=드라마">전체드라마</a></li>
+							<li class="divider"></li>
+							<li><a href="mdview?category_small=국내&category_big=드라마">국내드라마</a></li>
+							<li><a href="mdview?category_small=외국&category_big=드라마">외국드라마</a></li>
+							<li class="divider"></li>
 							<li><a class="disabled">최신드라마</a></li>
 							<li class="divider"></li>
 							<li><a href="#">국내드라마</a></li>
 							<li><a href="#">외국드라마</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">전체드라마</a></li>
-							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=드라마">국내드라마</a></li>
-							<li><a href="mdview?category_small=외국&category_big=드라마">외국드라마</a></li>
+							
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">동영상<span class="caret"></span></a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu">							
+							<li><a href="mdview?category_big=동영상">전체동영상</a></li>
+							<li class="divider"></li>
+							<li><a href="mdview?category_small=국내&category_big=동영상">국내동영상</a></li>
+							<li><a href="mdview?category_small=외국&category_big=동영상">외국동영상</a></li>
+							<li class="divider"></li>
 							<li><a class="disabled">최신동영상</a></li>
 							<li class="divider"></li>
 							<li><a href="#">국내동영상</a></li>
 							<li><a href="#">외국동영상</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">전체동영상</a></li>
-							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=동영상">국내동영상</a></li>
-							<li><a href="mdview?category_small=외국&category_big=동영상">외국동영상</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">음악<span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li><a href="mdview?category_big=음악">전체음악</a></li>
+							<li class="divider"></li>
+							<li><a href="mdview?category_small=국내&category_big=음악">국내음악</a></li>
+							<li><a href="mdview?category_small=외국&category_big=음악">외국음악</a></li>
+							<li class="divider"></li>
 							<li><a class="disabled">최신음악</a></li>
 							<li class="divider"></li>
 							<li><a href="#">국내음악</a></li>
 							<li><a href="#">외국음악</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">전체음악</a></li>
-							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=음악">국내음악</a></li>
-							<li><a href="mdview?category_small=외국&category_big=음악">외국음악</a></li>
+							
 						</ul></li>
 				</ul>
 			</div>

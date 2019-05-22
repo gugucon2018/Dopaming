@@ -51,5 +51,13 @@ where notice_no= #{notice_no}
 <select id="notice_selectlist_cnt" resultType="int">
 		SELECT COUNT(*)
 		FROM notice
-</select>   
+</select>
+
+<!-- 공지사항 수정 -->
+<update id="notice_update">
+		update notice 
+		set notice_title = #{notice_title},
+			notice_content = #{notice_content} 
+		where notice_no = #{notice_no}
+</update>   
 </mapper>

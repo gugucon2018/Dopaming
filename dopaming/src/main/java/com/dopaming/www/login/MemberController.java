@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,8 +16,7 @@ public class MemberController {
 	//로그인 처리
 	@RequestMapping(value = "/loginA",method = RequestMethod.POST)
 	public String login(MemberVO memberVO
-						, HttpSession session
-						, Model model) {
+						, HttpSession session) {
 		//값 받아오기
 		String id = memberVO.getMember_id();
 		String pass = memberVO.getMember_password(); 

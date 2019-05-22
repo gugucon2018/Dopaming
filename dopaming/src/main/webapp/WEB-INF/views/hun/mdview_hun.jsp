@@ -10,7 +10,7 @@
 </head>
 <style>
 table {
-	width: 100%;
+	width: 90%;
 	text-align: center;
 	border-top: 1px solid #444444;
 	border-collapse: collapse;
@@ -22,11 +22,11 @@ th, td {
 }
 </style>
 <body>
-	<h3 align=center>영 화</h3>
+	<h3 align=center>${small} ${big}</h3>
 
 	<button style="float: right">자료 올리기</button>
 
-	<table>
+	<table align="center">
 		<tr>
 			<td width="150px">분류</td>
 			<td width="150px">번호</td>

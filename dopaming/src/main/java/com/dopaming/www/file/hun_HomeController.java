@@ -26,6 +26,8 @@ public class hun_HomeController {
 	@RequestMapping(value = "/mdview", method = RequestMethod.GET)
 	public String hwan(Model model,FileVO vo) {
 		model.addAttribute("list", service.getFileList(vo));
+		model.addAttribute("small", vo.getCategory_small());
+		model.addAttribute("big", vo.getCategory_big());
 		/*
 		 * model.addAttribute("list", service.getFileList_k());
 		 * model.addAttribute("list", service.getFileList_f());

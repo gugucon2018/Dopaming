@@ -20,4 +20,7 @@ public interface NoticeService {
 	
 	// 공지 페이징 건수 출력
 	int notice_selectlist_cnt();
+	
+	// 공지 수정
+	void notice_update(NoticeVO vo);
 }

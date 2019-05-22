@@ -46,4 +46,10 @@ public class NoticeDAOMybatis {
 		                          //DTO(VO)에 순서대로 인서트 시킨다.
 	}
 	
+	//공지 수정
+	public void notice_update(NoticeVO vo) {
+		System.out.println("공지사항 수정");
+		//매퍼를 동작시킨다.
+		mybatis.update("NoticeDAO.notice_update",vo);
+	}
 }

@@ -39,10 +39,17 @@ public class NoticeServiceImpl implements NoticeService {
 	public void notice_delete(NoticeVO vo) {
 		dao.notice_delete(vo);
 	}
-
+	
+	//페이징 건수
 	@Override 
 	public int notice_selectlist_cnt() {
 		return dao.notice_selectlist_cnt();
+	}
+	
+	//공지 수정
+	@Override
+	public void notice_update(NoticeVO vo) {
+		dao.notice_update(vo);
 	}
 	
 }

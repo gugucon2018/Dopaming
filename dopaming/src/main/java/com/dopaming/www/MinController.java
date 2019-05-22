@@ -99,7 +99,7 @@ public class MinController {
 	//관리자 - 회원관리 - 등급관리 - 등급수정
 		@RequestMapping("/grade_update")
 		public String grade_update(GradeVO_min vo,HttpServletRequest request) {
-		String[] td_checkbox = request.getParameterValues("member_id");
+		String[] td_checkbox = request.getParameterValues("td_checkbox");
 			//	service.deleteBoard(vo);
 			return "admin/admin_min/adminclass_min";
 		}

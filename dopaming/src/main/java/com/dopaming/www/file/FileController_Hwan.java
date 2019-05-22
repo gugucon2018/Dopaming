@@ -5,8 +5,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,14 +23,27 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class FileController_Hwan {
 	private static final Logger logger = LoggerFactory.getLogger(FileController_Hwan.class);
 	
+	
+	@Autowired
+	FileService_Hwan service;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/upload_hwan", method = RequestMethod.GET)
+	@RequestMapping(value = "/upload_view", method = RequestMethod.GET)
 	public String upload_hwan(Locale locale, Model model) {	
 		
 		return "hwan/upload_hwan";
 	}	
+	@RequestMapping(value = "/board_file_upload", method = RequestMethod.POST)
+	public String board_file_upload(FileBoardVO_Hwan bvo, FileUploadVO_Hwan fvo,
+			HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) {
+		
+		service.board_upload(bvo);
+		//service.file_upload(fvo);
+		
+		return "hwan/file_post_hwan";
+	}
 
 	@RequestMapping(value = "/request_upload", method = RequestMethod.GET)
 	public String requestUpload_hwan(MultipartHttpServletRequest mtfRequest) {	

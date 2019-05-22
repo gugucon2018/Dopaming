@@ -29,14 +29,28 @@ tr:nth-child(even) {
 		searchFrm.page.value = p;
 		searchFrm.submit();
 	}
+	
+//등급수정
+function grade_update(){
+	var chk = document.getElementsByName("td_checkbox");//태그찾기
+	var cnt = 0;
+	for(i=0; i<chk.length; i++){
+		if(chk[i].checked == true){
+			cnt++
+		}
+	}
+	form.action = "grade_update"
+	form.submit();
+} 
 </script>
 </head>
 <body>
+	<!-- select + 검색 -->
 	<h4>등급관리 </h4><hr>
-	<form name="searchFrm">
+	<form name="searchFrm" method="get">
 	 <input type="hidden" name="page" value="1">
 		<select name="member_grade">
-			<option value="">선택
+			<option value="">전체
 			<option value="g4">다이아도토리
 			<option value="g3">골드도토리
 			<option value="g2">실버도토리
@@ -47,6 +61,8 @@ tr:nth-child(even) {
 		</script>
 		<button>검색</button>
 	</form>
+	<!-- 테이블 -->
+	<form name="form">
 	<table>
 		<tr>
 			<td> </td>
@@ -57,7 +73,7 @@ tr:nth-child(even) {
 		<tr>
 	<c:forEach items="${classList}" var="classs"> <!-- 등급관리 전체조회 -->
 	<tr>
-		<td><input type="checkbox" name="seqs" value="${board.seq }"></td>
+		<td><input type="checkbox" name="td_checkbox" value="${classs.member_id }"></td>
 		<td>${classs.member_id }</td>
 		<td>${classs.acron }</td>
 		<td>${classs.grade_kor }</td>
@@ -74,6 +90,9 @@ tr:nth-child(even) {
 			<option value="g2">실버도토리
 			<option value="g1">브론즈도토리
 		</select>
+		<button onclick="grade_update">등급수정</button>
+		
 </div>
+</form>
 </body>
 </html>

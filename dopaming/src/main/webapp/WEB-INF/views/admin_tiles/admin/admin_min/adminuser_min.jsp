@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,86 +29,32 @@ tr:nth-child(even) {
 <div>
 	<h4>사용자관리 </h4><hr>
 	<div>
-		<form action="adminlogin" method="post">
-		<select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="blacklist">블랙리스트</option>
-		  <option value="normaluser">일반회원</option>
+	 <input type="hidden" name="page" value="1">
+		<select name="list_date">
+		  <option value=" ">전체</option>
+		  <option value="b">블랙리스트</option>
+		  <option value="c">일반회원</option>
 		</select>
-		
-		<span style="float:right">
-			<INPUT TYPE="text" NAME="name" style="text-align:right"> 
-			<button type="button">검색</button>
-		</span>
-		</form>
+		<input name="searchKeyword" value="${boardVO.searchKeyword}"/>
+		<button type="submit">검색</button>
 	</div>
 	<div>
 		<table>
-		  <tr>
-		    <th>아이디</th>
-		    <th>이메일</th>
-		    <th>상태</th>
-		    <th>탈퇴</th>
-		    <th>날짜</th>
-		  </tr>
-		  <tr>
-		    <td>아이디1</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="blacklist">블랙리스트</option>
-		  <option value="normaluser">일반회원</option>
-		</select></td>
-		    <td><button type="button">회원탈퇴</button></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>아이디2</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="blacklist">블랙리스트</option>
-		  <option value="normaluser">일반회원</option>
-		</select></td>
-		    <td><button type="button">회원탈퇴</button></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>아이디3</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="blacklist">블랙리스트</option>
-		  <option value="normaluser">일반회원</option>
-		</select></td>
-		    <td><button type="button">회원탈퇴</button></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>아이디4</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="blacklist">블랙리스트</option>
-		  <option value="normaluser">일반회원</option>
-		</select></td>
-		    <td><button type="button">회원탈퇴</button></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>아이디5</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><select>
-		  <option value="Select bar">Select bar</option>
-		  <option value="blacklist">블랙리스트</option>
-		  <option value="normaluser">일반회원</option>
-		</select></td>
-		    <td><button type="button">회원탈퇴</button></td>
-		    <td>Germany</td>
-		  </tr>
+			<tr>
+				<td> </td>
+				<td>아이디</td>
+				<td>이메일</td>
+			<tr>
+		<c:forEach items="${blackList}" var="list1"> <!-- 등급관리 전체조회 -->
+		<tr>
+			<td><input type="checkbox" name="member_id" value="${classs.member_id }"></td>
+			<td>${list1.member_id }</td>
+			<td>${list1.member_email }</td>
+		</tr>
+		</c:forEach>
 		</table>
+		<my:paging paging="${paging}"/>
 	</div>
-	페이징해야함
 	<br>
 	<br>
 	<br>

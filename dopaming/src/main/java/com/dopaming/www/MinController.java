@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dopaming.www.admin.blacklist.BlackListVO;
+import com.dopaming.www.admin.blacklist.BlackListservice;
 import com.dopaming.www.admin.grade.GradeVO_min;
 import com.dopaming.www.admin.grade.Gradeservice_min;
 import com.dopaming.www.admin.login.Loginservice_min;
@@ -33,6 +35,8 @@ public class MinController {
 	Loginservice_min service;
 	@Autowired
 	Gradeservice_min service2;
+	@Autowired
+	BlackListservice service3;
 	
 	//(관리자)로그인 폼
 		@RequestMapping(value= {"/loginForm"}, method=RequestMethod.GET)
@@ -73,8 +77,6 @@ public class MinController {
 	//관리자 - 회원관리 - 등급관리 - 등급List
 		@RequestMapping(value= {"/classForm"}, method=RequestMethod.GET)
 		public String getClass(Model model, GradeVO_min vo, Paging paging) {
-	
-			
 			paging.setPageUnit(5);
 			// 페이지번호 파라미터
 			if( paging.getPage() == 0) {
@@ -94,18 +96,51 @@ public class MinController {
 			return "admin/admin_min/adminclass_min";
 		}
 		
+	//관리자 - 회원관리 - 등급관리 - 등급수정
+		@RequestMapping("/grade_update")
+		public String grade_update(GradeVO_min vo,HttpServletRequest request) {
+		String[] td_checkbox = request.getParameterValues("member_id");
+			//	service.deleteBoard(vo);
+			return "admin/admin_min/adminclass_min";
+		}
+		
+		
+		
+	//관리자 - 회원관리 - 사용자관리
+			@RequestMapping(value= {"/userForm"}, method=RequestMethod.GET)
+			public String getClass(Model model, BlackListVO vo, Paging paging) {
+				
+				paging.setPageUnit(5);
+				// 페이지번호 파라미터
+				if( paging.getPage() == 0) {
+					paging.setPage(1); 
+				}
+				
+				// 시작/마지막 레코드 번호
+				vo.setFirst(paging.getFirst());
+				vo.setLast(paging.getLast());
+				
+				//전체 건수
+				paging.setTotalRecord(service3.blackListCount(vo));
+				model.addAttribute("blackList", service3.getBlackList(vo));
+				model.addAttribute("paging", paging );
+				return "admin/admin_min/adminuser_min";
+			}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	//(유저)아콘결제페이지
 	@RequestMapping(value= {"/acornForm"}, method=RequestMethod.GET)
 	public String acornFrom() {
 		return "min/useracorn_min";
-	}
-	
-	//(관리자)회원관리 - 사용자관리
-	@RequestMapping(value= {"/userForm"}, method=RequestMethod.GET)
-	public String userFrom() {
-		return "admin/admin_min/adminuser_min";
 	}
 	
 	//(관리자)회원관리 - 업로드한 리스트 뷰

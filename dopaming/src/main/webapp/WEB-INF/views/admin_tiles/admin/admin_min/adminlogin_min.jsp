@@ -35,7 +35,7 @@
                             <input type="text" name="member_id" value="${members.member_id}" class="form-control" placeholder="Please enter your ID"/>
 
                             <label class=" control-label">Password</label>
-                            <input name="member_password" value="${members.member_password }"  type="text" class="form-control" placeholder="Please enter a password"/>
+                            <input autocomplete="off" name="member_password" value="${members.member_password }" type="password" class="form-control" placeholder="Please enter a password"/>
 
                             <button class="btn btn-default">LOGIN 
                             <i class="fa fa-arrow-circle-right fa-2x"></i></button>

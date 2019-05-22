@@ -1,0 +1,53 @@
+package com.dopaming.www.admin.blacklist;
+
+import java.sql.Date;
+
+public class BlackListVO {
+
+	private String member_id;
+	private String member_email;
+	private Date list_date;
+	
+	//페이징하기위한 첫,마지막번호
+	private int first;
+	private int last;
+	
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	
+	public String getMember_email() {
+		return member_email;
+	}
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
+	}
+	public Date getList_date() {
+		return list_date;
+	}
+	public void setList_date(Date list_date) {
+		this.list_date = list_date;
+	}
+	
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
+	}
+	@Override
+	public String toString() {
+		return "BlackListVO [member_id=" + member_id + ", member_email=" + member_email + ", list_date=" + list_date
+				+ "]";
+	}
+	
+}

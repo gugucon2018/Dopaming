@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BlackListMinDAO"> 
+ 
+ 	<!-- 블랙리스트 출력 -->
+	<select id="getblackList" resultType="blacklist" >
+	select a.* from ( select b.*, rownum rn from (select m.member_id, m.member_email
+	from members m , black_list l 
+	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+          <if test="list_date == 'b'"> 
+			m.member_id = l.member_id
+          </if>
+          <if test="list_date == 'c'"> 
+			m.member_id != l.member_id
+          </if>
+    </where>
+    order by m.member_id asc) b) a 
+    where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 블랙리스트 카운트 -->
+	<select id="blackListCount" resultType="int">
+	select count(*)
+	from members m , black_list l
+	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+          <if test="list_date == 'b'"> 
+			m.member_id = l.member_id
+          </if>
+          <if test="list_date == 'c'"> 
+			m.member_id != l.member_id
+          </if>
+    </where>	
+	</select>
+</mapper>

@@ -124,7 +124,7 @@ textarea {
 					<td colspan="3">																			
 							<input type="file" id="upload_btn"
 								class="afile3 multi with-preview" />							
-							<!-- <div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px"></div>-->
+							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px"></div>
 					</td>
 				</tr>
 			</table>
@@ -171,7 +171,8 @@ textarea {
               $('#afile3-list').append('<li>afterFileRemove - ' + value + '</li>')
             },*/
             onFileAppend: function(element, value, master_element) {
-              $('#afile3-list').append('<li name="">onFileAppend - ' + value + '</li>')
+            	console.log(element,value,master_element);
+              $('#afile3-list').append('<li name="">onFileAppend - ' + element+" "+value+" "+master_element + '</li>')
             },
             /*afterFileAppend: function(element, value, master_element) {
               $('#afile3-list').append('<li>afterFileAppend - ' + value + '</li>')

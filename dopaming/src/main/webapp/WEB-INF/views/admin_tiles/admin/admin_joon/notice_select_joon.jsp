@@ -27,15 +27,17 @@ function notice_delete(){
 <h1 align = "center"><u>공지사항</u></h1>
 
 <!-- 보낼폼을 설정 -->
-<form name="form" action="notice_update">
+<form name="form" action="notice_update_form">
 
 <!-- Notice_no가 필요가기 때문에 값을 받을 곳을 만들어둔다 -->
 <input type="hidden" name="notice_no" value="${notice.getNotice_no()}">
+<input type="hidden" name="notice_title" value="${notice.getNotice_title()}">
+<input type="hidden" name="notice_content" value="${notice.getNotice_content()}">
 
 <table width="100%" height = "40px">
         <tr>        
             <td bgcolor="gray" width="80p"  align="center">제목</td>
-            <td align="center">${notice.getNotice_title()}</td>
+            <td align="center" >${notice.getNotice_title()}</td>
             <td bgcolor="gray" width="80p"  align="center">글쓴이</td>
             <td width="200p"  align="center">관리자</td>
             <td bgcolor="gray" width="80p"  align="center">날짜</td>

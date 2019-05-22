@@ -40,7 +40,7 @@ function td_delete(){
 	}
 }
 
-//페이징 기능
+//페이징 기능(처음/끝 값을 보내준다.)
 function goList(p){
 	form2.page.value = p;
 	form2.submit();

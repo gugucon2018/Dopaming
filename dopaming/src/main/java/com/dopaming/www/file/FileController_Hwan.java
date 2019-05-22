@@ -40,7 +40,8 @@ public class FileController_Hwan {
 			HttpServletResponse response) {
 		
 		service.board_upload(bvo);
-		//service.file_upload(fvo);
+		if(fvo!=null)
+		service.file_upload(fvo);
 		
 		return "hwan/file_post_hwan";
 	}

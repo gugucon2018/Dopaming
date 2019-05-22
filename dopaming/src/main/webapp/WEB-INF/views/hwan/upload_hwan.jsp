@@ -81,6 +81,9 @@ textarea {
 					<td>제목<br> <input name="boardTitle" size="20" placeholder="제목입력" /></td>
 					<td>회원아이디<br> <input name="memberId" size="20"
 						placeholder="아이디입력" /></td>					
+					<td>파일 용량<br><input type="file"/>
+    				<input type="button" onclick="sizeCheck();">
+    				<label id="size"></label></td>
 					<td>업로드날짜<br> <label>2019</label></td>
 				</tr>
 				<tr>
@@ -94,11 +97,11 @@ textarea {
 							<option value="국내">국내</option>
 							<option value="외국">외국</option>
 					</select></td>
-					<td>게시글아콘<br> <input name="BoardAcorn" placeholder="아콘값 입력" />
+					<td colspan="2">게시글아콘<br> <input name="BoardAcorn" placeholder="아콘값 입력" />
 					</td>
 				</tr>
 				<tr>
-					<td class="no_border" colspan="3">
+					<td class="no_border" colspan="4">
 						<div class="row justify-content-md-center">
 							<div style="margin-bottom: 30px">
 								<div class="input-group cen_table">
@@ -115,14 +118,15 @@ textarea {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3"><textarea rows="5" cols="130" name="boardContent">	    
+					<td colspan="4"><textarea rows="5" cols="130" name="boardContent">	    
 						</textarea><br>
 						<button type="submit" class="btn btn-danger btn-danger pull-right">업로드
-							하기</button></td>
+							하기</button>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="3">																			
-							<input type="file" id="upload_btn"
+					<td colspan="4">																			
+							<input type="file"
 								class="afile3 multi with-preview" />							
 							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px"></div>
 					</td>
@@ -135,13 +139,10 @@ textarea {
 	
 	%>
 	<!--CDN방식-->
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
-		type="text/javascript" language="javascript"> </script>
-	<script src="./resources/multifile-master/jquery.MultiFile.min.js"></script>
+	<script src="./resources/multifile-master/jquery.MultiFile.js"></script>
 	<script>	  
 	        $(function(){ // wait for page to load
-                    $('input.afile3').MultiFile({
+                 $('input.afile3').MultiFile({
             max: 3, 
             //업로드 최대 파일 갯수 (지정하지 않으면 무한대)
             accept: 'jpg|png|gif|mp4|mov|mp3|avi|mpg|mpeg|wmv|flv|dat|asf|asx|mpe', 
@@ -172,8 +173,8 @@ textarea {
             },*/
             onFileAppend: function(element, value, master_element) {
             	console.log(element,value,master_element);
-              $('#afile3-list').append('<li name="">onFileAppend - ' + element+" "+value+" "+master_element + '</li>')
-            },
+              $('#afile3-list').append('<li name="fileName">onFileAppend - ' + element+" "+value+" "+master_element + '</li>')
+            }
             /*afterFileAppend: function(element, value, master_element) {
               $('#afile3-list').append('<li>afterFileAppend - ' + value + '</li>')
             },*/
@@ -203,6 +204,19 @@ textarea {
           });
 
         });
+        </script>
+        <script>
+        function sizeCheck(){
+            var i=0;
+            var sum=0;
+            var list = document.getElementsByClassName("afile3")[0].files[0].size;                    	
+            for(i=0;i<list.length;i++){
+            	 sum+=document.getElementsByClassName("afile3")[i].files[i].size;;
+            }            
+            sum=sum/1024;//KB표현
+            sum=Math.ceil(sum);
+            document.getElementById("size").innerHTML=sum;
+        }               
         </script>
 </body>
 </html>

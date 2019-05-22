@@ -23,4 +23,9 @@ public class GradeServiceImpl_min implements Gradeservice_min {
 	public int classListCount(GradeVO_min vo) {
 		return mambersDAO.classListCount(vo);
 	}
+
+	@Override
+	public void gradeupdate(GradeVO_min vo) {
+		 mambersDAO.grade_update(vo);
+	}
 }

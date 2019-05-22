@@ -9,12 +9,12 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<img class="rounded-circle loginmodal_image" src="./resources/images/hong/login.gif">
 				<p class="loginmodal_title">Dopaming</p>
-				<form id="loginForm" method="post" action="loginA">
+				<form id="loginForm" name="loginForm" method="post" action="loginA">
 					<input class="loginmodal_loginid" type="text" name="member_id" placeholder="아이디 입력">
                     <input class="loginmodal_loginpass" type="password" name="member_password" placeholder="비밀번호 입력">
                     <div class="form-check">
 	                    <label class="switch">
-							<input type="checkbox">
+							<input type="checkbox" name="loginCheck" id="loginCheck">
 							<span class="slider round"></span>
 						</label>
 						<label class="form-check-label" for="loginCheck">로그인 상태 유지</label>
@@ -54,3 +54,4 @@
 	</div>
 </div>
 <script src="./resources/js/modal.js"></script>
+<script src="./resources/js/cookie.js"></script>

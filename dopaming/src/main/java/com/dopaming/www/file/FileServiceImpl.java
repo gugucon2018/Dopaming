@@ -40,6 +40,10 @@ public class FileServiceImpl implements FileService {
 		System.out.println("getFileList");
 		return dao.getFileList(vo);
 	}
+	@Override 
+	public int fileList_cnt() {
+		return dao.fileList_cnt();
+	}
 	/*
 	 * @Override public List<FileVO> getFileList_k() {
 	 * System.out.println("getFileList_k"); return dao.getFileList_k(); }

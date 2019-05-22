@@ -15,11 +15,15 @@ public class FileDAOmybatis {
 	SqlSessionTemplate mybatis;
 	
 	public FileVO getFile(FileVO vo) {
-		return mybatis.selectOne("FileDAO.getFile",vo);
+		return mybatis.selectOne("fileDAO.getFile",vo);
 	}
 	
 	public List<FileVO> getFileList(FileVO vo) {
 		return mybatis.selectList("fileDAO.fileList",vo);
+	}
+	//페이징 건수
+	public int fileList_cnt() {
+		return mybatis.selectOne("fileDAO.fileList_cnt");
 	}
 	/*
 	 * public List<FileVO> getFileList_k() { return
@@ -28,7 +32,7 @@ public class FileDAOmybatis {
 	 */
 	
 	public Integer userCount() {
-		return mybatis.selectOne("FileDAO.userCount");
+		return mybatis.selectOne("fileDAO.userCount");
 	}
 	
 	/*

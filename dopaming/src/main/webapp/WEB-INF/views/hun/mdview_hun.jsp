@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+//페이징 기능
+function goList(p){
+	form2.page.value = p;
+	form2.submit();
+}
+</script>
 </head>
 <style>
 table {
@@ -23,9 +30,11 @@ th, td {
 </style>
 <body>
 	<h3 align=center>${small} ${big}</h3>
-
-	<button style="float: right">자료 올리기</button>
-
+	<form action = "mdview" name="form2">
+	<input type="hidden" name="page" value="1"></input>
+	<input type="hidden" name="category_small" value="${fileVO.category_small}"></input>
+	<input type="hidden" name="category_big" value="${fileVO.category_big}"></input>
+	</form>
 	<table align="center">
 		<tr>
 			<td width="150px">분류</td>
@@ -43,7 +52,12 @@ th, td {
 				<td>${file.member_id}</td>
 			</tr>
 		</c:forEach>
+		
 	</table>
 	<br>
 	<br>
+	<button style="float: right">자료 올리기</button>
+		<!-- 페이징버튼 -->
+	<my:paging_joon paging="${paging}" jsfunc="goList"/>
+	</body>
 </html>

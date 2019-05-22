@@ -462,9 +462,9 @@ if (window.jQuery)(function ($) {
 								label =	$(
 										(
 											'<span class="MultiFile-label" title="' + t + '">'+
-												'<span class="MultiFile-title">'+ n +'</span>'+
+												'<span" class="MultiFile-title">'+ n +'</span>'+
 												(MultiFile.preview || $(slave).is('.with-preview') ? p : '' )+
-											'</span>'
+											'</span>'											
 										)
 										.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
 										.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
@@ -493,7 +493,7 @@ if (window.jQuery)(function ($) {
 							(
 								'<span class="MultiFile-title" title="' + MultiFile.STRING.selected + '">'
 									+ MultiFile.STRING.file +
-								'</span>'
+								'</span>'									
 							)
 							.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
 							.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
@@ -505,7 +505,7 @@ if (window.jQuery)(function ($) {
 					//$.each(files, function (i, file) {
 						// Create label elements
 						var
-							r = $('<div class="MultiFile-label"></div>'),
+							r = $('<div class="MultiFile-labe"></div>'),							
 							b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
 
 								// ********

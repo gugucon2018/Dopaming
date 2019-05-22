@@ -20,11 +20,9 @@
 
     <!-- Custom styles for this template -->    
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="./resources/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+   
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="./resources/js/ie-emulation-modes-warning.js"></script>        
-	<style>
+    	<style>
 
 		.navber-right{
 			float:right;

@@ -7,12 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Custom styles for this template -->
-<link href="./resources/fontawesome/css/font-awesome.min.css"
-	rel="stylesheet">
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="./resources/js/ie-emulation-modes-warning.js"></script>
 <script src="./resources/ckeditor/ckeditor.js"></script>
 <title>자료 업로드</title>
 <!-- <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> -->
@@ -83,7 +78,7 @@ textarea {
 						placeholder="아이디입력" /></td>					
 					<td>파일 용량<br><input type="file"/>
     				<input type="button" onclick="sizeCheck();">
-    				<label id="size"></label></td>
+    				<label id="stg"></label></td>
 					<td>업로드날짜<br> <label>2019</label></td>
 				</tr>
 				<tr>
@@ -126,8 +121,8 @@ textarea {
 				</tr>
 				<tr>
 					<td colspan="4">																			
-							<input type="file"
-								class="afile3 multi with-preview" />							
+							<input multiple="multiple" type="file"
+								class="afile3" />							
 							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px"></div>
 					</td>
 				</tr>
@@ -140,16 +135,29 @@ textarea {
 	%>
 	<!--CDN방식-->
 	<script src="./resources/multifile-master/jquery.MultiFile.js"></script>
+	        <script>
+        function sizeCheck(){
+            var i=0;
+            var sum=0;
+            var list = document.getElementsByClassName("afile3");                    	
+            for(i=0;i<list.length;i++){
+            	 sum=sum+list[i].files[0];
+            }            
+            sum=sum/1024;//KB표현
+            sum=Math.ceil(sum);
+            document.getElementById("stg").innerHTML=sum;
+        }               
+        </script>
 	<script>	  
 	        $(function(){ // wait for page to load
                  $('input.afile3').MultiFile({
-            max: 3, 
+            max: 5, 
             //업로드 최대 파일 갯수 (지정하지 않으면 무한대)
-            accept: 'jpg|png|gif|mp4|mov|mp3|avi|mpg|mpeg|wmv|flv|dat|asf|asx|mpe', 
+            accept: 'jpg|png|gif|mp4|mov|mp3|avi|mpg|mpeg|wmv|flv|dat|asf|asx|mpe|pdf', 
             //허용할 확장자(지정하지 않으면 모든 확장자 허용)
-            maxfile: 1024, 
+            maxfile: 9999999999999, 
             //각 파일 최대 업로드 크기
-            maxsize: 3024,  
+            maxsize: 9999999999999999,  
             //전체 파일 최대 업로드 크기
             STRING: { //Multi-lingual support : 메시지 수정 가능
                 remove : "제거", //추가한 파일 제거 문구, 이미태그를 사용하면 이미지사용가능
@@ -171,10 +179,10 @@ textarea {
             afterFileRemove: function(element, value, master_element) {
               $('#afile3-list').append('<li>afterFileRemove - ' + value + '</li>')
             },*/
-            onFileAppend: function(element, value, master_element) {
+/*             onFileAppend: function(element, value, master_element) {
             	console.log(element,value,master_element);
-              $('#afile3-list').append('<li name="fileName">onFileAppend - ' + element+" "+value+" "+master_element + '</li>')
-            }
+              $('#afile3-list').append('<li name="fileName" class="afile3">'+value+ '</li>')
+            } */
             /*afterFileAppend: function(element, value, master_element) {
               $('#afile3-list').append('<li>afterFileAppend - ' + value + '</li>')
             },*/
@@ -204,19 +212,6 @@ textarea {
           });
 
         });
-        </script>
-        <script>
-        function sizeCheck(){
-            var i=0;
-            var sum=0;
-            var list = document.getElementsByClassName("afile3")[0].files[0].size;                    	
-            for(i=0;i<list.length;i++){
-            	 sum+=document.getElementsByClassName("afile3")[i].files[i].size;;
-            }            
-            sum=sum/1024;//KB표현
-            sum=Math.ceil(sum);
-            document.getElementById("size").innerHTML=sum;
-        }               
         </script>
 </body>
 </html>

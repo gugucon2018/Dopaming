@@ -100,7 +100,19 @@ public class MinController {
 		@RequestMapping("/grade_update")
 		public String grade_update(GradeVO_min vo,HttpServletRequest request) {
 		String[] td_checkbox = request.getParameterValues("td_checkbox");
-			//	service.deleteBoard(vo);
+		String[] member_grade2 = request.getParameterValues("member_grade2");
+	
+		for(String n : td_checkbox) {
+			for(String m : member_grade2) {
+			try {
+				vo.setGrade_kor(m);
+				vo.setMember_id(n);
+				service2.gradeupdate(vo);
+			}catch(Exception e) {
+				e.printStackTrace();
+					}
+				}
+			}
 			return "admin/admin_min/adminclass_min";
 		}
 		

@@ -30,13 +30,21 @@ tr:nth-child(even) {
 		searchFrm.submit();
 	}
 	
-//등급수정
+//등급수정기능
 function grade_update(){
+	//체크박스 입력 체크
 	var chk = document.getElementsByName("td_checkbox");//태그찾기
 	var cnt = 0;
 	for(i=0; i<chk.length; i++){
 		if(chk[i].checked == true){
 			cnt++
+		}
+	}
+	var grade2 = document.getElementsByName("member_grade2");
+	var cnt1 = 0;
+	for(j=0; j<grade2.length; j++){
+		if(grade2[j].checked== true){
+			cnt1++
 		}
 	}
 	form.action = "grade_update"
@@ -83,7 +91,7 @@ function grade_update(){
 	</table>
 <my:paging paging="${paging}"/>
 <div align="right">
-		<select name="member_grade">
+		<select name="member_grade2">
 			<option value="">선택
 			<option value="g4">다이아도토리
 			<option value="g3">골드도토리

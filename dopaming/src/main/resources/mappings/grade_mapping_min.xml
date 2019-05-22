@@ -39,11 +39,11 @@
 	</select>
 	
 	<!-- 관리자 - 회원관리 - 등급관리 - 등급수정 -->
-	<update id="updateClass">
+	<update id="gradeupdate">
 		update members
 		<set>
-			<if test=" member_grade != null"> MEMBER_GRADE = #{member_grade}</if>
+			<if test=" member_grade != null"> MEMBER_GRADE = #{member_grade2}</if>
 		</set>
-		where member_id = #{member_id};
+		where member_id = #{td_checkbox};
 	</update>
 </mapper>

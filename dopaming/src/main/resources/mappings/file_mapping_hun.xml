@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mapper = dao-->
+<mapper namespace="fileDAO">    
+
+<!--파일영화 출력-->
+<select id="fileList" resultType="file">
+select a.* from ( select c.*, rownum rn from(
+select f.file_type
+                                    ,f.file_no
+                                    ,f.file_name
+                                    ,f.file_storage
+                                    ,f.member_id
+						 from file_upload f join board b
+                         on f.group_no = b.board_no
+                         <where>
+                         <if test="category_small != null and category_small !=''">
+                          b.category_small = #{category_small}
+                         </if>
+                         <if test="category_big != null and category_big !=''">
+                          and b.category_big = #{category_big}
+                         </if>
+                         </where>
+                     
+						 ) c) a where rn between #{first} and #{last}
+</select>
+
+
+
+
+<!--페이징--> 
+<select id="fileList_cnt" resultType="int">
+		SELECT COUNT(*)
+		FROM file_upload
+</select> 
+ 
+</mapper>

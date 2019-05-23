@@ -7,11 +7,18 @@ public class BoardListVO {
 	String category_big;
 	String category_small;
 	int board_acorn;
+	int rn;
 	
 	//페이징하기위한 첫,마지막번호
 	private int first;
 	private int last;
-
+		
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
 	
 	public int getBoard_no() {
 		return board_no;

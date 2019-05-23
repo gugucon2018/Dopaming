@@ -7,6 +7,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination ul {
+	display: inline-block;
+	padding: 10px;
+	margin: 0px;
+}
+
+.pagination li {
+	display: inline-block;
+	padding: 10px;
+}
+
+.active {
+	color: red;
+}
+
+a {
+	text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+}
+td {
+	border-bottom: 1px solid;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 //전체선택
@@ -71,19 +103,19 @@ function goList(p){
 <input type="hidden" name="notice_no" value="${i.getNotice_no()}">
 			<tr align = "center">
 				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
-				<td><a href="/dopaming/notice_select?notice_no=${ i.getNotice_no()}">
-					${i.getNotice_title()}</a></td>
+				<td><a href="/dopaming/notice_select?notice_no=${ i.getNotice_no()}">${i.getNotice_title()}</a></td>
 				<td>${i.getNotice_date()}</td>
 			</tr>
 		</c:forEach>
 </table><br>
-	
-<a href="/dopaming/notice_insert"><button style="float:right;" type="button" >공지사항 등록</button></a>
 
-<button style="float:right;" type="button" onclick="td_delete()">삭제</button>
+<button style="float:right;" type="button" onclick="td_delete()">삭제</button>	
+<a href="/dopaming/notice_insert"><button style="float:right;" type="button" >공지사항 등록</button></a>
 </form>
 
 <!-- 페이징버튼 -->
+<div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
 </body>
 </html>

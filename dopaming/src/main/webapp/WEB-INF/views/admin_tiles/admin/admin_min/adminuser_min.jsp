@@ -29,14 +29,19 @@ tr:nth-child(even) {
 <div>
 	<h4>사용자관리 </h4><hr>
 	<div>
+	<form name="searchFrm">
 	 <input type="hidden" name="page" value="1">
-		<select name="list_date">
+		<select name="searchCondition">
 		  <option value=" ">전체</option>
 		  <option value="b">블랙리스트</option>
 		  <option value="c">일반회원</option>
 		</select>
-		<input name="searchKeyword" value="${boardVO.searchKeyword}"/>
+		<script>
+			searchFrm.searchCondition.value='${BlackListVO.searchCondition}';
+		</script>
+		<input name="searchKeyword" value="${BlackListVO.searchKeyword}"/>
 		<button type="submit">검색</button>
+		</form>
 	</div>
 	<div>
 		<table>

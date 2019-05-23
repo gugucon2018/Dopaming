@@ -40,10 +40,8 @@
 	
 	<!-- 관리자 - 회원관리 - 등급관리 - 등급수정 -->
 	<update id="gradeupdate">
-		update members
-		<set>
-			<if test=" member_grade != null"> MEMBER_GRADE = #{member_grade2}</if>
-		</set>
-		where member_id = #{td_checkbox};
+		update  members
+		   set	MEMBER_GRADE = #{member_grade}
+		 where  member_id = #{member_id}
 	</update>
 </mapper>

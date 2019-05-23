@@ -2,6 +2,7 @@
 <%@ attribute name="paging" type="com.dopaming.www.common.Paging" %>
 <%@ attribute name="jsFunc" required="false" type="java.lang.String" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="pagination">
 <c:if test="${empty jsFunc}">
 	<c:set var="jsFunc" value="go_page"></c:set>
 </c:if>
@@ -21,3 +22,4 @@
 	<li><a href="javascript:${jsFunc}(${paging.page+1})">다음</a>
 </c:if>
 </ul>
+</div>

@@ -8,19 +8,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+/* 페이징태그 스타일 */
 .pagination {
 	display: inline-block;
 }
 
 .pagination ul {
-	display: inline-block;
-	padding: 10px;
+ 	padding: 10px;
 	margin: 0px;
 }
 
 .pagination li {
-	display: inline-block;
+    display: inline-block; /* 페이징 가로효과 */
 	padding: 10px;
 }
 
@@ -43,39 +42,36 @@ td {
 <script type="text/javascript">
 //페이징 기능(처음/끝 값을 보내준다.)
 function goList(p){
-	form2.page.value = p;
-	form2.submit();
+	category_form.page.value = p;
+	category_form.submit();
 }
 
 //풀다운기능
 function changeMenu(){
-		form2.category_small.value = document.getElementsByName("category_small")[0].value
-		form2.submit();
+	category_form.category_small.value = document.getElementsByName("category_small")[0].value
+	category_form.submit();
 }
 
-/* //풀다운메뉴 초기값 설정
-window.onload=function(){//바디실행후 작동
-if('${param.a}'=='asc'){
-	document.getElementsByName("category_small")[0].selectedIndex=1;
-	}
-} */
 </script>
 </head>
 <body>
 
 <h3 align=center><u>게시판 목록</u></h3><br>
 
+<!-- 페이징 값 보내는 폼(category_form) -->
+<form name="category_form">
+<input type="hidden" name="page" value="1"></input>
 <select style="float: left;" name="category_small" onchange="changeMenu()">
 		<option value="">전체</option>
 		<option value="최신">최신</option>
 		<option value="국내">국내</option>
-		<option value="외국">외국</option>		
+		<option value="외국">외국</option>	
 </select>
-
 <!-- 지정된 풀다운 메뉴를 고정시키기 -->
 <script>
-document.getElementsByName("category_small")[0].value='${BoardListVO.category_small}';
+category_form.category_small.value='${boardListVO.category_small}';//BoardListVO에 정보를 가져온다.
 </script>
+</form>
 	
 <!-- 검색창 -->
 <form action="board_search" id="textValue" method="post" enctype="multipart/form-data">
@@ -86,36 +82,26 @@ document.getElementsByName("category_small")[0].value='${BoardListVO.category_sm
 </form>
 <br> 
 
-<!-- 페이징 값 보내는 폼(form2) -->
-<form action = "boardList" name="form2">
-	<input type="hidden" name="page" value="1"></input>
-	<input type="hidden" name="category_small" value="${i.category_small}">
-</form>
-
-	<table class="joon_table" border="1" width="100%">
-		<tr align= "center" >
-			<td bgcolor="">번호</td>
-			<td bgcolor="" width="200px">
-				<label for="td_checkAll">제목</label>
-			</td>
-			<td bgcolor="">아이디</td>
-			<td bgcolor="">대분류</td>
-			<td width="200px" bgcolor="">소분류</td>
-		</tr>
+<!-- 테이블(컬럼명) -->
+<table class="joon_table" border="1" width="100%">
+	<tr align= "center" >
+		<td bgcolor="">번호</td>
+		<td bgcolor="" width="200px">제목</td>
+		<td bgcolor="">아이디</td>
+		<td bgcolor="">대분류</td>
+		<td bgcolor="" width="200px">소분류</td>
+	</tr>
 		
-<!-- db에서 가져온 자료를 forEach로 반복해서 가져온다.	 -->		
+<!--테이블(데이터값들)db에서 가져온 자료를 forEach로 반복해서 가져온다-->		
 <c:forEach items="${list}" var="i">
-<!-- board_no가 필요하기 때문에 값을 받을 곳을 만들어둔다 -->
-<input type="hidden" name="board_no" value="${i.getBoard_no()}">
-		
-			<tr align = "center">
-				<td>${ i.getRn()}</td>
-				<td><a href="/dopaming/filepost?board_no=${ i.getBoard_no()}">
-					${ i.board_title}</a></td>
-				<td>${ i.getMember_id()}</td>
-				<td>${ i.getCategory_big()}</td>	
-				<td>${ i.getCategory_small()}</td>
-			</tr>
+	<tr align = "center">
+		<td>${ i.getRn()}</td>
+		<td><a href="/dopaming/filepost?board_no=${ i.getBoard_no()}">
+			${ i.board_title}</a></td>
+		<td>${ i.getMember_id()}</td>
+		<td>${ i.getCategory_big()}</td>	
+		<td>${ i.getCategory_small()}</td>
+	</tr>
 </c:forEach>
 </table>
 

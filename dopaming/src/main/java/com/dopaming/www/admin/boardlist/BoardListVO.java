@@ -68,5 +68,13 @@ public class BoardListVO {
 	public void setLast(int last) {
 		this.last = last;
 	}
+	
+	@Override
+	public String toString() {
+		return "BoardListVO [board_no=" + board_no + ", member_id=" + member_id + ", board_title=" + board_title
+				+ ", category_big=" + category_big + ", category_small=" + category_small + ", board_acorn="
+				+ board_acorn + ", rn=" + rn + ", first=" + first + ", last=" + last + "]";
+	}
+	
 			
 }

@@ -37,11 +37,15 @@ public class FileController_Hwan {
 	@RequestMapping(value = "/board_file_upload", method = RequestMethod.POST)
 	public String board_file_upload(FileBoardVO_Hwan bvo, FileUploadVO_Hwan fvo,
 			HttpServletRequest request, HttpSession session,
-			HttpServletResponse response) {
+			HttpServletResponse response)
+    {
+		/*
+		 * MultipartHttpServletRequest multipartRequest =(MultipartHttpServlet)request;
+		 */
 		
-		service.board_upload(bvo);
-		if(fvo!=null)
-		service.file_upload(fvo);
+		
+		
+		service.board_file_upload(bvo, fvo);
 		
 		return "hwan/file_post_hwan";
 	}

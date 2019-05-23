@@ -11,8 +11,6 @@ public class FileUploadVO_Hwan {
 	private String memberId;
 	//파일명
 	private String fileName;
-	//파일확장자
-	private String fileType;
 	//파일용량(MB)
 	private int fileStorage;
 	//업로드날짜
@@ -41,12 +39,6 @@ public class FileUploadVO_Hwan {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
-	}
-	public String getFileType() {
-		return fileType;
-	}
-	public void setFileType(String fileType) {
-		this.fileType = fileType;
 	}
 	public int getFileStorage() {
 		return fileStorage;

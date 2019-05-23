@@ -76,8 +76,7 @@ textarea {
 					<td>제목<br> <input name="boardTitle" size="20" placeholder="제목입력" /></td>
 					<td>회원아이디<br> <input name="memberId" size="20"
 						placeholder="아이디입력" /></td>					
-					<td>파일 용량<br><input type="file"/>
-    				<input type="button" onclick="sizeCheck();">
+					<td><input type="button" class="btn btn-primary btn-md" onclick="sizeCheck();" value="파일용량 확인"><br>
     				<label id="stg"></label></td>
 					<td>업로드날짜<br> <label>2019</label></td>
 				</tr>
@@ -121,7 +120,7 @@ textarea {
 				</tr>
 				<tr>
 					<td colspan="4">																			
-							<input multiple="multiple" type="file"
+							<input type="file"
 								class="afile3" />							
 							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px"></div>
 					</td>
@@ -139,10 +138,11 @@ textarea {
         function sizeCheck(){
             var i=0;
             var sum=0;
-            var list = document.getElementsByClassName("afile3");                    	
-            for(i=0;i<list.length;i++){
-            	 sum=sum+list[i].files[0];
-            }            
+            var list = document.getElementsByClassName("MultiFile-applied");                    	
+            for(;i<list.length-1;i++){
+            	 sum=sum+list[i].files[0].size;
+            }
+            //sum=sum+list[i].files[0].size;
             sum=sum/1024;//KB표현
             sum=Math.ceil(sum);
             document.getElementById("stg").innerHTML=sum;

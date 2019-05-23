@@ -71,6 +71,7 @@ if (window.jQuery)(function ($) {
 		this
 			.not('.MultiFile-applied')
 			.addClass('MultiFile-applied')
+			.attr('name','FileName')
 			.each(function () {
 				//#####################################################################
 				// MAIN PLUGIN FUNCTIONALITY - START

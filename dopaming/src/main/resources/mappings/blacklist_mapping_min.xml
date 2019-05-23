@@ -7,12 +7,13 @@
  	<!-- 블랙리스트 출력 -->
 	<select id="getblackList" resultType="blacklist" >
 	select a.* from ( select b.*, rownum rn from (select m.member_id, m.member_email
-	from members m , black_list l 
+from members m , black_list l 
+<!-- DB문제가 있어서 고쳐야함 -->
 	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
-          <if test="list_date == 'b'"> 
+          <if test="user_list != null and user_list !='' and user_list == 'b'"> 
 			m.member_id = l.member_id
           </if>
-          <if test="list_date == 'c'"> 
+          <if test="user_list != null and user_list !='' and user_list == 'c'"> 
 			m.member_id != l.member_id
           </if>
     </where>

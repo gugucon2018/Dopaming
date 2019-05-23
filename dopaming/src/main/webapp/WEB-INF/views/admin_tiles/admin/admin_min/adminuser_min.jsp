@@ -24,22 +24,24 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+<script>
+	function go_page(p) {
+		searchFrm.page.value = p;
+		searchFrm.submit();
+	}
+</script>
 </head>
 <body>
 <div>
 	<h4>사용자관리 </h4><hr>
 	<div>
-	<form name="searchFrm">
+	<form name="searchFrm" method="get">
 	 <input type="hidden" name="page" value="1">
-		<select name="searchCondition">
+		<select name="user_list">
 		  <option value=" ">전체</option>
 		  <option value="b">블랙리스트</option>
 		  <option value="c">일반회원</option>
 		</select>
-		<script>
-			searchFrm.searchCondition.value='${BlackListVO.searchCondition}';
-		</script>
-		<input name="searchKeyword" value="${BlackListVO.searchKeyword}"/>
 		<button type="submit">검색</button>
 		</form>
 	</div>

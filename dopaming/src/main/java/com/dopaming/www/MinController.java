@@ -130,6 +130,9 @@ public class MinController {
 
 		// 전체 건수
 		paging.setTotalRecord(service3.blackListCount(vo));
+		service3.getBlackList(vo);
+
+
 		model.addAttribute("blackList", service3.getBlackList(vo));
 		model.addAttribute("paging", paging);
 		return "admin/admin_min/adminuser_min";

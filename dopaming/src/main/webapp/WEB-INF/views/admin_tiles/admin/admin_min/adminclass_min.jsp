@@ -99,7 +99,9 @@ tr:nth-child(even) {
 			<option value="g2">실버도토리
 			<option value="g1">브론즈도토리
 		</select>
-		
+		<script>
+		searchFrm.member_grade.value='${gradeVO_min.member_grade}';
+		</script>
 		<button>검색</button>
 	</form>
 	<!-- 테이블 -->

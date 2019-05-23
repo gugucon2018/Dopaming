@@ -11,21 +11,8 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 	@Override
 	public void board_file_upload(FileBoardVO_Hwan bvo, FileUploadVO_Hwan fvo) {
 		// TODO Auto-generated method stub
-		
+		dao.board_insert_hwan(bvo, fvo);
 	}
 
-	@Override
-	public FileBoardVO_Hwan board_select() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public FileDownloadVO_Hwan file_download(FileDownloadVO_Hwan vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-
-	
 }

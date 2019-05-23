@@ -29,26 +29,26 @@ public class FileController_Hwan {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/upload_view", method = RequestMethod.GET)
+	@RequestMapping(value = "/fileUploadFrom_Hwan", method = RequestMethod.GET)
 	public String upload_hwan(Locale locale, Model model) {	
 		
 		return "hwan/upload_hwan";
 	}	
-	@RequestMapping(value = "/board_file_upload", method = RequestMethod.POST)
-	public String board_file_upload(FileBoardVO_Hwan bvo, FileUploadVO_Hwan fvo,
-			HttpServletRequest request, HttpSession session,
-			HttpServletResponse response)
-    {
-		/*
-		 * MultipartHttpServletRequest multipartRequest =(MultipartHttpServlet)request;
-		 */
-		
-		
-		
-		service.board_file_upload(bvo, fvo);
-		
-		return "hwan/file_post_hwan";
-	}
+	/*
+	 * @RequestMapping(value = "/board_file_upload", method = RequestMethod.POST)
+	 * public ModelAndView board_file_upload(FileBoardVO_Hwan bvo, FileUploadVO_Hwan
+	 * fvo, HttpServletRequest request, HttpSession session, HttpServletResponse
+	 * response){ MultipartHttpServletRequest multipartRequest =
+	 * (MultipartHttpServletRequest)request; MultipartFile multipartFile =
+	 * multipartRequest.getFile("image"); multipartFile.transferTo(new
+	 * File("c:/upload", multipartFile.getOriginalFilename()));
+	 * 
+	 * 
+	 * 
+	 * service.board_file_upload(bvo, fvo);
+	 * 
+	 * return "hwan/file_post_hwan"; }
+	 */
 
 	@RequestMapping(value = "/request_upload", method = RequestMethod.GET)
 	public String requestUpload_hwan(MultipartHttpServletRequest mtfRequest) {	

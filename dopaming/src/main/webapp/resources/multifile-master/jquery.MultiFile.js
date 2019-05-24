@@ -70,8 +70,7 @@ if (window.jQuery)(function ($) {
 		// loop through each matched element
 		this
 			.not('.MultiFile-applied')
-			.addClass('MultiFile-applied')
-			.attr('name','FileName')
+			.addClass('MultiFile-applied')			
 			.each(function () {
 				//#####################################################################
 				// MAIN PLUGIN FUNCTIONALITY - START
@@ -162,6 +161,10 @@ if (window.jQuery)(function ($) {
 						return MultiFile.instanceKey + (z > 0 ? '_F' + String(z) : '');
 					},
 					trigger: function (event, element, MultiFile, files) {
+						
+						console.log('eee');
+						
+						$('#stg').html($('#MultiFile1').MultiFile('size'));
 						var rv, handler = MultiFile[event] || MultiFile['on'+event] ;
 						if (handler){
 							files = files || MultiFile.files || FILE_LIST(this);

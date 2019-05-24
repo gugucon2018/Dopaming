@@ -3,7 +3,7 @@ package com.dopaming.www.file;
 public class FileBoardVO_Hwan {
 	
 	//게시글번호
-	private int boardNO;
+	private int boardNo;
 	//게시글제목
 	private String boardTitle;
 	//회원아이디
@@ -19,13 +19,13 @@ public class FileBoardVO_Hwan {
 	//게시글 이미지
 	private String boardImg;
 	//게시글 아콘 => null값 허용
-	private int boardAcorn;
+	private String boardAcorn;
 	
-	public int getBoardNO() {
-		return boardNO;
+	public int getBoardNo() {
+		return boardNo;
 	}
-	public void setBoardNO(int boardNO) {
-		this.boardNO = boardNO;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 	public String getBoardTitle() {
 		return boardTitle;
@@ -69,10 +69,10 @@ public class FileBoardVO_Hwan {
 	public void setBoardImg(String boardImg) {
 		this.boardImg = boardImg;
 	}
-	public int getBoardAcorn() {
+	public String getBoardAcorn() {
 		return boardAcorn;
 	}
-	public void setBoardAcorn(int boardAcorn) {
+	public void setBoardAcorn(String boardAcorn) {
 		this.boardAcorn = boardAcorn;
 	}	
 }

@@ -2,12 +2,9 @@ package com.dopaming.www.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,48 +26,41 @@ public class FileController_Hwan {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/fileUploadFrom_Hwan", method = RequestMethod.GET)
+	@RequestMapping(value = "/fileUploadForm_Hwan", method = RequestMethod.GET)
 	public String upload_hwan(Locale locale, Model model) {	
 		
 		return "hwan/upload_hwan";
 	}	
-	/*
-	 * @RequestMapping(value = "/board_file_upload", method = RequestMethod.POST)
-	 * public ModelAndView board_file_upload(FileBoardVO_Hwan bvo, FileUploadVO_Hwan
-	 * fvo, HttpServletRequest request, HttpSession session, HttpServletResponse
-	 * response){ MultipartHttpServletRequest multipartRequest =
-	 * (MultipartHttpServletRequest)request; MultipartFile multipartFile =
-	 * multipartRequest.getFile("image"); multipartFile.transferTo(new
-	 * File("c:/upload", multipartFile.getOriginalFilename()));
-	 * 
-	 * 
-	 * 
-	 * service.board_file_upload(bvo, fvo);
-	 * 
-	 * return "hwan/file_post_hwan"; }
-	 */
 
-	@RequestMapping(value = "/request_upload", method = RequestMethod.GET)
-	public String requestUpload_hwan(MultipartHttpServletRequest mtfRequest) {	
-		List<MultipartFile> fileList=mtfRequest.getFiles("file");
-		String path ="./resources/images/";
-		for(MultipartFile mf : fileList) {
-			String originFileName = mf.getOriginalFilename();//원본 파일명
-			long fileSize=mf.getSize();//파일 사이즈
-			System.out.println("originalFileName : "+originFileName);//원본 파일명 출력 
-			System.out.println("fileSize : "+fileSize);//파일 사이즈 출력
-			String safeFile = path+System.currentTimeMillis()+originFileName;
-			try {
-				mf.transferTo(new File(safeFile));
-			} catch(IllegalStateException e) {
-				e.printStackTrace();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-		}		
+	@RequestMapping(value = "/request_upload", method = RequestMethod.POST)
+	public String requestUpload_hwan(
+			MultipartHttpServletRequest request,
+			FileBoardVO_Hwan bvo) throws IllegalStateException, IOException {				
+		List<MultipartFile> files = request.getFiles("fileName");
+		//System.out.println(" "+files);		
+		String filePath=request.getSession().getServletContext().getRealPath("/resources/upload");
+		//System.out.println(filePath);
+		File file = new File(filePath);
+		List<FileUploadVO_Hwan> fvolist = new ArrayList<FileUploadVO_Hwan>();
+		FileUploadVO_Hwan fvo;
+		for(int i=0;i<files.size();i++) {
+			System.out.println(files.get(i).getOriginalFilename()+"업로드");
+			//파일 업로드 소스 여기에 삽입
+			file = new File(filePath,files.get(i).getOriginalFilename());
+			files.get(i).transferTo(file);
+			fvo=new FileUploadVO_Hwan();
+			fvo.setFileName(file.getName());
+			fvo.setFileStorage(file.getTotalSpace());
+			fvolist.add(fvo);
+		}	
+		service.board_file_upload(bvo,fvolist);
+		
+		//service.board_insert_hwan(bvo);
+		//service.file_insert_hwan(fvo);
+		
 		return "hwan/file_post_hwan";
 	}	
-	
+
 	@RequestMapping(value = "/download_hwan", method = RequestMethod.GET)
 	public String download_hwan(Locale locale, Model model) {
 		return "hwan/download_hwan";

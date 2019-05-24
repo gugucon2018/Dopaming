@@ -7,24 +7,25 @@
 <insert id="file_insert_hwan">
 	INSERT INTO file_upload(
 		file_no,
-		group_no
+		group_no,
 		member_id,
-		file_name,
-		file_type,
+		file_name,		
 		file_storage,
 		upload_date
 	)values(
 		FILE_UPLOAD_SEQ_HWAN.nextval,
 		#{groupNo},
 		#{memberId},
-		#{fileName},
-		#{fileType},
+		#{fileName},		
 		#{fileStorage},
-		#{uploadDate}
+		SYSDATE
 	)
 </insert>
 
 <insert id="board_insert_hwan">
+	<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+	select BOARD_INSERT_SEQ_HWAN.nextval from dual
+	</selectKey>
 	INSERT INTO board(		
 		board_no,
 		board_title,
@@ -34,8 +35,8 @@
 		board_content,
 		board_img,
 		board_acorn
-	)values(
-		BOARD_INSERT_SEQ_HWAN.nextval,
+	)values(   
+		#{boardNo},
 		#{boardTitle},
 		#{memberId},
 		#{categoryBig},

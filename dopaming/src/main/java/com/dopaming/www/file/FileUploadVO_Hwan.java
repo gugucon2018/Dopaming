@@ -2,6 +2,8 @@ package com.dopaming.www.file;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class FileUploadVO_Hwan {
 	//파일번호
 	private int fileNo;
@@ -12,7 +14,7 @@ public class FileUploadVO_Hwan {
 	//파일명
 	private String fileName;
 	//파일용량(MB)
-	private int fileStorage;
+	private long fileStorage;
 	//업로드날짜
 	private Date uploadDate;
 	
@@ -40,10 +42,10 @@ public class FileUploadVO_Hwan {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public int getFileStorage() {
+	public long getFileStorage() {
 		return fileStorage;
 	}
-	public void setFileStorage(int fileStorage) {
+	public void setFileStorage(long fileStorage) {
 		this.fileStorage = fileStorage;
 	}
 	public Date getUploadDate() {
@@ -51,5 +53,5 @@ public class FileUploadVO_Hwan {
 	}
 	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
-	}	
+	}
 }

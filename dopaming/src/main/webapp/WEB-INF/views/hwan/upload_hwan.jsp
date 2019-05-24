@@ -69,7 +69,7 @@ textarea {
 </head>
 <body>
 	<div class="cen_form">
-		<form class="container" action="board_file_upload" method="post"
+		<form class="container" action="request_upload" method="post"
 			enctype="multipart/form-data">
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
@@ -77,7 +77,7 @@ textarea {
 					<td>회원아이디<br> <input name="memberId" size="20"
 						placeholder="아이디입력" /></td>					
 					<td><input type="button" class="btn btn-primary btn-md" onclick="sizeCheck();" value="파일용량 확인"><br>
-    				<label id="stg"></label></td>
+    				<label id="stg" name="fileName"></label></td>
 					<td>업로드날짜<br> <label>2019</label></td>
 				</tr>
 				<tr>
@@ -120,7 +120,7 @@ textarea {
 				</tr>
 				<tr>
 					<td colspan="4">																			
-							<input type="file"
+							<input type="file" mutiple name="fileName"
 								class="afile3" />							
 							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px"></div>
 					</td>
@@ -153,7 +153,7 @@ textarea {
                  $('input.afile3').MultiFile({
             max: 5, 
             //업로드 최대 파일 갯수 (지정하지 않으면 무한대)
-            accept: 'jpg|png|gif|mp4|mov|mp3|avi|mpg|mpeg|wmv|flv|dat|asf|asx|mpe|pdf', 
+            accept: 'jpg|png|gif|mp4|mov|mp3|avi|mpg|mpeg|wmv|flv|dat|asf|asx|mpe|pdf|txt', 
             //허용할 확장자(지정하지 않으면 모든 확장자 허용)
             maxfile: 9999999999999, 
             //각 파일 최대 업로드 크기

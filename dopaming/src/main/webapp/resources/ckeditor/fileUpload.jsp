@@ -12,8 +12,8 @@
 	import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 	<%
 		String up_url = request.getContextPath() + "/"
-				+ (request.getParameter("up_dir") != null ? request.getParameter("up_dir") : "/upload"); // 기본 업로드 URL
-		String up_dir = request.getParameter("up_dir") != null ? request.getParameter("up_dir") : "/upload";
+				+ (request.getParameter("up_dir") != null ? request.getParameter("up_dir") : "/resources/upload"); // 기본 업로드 URL
+		String up_dir = request.getParameter("up_dir") != null ? request.getParameter("up_dir") : "/resources/upload";
 		//기본 업로드 폴더
 		String temp_dir = request.getParameter("temp_dir") != null ? request.getParameter("temp_dir") : "c:/Temp"; // 임시 업로드 폴더
 		String save_url = "";

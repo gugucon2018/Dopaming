@@ -3,20 +3,39 @@ package com.dopaming.www.file;
 import java.sql.Date;
 
 public class FileVO {
+	private String board_title;
 	private String file_name;
+	private String board_name;
+	private String board_no;
 	private int file_no;
 	private int file_storage;
-	private String file_type;
 	private Date upload_date;
 	private String member_id;
 	private String category_small;
 	private String category_big;
 	
+	private int rn;
+		
 	//페이징하기위한 첫,마지막번호
 	private int first;
 	private int last;
 	
 	
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+	public String getBoard_no() {
+		return board_no;
+	}
+	public void setBoard_no(String board_no) {
+		this.board_no = board_no;
+	}
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
+	}
 	public int getFirst() {
 		return first;
 	}
@@ -61,12 +80,6 @@ public class FileVO {
 		this.member_id = member_id;
 	}
 	
-	public String getFile_type() {
-		return file_type;
-	}
-	public void setFile_type(String file_type) {
-		this.file_type = file_type;
-	}
 	public String getCategory_small() {
 		return category_small;
 	}
@@ -79,17 +92,30 @@ public class FileVO {
 	public void setCategory_big(String category_big) {
 		this.category_big = category_big;
 	}
-	@Override
-	public String toString() {
-		return "FileVO [file_name=" + file_name + ", file_no=" + file_no + ", file_storage=" + file_storage
-				+ ", file_type=" + file_type + ", upload_date=" + upload_date + ", member_id=" + member_id
-				+ ", category_small=" + category_small + ", category_big=" + category_big + ", first=" + first
-				+ ", last=" + last + "]";
+	public String getBoard_title() {
+		return board_title;
+	}
+	public void setBoardTitle(String board_title) {
+		this.board_title = board_title;
 	}
 	
+	public String getBoard_name() {
+		return board_name;
+	}
+	public void setBoard_name(String board_name) {
+		this.board_name = board_name;
+	}
+	@Override
+	public String toString() {
+		return "FileVO [board_title=" + board_title + ", file_name=" + file_name + ", board_name=" + board_name
+				+ ", board_no=" + board_no + ", file_no=" + file_no + ", file_storage=" + file_storage
+				+ ", upload_date=" + upload_date + ", member_id=" + member_id + ", category_small=" + category_small
+				+ ", category_big=" + category_big + ", rn=" + rn + ", first=" + first + ", last=" + last + "]";
+	}
+	
+	
 
-	
-	
+
 	
 	
 }

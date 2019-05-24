@@ -8,9 +8,8 @@
 <!--파일영화 출력-->
 <select id="fileList" resultType="file">
 select a.* from ( select c.*, rownum rn from(
-select f.file_type
-                                    ,f.file_no
-                                    ,f.file_name
+select                              b.board_no
+                                    ,b.board_title
                                     ,f.file_storage
                                     ,f.member_id
 						 from file_upload f join board b
@@ -22,6 +21,9 @@ select f.file_type
                          <if test="category_big != null and category_big !=''">
                           and b.category_big = #{category_big}
                          </if>
+                         <if test="board_title != null and board_title !=''">
+                          and b.board_title = #{board_title}
+                         </if>
                          </where>
                      
 						 ) c) a where rn between #{first} and #{last}
@@ -30,10 +32,10 @@ select f.file_type
 
 
 
-<!--페이징--> 
+<!--페이징-->
 <select id="fileList_cnt" resultType="int">
 		SELECT COUNT(*)
 		FROM file_upload
 </select> 
- 
+
 </mapper>

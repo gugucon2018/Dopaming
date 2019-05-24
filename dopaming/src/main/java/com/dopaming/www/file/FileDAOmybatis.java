@@ -14,9 +14,10 @@ public class FileDAOmybatis {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-	public FileVO getFile(FileVO vo) {
-		return mybatis.selectOne("fileDAO.getFile",vo);
-	}
+	/*
+	 * public FileVO getFile(FileVO vo) { return
+	 * mybatis.selectOne("fileDAO.getFile",vo); }
+	 */
 	
 	public List<FileVO> getFileList(FileVO vo) {
 		return mybatis.selectList("fileDAO.fileList",vo);

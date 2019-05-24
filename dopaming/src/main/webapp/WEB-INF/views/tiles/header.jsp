@@ -93,7 +93,7 @@
 	<div class="navbar navbar-inverse col-xs-12 col-md-12 col-lg-12">
 		<div class="">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Dopaming</a>
+				<a class="navbar-brand" href="/dopaming">Dopaming</a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">

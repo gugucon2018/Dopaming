@@ -23,9 +23,9 @@ public class BoardListServiceImpl implements BoardListService {
 	
 	//페이징 건수
 	@Override 
-	public int boardList_select_cnt() {
+	public int boardList_select_cnt(BoardListVO vo) {
 		//mybatis를 실행하고 받은 결과값을 int boardList_select_cnt에 담는다.
-		return dao.boardList_select_cnt();
+		return dao.boardList_select_cnt(vo);
 	}
 	
 	

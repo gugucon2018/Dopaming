@@ -14,6 +14,9 @@
           			<if test="category_small != null and category_small !=''"> 
            				category_small=#{category_small}
           			</if>
+          			<if test="searchKeyword != null and searchKeyword !=''">
+					and	board_title LIKE '%' || #{searchKeyword} || '%'
+					</if>
     			</where>
 				order by board_no desc
  ) b) a where rn between #{first} and #{last}
@@ -23,5 +26,13 @@
 <select id="boardList_select_cnt" resultType="int">
 		SELECT COUNT(*)
 		FROM board
+		<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+        	<if test="category_small != null and category_small !=''"> 
+        				category_small=#{category_small}
+          	</if>
+          	<if test="searchKeyword != null and searchKeyword !=''">
+						and	board_title LIKE '%' || #{searchKeyword} || '%'
+			</if>
+    	</where>
 </select>
 </mapper>

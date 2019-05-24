@@ -13,6 +13,7 @@
 		<!-- 준혁_Alias -->
 		<typeAlias type="com.dopaming.www.notice.NoticeVO" alias="notice_vo"/>
 		<typeAlias type="com.dopaming.www.admin.boardlist.BoardListVO" alias="boardList_vo"/>
+		<typeAlias type="com.dopaming.www.admin.complain.ComplainVO" alias="complain_vo"/>
 		<!-- 태헌_Alias -->
 		<typeAlias type="com.dopaming.www.file.FileVO" alias="file"/>
 		<!-- 정환 start point Alias -->

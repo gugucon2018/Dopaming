@@ -23,8 +23,8 @@ public class BoardListDAOMybatis {
 	}
 	
 	//페이징 건수 
-	public int boardList_select_cnt() {
-		return mybatis.selectOne("BoardListDAO.boardList_select_cnt");
+	public int boardList_select_cnt(BoardListVO vo) {
+		return mybatis.selectOne("BoardListDAO.boardList_select_cnt", vo);
 	}
 	
 

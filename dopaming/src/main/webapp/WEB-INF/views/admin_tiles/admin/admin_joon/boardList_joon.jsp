@@ -52,6 +52,10 @@ function changeMenu(){
 	category_form.submit();
 }
 
+//검색기능
+function search(){
+	category_form.submit();
+}
 </script>
 </head>
 <body>
@@ -67,18 +71,16 @@ function changeMenu(){
 		<option value="국내">국내</option>
 		<option value="외국">외국</option>	
 </select>
+<!-- 검색창 -->
+<span>
+	<button style="float: right;" type="button" onclick="search()">검색</button>
+	<input name="searchKeyword" style="float: right;" type="text">
+</span>
 <!-- 지정된 풀다운 메뉴를 고정시키기 -->
 <script>
 category_form.category_small.value='${boardListVO.category_small}';//BoardListVO에 정보를 가져온다.
+category_form.searchKeyword.value='${boardListVO.searchKeyword}';//BoardListVO에 정보를 가져온다.
 </script>
-</form>
-	
-<!-- 검색창 -->
-<form action="board_search" id="textValue" method="post" enctype="multipart/form-data">
-<span>
-	<button style="float: right;" type="button">검색</button>
-	<input style="float: right;" type="text" value=""/>
-</span>
 </form>
 <br> 
 

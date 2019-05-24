@@ -1,17 +1,30 @@
 package com.dopaming.www.admin.boardlist;
 
 public class BoardListVO {
+	//컬럼명들
 	int board_no;
 	String member_id;
 	String board_title;
 	String category_big;
 	String category_small;
 	int board_acorn;
+	
+	//로우넘버
 	int rn;
 	
+	//검색하기위한 
+	String searchKeyword;
+		
 	//페이징하기위한 첫,마지막번호
 	private int first;
 	private int last;
+	
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 		
 	public int getRn() {
 		return rn;
@@ -69,6 +82,7 @@ public class BoardListVO {
 		this.last = last;
 	}
 	
+	//값확인용
 	@Override
 	public String toString() {
 		return "BoardListVO [board_no=" + board_no + ", member_id=" + member_id + ", board_title=" + board_title

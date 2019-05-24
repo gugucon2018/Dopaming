@@ -21,7 +21,7 @@ if("${boardVO.seq}"== -1){
 			<option value="qna">Q&A</option>
 		</select><br>
 		
-	신고제목 : <input type="text" id="notice_title" name="notice_title"   value="${notice.notice_title}" 
+	신고제목 : <input type="text" id="notice_title" name="notice_title" 
 	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
 	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
@@ -29,7 +29,7 @@ if("${boardVO.seq}"== -1){
 	신고내용 : <textarea id="notice_contents" name="notice_contents" 
 	style="width:100%; height:500; background-color:ivory; border:1 solid blue; 
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
-	onMouseOut="this.style.backgroundColor='ivory'">${notice.notice_contents}</textarea><br><br>
+	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>
 	
 	<input style="float:right;" type="submit" class="btn btn-info" value="보내기"/>
 	</form>

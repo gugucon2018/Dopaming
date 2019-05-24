@@ -10,5 +10,5 @@ public interface BoardListService {
 	List<BoardListVO> boardList_select(BoardListVO vo);
 	
 	// 공지 페이징 건수 출력
-	int boardList_select_cnt();
+	int boardList_select_cnt(BoardListVO vo);
 }

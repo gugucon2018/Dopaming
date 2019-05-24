@@ -149,18 +149,23 @@ public class JoonController {
 		}
 		
 	//게시판 목록 연결
-		
 		@RequestMapping("/boardList")
-		public String boardList(Model model, Paging paging, BoardListVO vo) {
-
+		public String boardList(Model model, Paging paging, BoardListVO vo, HttpServletRequest request) {
+			//받은 폼에 해당 이름을 가진 값을 찾아서 타입과 새로운 이름지정해서 담는다.
+			String searchKeyword = request.getParameter("searchKeyword");
+			
 			// 페이징 처리
 			paging.setPageUnit(5); // 개당 출력건수
 			// 시작페이지 설정
 			if (paging.getPage() == 0) {
 				paging.setPage(1);
 			}
+			
+			// 새로담은 값을 VO에 셋팅해준다.	 
+			vo.setSearchKeyword(searchKeyword);
 			// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
-			paging.setTotalRecord(BoardList_service.boardList_select_cnt());
+			paging.setTotalRecord(BoardList_service.boardList_select_cnt(vo));
+		
 			// db에서 받은 정보로 페이지마다 시작/마지막 레코드 번호
 			vo.setFirst(paging.getFirst());
 			vo.setLast(paging.getLast());
@@ -171,6 +176,7 @@ public class JoonController {
 			return "admin/admin_joon/boardList_joon";
 		}
 	 
+	//신고 등록
 	@RequestMapping(value = "/claim_insert", method = RequestMethod.GET)
 	public String claim_insert(Locale locale, Model model) {
 		return "joon/claim_insert_joon";

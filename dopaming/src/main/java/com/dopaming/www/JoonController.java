@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dopaming.www.admin.boardlist.BoardListService;
 import com.dopaming.www.admin.boardlist.BoardListVO;
+import com.dopaming.www.admin.complain.ComplainService;
+import com.dopaming.www.admin.complain.ComplainVO;
 import com.dopaming.www.common.Paging;
 import com.dopaming.www.notice.NoticeService;
 import com.dopaming.www.notice.NoticeVO;
@@ -30,13 +32,14 @@ public class JoonController {
 
 	@Autowired NoticeService service;
 	@Autowired BoardListService BoardList_service;
-
-	// 공지 등록 뷰연결
-	@RequestMapping(value = "/notice_insert", method = RequestMethod.GET)
-	public String notice_insert(Locale locale, Model model) {
-		return "admin/admin_joon/notice_insert_joon";
-	}
-
+	@Autowired ComplainService ComplainService;
+	
+	//공지 등록폼
+	@RequestMapping(value = "/notice_insert_form", method = RequestMethod.GET)
+	public String notice_insert_form() { 
+		return "admin/admin_joon/notice_insert_joon"; 
+			}
+	
 	// 공지 등록 입력값 받아와서 넘겨주기
 	@RequestMapping(value = "/notice_insert", method = RequestMethod.POST) // 뷰에서 notice_insert의 값이 보내어지면
 	public String notice_insert(NoticeVO vo, Model model, HttpServletRequest request, HttpSession session,
@@ -175,11 +178,21 @@ public class JoonController {
 			model.addAttribute("list", BoardList_service.boardList_select(vo));
 			return "admin/admin_joon/boardList_joon";
 		}
-	 
+		
+	//신고 등록폼(게시판의 넘버가 넘어오면 vo에 자동으로 담긴다.)
+	@RequestMapping(value = "/complain_insert_form", method = RequestMethod.GET)
+	public String complain_insert_form(ComplainVO vo) { 
+		return "joon/complain_insert_joon"; 
+									}
 	//신고 등록
-	@RequestMapping(value = "/claim_insert", method = RequestMethod.GET)
-	public String claim_insert(Locale locale, Model model) {
-		return "joon/claim_insert_joon";
+	@RequestMapping(value = "/complain_insert", method = RequestMethod.POST)
+	public String complain_insert(ComplainVO vo) {
+		
+		//서비스를 실행시킨다.
+		ComplainService.complain_insert(vo);
+		
+		//신고타입에 따른 돌아갈뷰 지정
+		return "redirect:complainList?comaplain_type="+vo.getComplain_type();
 	}
 
 	@RequestMapping(value = "/claim_select", method = RequestMethod.GET)

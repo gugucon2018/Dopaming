@@ -16,4 +16,21 @@
     <select id="valueCheckPW" resultType="String">
      	select member_password from members where member_id = #{member_password}
     </select>
+   <!-- 이메일 체크 -->
+    <select id="valueCheckEmail" resultType="String">
+    	select member_email from members where member_email = #{member_email}
+    </select>
+    <!-- 회원가입 -->
+    <insert id="register">
+    	insert into members (
+    		member_id
+    		, member_password
+    		, member_email
+    	) values (
+    		#{member_id}
+    		, #{member_password}
+    		, #{member_email} 
+    	)
+    </insert>
+    
 </mapper>

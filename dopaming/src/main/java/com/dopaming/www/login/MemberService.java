@@ -9,4 +9,7 @@ public interface MemberService {
 	
 	//비밀번호 체크
 	public String valueCheckPW(String value);
+	
+	//회원가입
+	public void register(MemberVO vo) throws Exception;
 }

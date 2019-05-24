@@ -17,7 +17,7 @@
 							<input type="checkbox" name="loginCheck" id="loginCheck">
 							<span class="slider round"></span>
 						</label>
-						<label class="form-check-label" for="loginCheck">로그인 상태 유지</label>
+						<label class="form-check-label" for="loginCheck">아이디 저장</label>
 						<label class="forgot-password"><a href="#">비밀번호 찾기<a></label>
                     </div>
                     <button class="btn btn-primary loginmodal_loginbtn" type="submit">로그인</button>
@@ -29,27 +29,6 @@
 					</div>
 				</form>
 			</div>
-		</div>
-	</div>
-</div>
-<!-- 회원가입 모달 -->
-<div class="modal fade" id="joinModal" role="dialog">
-	<div class="modal-dialog cascading-modal modal-margin" role="document">
-		<div class="modal-content joinmodal_resize">
-			<div class="modal-body joinmodal_body">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<p class="joinmodal_title">회원가입</p>
-				<form id="joinForm">
-					<input class="joinmodal_joinid" type="text" name="joinId" placeholder="아이디 입력">
-                    <input class="joinmodal_joinpass" type="password" name="joinPassA" placeholder="비밀번호 입력">
-                    <input class="joinmodal_joinpass" type="password" name="joinPassB" placeholder="비밀번호 재입력">
-                    <input class="joinmodal_joinemail" type="email" name="joinEmail" placeholder="EXAMPLE@GMAIL.COM">
-	                <div>
-		                <button id="join-submit" class="btn btn-info joinmodal_joinbtn" type="button">회원가입</button>		
-    		            <button class="btn btn-info validation_final" type="button">취소</button>		
-	                </div>
-                </form>
-            </div>
 		</div>
 	</div>
 </div>

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,6 +14,13 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
+	
+	//form태그에 Command객체로 넘겨주는 메소드
+	//<form:form commandName="memberVO">이면 MemberVO객체를 리터
+	@ModelAttribute("memberVO")
+	protected Object formBack() {
+		return new MemberVO();
+	}
 	
 	//로그인 처리
 	@RequestMapping(value = "/loginA",method = RequestMethod.POST)
@@ -42,10 +51,10 @@ public class MemberController {
 					session.setAttribute("Pass", memberVO.getMember_password());
 					 
 					session.setAttribute("message", id + "님, 로그인 되었습니다.");
-				}else {
+				}else { //비밀번호 일치하지 않으면
 					session.setAttribute("error", "비밀번호가 일치하지 않습니다.");
 				}
-			}else {
+			}else { //아이디가 존재하지 않으면
 				session.setAttribute("error", "아이디가 존재하지 않습니다.");
 			}
 		}
@@ -58,6 +67,36 @@ public class MemberController {
 		session.removeAttribute("memberSession");	//세션 제거
 		session.setAttribute("message", "로그아웃 되었습니다.");
 		return "redirect:/"; 
+	}
+
+	//회원가입 페이지
+	@RequestMapping(value ="/register", method = RequestMethod.GET )
+	public String registerForm() {
+		return "hong/register";
+	}
+	
+	//회원가입 처리
+	@RequestMapping(value="/register", method = RequestMethod.POST )
+	public String register(@ModelAttribute MemberVO vo, Errors errors) throws Exception {
+		//유효성 검사
+		new MemberValiadator().validate(vo, errors);
+		
+		if(errors.hasErrors()) {
+			return "hong/register";
+		}
+		
+		try {
+			service.register(vo);			
+		}catch (AlreadyExistingEmailException e) {
+            errors.rejectValue("member_email", "duplicate", "이미 가입된 이메일입니다.");
+            return "hong/register";
+        } catch (AlreadyExistingIdException e) {
+            errors.rejectValue("member_id", "duplicate", "이미 가입된 아이디입니다.");
+            System.out.println(errors);
+            return "hong/register";
+        }
+
+		return "redirect:/";
 	}
 
 }

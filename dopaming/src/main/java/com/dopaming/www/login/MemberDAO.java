@@ -19,12 +19,26 @@ public class MemberDAO {
 	
 	//아이디 체크
 	public String valueCheckId(String value) {
+		System.out.println("===> Mybatis로  valueCheckId() 기능 처리");
 		return mybatis.selectOne("MemberDAO.valueCheckId", value);
 	}
 	
 	//비밀번호 체크
 	public String valueCheckPW(String value) {
+		System.out.println("===> Mybatis로  valueCheckPW() 기능 처리");
 		return mybatis.selectOne("MemberDAO.valueCheckPW", value);		
+	}
+	
+	//이메일 체크
+	public String valueCheckEmail(String value) {
+		System.out.println("===> Mybatis로  valueCheckPW() 기능 처리");
+		return mybatis.selectOne("MemberDAO.valueCheckEmail", value);
+	}
+		
+	//회원가입
+	public void register(MemberVO vo) {
+		System.out.println("===> Mybatis로  register() 기능 처리");
+		mybatis.insert("MemberDAO.register",vo);
 	}
 }
 

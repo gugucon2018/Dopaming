@@ -4,7 +4,12 @@ public class MemberVO {
 	private String member_id;
 	private String member_password;
 	private String member_email;
-	private boolean userCookie;
+	private String check_passowrd;
+	
+	//비밀번호 확인
+	public boolean isPwEqualToCheckPw() {
+		return member_password.equals(check_passowrd);
+	}
 	
 	public String getMember_id() {
 		return member_id;
@@ -22,20 +27,20 @@ public class MemberVO {
 		this.member_password = member_password;
 	}
 
+	public String getCheck_passowrd() {
+		return check_passowrd;
+	}
+
+	public void setCheck_passowrd(String check_passowrd) {
+		this.check_passowrd = check_passowrd;
+	}
+
 	public String getMember_email() {
 		return member_email;
 	}
 
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
-	}
-
-	public boolean isUserCookie() {
-		return userCookie;
-	}
-	
-	public void setUserCookie(boolean userCookie) {
-		this.userCookie = userCookie;
 	}
 
 	@Override

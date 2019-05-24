@@ -67,8 +67,8 @@
 					<c:choose>
 						<%-- 로그인 안 한 상태 --%>
 						<c:when test="${sessionScope.memberSession eq null || sessionScope.Id eq 'admin'}">
-							<li><a class="navbar-brand" id="loginBtn">로그인</a></li>
-							<li><a class="navbar-brand" id="joinBtn">회원가입</a></li>
+							<li><a class="navbar-brand" id="loginBtn" data-toggle="modal">로그인</a></li>
+							<li><a class="navbar-brand" id="joinBtn" onclick="location='register'">회원가입</a></li>
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>

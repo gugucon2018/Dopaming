@@ -22,4 +22,17 @@ public class MemberServiceImpl implements MemberService {
 	public String valueCheckPW(String value) {
 		return dao.valueCheckPW(value);
 	}
+
+	@Override
+	public void register(MemberVO vo) throws Exception {
+		String email = vo.getMember_email();
+		String id = vo.getMember_id();
+		if(email.equals(dao.valueCheckEmail(email))) {
+			throw new AlreadyExistingEmailException(vo.getMember_email() + "is is duplicate email.");
+		}
+		if(id.equals(dao.valueCheckId(id))) {
+			throw new AlreadyExistingIdException(vo.getMember_id() + " is duplicate id.");
+		}
+		dao.register(vo);
+	}
 }

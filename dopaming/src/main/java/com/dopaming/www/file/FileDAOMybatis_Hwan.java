@@ -9,14 +9,6 @@ public class FileDAOMybatis_Hwan {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-	//게시글, 파일 등록 ==> 트랜잭션 롤백 가능
-	/*
-	 * public void board_insert_hwan(FileBoardVO_Hwan bvo,FileUploadVO_Hwan fvo) {
-	 * System.out.println("게시글 등록 성공");
-	 * mybatis.insert("FileDAOHwan.board_insert_hwan", bvo);
-	 * mybatis.insert("FileDAOHwan.file_insert_hwan", fvo); }
-	 */
-	
 	public void board_insert_hwan(FileBoardVO_Hwan bvo) {
 		System.out.println("게시글 등록 성공");
 		mybatis.insert("FileDAOHwan.board_insert_hwan", bvo);
@@ -27,4 +19,8 @@ public class FileDAOMybatis_Hwan {
 		mybatis.insert("FileDAOHwan.file_insert_hwan" , fvo);
 	}	
 	
+	public FilePostVO_Hwan select_post_hwan(FilePostVO_Hwan fpvo) {
+		System.out.println("게시글 조회 성공");
+		return mybatis.selectOne("FileDAOHwan.filePost_hwan", fpvo);
+	}
 }

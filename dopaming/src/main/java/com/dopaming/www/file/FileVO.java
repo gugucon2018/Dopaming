@@ -13,7 +13,7 @@ public class FileVO {
 	private String member_id;
 	private String category_small;
 	private String category_big;
-	
+	private int upload_storage;
 	private int rn;
 		
 	//페이징하기위한 첫,마지막번호
@@ -21,6 +21,12 @@ public class FileVO {
 	private int last;
 	
 	
+	public int getUpload_storage() {
+		return upload_storage;
+	}
+	public void setUpload_storage(int upload_storage) {
+		this.upload_storage = upload_storage;
+	}
 	public int getRn() {
 		return rn;
 	}

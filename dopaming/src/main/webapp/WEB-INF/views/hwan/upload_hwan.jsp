@@ -1,3 +1,4 @@
+<%@page import="com.dopaming.www.common.DateUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -76,9 +77,9 @@ textarea {
 					<td>제목<br> <input name="boardTitle" size="20" placeholder="제목입력" /></td>
 					<td>회원아이디<br> <input name="memberId" size="20"
 						placeholder="아이디입력" /></td>					
-					<td><input type="button" class="btn btn-primary btn-md" onclick="sizeCheck();" value="파일용량 확인"><br>
+					<td>파일용량(BYTE 단위)<br>
     				<label id="stg" name="fileName"></label></td>
-					<td>업로드날짜<br> <label>2019</label></td>
+					<td>업로드날짜<br><label><%=DateUtil.tDateFormat()%></label></td>
 				</tr>
 				<tr>
 					<td colspan="2"><select name="categoryBig" class="form-control">
@@ -86,8 +87,7 @@ textarea {
 							<option value="드라마">드라마</option>
 							<option value="동영상">동영상</option>
 							<option value="음악">음악</option>
-					</select> <select name="categorySmall" class="form-control">
-							<option value="최신">최신</option>
+					</select> <select name="categorySmall" class="form-control">	
 							<option value="국내">국내</option>
 							<option value="외국">외국</option>
 					</select></td>
@@ -134,20 +134,6 @@ textarea {
 	%>
 	<!--CDN방식-->
 	<script src="./resources/multifile-master/jquery.MultiFile.js"></script>
-	        <script>
-        function sizeCheck(){
-            var i=0;
-            var sum=0;
-            var list = document.getElementsByClassName("MultiFile-applied");                    	
-            for(;i<list.length-1;i++){
-            	 sum=sum+list[i].files[0].size;
-            }
-            //sum=sum+list[i].files[0].size;
-            sum=sum/1024;//KB표현
-            sum=Math.ceil(sum);
-            document.getElementById("stg").innerHTML=sum;
-        }               
-        </script>
 	<script>	  
 	        $(function(){ // wait for page to load
                  $('input.afile3').MultiFile({

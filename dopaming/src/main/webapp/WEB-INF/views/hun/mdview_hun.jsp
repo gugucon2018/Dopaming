@@ -83,14 +83,14 @@ th, td {
 		<tr>
 			<td width="150px">게시판번호</td>
 			<td>제목</td>
-			<td width="150px">용량</td>
+			<td width="150px">용량(단위: MB)</td>
 			<td width="150px">아이디</td>
 		</tr>
 		<c:forEach items="${list}" var="file">
 			<tr>
 				<td>${file.board_no}</td>
-				<td>${file.board_title}</td>
-				<td>${file.file_storage}M</td>
+				<td><a href="filepost?board_no=${file.board_no}"> ${file.board_title}</a></td>
+				<td>${file.upload_storage}MB</td>
 				<td>${file.member_id}</td>
 			</tr>
 		</c:forEach>
@@ -98,7 +98,7 @@ th, td {
 	</table>
 	<br>
 	<br>
-	<button style="float: right">자료 올리기</button>
+	<button class="btn btn-primary btn-sm" onclick="location.href='fileUploadForm_Hwan'" style="float: right">자료 올리기</button>
 	<!-- 페이징버튼 -->
 	<my:paging_joon paging="${paging}" jsfunc="goList" />
 </body>

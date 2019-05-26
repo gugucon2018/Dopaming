@@ -14,7 +14,7 @@ public class FileUploadVO_Hwan {
 	//파일명
 	private String fileName;
 	//파일용량(MB)
-	private long fileStorage;
+	private double fileStorage;
 	//업로드날짜
 	private Date uploadDate;
 	
@@ -42,10 +42,10 @@ public class FileUploadVO_Hwan {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public long getFileStorage() {
+	public double getFileStorage() {
 		return fileStorage;
 	}
-	public void setFileStorage(long fileStorage) {
+	public void setFileStorage(double fileStorage) {
 		this.fileStorage = fileStorage;
 	}
 	public Date getUploadDate() {

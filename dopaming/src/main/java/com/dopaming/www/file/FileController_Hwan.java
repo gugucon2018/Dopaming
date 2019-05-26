@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -36,10 +37,8 @@ public class FileController_Hwan {
 	public String requestUpload_hwan(
 			MultipartHttpServletRequest request,
 			FileBoardVO_Hwan bvo) throws IllegalStateException, IOException {				
-		List<MultipartFile> files = request.getFiles("fileName");
-		//System.out.println(" "+files);		
+		List<MultipartFile> files = request.getFiles("fileName");		
 		String filePath=request.getSession().getServletContext().getRealPath("/resources/upload");
-		//System.out.println(filePath);
 		File file = new File(filePath);
 		List<FileUploadVO_Hwan> fvolist = new ArrayList<FileUploadVO_Hwan>();
 		FileUploadVO_Hwan fvo;
@@ -50,14 +49,11 @@ public class FileController_Hwan {
 			files.get(i).transferTo(file);
 			fvo=new FileUploadVO_Hwan();
 			fvo.setFileName(file.getName());
-			fvo.setFileStorage(file.getTotalSpace());
+			fvo.setFileStorage((double)file.length()/1024/1024);			
 			fvolist.add(fvo);
 		}	
 		service.board_file_upload(bvo,fvolist);
-		
-		//service.board_insert_hwan(bvo);
-		//service.file_insert_hwan(fvo);
-		
+	
 		return "hwan/file_post_hwan";
 	}	
 
@@ -67,8 +63,9 @@ public class FileController_Hwan {
 	}	
 	
 	@RequestMapping(value = "/filepost", method = RequestMethod.GET)
-	public String filepost_hwan(Locale locale, Model model) {
-		
+	public String filepost_hwan(FilePostVO_Hwan fpvo, Model model ) {
+		model.addAttribute("filePost",service.select_post_hwan(fpvo));		
+		System.out.println(fpvo.getBoard_no()+" 게시판 번호");
 		return "hwan/file_post_hwan";
 	}	
 }

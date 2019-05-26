@@ -8,8 +8,6 @@ public class FileBoardVO_Hwan {
 	private String boardTitle;
 	//회원아이디
 	private String memberId;
-	//게시판 평점 => 0,null값 허용
-	private int boardGrade;
 	//카테고리 대제목
 	private String categoryBig;
 	//카테고리 소제목
@@ -38,12 +36,6 @@ public class FileBoardVO_Hwan {
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
-	}
-	public int getBoardGrade() {
-		return boardGrade;
-	}
-	public void setBoardGrade(int boardGrade) {
-		this.boardGrade = boardGrade;
 	}
 	public String getCategoryBig() {
 		return categoryBig;

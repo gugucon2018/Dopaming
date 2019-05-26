@@ -69,14 +69,14 @@ th {
 			<th class="c1">분류</th><th>캐시</th><th>용량</th><th>판매자</th>	
 		</tr>
 		<tr>
-			<td class="c1">영화/국내영화</td><td>100</td><td>10GB</td><td>홍길동</td>	
+			<td class="c1">${filePost.category_big}</td><td>${filePost.board_acorn}</td><td>${filePost.file_storage}MB</td><td>${filePost.member_id}</td>	
 		</tr>		
 		<tr>
 			<td>게시글 파일</td><td colspan="3"></td>
 		</tr>
 		<tr>
 		<td colspan="5" class="no_border">
-		<textarea rows="10" cols="10">gdgdgdg</textarea>
+		<label>${filePost.board_img}</label>
 		<img/>
   	 </td>
 		</tr>

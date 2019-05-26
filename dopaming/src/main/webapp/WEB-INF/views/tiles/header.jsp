@@ -124,8 +124,7 @@
 							<li><a class="disabled">최신드라마</a></li>
 							<li class="divider"></li>
 							<li><a href="#">국내드라마</a></li>
-							<li><a href="#">외국드라마</a></li>
-							
+							<li><a href="#">외국드라마</a></li>							
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">

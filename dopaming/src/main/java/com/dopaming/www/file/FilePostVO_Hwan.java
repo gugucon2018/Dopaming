@@ -10,6 +10,15 @@ public class FilePostVO_Hwan {
 	private String board_img;
 	private double file_storage;
 	
+	private double board_file_storage;
+	
+	
+	public double getBoard_file_storage() {
+		return board_file_storage;
+	}
+	public void setBoard_file_storage(double board_file_storage) {
+		this.board_file_storage = board_file_storage;
+	}
 	public int getBoard_no() {
 		return board_no;
 	}

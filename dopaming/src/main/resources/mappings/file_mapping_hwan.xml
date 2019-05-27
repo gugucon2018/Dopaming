@@ -50,7 +50,7 @@
 	<select id="filePost_hwan" resultType="com.dopaming.www.file.FilePostVO_Hwan">
 		select distinct b.board_no,
 		b.category_big,b.category_small,b.board_acorn,b.member_id,b.board_content
-		,b.board_img,sum(f.file_storage)
+		,b.board_img,sum(f.file_storage) as board_file_storage
 		from board b inner join file_upload f
 		on board_no = group_no inner join members m
 		on m.member_id =b.member_id

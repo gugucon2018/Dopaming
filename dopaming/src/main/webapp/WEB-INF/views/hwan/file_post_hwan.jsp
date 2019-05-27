@@ -66,18 +66,17 @@ th {
 	<div class="container">
 	<table class="cen_table  table table-striped table-bordered">
 		<tr>
-			<th class="c1">분류</th><th>캐시</th><th>용량</th><th>판매자</th>	
+			<th class="c1">분류</th><th>캐시</th><th>용량(MB)</th><th>판매자</th>	
 		</tr>
 		<tr>
-			<td class="c1">${filePost.category_big}</td><td>${filePost.board_acorn}</td><td>${filePost.file_storage}MB</td><td>${filePost.member_id}</td>	
+			<td class="c1">${filePost.category_big}/${filePost.category_small}</td><td>${filePost.board_acorn}</td><td>${filePost.board_file_storage}MB</td><td>${filePost.member_id}</td>	
 		</tr>		
 		<tr>
 			<td>게시글 파일</td><td colspan="3"></td>
 		</tr>
 		<tr>
 		<td colspan="5" class="no_border">
-		<label>${filePost.board_img}</label>
-		<img/>
+		<label>${filePost.board_img}<br>${filePost.board_content}</label>		
   	 </td>
 		</tr>
 		<tr>

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dopaming.www.admin.boardlist.BoardListVO;
 import com.dopaming.www.common.Paging;
 
 @Repository
@@ -21,6 +22,17 @@ public class ComplainDAOMybatis {
 		mybatis.insert("ComplainDAO.complain_insert",vo);
 	}
 	
+	//고객센터 목록 출력
+	public List<ComplainVO> complain_selectlist(ComplainVO vo) {
+		System.out.println("고객센터 목록 실행");
+		// 매핑실행과 동시에 결과값을 List<ComplainVO>에 받아온다.
+		return mybatis.selectList("ComplainDAO.complain_selectlist", vo);
+	}
+	
+	//페이징 건수 
+	public int complain_selectlist_cnt(ComplainVO vo) {
+		return mybatis.selectOne("ComplainDAO.complain_selectlist_cnt", vo);
+	}
 
 
 }

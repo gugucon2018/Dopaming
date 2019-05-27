@@ -15,7 +15,6 @@ public class BoardListDAOMybatis {
 	SqlSessionTemplate mybatis;
 	
 	//공지사항 목록 출력
-	//
 	public List<BoardListVO> boardList_select(BoardListVO vo) {
 		System.out.println("게시판 목록 실행");
 		// 매핑실행과 동시에 결과값을 List<BoardListVO>에 받아온다.

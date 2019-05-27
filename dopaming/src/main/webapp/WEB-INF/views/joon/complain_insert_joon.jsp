@@ -13,7 +13,9 @@ if("${complain_insert.complain_no}"== -1){
 </script>
 </head>
 <body>
-<form action="complain_insert" method="post">
+
+<form action="complain_insert">
+	
 	<h3 align=left><u>고객센터</u></h3>
 	
 	타입:<select name = "complain_type">
@@ -33,6 +35,7 @@ if("${complain_insert.complain_no}"== -1){
 	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>
 	
 	<input style="float:right;" type="submit" class="" value="보내기"/>
-	</form>
+
+</form>
 </body>
 </html>

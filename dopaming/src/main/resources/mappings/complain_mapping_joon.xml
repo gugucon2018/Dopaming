@@ -39,20 +39,33 @@ where notice_no= #{notice_no}
 </select>
    
 <!--공지사항 목록 출력-->
-<select id="notice_selectlist" resultType="notice_vo">
- select a.* from ( select b.*, rownum rn from (
- 				select notice_no
-                                    ,notice_title
-                                    ,notice_content
-                                    ,notice_date
-						 from notice order by notice_date desc
- ) b) a where rn between #{first} and #{last}
+<select id="complain_selectlist" resultType="complain_vo">
+ 
+  select a.* from ( select b.*, rownum rn from ( 
+ 				
+ 				select * 
+				from complain
+				
+				<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+          			<if test="complain_type != null"> 
+           				complain_type = #{complain_type}
+          			</if>
+    			</where>
+						 
+				order by complain_date desc
+				
+  ) b) a where rn between #{first} and #{last}
 </select>
 
 <!--페이징 -->
-<select id="notice_selectlist_cnt" resultType="int">
-		SELECT COUNT(*)
-		FROM notice
+<select id="complain_selectlist_cnt" resultType="int">
+		SELECT count(*)
+		FROM complain
+		<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+        	<if test="complain_type != null"> 
+        		complain_type = #{complain_type}
+        	</if>
+    	</where>
 </select>
 
 <!-- 공지사항 수정 -->

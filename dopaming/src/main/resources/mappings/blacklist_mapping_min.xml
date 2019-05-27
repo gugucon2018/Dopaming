@@ -4,34 +4,29 @@
 
 <mapper namespace="BlackListMinDAO"> 
  
- 	<!-- 블랙리스트 출력 -->
+ 	<!-- 블랙회원 출력 + 검색 + 페이징-->
 	<select id="getblackList" resultType="blacklist" >
-	select a.* from ( select b.*, rownum rn from (select m.member_id, m.member_email
-from members m , black_list l 
-<!-- DB문제가 있어서 고쳐야함 -->
-	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
-          <if test="user_list != null and user_list !='' and user_list == 'b'"> 
-			m.member_id = l.member_id
-          </if>
-          <if test="user_list != null and user_list !='' and user_list == 'c'"> 
-			m.member_id != l.member_id
-          </if>
-    </where>
-    order by m.member_id asc) b) a 
-    where rn between #{first} and #{last}
+	select a.* from ( select b.*, rownum rn from (select m.member_id, m.member_email, l.list_date
+	from members m , black_list l 
+	where m.member_id = l.member_id 
+	<if test="searchKeyword != null and searchKeyword !=''">
+	AND m.member_id LIKE '%' || #{searchKeyword} || '%'
+	</if>
+	order by l.list_date desc) b) a 
+	where rn between #{first} and #{last}
 	</select>
 	
-	<!-- 블랙리스트 카운트 -->
+	<!-- 블랙회원 카운트 -->
 	<select id="blackListCount" resultType="int">
 	select count(*)
-	from members m , black_list l
-	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
-          <if test="list_date == 'b'"> 
-			m.member_id = l.member_id
-          </if>
-          <if test="list_date == 'c'"> 
-			m.member_id != l.member_id
-          </if>
-    </where>	
+	from members m , black_list l 
+	where m.member_id = l.member_id
 	</select>
+	
+	<!-- 블랙회원에서 삭제 -->
+	<delete id="blackListDelete">
+		delete 
+		from black_list
+		where member_id = #{member_id}
+	</delete>
 </mapper>

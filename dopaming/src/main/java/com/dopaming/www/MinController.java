@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,7 @@ import com.dopaming.www.admin.grade.Gradeservice_min;
 import com.dopaming.www.admin.login.Loginservice_min;
 import com.dopaming.www.admin.login.MembersVO_min;
 import com.dopaming.www.common.Paging;
+import com.dopaming.www.notice.NoticeVO;
 
 @Controller
 public class MinController {
@@ -52,7 +54,7 @@ public class MinController {
 		if (member == null) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('id error');");
+			out.println("alert('id or pw가 틀렸습니다.');");
 			out.println("history.go(-1);"); // 이전페이지로
 			out.println("</script>");
 			return "admin/admin_min/adminlogin_min.empty";
@@ -114,8 +116,8 @@ public class MinController {
 		return "redirect:classForm";
 	}
 
-	// 관리자 - 회원관리 - 사용자관리
-	@RequestMapping(value = { "/userForm" }, method = RequestMethod.GET)
+	// 관리자 - 회원관리 - 블랙회원list + 검색 + 페이징
+	@RequestMapping(value = { "/blackListForm" }, method = RequestMethod.GET)
 	public String getClass(Model model, BlackListVO vo, Paging paging) {
 
 		paging.setPageUnit(5);
@@ -135,9 +137,27 @@ public class MinController {
 
 		model.addAttribute("blackList", service3.getBlackList(vo));
 		model.addAttribute("paging", paging);
-		return "admin/admin_min/adminuser_min";
+		return "admin/admin_min/adminblacklist_min";
 	}
 
+	// 관리자 - 회원관리 - 블랙회원에서 삭제
+	@RequestMapping("/blackList_delete")
+	public String notice_deletelist(BlackListVO vo, HttpServletRequest request) throws ServletException, IOException {
+		// jsp에서 배열값 받는 함수
+		String[] td_checkbox = request.getParameterValues("td_checkbox");
+		// 받은 배열을 푼다
+		for (String n : td_checkbox) {
+			try {
+				vo.setMember_id(n);
+				service3.blackListDelete(vo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "redirect:blackListForm";
+	}
+	
+	
 	// (유저)아콘결제페이지
 	@RequestMapping(value = { "/acornForm" }, method = RequestMethod.GET)
 	public String acornFrom() {

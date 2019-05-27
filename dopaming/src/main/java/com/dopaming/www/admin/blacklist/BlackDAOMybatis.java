@@ -12,12 +12,16 @@ import com.dopaming.www.admin.grade.GradeVO_min;
 public class BlackDAOMybatis {
 	@Autowired SqlSessionTemplate mybatis;
 	
-	//블랙리스트 출력
+	//블랙회원 출력
 	public List<BlackListVO> getBlackList(BlackListVO vo){
 		return mybatis.selectList("BlackListMinDAO.getblackList",vo);
 	}
-	
+	//블랙회원 카운트
 	public int blackListCount(BlackListVO vo) {
 		return mybatis.selectOne("BlackListMinDAO.blackListCount",vo);
+	}
+	//블랙회원에서 삭제
+	public void blackListDelete(BlackListVO vo) {
+		mybatis.delete("BlackListMinDAO.blackListDelete",vo);
 	}
 }

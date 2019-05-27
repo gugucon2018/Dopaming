@@ -8,24 +8,18 @@ public class BlackListVO {
 	private String member_email;
 	private Date list_date;
 	private String user_list;
-	//private String searchCondition;
-	//private String searchKeyword;
+	private String searchKeyword;
+	
 	//페이징하기위한 첫,마지막번호
 	private int first;
 	private int last;
 	
-	//public String getSearchCondition() {
-	//	return searchCondition;
-	//}
-	//public void setSearchCondition(String searchCondition) {
-	//	this.searchCondition = searchCondition;
-	//}
-	//public String getSearchKeyword() {
-	//	return searchKeyword;
-	//}
-	//public void setSearchKeyword(String searchKeyword) {
-	//	this.searchKeyword = searchKeyword;
-	//}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	
 	
 	public String getMember_id() {

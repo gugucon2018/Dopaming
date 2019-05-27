@@ -118,7 +118,7 @@ public class MinController {
 
 	// 관리자 - 회원관리 - 블랙회원list + 검색 + 페이징
 	@RequestMapping(value = { "/blackListForm" }, method = RequestMethod.GET)
-	public String getClass(Model model, BlackListVO vo, Paging paging) {
+	public String getBlackList(Model model, BlackListVO vo, Paging paging) {
 
 		paging.setPageUnit(5);
 		// 페이지번호 파라미터
@@ -142,7 +142,7 @@ public class MinController {
 
 	// 관리자 - 회원관리 - 블랙회원에서 삭제
 	@RequestMapping("/blackList_delete")
-	public String notice_deletelist(BlackListVO vo, HttpServletRequest request) throws ServletException, IOException {
+	public String blackListDelete(BlackListVO vo, HttpServletRequest request) throws ServletException, IOException {
 		// jsp에서 배열값 받는 함수
 		String[] td_checkbox = request.getParameterValues("td_checkbox");
 		// 받은 배열을 푼다
@@ -157,6 +157,29 @@ public class MinController {
 		return "redirect:blackListForm";
 	}
 	
+	// 관리자 - 회원관리 - 일반회원list + 검색 + 페이징
+		@RequestMapping(value = { "/NormalListForm" }, method = RequestMethod.GET)
+		public String getNormalList(Model model, BlackListVO vo, Paging paging) {
+
+			paging.setPageUnit(5);
+			// 페이지번호 파라미터
+			if (paging.getPage() == 0) {
+				paging.setPage(1);
+			}
+
+			// 시작/마지막 레코드 번호
+			vo.setFirst(paging.getFirst());
+			vo.setLast(paging.getLast());
+
+			// 전체 건수
+			paging.setTotalRecord(service3.blackListCount(vo));
+			service3.getBlackList(vo);
+
+
+			model.addAttribute("blackList", service3.getBlackList(vo));
+			model.addAttribute("paging", paging);
+			return "admin/admin_min/adminblacklist_min";
+		}
 	
 	// (유저)아콘결제페이지
 	@RequestMapping(value = { "/acornForm" }, method = RequestMethod.GET)

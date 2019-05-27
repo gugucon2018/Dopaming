@@ -11,4 +11,7 @@ public interface BlackListservice {
 	
 	//블랙회원에서 삭제
 	void blackListDelete(BlackListVO vo);
+	
+	//일반회원 출력
+	List<BlackListVO> getNormalList(BlackListVO vo);
 }

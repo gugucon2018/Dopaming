@@ -29,4 +29,9 @@ public class BlackListServiceImpl implements BlackListservice {
 	public void blackListDelete(BlackListVO vo) {
 		blacklistDAO.blackListDelete(vo);
 	}
+
+	@Override
+	public List<BlackListVO> getNormalList(BlackListVO vo) {
+		return blacklistDAO.getNormalList(vo);
+	}
 }

@@ -29,4 +29,21 @@
 		from black_list
 		where member_id = #{member_id}
 	</delete>
+	
+	<!-- 일반회원 출력  -->
+	<select id="getnormalList" resultType="blacklist" >
+	select a.* from ( select b.*, rownum rn from (select *
+	from members m
+	where not exists(
+    select member_id
+	from black_list l
+    where l.member_id = m.member_id) 
+    <if test="searchKeyword != null and searchKeyword !=''">
+	AND m.member_id LIKE '%' || #{searchKeyword} || '%'
+	</if>
+    ) b) a 
+    where rn between #{first} and #{last}
+    </select>
+    
+    <!-- 일반회원 카운트 -->
 </mapper>

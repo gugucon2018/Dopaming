@@ -24,4 +24,9 @@ public class BlackDAOMybatis {
 	public void blackListDelete(BlackListVO vo) {
 		mybatis.delete("BlackListMinDAO.blackListDelete",vo);
 	}
+	
+	//일반회원 출력
+	public List<BlackListVO> getNormalList(BlackListVO vo){
+		return mybatis.selectList("BlackListMinDAO.getnormalList",vo);
+	}
 }

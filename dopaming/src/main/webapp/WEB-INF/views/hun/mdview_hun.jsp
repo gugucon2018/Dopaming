@@ -89,7 +89,7 @@ th, td {
 		<c:forEach items="${list}" var="file">
 			<tr>
 				<td>${file.board_no}</td>
-				<td><a href="filepost?board_no=${file.board_no}"> ${file.board_title}</a></td>
+				<td><a href="filepost?board_no=${file.board_no}&member_id=${file.member_id}"> ${file.board_title}</a></td>
 				<td>${file.upload_storage}MB</td>
 				<td>${file.member_id}</td>
 			</tr>

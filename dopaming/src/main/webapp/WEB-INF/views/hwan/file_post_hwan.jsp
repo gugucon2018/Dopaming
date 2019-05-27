@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="my" tagdir="/WEB-INF/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,6 +16,13 @@
 <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="./resources/js/ie-emulation-modes-warning.js"></script>
 <script src="./resources/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+	//페이징 기능
+	function goList(p) {
+		form2.page.value = p;
+		form2.submit();
+	}
+</script>
 <title>파일 게시글</title>
 <!-- <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> -->
 <style>
@@ -48,31 +57,26 @@ th {
 }
 </style>
 </head>
-<!-- 
-제목 
-회원 아이디
-카테고리대제목
-카테고리소제목
-게시글내용
-게시글 이미지 ===> null 허용
-게시글 아콘 ====> null 허용
-
-파일명
-파일확장자
-파일용량
-업로드날짜
- -->
 <body>
 	<div class="container">
 	<table class="cen_table  table table-striped table-bordered">
 		<tr>
-			<th class="c1">분류</th><th>캐시</th><th>용량(MB)</th><th>판매자</th>	
+			<th class="c1">분류</th><th>제목</th><th>캐시</th><th>용량(MB)</th><th>판매자</th>	
 		</tr>
 		<tr>
-			<td class="c1">${filePost.category_big}/${filePost.category_small}</td><td>${filePost.board_acorn}</td><td>${filePost.board_file_storage}MB</td><td>${filePost.member_id}</td>	
+			<td class="c1">${filePost.category_big}/${filePost.category_small}</td>
+			<td>${filePost.board_title}</td>
+			<td>${filePost.board_acorn}</td>
+			<td>${filePost.board_file_storage}MB</td>
+			<td>${filePost.member_id}</td>	
 		</tr>		
 		<tr>
-			<td>게시글 파일</td><td colspan="3"></td>
+			<td>게시글 파일</td>
+			<td colspan="4">
+				<c:forEach items="${Board_FileList}" var="list">
+					<label>${list.fileName_List}</label><br>					
+				</c:forEach>
+			</td>
 		</tr>
 		<tr>
 		<td colspan="5" class="no_border">
@@ -80,52 +84,52 @@ th {
   	 </td>
 		</tr>
 		<tr>
-		<td colspan="4" class="no_border">
+		<td colspan="5" class="no_border">
 			 <table class="cen_table table table-striped table-bordered table-hover">
         <thead>
           <tr>
             <th width="10%">번호</th>
             <th width="50%">제목</th>
             <th width="10%">작성자</th>
-            <th width="20%">작성일</th>
-            <th width="10%">조회</th>
+            <th width="20%">대장르</th>
+            <th width="10%">소장르</th>
           </tr>
         </thead>
-        <tbody>
-          <c:forEach var="article" items="${articles}" varStatus="status">
-            <tr>
-              <td>${article.articleNumber}</td>
-              <td id="title">
-                <c:if test="${article.depth > 0}">
-                  &nbsp;&nbsp;
-                </c:if>
-                <a href="/bbs/content.bbs?articleNumber=${article.articleNumber}&pageNum=${pageNum}">${article.title}</a>
-                <c:if test="${article.hit >= 20}">
-                  <span class="hit">hit!</span>
-                </c:if>
-              </td>
-              <td>${article.id}</td>
-              <td>${article.writeDate}</td>
-              <td>${article.hit}</td>
-            <tr>
-          </c:forEach>
+        <tbody>   
+        <form name="searchFrm" method="get">
+        <input type="hidden" name="page" value="1">
+        <input type="text" name="member_id">
+        	<script>
+        		searchFrm.member_id.value='${FilePostVO_Hwan.member_id}';
+        	</script>        
+        </form>    	
+        <form action="filepost?member_id=${filePost.member_id}" name="form2">
+		<input type="hidden" name="page" value="1"></input> 
+		</form>
+          	<c:forEach items="${Board_List_Hwan}" var="flist">
+          		<tr>
+          		<td>${flist.board_no}</td>
+          		<td><a href="filepost?board_no=${flist.board_no}&member_id=${flist.member_id}">${flist.board_title}</a></td>
+          		<td>${flist.member_id}</td>
+          		<td>${flist.category_big}</td>
+          		<td>${flist.category_small}</td>
+          		</tr>
+          	</c:forEach>          
         </tbody>
     </table>
-          <!-- Paging 처리 -->
-      <div id="paging">
-        ${pageCode}
-      </div>
+	<!-- 페이징버튼 -->
+	<my:paging_joon paging="${paging}" jsfunc="goList" />
 		</td>
 		</tr>
 		<tr>
-			<td colspan="4" class="no_border">
+			<td colspan="5" class="no_border">
            <div>            
-            <a href='#' onClick='fn_write()' class="btn btn-success write_on">다운로드 하기</a>            
+            <button href='#' onclick="location.href='download_hwan'" class="btn btn-success write_on">다운로드 하기</button>            
            </div>
            	</td>
 		</tr>
 		<tr>
-			<td colspan="4" class="no_border">
+			<td colspan="5" class="no_border">
 			      <div>
       					<input  width="100%" placeholder="댓글쓰기">
       					<button class="btn btn-success">댓글 쓰기</button>
@@ -134,7 +138,6 @@ th {
 		</tr>
 	</table>
 </div>
-
 
 </body>
 </html>

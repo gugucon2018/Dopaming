@@ -12,7 +12,8 @@ public class MainDAOMybatis_Hun {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-	public List<Map<String,Object>> getMainList(MainVO_hun vo) {
-		return mybatis.selectList("MainDAO.mainRank",vo);
-	}
+	/*
+	 * public List<Map<String,Object>> getMainList(MainVO_hun vo) { return
+	 * mybatis.selectList("MainDAO.mainRank",vo); }
+	 */
 }

@@ -50,4 +50,14 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 		// TODO Auto-generated method stub		
 		return dao.board_Paging();
 	}		
+	
+	//다운로드 게시글리스트 열람
+	public List<FileDownloadVO_Hwan> select_downloadList(FileDownloadVO_Hwan fdvo){
+		return dao.select_download(fdvo);
+	}
+	
+	//다운로드 게시글 열람
+	public FileDownloadVO_Hwan select_downloadOne(FileDownloadVO_Hwan fdvo) {
+		return dao.select_downloadOne(fdvo);
+	}	
 }

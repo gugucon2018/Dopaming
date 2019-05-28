@@ -1,5 +1,8 @@
+<%@page import="com.dopaming.www.common.DateUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="my" tagdir="/WEB-INF/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,21 +49,22 @@ th {
 			<th><input placeholder="다운로드 위치"/></th>
 			<th><button class="btn btn-danger btn-sm">다운로드 하기</button></th>
 		</tr>
-		<tr>
-			<td>다운로드 번호</td>
+		<tr>			
 			<td>다운로드 아콘</td>
 			<td>회원아이디</td>
+			<td>결제 날짜</td>
 		</tr>
-		<tr>
-			<td>100</td>
-			<td>210</td>
-			<td>홍길동</td>
+		<tr>		
+			<td>${downPost.board_acorn}</td>
+			<td>${downPost.member_id}</td>
+			<td><label><%=DateUtil.tDateFormat()%></label></td>		
 		</tr>
 		<tr>
 			<td colspan="3">
-				<ol>다운로드 항목들
-				<li>파일명</li>
-				<li>파일명2</li>
+				<ol>다운로드 항목들</ol>
+				<c:forEach items="${downPost_List}" var="list">
+				<li>${list.file_name}</li>				
+				</c:forEach>
 				</ol>
 			</td>
 		</tr>
@@ -77,7 +81,7 @@ th {
 		<tr>	
 			<td style="border-right:none;"></td>			
 			<td colspan="2" class="cen_table" style="border-left:none;">
-				<button class="btn btn-success btn-md">다운로드 하기</button>&nbsp;
+				<button type="button" class="btn btn-success btn-md" onclick="location.href='request_download?group_no=${downPost.group_no}'">다운로드 하기</button>&nbsp;
 				<button class="btn btn-success btn-md">취소 하기</button>
 			</td>
 		</tr>		

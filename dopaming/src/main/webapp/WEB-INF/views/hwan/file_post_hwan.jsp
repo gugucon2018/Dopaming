@@ -61,9 +61,10 @@ th {
 	<div class="container">
 	<table class="cen_table  table table-striped table-bordered">
 		<tr>
-			<th class="c1">분류</th><th>제목</th><th>캐시</th><th>용량(MB)</th><th>판매자</th>	
+			<th width="10%">게시글 번호</th><th class="c1">분류</th><th>제목</th><th>캐시</th><th>용량(MB)</th><th>판매자</th>	
 		</tr>
 		<tr>
+			<td>${filePost.board_no}</td>
 			<td class="c1">${filePost.category_big}/${filePost.category_small}</td>
 			<td>${filePost.board_title}</td>
 			<td>${filePost.board_acorn}</td>
@@ -72,19 +73,19 @@ th {
 		</tr>		
 		<tr>
 			<td>게시글 파일</td>
-			<td colspan="4">
+			<td colspan="5">
 				<c:forEach items="${Board_FileList}" var="list">
 					<label>${list.fileName_List}</label><br>					
 				</c:forEach>
 			</td>
 		</tr>
 		<tr>
-		<td colspan="5" class="no_border">
+		<td colspan="6" class="no_border">
 		<label>${filePost.board_img}<br>${filePost.board_content}</label>		
   	 </td>
 		</tr>
 		<tr>
-		<td colspan="5" class="no_border">
+		<td colspan="6" class="no_border">
 			 <table class="cen_table table table-striped table-bordered table-hover">
         <thead>
           <tr>
@@ -122,14 +123,14 @@ th {
 		</td>
 		</tr>
 		<tr>
-			<td colspan="5" class="no_border">
+			<td colspan="6" class="no_border">
            <div>            
-            <button href='#' onclick="location.href='download_hwan'" class="btn btn-success write_on">다운로드 하기</button>            
+            <button href='#' onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>            
            </div>
            	</td>
 		</tr>
 		<tr>
-			<td colspan="5" class="no_border">
+			<td colspan="6" class="no_border">
 			      <div>
       					<input  width="100%" placeholder="댓글쓰기">
       					<button class="btn btn-success">댓글 쓰기</button>

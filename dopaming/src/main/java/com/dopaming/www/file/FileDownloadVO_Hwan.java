@@ -2,47 +2,55 @@ package com.dopaming.www.file;
 
 import java.sql.Date;
 
+// 다운로드 게시글 열람
 public class FileDownloadVO_Hwan {
-	//null값 전부 허용하지 않음
-	//다운로드번호 
-	private int downloadNo;
-	//결제날짜
-	private Date downloadDate;
-	//회원아이디(다운)
-	private String memberId;
-	//다운로드아콘
-	private int downloadAcorn;
-	//파일번호
-	private int fileNo;
+	//멤버 아이디
+	private String member_id;
+	//게시글 아콘
+	private int board_acorn;
+	//파일 번호
+	private int file_no;
+	//그룹 번호
+	private int group_no;
+	//각 파일 용량
+	private double file_storage;
+	//파일명
+	private String file_name;
 	
-	public int getDownloadNo() {
-		return downloadNo;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setDownloadNo(int downloadNo) {
-		this.downloadNo = downloadNo;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	public Date getDownloadDate() {
-		return downloadDate;
+	public int getBoard_acorn() {
+		return board_acorn;
 	}
-	public void setDownloadDate(Date downloadDate) {
-		this.downloadDate = downloadDate;
+	public void setBoard_acorn(int board_acorn) {
+		this.board_acorn = board_acorn;
 	}
-	public String getMemberId() {
-		return memberId;
+	public int getFile_no() {
+		return file_no;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setFile_no(int file_no) {
+		this.file_no = file_no;
 	}
-	public int getDownloadAcorn() {
-		return downloadAcorn;
+	public int getGroup_no() {
+		return group_no;
 	}
-	public void setDownloadAcorn(int downloadAcorn) {
-		this.downloadAcorn = downloadAcorn;
+	public void setGroup_no(int group_no) {
+		this.group_no = group_no;
 	}
-	public int getFileNo() {
-		return fileNo;
+	public double getFile_storage() {
+		return file_storage;
 	}
-	public void setFileNo(int fileNo) {
-		this.fileNo = fileNo;
+	public void setFile_storage(double file_storage) {
+		this.file_storage = file_storage;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}	
 }

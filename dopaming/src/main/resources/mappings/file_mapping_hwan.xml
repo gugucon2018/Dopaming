@@ -4,6 +4,7 @@
 <!--mapper = dao -->
 <mapper namespace="FileDAOHwan">
 
+	<!-- 파일 등록 -->
 	<insert id="file_insert_hwan">
 		INSERT INTO file_upload(
 		file_no,
@@ -22,6 +23,7 @@
 		)
 	</insert>
 
+	<!-- 게시글 등록 -->
 	<insert id="board_insert_hwan">
 		<selectKey keyProperty="boardNo" resultType="int"
 			order="BEFORE">
@@ -47,6 +49,8 @@
 		#{boardAcorn}
 		)
 	</insert>
+
+	<!-- 게시글 열람 -->
 	<select id="filePost_hwan"
 		resultType="com.dopaming.www.file.FilePostVO_Hwan">
 		select distinct b.board_no,
@@ -66,6 +70,8 @@
 		b.member_id, b.board_content,b.board_img,b.board_title
 
 	</select>
+
+	<!-- 게시글 파일리스트 -->
 	<select id="Board_FileList"
 		resultType="com.dopaming.www.file.FilePostVO_Hwan">
 		select f.file_name as fileName_List
@@ -78,10 +84,13 @@
 			</if>
 		</where>
 	</select>
+
+	<!-- 게시글에 게시글 열람 -->
 	<select id="Board_BoardList"
 		resultType="com.dopaming.www.file.FilePostVO_Hwan">
 		select a.* from (select c.*, rownum rn from(
-		select distinct b.board_no, b.board_title,
+		select distinct
+		b.board_no, b.board_title,
 		b.member_id,b.category_big,b.category_small
 		from board b inner join
 		file_upload f
@@ -93,6 +102,7 @@
 		</where>
 		) c ) a where rn between #{first} and #{last}
 	</select>
+
 	<!-- 게시글에 게시글 페이징 -->
 	<select id="Board_Paging" resultType="int">
 		select count(distinct b.board_no)
@@ -100,8 +110,40 @@
 		on b.member_id = f.member_id
 		<where>
 			<if test="member_id!=null and member_id!='' ">
-			b.member_id=#{member_id}
+				b.member_id=#{member_id}
 			</if>
 		</where>
 	</select>
+	<!-- 다운로드 게시글 리스트 열람 -->
+	<select id="Download_List"
+		resultType="com.dopaming.www.file.FileDownloadVO_Hwan">
+		select distinct m.member_id,
+		b.board_acorn, f.file_no, f.group_no,
+		f.file_storage,f.file_name
+		from members m inner join file_upload f
+		on
+		m.member_id = f.member_id inner join board b
+		on m.member_id
+		=b.member_id
+		<where>
+			<if test="group_no!=null and group_no!='' ">
+				group_no=#{group_no}
+			</if>
+		</where>
+	</select>
+	<!-- 다운로드 게시글 열람 -->
+	<select id="DownloadPost"
+		resultType="com.dopaming.www.file.FileDownloadVO_Hwan">
+		select distinct b.member_id, b.board_acorn,f.group_no
+		from board b
+		inner join file_upload f
+		on b.member_id = f.member_id
+		<where>
+			<if test="group_no!=null and group_no!='' ">
+				f.group_no=#{group_no}
+			</if>
+		</where>
+		group by b.member_id,b.board_acorn, f.file_no, f.group_no
+	</select>
+
 </mapper>

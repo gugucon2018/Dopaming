@@ -30,6 +30,7 @@ public class MemberController {
 		String id = memberVO.getMember_id();
 		String pass = memberVO.getMember_password(); 
 		
+		
 		//기존 login이란 세션 값이 존재한다면
 		if(session.getAttribute("memberSession") != null) {
 			session.removeAttribute("memberSession"); //기존값 제거
@@ -45,8 +46,7 @@ public class MemberController {
 				if(pass.equals(service.valueCheckPW(id))){
 					memberVO = service.login(memberVO);
 					// 세션 등록
-					session.setAttribute("memberSession", memberVO);
-					
+					session.setAttribute("memberSession", memberVO);					
 					session.setAttribute("Id", memberVO.getMember_id()); 
 					session.setAttribute("Pass", memberVO.getMember_password());
 					 

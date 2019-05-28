@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dopaming.www.common.Paging;
+import com.dopaming.www.main.MainService_hun;
+import com.dopaming.www.main.MainVO_hun;
 
 /**
  * Handles requests for the application home page.
@@ -24,6 +26,8 @@ public class hun_HomeController {
 
 	@Autowired
 	FileService service;
+	
+	
 
 	@RequestMapping(value = "/mdview", method = RequestMethod.GET)
 	public String hwan(Model model, FileVO vo, Paging paging) {
@@ -47,4 +51,6 @@ public class hun_HomeController {
 		model.addAttribute("list", service.getFileList(vo));
 		return "hun/mdview_hun";
 	}
+	
+	
 }

@@ -67,11 +67,11 @@ function td_delete(){
 		}
 	}
 	if (cnt == 0) { // 체크수가 0이면
-		alert("삭제할 게시글을 선택하세요");
+		alert("블랙리스트에서 삭제할 데이터에 대해서 체크박스를 선택하세요");
 		return false;
 
 	}
-	if(confirm("삭제할까요?")){
+	if(confirm("블랙리스트에서 삭제할까요?")){
 		form.action = "blackList_delete"
 		form.submit();
 	}
@@ -85,8 +85,9 @@ function td_delete(){
 </head>
 <body>
 	<div>
-		<h4>사용자관리</h4>
+		<h4>블랙리스트 사용자관리</h4>
 		<hr>
+		<span style="float:right">
 		<div>
 			<form name="searchFrm" method="get">
 				<input type="hidden" name="page" value="1"> <input
@@ -94,6 +95,7 @@ function td_delete(){
 				<button type="submit">검색</button>
 			</form>
 		</div>
+		</span>
 		<div>
 		<form name="form">
 			<table>
@@ -101,7 +103,9 @@ function td_delete(){
 					<td></td>
 					<td>아이디</td>
 					<td>이메일</td>
-					<td>상태</td>
+					<td>가입날짜</td>
+					<td>등록된날짜(내림차순)</td>
+					<td>사유</td>
 				<tr>
 					<c:forEach items="${blackList}" var="list1">
 						<!-- 등급관리 전체조회 -->
@@ -109,7 +113,9 @@ function td_delete(){
 							<td><input type="checkbox" name="td_checkbox" value="${list1.member_id }"></td>
 							<td>${list1.member_id }</td>
 							<td>${list1.member_email }</td>
+							<td>${list1.member_date }</td>
 							<td>${list1.list_date }</td>
+							<td>${list1.list_content }
 						</tr>
 					</c:forEach>
 			</table>

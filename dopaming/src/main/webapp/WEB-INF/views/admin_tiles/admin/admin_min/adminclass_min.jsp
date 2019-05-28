@@ -111,7 +111,7 @@ tr:nth-child(even) {
 				<td></td>
 				<td>아이디</td>
 				<td>총 현질합계</td>
-				<td>등급</td>
+				<td>등급(내림차순)</td>
 				<td>총 업로드횟수</td>
 			<tr>
 				<c:forEach items="${classList}" var="classs">

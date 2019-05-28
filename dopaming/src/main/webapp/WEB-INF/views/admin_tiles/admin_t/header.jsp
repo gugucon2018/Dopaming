@@ -42,10 +42,10 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">회원관리</h6>
-            <a class="collapse-item" href="classForm">등급관리</a>
-            <a class="collapse-item" href="blackListForm">일반회원관리</a>
-            <a class="collapse-item" href="blackListForm">블랙회원관리</a>
-            <a class="collapse-item" href="uploadlistForm">업로드한 리스트 뷰 </a>            
+            <a class="collapse-item" href="${pageContext.request.contextPath }/classForm">등급관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/NormalListForm">일반회원관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/blackListForm">블랙회원관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/uploadlistForm">업로드한 리스트 뷰 </a>            
           </div>
         </div>
       </li>

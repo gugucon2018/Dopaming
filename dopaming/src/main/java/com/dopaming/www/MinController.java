@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.dopaming.www.admin.blacklist.BlackListVO;
 import com.dopaming.www.admin.blacklist.BlackListservice;
@@ -172,15 +174,34 @@ public class MinController {
 			vo.setLast(paging.getLast());
 
 			// 전체 건수
-			paging.setTotalRecord(service3.blackListCount(vo));
+			paging.setTotalRecord(service3.normalListCount(vo));
 			service3.getBlackList(vo);
 
 
-			model.addAttribute("blackList", service3.getBlackList(vo));
+			model.addAttribute("normalList", service3.getNormalList(vo));
 			model.addAttribute("paging", paging);
-			return "admin/admin_min/adminblacklist_min";
+			return "admin/admin_min/adminnormallist_min";
 		}
 	
+	//관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 단건조회
+		@RequestMapping("/blackInsert/{member_id}")
+		public String normalInsertForm(Model model,BlackListVO vo,@PathVariable String member_id) {
+			vo.setMember_id(member_id);
+			//단건조회
+			model.addAttribute("normal",service3.getNormal(vo));
+			return "admin/admin_min/adminnormalInsert";
+		}
+		
+	//관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 처리구간
+		@RequestMapping(value="/blackInsert", method=RequestMethod.POST)
+		public String normalInsert(@ModelAttribute("blacklist")BlackListVO vo,
+								  SessionStatus st) {
+			System.out.println("=================" + vo);
+			service3.normalInsert(vo);
+			st.setComplete(); //세션값 전부 clear
+			return "redirect:blackListForm";
+		}
+		
 	// (유저)아콘결제페이지
 	@RequestMapping(value = { "/acornForm" }, method = RequestMethod.GET)
 	public String acornFrom() {

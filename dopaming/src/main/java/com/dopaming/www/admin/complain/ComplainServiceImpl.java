@@ -26,7 +26,7 @@ public class ComplainServiceImpl implements ComplainService {
 	//고객센터 리스트
 	@Override
 	public List<ComplainVO> complain_selectlist(ComplainVO vo) {
-		//mybatis를 실행하고 받은 결과값을 List<BoardListVO>
+		//dao를 실행하고 받은 결과값을 List<ComplainVO>에 담는다.
 		return dao.complain_selectlist(vo);
 	}
 	
@@ -36,4 +36,17 @@ public class ComplainServiceImpl implements ComplainService {
 		return dao.complain_selectlist_cnt(vo);
 	}
 	
+	//답변 수정
+	@Override
+	public void complain_check_update(ComplainVO vo) {
+		//매퍼실행
+		dao.complain_check_update(vo);
+	}
+	
+	//고객센터 단건 출력
+	@Override
+	public ComplainVO complain_select(ComplainVO vo) {
+		//dao를 실행하고 받은 결과값을 ComplainVO에 담는다.
+		return dao.complain_select(vo);
+	}
 }

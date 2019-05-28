@@ -107,16 +107,10 @@
                 <h3>Dopaming 이번주 위</h3>
                 <p>Dopmaing의 최신소식을 즐겨보세요!</p>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-action genre_rank"><a href="#">어벤져스 엔드게임</a></li>
-                    <li class="list-group-item list-group-item-action genre_rank"><a href="#">스파이더맨</a></li>
-                    <li class="list-group-item list-group-item-action genre_rank"><a href="#">헐크</a></li>
-					<li class="list-group-item list-group-item-action genre_rank"><a href="#">토르</a></li>
-					<li class="list-group-item list-group-item-action genre_rank"><a href="#">아이언맨</a></li>
-					<li class="list-group-item list-group-item-action genre_rank"><a href="#">캡틴마블</a></li>
-					<li class="list-group-item list-group-item-action genre_rank"><a href="#">슈퍼맨</a></li>
-					<li class="list-group-item list-group-item-action genre_rank"><a href="#">배트맨</a></li>
-					<li class="list-group-item list-group-item-action genre_rank"><a href="#">울버린</a></li>
-					<li class="list-group-item list-group-item-action genre_rank"><a href="#">와칸다 포에버</a></li>
+                <c:forEach items="${list}" var="main" end="10" step="1" varStatus="status">
+                    <li class="list-group-item list-group-item-action genre_rank" align="center">
+                    <a href="filepost?board_no=${main.board_no}&member_id=${main.member_id}">${main.rn}위	${main.board_title}</a></li>
+                </c:forEach>    
                 </ul>
             </div>
 </body>

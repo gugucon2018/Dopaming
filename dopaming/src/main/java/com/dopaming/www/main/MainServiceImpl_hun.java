@@ -1,15 +1,22 @@
 package com.dopaming.www.main;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+
+@Service("MainService_hun")
 public class MainServiceImpl_hun implements MainService_hun {
 
 	@Autowired
 	MainDAOMybatis_Hun dao;
+
+	@Override
+	public List<Map<String,Object>> getMainList(MainVO_hun vo) {
+		return dao.getMainList(vo);
+	}
 
 
 	/*

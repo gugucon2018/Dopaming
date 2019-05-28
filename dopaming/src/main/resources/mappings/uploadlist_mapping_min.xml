@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="uploadListMinDAO"> 
+ 
+ 	<!-- 블랙회원 출력 + 검색 + 페이징-->
+	<select id="getuploadList" resultType="boardlist" >
+	select a.* from ( select b.*, rownum rn from (
+										select b.board_no, b.member_id ,
+										b.board_title, round(sum(f.file_storage),2) 
+										as file_storage 
+	from board b , file_upload f
+	where b.member_id = f.member_id
+	<if test="searchKeyword != null and searchKeyword !=''">
+				and b.member_id LIKE '%' || #{searchKeyword} || '%'
+	</if>
+	group by b.board_no, b.member_id ,b.board_title
+	order by b.board_no desc) b) a 
+	where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 블랙회원 카운트 -->
+	<select id="blackListCount" resultType="int">
+	select count(count(*))
+	from board b , file_upload f
+	where b.member_id = f.member_id
+	<if test="searchKeyword != null and searchKeyword !=''">
+				and b.member_id LIKE '%' || #{searchKeyword} || '%'
+	</if>
+	group by b.board_no, b.member_id ,b.board_title
+	</select>
+</mapper>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,58 +24,51 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+<script>
+function go_page(p) {
+	searchFrm.page.value = p;
+	searchFrm.submit();
+}
+</script>
 </head>
 <body>
-<div>
-	<h4>업로드한 리스트 뷰 </h4><hr>
 	<div>
-		<INPUT TYPE="text" NAME="name" style="text-align:right"> 
-		<button type="button">검색</button>
+		<h4>업로드리스트 관리창</h4>
+		<hr>
+		<span style="float:right">
+		<div>
+			<form name="searchFrm" method="get">
+				<input type="hidden" name="page" value="1"> 
+				<input name="searchKeyword" value="${boardListVO_min.searchKeyword}" />
+				<button type="submit">검색</button>
+			<script>
+				searchFrm.searchKeyword.value="${boardListVO_min.searchKeyword}";
+			</script>
+			</form>
+		</div>
+		</span>
+		<div>
+			<table>
+				<tr>
+					<td>게시판고유번호</td>
+					<td>아이디</td>
+					<td>제목</td>
+					<td>게시판 용량</td>
+				<tr>
+					<c:forEach items="${uploadList}" var="list1">
+						<!-- 등급관리 전체조회 -->
+						<tr>
+							<td>${list1.board_no }</td>
+							<td>${list1.member_id }</td>
+							<td>${list1.board_title }</td>
+							<td>${list1.file_storage }</td>
+						</tr>
+					</c:forEach>
+			</table>	
+		</form>
+		</div>
+		<my:paging paging="${paging}" />
+		<br> <br> <br>
 	</div>
-	<div>
-		<table>
-		  <tr>
-		    <th>순번</th>
-		    <th>아이디</th>
-		    <th>파일명</th>
-		    <th>사용횟수</th>
-		  </tr>
-		  <tr>
-		    <td>1</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><a href="http://daeguoracle.com">(주)</a></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>2</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><a href="http://daeguoracle.com">(주)</a></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>3</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><a href="http://daeguoracle.com">(주)</a></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>4</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><a href="http://daeguoracle.com">(주)</a></td>
-		    <td>Germany</td>
-		  </tr>
-		  <tr>
-		    <td>5</td>
-		    <td>Alfreds Futterkiste</td>
-		    <td><a href="http://daeguoracle.com">(주)</a></td>
-		    <td>Germany</td>
-		  </tr>
-		</table>
-	</div>
-	페이징해야함
-	<br>
-	<br>
-	<br>
-</div>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dopaming.www.admin.boardlist.BoardListVO;
 import com.dopaming.www.common.Paging;
+import com.dopaming.www.notice.NoticeVO;
 
 @Repository
 public class ComplainDAOMybatis {
@@ -33,6 +34,19 @@ public class ComplainDAOMybatis {
 	public int complain_selectlist_cnt(ComplainVO vo) {
 		return mybatis.selectOne("ComplainDAO.complain_selectlist_cnt", vo);
 	}
+	
+	//답변 수정
+	public void complain_check_update(ComplainVO vo) {
+		System.out.println("답변 수정");
+		//매퍼를 동작시킨다.
+		mybatis.update("ComplainDAO.complain_check_update",vo);
+	}
 
+	//고객센터 단건 출력
+	public ComplainVO complain_select(ComplainVO vo) {
+		System.out.println("고객센터 단건 출력");
+		return (ComplainVO)mybatis.selectOne("ComplainDAO.complain_select",vo);
+			//DTO(VO)에 순서대로 인서트 시킨다.
+	}
 
 }

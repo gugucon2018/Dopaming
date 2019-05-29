@@ -62,6 +62,7 @@
 					<li><a class="navbar-brand" href="#">쪽지</a></li>
 					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/boardList">고객센터</a></li>
 					<li><a class="navbar-brand" href="loginForm">(임시)관리자로그인페이지</a></li>
+					<li><a class="navbar-brand" href="#">공지사항</a></li>
 				</ul>
 				<ul class="nav navbar-nav navber-right">
 					<c:choose>

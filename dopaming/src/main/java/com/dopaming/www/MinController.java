@@ -24,8 +24,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.dopaming.www.admin.blacklist.BlackListVO;
 import com.dopaming.www.admin.blacklist.BlackListservice;
 import com.dopaming.www.admin.boardlist.BoardListService;
-import com.dopaming.www.admin.boardlist.BoardListService_min;
-import com.dopaming.www.admin.boardlist.BoardListVO_min;
+import com.dopaming.www.admin.file.uploadListService_min;
+import com.dopaming.www.admin.file.uploadListVO_min;
 import com.dopaming.www.admin.grade.GradeVO_min;
 import com.dopaming.www.admin.grade.Gradeservice_min;
 import com.dopaming.www.admin.login.Loginservice_min;
@@ -45,7 +45,7 @@ public class MinController {
 	@Autowired
 	BlackListservice service3;
 	@Autowired
-	BoardListService_min service4;
+	uploadListService_min service4;
 
 	// (관리자)로그인 폼
 	@RequestMapping(value = { "/loginForm" }, method = RequestMethod.GET)
@@ -53,32 +53,37 @@ public class MinController {
 		return "admin/admin_min/adminlogin_min.empty";
 	}
 
-	// 로그인 처리
+	// (관리자)로그인 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute("members") MembersVO_min vo, HttpServletRequest request, HttpSession session,
+	public void login(@ModelAttribute("members") MembersVO_min vo, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();		
 		MembersVO_min member = service.getMembers(vo);
-		if (member == null) {
-			PrintWriter out = response.getWriter();
+		
+		if(member==null || !member.getMember_id().equals("admin")) {
 			out.println("<script>");
-			out.println("alert('id or pw가 틀렸습니다.');");
+			out.println("alert('관리자만 접근가능합니다.');");
 			out.println("history.go(-1);"); // 이전페이지로
 			out.println("</script>");
-			return "admin/admin_min/adminlogin_min.empty";
 		} else {
+			//admin만 접속가능
 			session.setAttribute("member_id", member.getMember_id());
 			session.setAttribute("member_password", member.getMember_password());
 			session.setAttribute("member", member);
-			// System.out.println(member); //세션값이 안들어오네
-			return "admin/admin_min/adminmain_min";
+			out.println("<script>");
+			out.println("location='classForm';"); // 이전페이지로
+			out.println("</script>");
 		}
 	}
 
-	// 로그아웃 처리
+	
+
+	// (관리자)로그아웃 처리
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); // 세션무효화
-		return "admin/admin_min/adminlogin_min.empty";
+		return "redirect:loginForm";
 	}
 
 	// 관리자 - 회원관리 - 등급관리 - 등급List
@@ -209,9 +214,9 @@ public class MinController {
 		
 		// (관리자)회원관리 - 업로드한 리스트 뷰
 		@RequestMapping(value = { "/uploadlistForm" }, method = RequestMethod.GET)
-		public String getuploadList(Model model, BoardListVO_min vo, Paging paging, HttpServletRequest request) {
+		public String getuploadList(Model model, uploadListVO_min vo, Paging paging, HttpServletRequest request) {
 			
-			paging.setPageUnit(5);
+			paging.setPageUnit(10);
 			// 페이지번호 파라미터
 			if (paging.getPage() == 0) {
 				paging.setPage(1);

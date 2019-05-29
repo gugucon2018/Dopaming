@@ -1,4 +1,4 @@
-package com.dopaming.www.admin.boardlist;
+package com.dopaming.www.admin.file;
 
 import java.util.List;
 
@@ -9,19 +9,19 @@ import org.springframework.stereotype.Repository;
 import com.dopaming.www.common.Paging;
 
 @Repository
-public class BoardListDAOMybatis_min {
+public class uploadListDAOMybatis_min {
 
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
 	// 관리자 -  회원관리  - 업로드만 리스트 뷰
-	public List<BoardListVO_min> getuploadList(BoardListVO_min vo) {
+	public List<uploadListVO_min> getuploadList(uploadListVO_min vo) {
 		return mybatis.selectList("uploadListMinDAO.getuploadList", vo);
 	}
 	
 	// 관리자 -  회원관리  - 업로드만 리스트 뷰 건수 
-	public int uploadListcount(BoardListVO_min vo) {
-		return mybatis.selectOne("uploadListMinDAO.blackListCount", vo);
+	public int uploadListCount(uploadListVO_min vo) {
+		return mybatis.selectOne("uploadListMinDAO.uploadListCount", vo);
 	}
 	
 

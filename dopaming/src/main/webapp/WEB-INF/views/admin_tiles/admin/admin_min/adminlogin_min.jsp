@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -20,9 +21,6 @@
             <div class="row text-center">
                 <div class="col-lg-12">
                     <h1 class="heading-title"> DOPAMING STYLE</h1>
-                    <!-- session값 확인가능 -->
-                    <%-- <% String id = (String)session.getAttribute("member_id"); %>
-					<%=id %>님 어서오세요. --%>
                 </div>
             </div>
 

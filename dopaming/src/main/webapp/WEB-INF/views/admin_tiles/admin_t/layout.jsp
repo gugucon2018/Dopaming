@@ -22,13 +22,15 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="./resources/admin/admin_css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/admin/admin_css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-	<div class="container">
+<%-- <c:if test=" ${session.member_id eq 'admin'}"> --%>
+	<div class="container">		
 			<tiles:insertAttribute name="header" />
 			<tiles:insertAttribute name="content" />
-			<tiles:insertAttribute name="footer" />			
+			<tiles:insertAttribute name="footer" />	
 	</div>
+<%-- </c:if> --%>
 </body>
 </html>

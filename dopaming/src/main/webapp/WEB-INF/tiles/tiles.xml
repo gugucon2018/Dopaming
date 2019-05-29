@@ -5,12 +5,9 @@
 <tiles-definitions>
 	<definition name="mainTemplate"
 		template="/WEB-INF/views/tiles/layout.jsp">
-		<put-attribute name="header"
-			value="/WEB-INF/views/tiles/header.jsp" />
-		<put-attribute name="content"
-			value="/WEB-INF/views/tiles/content.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/views/tiles/footer.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/tiles/content.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
 	</definition>	
 	
@@ -22,6 +19,13 @@
 			value="/WEB-INF/views/admin_tiles/admin_t/content.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/views/admin_tiles/admin_t/footer.jsp" />		
+	</definition>
+	
+	<definition name="admin/admin_joon/*" template="/WEB-INF/views/tiles/side1.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/admin_tiles/admin/admin_joon/{1}.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
 	</definition>
 
 	<definition name="home" extends="mainTemplate">
@@ -50,7 +54,12 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-
+	
+	<!-- 고객센터타일즈 -->
+	<definition name="admin_joon/complain_select_joon" extends="mainTemplate">
+		<put-attribute name="modal" value="/WEB-INF/views/tiles/side1.jsp"/>
+	</definition>
+	
 	<!-- 관리자타일즈 -->
 	<definition name="admin/*/*" extends="adminTemplate">
 		<put-attribute name="content"

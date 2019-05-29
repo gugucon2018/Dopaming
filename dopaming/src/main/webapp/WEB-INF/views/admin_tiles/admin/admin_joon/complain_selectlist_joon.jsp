@@ -52,14 +52,10 @@ function complain_check_update(complain_no){
 	//체크박스 입력 체크
 	check_form.complain_no.value = complain_no; //이벤트가 발생할때 생긴 complain_no 값을 넣는다.
 	check_form.complain_check.value = event.target.value; //이벤트가 발생한 타겟의 값을 넣는다.
+	
+	if(confirm("답변이 완료 되었습니까?")){
 	check_form.action = "complain_check_update";
 	check_form.submit();
-}
-
-//답변기능값(풀다운메뉴) 고정
-window.onload=function(){//바디실행후 작동
-if('${param.a}'=='Y'){
-	document.getElementsByName("complain_check")[0].selectedIndex = 1;
 	}
 }
 </script>

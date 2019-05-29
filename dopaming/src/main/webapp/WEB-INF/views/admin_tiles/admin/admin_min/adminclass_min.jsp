@@ -74,7 +74,7 @@ float: right;
 			}
 		}
 		if(cnt == 0 ){
-			alert("수정할 아이디를 선택해주세요");
+			alert("등급을 수정할 아이디를 선택해주세요");
 			return false;
 		}
 
@@ -83,7 +83,7 @@ float: right;
 			alert("선택!!");
 			return;
 		}
-	
+		form.action="grade_update"
 		form.submit();
 	}
 </script>
@@ -111,7 +111,7 @@ float: right;
 	</form>
 	
 	<!-- 테이블 -->
-	<form name="form" action="grade_update">
+	<form name="form">
 		<table>
 			<tr>
 				<td></td>

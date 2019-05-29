@@ -61,6 +61,7 @@ public class MinController {
 		PrintWriter out = response.getWriter();		
 		MembersVO_min member = service.getMembers(vo);
 		
+		//DB에 없는 값이거나(DB에 없는값도 Null, 빈공백도 Null) DB에 admin아닌 값(=즉 admin제외한 모든것)
 		if(member==null || !member.getMember_id().equals("admin")) {
 			out.println("<script>");
 			out.println("alert('관리자만 접근가능합니다.');");

@@ -20,7 +20,7 @@ if("${complain_insert.complain_no}"== -1){
 	
 	타입:<select name = "complain_type">
 			<option value="신고">신고</option>
-			<option value="건의사항">건의사항</option>
+			<option value="건의">건의</option>
 			<option value="qna">Q&A</option>
 		</select><br>
 		

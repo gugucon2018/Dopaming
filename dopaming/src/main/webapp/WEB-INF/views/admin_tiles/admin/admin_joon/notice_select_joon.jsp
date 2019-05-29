@@ -34,19 +34,22 @@ function notice_delete(){
 <input type="hidden" name="notice_title" value="${notice.getNotice_title()}">
 <input type="hidden" name="notice_content" value="${notice.getNotice_content()}">
 
-<table width="100%" height = "40px">
+<table width="100%" height = "40px" border="1">
         <tr>        
-            <td bgcolor="gray" width="80p"  align="center">제목</td>
+            <td bgcolor="" width="80p"  align="center">제목</td>
             <td align="center" >${notice.getNotice_title()}</td>
-            <td bgcolor="gray" width="80p"  align="center">글쓴이</td>
+            <td bgcolor="" width="80p"  align="center">글쓴이</td>
             <td width="200p"  align="center">관리자</td>
-            <td bgcolor="gray" width="80p"  align="center">날짜</td>
+            <td bgcolor="" width="80p"  align="center">날짜</td>
             <td width="200p"  align="center">${notice.getNotice_date()}</td>     
         </tr>
         </table>
-        <pre>
-${notice.getNotice_content()}
-</pre>
+        
+        <table width="100%" height = "500px" border="1">
+	<tr><td valign="top">
+	${notice.getNotice_content()}
+	</td></tr>
+	</table><br>
 	<input style="float:right;" type="submit" class="" value="수정"/>
 	<button style="float:right;" class="" type="button" onclick="notice_delete()">삭제</button>
 </form>

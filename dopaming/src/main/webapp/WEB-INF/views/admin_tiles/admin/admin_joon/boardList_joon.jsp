@@ -51,11 +51,6 @@ function changeMenu(){
 	category_form.category_small.value = document.getElementsByName("category_small")[0].value
 	category_form.submit();
 }
-
-//검색기능
-function search(){
-	category_form.submit();
-}
 </script>
 </head>
 <body>
@@ -73,7 +68,7 @@ function search(){
 </select>
 <!-- 검색창 -->
 <span>
-	<button style="float: right;" type="button" onclick="search()">검색</button>
+	<button style="float: right;" type="submit">제목 검색</button>
 	<input name="searchKeyword" style="float: right;" type="text">
 </span>
 <!-- 지정된 풀다운 메뉴를 고정시키기 -->

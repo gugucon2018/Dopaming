@@ -62,7 +62,7 @@ public class JoonController {
 		}
 	}
 
-	// 공지 목록 출력값 받아오기
+	// 공지 목록 
 	@RequestMapping("/notice_selectlist")
 	public String notice_selectlist(Model model, Paging paging, NoticeVO vo) {
 
@@ -121,7 +121,7 @@ public class JoonController {
 		return "redirect:notice_selectlist";
 	}
 
-	//수정폼으로 이동하기
+	//공지 수정폼
 	@RequestMapping(value = "/notice_update_form") 
 	public String notice_update(NoticeVO vo, Model model) { 
 		
@@ -156,8 +156,6 @@ public class JoonController {
 	//게시판 목록 연결
 		@RequestMapping("/boardList")
 		public String boardList(Model model, Paging paging, BoardListVO vo, HttpServletRequest request) {
-			//받은 폼에 해당 이름을 가진 값을 찾아서 타입과 새로운 이름지정해서 담는다.
-			String searchKeyword = request.getParameter("searchKeyword");
 			
 			// 페이징 처리
 			paging.setPageUnit(5); // 개당 출력건수
@@ -166,8 +164,6 @@ public class JoonController {
 				paging.setPage(1);
 			}
 			
-			// 새로담은 값을 VO에 셋팅해준다.	 
-			vo.setSearchKeyword(searchKeyword);
 			// 게시판 검색값을 넘겨주고, 돌려받는 값(전체레코드)이 페이징vo에 셋팅이된다.
 			paging.setTotalRecord(BoardList_service.boardList_select_cnt(vo));
 		
@@ -197,7 +193,6 @@ public class JoonController {
 		//redirect의 경우에는 값이 지워지기 때문에 다시 complain_type값을 보내고 돌아갈뷰 지정, 한글값이 깨져서 직접 인코딩해서 보낸다. 
 		return "redirect:complain_selectlist?complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
 	}
-	
 	
 	//고객센터 리스트
 	@RequestMapping(value = "/complain_selectlist")

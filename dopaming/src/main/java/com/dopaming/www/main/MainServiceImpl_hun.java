@@ -16,6 +16,10 @@ public class MainServiceImpl_hun implements MainService_hun {
 	public List<Map<String, Object>> getMainList(MainVO_hun vo) {
 		return dao.getMainList(vo);
 	}
+	@Override
+	public List<Map<String, Object>> getMainSlide(MainVO_hun vo) {
+		return dao.getMainList(vo);
+	}
 
 	/*
 	 * @Override public List<FileVO> getFileList_k() {

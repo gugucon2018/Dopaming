@@ -100,6 +100,7 @@
 		
 		</div>
 	</div>
+	
 		 <div class="container col-sm-4"> 
 		 		<img src="./resources/images/logo1.png" class="img-responsive" alt="로고1"/>
 		 		<input width="200%" placeholder="입력하세요"/><button class="btn btn-success btn-sm">검색</button>	 		

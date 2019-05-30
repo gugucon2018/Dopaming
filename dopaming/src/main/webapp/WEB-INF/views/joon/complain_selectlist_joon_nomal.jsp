@@ -87,28 +87,19 @@ function complain_check_update(complain_no){
 		<tr align="center">
 			<td bgcolor="" width="100px">번호</td>
 			<td bgcolor="">제목</td>
-			<td bgcolor="">작성자</td>
+			<!-- <td bgcolor="">작성자</td> -->
 			<td bgcolor="">날짜</td>
 			<td bgcolor="">답변유무</td>
-			<td bgcolor="">답변</td>
 		</tr>
 		
 		<c:forEach items="${list}" var="i" varStatus="s">
 			<tr align="center">
 				<td>${i.getRn()}</td>
-				<td><a href="/dopaming/complain_select?complain_no=${ i.getComplain_no()}">
+				<td><a href="/dopaming/complain_select_nomal?complain_no=${ i.getComplain_no()}">
 					${i.getComplain_title()}</a></td>
-				<td>${i.getMember_id() }</td>
+				<%-- <td>${i.getMember_id() }</td> --%>
 				<td>${i.getComplain_date() }</td>
 				<td>${i.getComplain_check() }</td>
-				<td><select name="complain_check" onchange="complain_check_update('${ i.getComplain_no()}')">
-						<option value="N">NO</option>
-						<option value="Y">YES</option>	
-					</select>
-					<script> //답변상태값을 DB의 값과 맞추어 준다. 
-					document.getElementsByName("complain_check")[${s.count}].value='${ i.getComplain_check()}'
-					</script>
-				</td>
 			</tr>
 		</c:forEach>
 	</table>

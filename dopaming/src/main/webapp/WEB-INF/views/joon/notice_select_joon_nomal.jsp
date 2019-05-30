@@ -51,8 +51,6 @@ function notice_delete(){
 	${notice.getNotice_content()}
 	</td></tr>
 	</table><br>
-	<input style="float:right;" type="submit" value="수정"/>
-	<button style="float:right;" type="button" onclick="notice_delete()">삭제</button>
 </form>
 	
 </body>

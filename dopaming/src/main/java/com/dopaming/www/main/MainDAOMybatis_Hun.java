@@ -15,5 +15,8 @@ public class MainDAOMybatis_Hun {
 	public List<Map<String, Object>> getMainList(MainVO_hun vo) {
 		return mybatis.selectList("MainDAO.mainRank", vo);
 	}
+	public List<Map<String, Object>> getMainSlide(MainVO_hun vo) {
+		return mybatis.selectList("MainDAO.mainSlide", vo);
+	}
 
 }

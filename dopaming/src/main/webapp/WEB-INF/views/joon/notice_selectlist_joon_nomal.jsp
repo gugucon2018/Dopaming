@@ -83,7 +83,7 @@ function goList(p){
 
 <h3 align=center><u>공지사항 목록</u></h3><br>
 <!-- 페이징 값 보내는 폼(form2) -->
-<form action = "notice_selectlist" name="form2">
+<form action = "notice_selectlist_nomal" name="form2">
 	<input type="hidden" name="page" value="1"></input>
 </form>
 <!-- 로우넘리스트 폼 -->		
@@ -91,7 +91,7 @@ function goList(p){
 	<table class="joon_table" border="1" width="100%">
 		<tr align= "center" >
 			<td bgcolor="" width="200px">
-				<label for="td_checkAll"><input type="checkbox" id="td_checkAll" onclick="checkAll();"/>번호</label>
+				<label for="td_checkAll">번호</label>
 			</td>
 			<td bgcolor="">제목</td>
 			<td width="200px" bgcolor="">날짜</td>
@@ -102,15 +102,12 @@ function goList(p){
 <!-- Notice_no가 필요하기 때문에 값을 받을 곳을 만들어둔다 -->
 <input type="hidden" name="notice_no" value="${i.getNotice_no()}">
 			<tr align = "center">
-				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
-				<td><a href="${pageContext.request.contextPath}/notice_select?notice_no=${ i.getNotice_no()}">${i.getNotice_title()}</a></td>
+				<td><label for="${i.getRn()}">${i.getRn()}</label></td>
+				<td><a href="${pageContext.request.contextPath}/notice_select_nomal?notice_no=${ i.getNotice_no()}">${i.getNotice_title()}</a></td>
 				<td>${i.getNotice_date()}</td>
 			</tr>
 		</c:forEach>
 </table><br>
-
-<button style="float:right;" type="button" onclick="td_delete()">삭제</button>	
-<a href="${pageContext.request.contextPath}/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a>
 </form>
 
 <!-- 페이징버튼 -->

@@ -110,7 +110,7 @@ function goList(p){
 </table><br>
 
 <button style="float:right;" type="button" onclick="td_delete()">삭제</button>	
-<a href="/dopaming/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a>
+<a href="${pageContext.request.contextPath}/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a>
 </form>
 
 <!-- 페이징버튼 -->

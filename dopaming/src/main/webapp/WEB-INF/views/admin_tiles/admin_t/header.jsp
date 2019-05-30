@@ -155,8 +155,7 @@
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                  검색
+                  <i class="fas fa-search fa-sm"></i> 검색
                 </button>
               </div>
             </div>
@@ -188,14 +187,11 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">              
-                <% String id = (String)session.getAttribute("member_id"); %>
-				<%=id %>님 어서오세요.
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> 
+				${sessionScope.member_id }님 어서오세요.
 				</span>
-				<!-- 세션제거 -->
-				<c:if test="${empty sessionScope.id }"> 
-				<input type="button" onclick="location='loginForm'" value="로그아웃">
-			</c:if>
+				<!-- 세션제거 --> 
+				<input type="button" onclick="location='logout'" value="로그아웃">
               </a>
             </li>
 

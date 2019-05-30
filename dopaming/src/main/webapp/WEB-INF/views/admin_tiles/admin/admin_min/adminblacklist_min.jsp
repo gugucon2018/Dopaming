@@ -47,10 +47,14 @@ td, th {
 	border: 1px solid #dddddd;
 	text-align: left;
 	padding: 8px;
+ 	text-align: center;
 }
 
 tr:nth-child(even) {
 	background-color: #dddddd;
+}
+span {
+float: right;
 }
 </style>
 <script>
@@ -85,13 +89,13 @@ function td_delete(){
 </head>
 <body>
 	<div>
-		<h4>블랙리스트 사용자관리</h4>
+		<h4>블랙회원관리</h4>
 		<hr>
-		<span style="float:right">
+		<span>
 		<div>
 			<form name="searchFrm" method="get">
-				<input type="hidden" name="page" value="1"> <input
-					name="searchKeyword" value="${boardVO.searchKeyword}" />
+				아이디:<input type="hidden" name="page" value="1"> 
+				<input name="searchKeyword" value="${boardVO.searchKeyword}" />
 				<button type="submit">검색</button>
 			</form>
 		</div>

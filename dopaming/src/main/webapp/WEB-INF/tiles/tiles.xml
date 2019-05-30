@@ -21,7 +21,7 @@
 			value="/WEB-INF/views/admin_tiles/admin_t/footer.jsp" />		
 	</definition>
 	
-	<definition name="admin/admin_joon/*" template="/WEB-INF/views/tiles/side1.jsp">
+	<definition name="jon/*" template="/WEB-INF/views/tiles/side1.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/admin_tiles/admin/admin_joon/{1}.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />

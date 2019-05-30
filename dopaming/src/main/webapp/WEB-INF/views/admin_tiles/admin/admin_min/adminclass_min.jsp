@@ -53,7 +53,9 @@ td, th {
 tr:nth-child(even) {
 	background-color: #dddddd;
 }
-
+span {
+float: right;
+}
 </style>
 <script>
 	function go_page(p) {
@@ -72,8 +74,8 @@ tr:nth-child(even) {
 			}
 		}
 		if(cnt == 0 ){
-			alert("체크");
-			return;
+			alert("등급을 수정할 아이디를 선택해주세요");
+			return false;
 		}
 
 		var grade2 = form.member_grade2.selectedIndex;
@@ -81,7 +83,7 @@ tr:nth-child(even) {
 			alert("선택!!");
 			return;
 		}
-	
+		form.action="grade_update"
 		form.submit();
 	}
 </script>
@@ -90,22 +92,26 @@ tr:nth-child(even) {
 	<!-- select + 검색 -->
 	<h4>등급관리</h4>
 	<hr>
+	
 	<form name="searchFrm" method="get">
-		<input type="hidden" name="page" value="1"> 
-		<select	name="member_grade">
-			<option value="">전체
-			<option value="g4">다이아도토리
-			<option value="g3">골드도토리
-			<option value="g2">실버도토리
-			<option value="g1">브론즈도토리
-		</select>
-		<script>
-		searchFrm.member_grade.value='${gradeVO_min.member_grade}';
-		</script>
-		<button>검색</button>
+		<span>
+			<input type="hidden" name="page" value="1"> 
+			<select	name="member_grade">
+				<option value="">전체
+				<option value="g4">다이아도토리
+				<option value="g3">골드도토리
+				<option value="g2">실버도토리
+				<option value="g1">브론즈도토리
+			</select>
+			<script>
+			searchFrm.member_grade.value='${gradeVO_min.member_grade}';
+			</script>
+			<button>검색</button>
+		</span>
 	</form>
+	
 	<!-- 테이블 -->
-	<form name="form" action="grade_update">
+	<form name="form">
 		<table>
 			<tr>
 				<td></td>
@@ -135,7 +141,7 @@ tr:nth-child(even) {
 				<option value="g2">실버도토리
 				<option value="g1">브론즈도토리
 			</select>
-			<button onclick="grade_update()">등급수정</button>
+			<button class="btn btn-primary"onclick="grade_update()">등급수정</button>
 		</div>
 	</form>
 </body>

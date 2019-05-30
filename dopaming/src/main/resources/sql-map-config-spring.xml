@@ -27,7 +27,7 @@
 		<typeAlias type="com.dopaming.www.admin.login.MembersVO_min" alias="members"/>
 		<typeAlias type="com.dopaming.www.admin.grade.GradeVO_min" alias="grade"/>
 		<typeAlias type="com.dopaming.www.admin.blacklist.BlackListVO" alias="blacklist"/>
-		<typeAlias type="com.dopaming.www.admin.boardlist.BoardListVO_min" alias="boardlist"/>
+		<typeAlias type="com.dopaming.www.admin.file.uploadListVO_min" alias="uploadlist"/>
 		
 		<!-- hong -->
 		<typeAlias type="com.dopaming.www.login.MemberVO" alias="member"/>

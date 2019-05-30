@@ -6,9 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-if("${boardVO.seq}"== -1){
-	alert("정상적으로 공지사항이 수정 되었습니다.");
+//수정 기능
+function notice_update(){
+	alert("수정이 되었습니다."); // 확인창
+	notice_update_frm.action = "notice_update";
+	notice_update_frm.submit(); // 보낸다.
 }
+
 </script>
 </head>
 <body>
@@ -16,7 +20,7 @@ if("${boardVO.seq}"== -1){
 	<h3 align=center>공지사항-수정</h3>
 	
 	<!-- 수정할 데이터를 보내주는 폼 -->
-	<form action="notice_update" method="post">
+	<form name="notice_update_frm" method="post">
 	
 	<!-- Notice_no가 필요가기 때문에 값을 받을 곳을 만들어둔다 -->
 	<input type="hidden" name="notice_no" value="${notice.notice_no}">	
@@ -31,7 +35,7 @@ if("${boardVO.seq}"== -1){
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
 	onMouseOut="this.style.backgroundColor='ivory'">${notice.notice_content}</textarea><br><br>
 	
-	<input style="float:right;" type="submit" class="" value="수정"/>
-
+	<button style="float:right;" type="button" class="" onclick="notice_update()">수정</button>
+</form>
 </body>
 </html>

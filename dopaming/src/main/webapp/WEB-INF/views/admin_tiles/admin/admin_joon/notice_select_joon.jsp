@@ -16,10 +16,11 @@ td {
 //삭제 기능
 function notice_delete(){
 	if(confirm("삭제할까요?")){ // 확인기능
-		form.action = "notice_delete" // 확인을 누르면 값을 notice_update->notice_delete로 변경한다.
-		form.submit(); // 보낸다.
+		notice_select_frm.action = "notice_delete" // 확인을 누르면 값을 notice_update->notice_delete로 변경한다.
+		notice_select_frm.submit(); // 보낸다.
 	}
 }
+
 </script>
 </head>
 <body>
@@ -27,7 +28,7 @@ function notice_delete(){
 <h1 align = "center"><u>공지사항</u></h1>
 
 <!-- 보낼폼을 설정 -->
-<form name="form" action="notice_update_form">
+<form name="notice_select_frm" action="notice_update_form">
 
 <!-- Notice_no가 필요가기 때문에 값을 받을 곳을 만들어둔다 -->
 <input type="hidden" name="notice_no" value="${notice.getNotice_no()}">
@@ -50,8 +51,8 @@ function notice_delete(){
 	${notice.getNotice_content()}
 	</td></tr>
 	</table><br>
-	<input style="float:right;" type="submit" class="" value="수정"/>
-	<button style="float:right;" class="" type="button" onclick="notice_delete()">삭제</button>
+	<input style="float:right;" type="submit" value="수정"/>
+	<button style="float:right;" type="button" onclick="notice_delete()">삭제</button>
 </form>
 	
 </body>

@@ -23,7 +23,9 @@ import com.dopaming.www.admin.boardlist.BoardListService;
 import com.dopaming.www.admin.boardlist.BoardListVO;
 import com.dopaming.www.admin.complain.ComplainService;
 import com.dopaming.www.admin.complain.ComplainVO;
+import com.dopaming.www.admin.login.MembersVO_min;
 import com.dopaming.www.common.Paging;
+import com.dopaming.www.login.MemberVO;
 import com.dopaming.www.notice.NoticeService;
 import com.dopaming.www.notice.NoticeVO;
 
@@ -46,6 +48,7 @@ public class JoonController {
 	@RequestMapping(value = "/notice_insert") // 뷰에서 notice_insert의 값이 보내어지면
 	public String notice_insert(NoticeVO vo, Model model, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
+		
 		//vo를 불러온다
 		service.notice_insert(vo);
 		
@@ -57,12 +60,13 @@ public class JoonController {
 			out.println("</script>");
 			return "admin/admin_joon/notice_insert_joon";
 		} else {
+		
 			// 돌아갈 화면
 			return "redirect:/notice_selectlist";
 		}
 	}
 
-	// 공지 목록 
+	// 공지 목록 (관리자)
 	@RequestMapping("/notice_selectlist")
 	public String notice_selectlist(Model model, Paging paging, NoticeVO vo) {
 
@@ -81,8 +85,32 @@ public class JoonController {
 		model.addAttribute("paging", paging);
 		// 돌려 받은 값들을 list에 받아둔다.
 		model.addAttribute("list", service.notice_selectlist(vo));
+		
 		return "admin/admin_joon/notice_selectlist_joon";
 	}
+	
+	// 공지 목록 (일반)
+		@RequestMapping("/notice_selectlist_nomal")
+		public String notice_selectlist_nomal(Model model, Paging paging, NoticeVO vo) {
+
+			// 페이징 처리
+			paging.setPageUnit(5); // 개당 출력건수
+			// 시작페이지 설정
+			if (paging.getPage() == 0) {
+				paging.setPage(1);
+			}
+			// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
+			paging.setTotalRecord(service.notice_selectlist_cnt());
+			// db에서 받은 정보로 페이지마다 시작/마지막 레코드 번호
+			vo.setFirst(paging.getFirst());
+			vo.setLast(paging.getLast());
+			// 페이징 VO의 데이터를 paging으로 담아둔다.
+			model.addAttribute("paging", paging);
+			// 돌려 받은 값들을 list에 받아둔다.
+			model.addAttribute("list", service.notice_selectlist(vo));
+			
+			return "jon/notice_selectlist_joon";
+		}
 
 	// 공지사항 뷰
 	@RequestMapping(value = "/notice_select") // 뷰에서 notice_select의 값이 보내어지면
@@ -185,10 +213,14 @@ public class JoonController {
 	
 	//고객센터 등록
 	@RequestMapping(value = "/complain_insert")
-	public String complain_insert(ComplainVO vo, HttpServletRequest request) throws UnsupportedEncodingException {
+	public String complain_insert(MemberVO mvo, ComplainVO vo, HttpSession session, HttpServletRequest request) throws UnsupportedEncodingException {
 		
 		//서비스를 실행시킨다.
 		ComplainService.complain_insert(vo);
+		
+		//세션에서 받은 아이디 값을 vo에 담는다.
+		mvo = (MemberVO) session.getAttribute("memberSession");
+		vo.setMember_id(mvo.getMember_id());
 		
 		//redirect의 경우에는 값이 지워지기 때문에 다시 complain_type값을 보내고 돌아갈뷰 지정, 한글값이 깨져서 직접 인코딩해서 보낸다. 
 		return "redirect:complain_selectlist?complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");

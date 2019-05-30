@@ -16,6 +16,8 @@ if("${complain_insert.complain_no}"== -1){
 
 <form action="complain_insert">
 	
+	 ${sessionScope.id}
+	
 	<h3 align=left><u>고객센터</u></h3>
 	
 	타입:<select name = "complain_type">

@@ -42,37 +42,31 @@ th {
 }
 </style>
 <script>
-	function ajaxExample() {
-		$.ajax({
-			"url" : "/request_download",
-			"type" : "get",
-			"dataType" : "json",
-			"data" : {
-				"dataType" : init
-			},
-			"success" : function(data) {
-				alert("가져온 데이터 입니다." + data);
-			}
-		});
-	}
-	
-	$(".btnDown").click(function(){
-		//var url="'request_download?group_no=${downPost.group_no}'",
-		$.ajax({
-			url:"request_download",
-			type:"GET",
-			datatype: JSON,
-			data: JSON.stringify({
-				group_no : ${downPost.group_no}
-			})				
-			success:function(args){
-				alert("다운로드 요청 성공");
-			}
-			error:function(e){
-				alert("다운로드 요청 실패");
-			}
-		});
+	$(function(){
+			fileDownload();
 	});
+	
+	// 다운로드 요청 ==> json 
+	function fileDownload() {
+		$('#btnDown').on('click',function(){
+			var id=$('input:text[name="id"]').val();
+			var name=$('$input:text[name="name"]').val();
+			$.ajax({
+				url:"request_download",
+				type:"get",
+				dataType:"json",
+				data:JSON.stringify({}),
+				contentType:'application/json',
+				mimeType:'application/json',
+				success:function(data){
+					alert("status: "+status+" er:"+message);
+				},
+				error:function(xhr, status, message){
+					alert("status: "+status+" er:"+message);
+				}				
+			});			
+		});		
+	}
 </script>
 </head>
 <body>
@@ -97,7 +91,7 @@ th {
 				<tr>
 					<td colspan="3">
 						<ol>다운로드 항목들
-						</ol> <c:forEach items="${downPost_List}" var="list">
+						<c:forEach items="${downPost_List}" var="list">
 							<li>${list.file_name}</li>
 						</c:forEach>
 						</ol>
@@ -115,10 +109,10 @@ th {
 				<tr>
 					<td style="border-right: none;"></td>
 					<td colspan="2" class="cen_table" style="border-left: none;">
-						<!-- <button type="button" class="btn btn-success btn-md"
+						<button type="button" class="btn btn-success btn-md"
 							onclick="location.href='request_download?group_no=${downPost.group_no}'">다운로드
-							하기</button>-->
-						<button type="button" class="btn btn-success btn-md btnDown" >다운로드 하기</button>&nbsp;
+							하기</button>
+						<!-- <button type="button" id="btnDown" class="btn btn-success btn-md btnDown" >다운로드 하기</button>&nbsp; -->
 						<button class="btn btn-success btn-md">취소 하기</button>
 					</td>
 				</tr>

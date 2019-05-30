@@ -61,7 +61,7 @@
             <h6 class="collapse-header">게시판관리</h6>
             <a class="collapse-item" href="${pageContext.request.contextPath }/boardList">게시글관리</a>
             <a class="collapse-item" href="${pageContext.request.contextPath }/notice_selectlist">공지사항</a>
-            <a class="collapse-item" href="utilities-animation.html">파일리스트 </a>            
+            <a class="collapse-item" href="${pageContext.request.contextPath }/fileList">파일리스트 </a>            
           </div>
         </div>
       </li>

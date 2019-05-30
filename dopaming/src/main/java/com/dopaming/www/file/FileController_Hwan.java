@@ -6,15 +6,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -84,6 +82,7 @@ public class FileController_Hwan {
 
 	// 파일 다운로드 처리
 	@RequestMapping(value = "/request_download")
+	@ResponseBody
 	public String requestDownload_hwan(FileDownloadVO_Hwan fbvo, FileDownloadVO_Hwan fdvo, HttpSession session,
 			Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		model.addAttribute("downPost", service.select_downloadOne(fdvo));

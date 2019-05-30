@@ -19,5 +19,19 @@
 		left join board b
 		  on fd.group_no = b.board_no
 	</select>
+	
+	<select id="mainSlide" resultType="map">
+	select f.file_no
+                                    ,b.board_title
+                                    ,b.board_img
+                                    ,f.member_id
+						 from file_upload f join board b
+                         on f.member_id = b.member_id
+                         <where>
+                         <if test="category_big != null and category_big !=''">
+                         b.category_big = #{category_big}
+                         </if>
+                         </where>
+	</select>
 
 </mapper>

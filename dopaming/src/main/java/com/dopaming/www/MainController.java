@@ -38,7 +38,8 @@ import com.dopaming.www.main.MainVO_hun;
 			String formattedDate = dateFormat.format(date);
 			
 			model.addAttribute("serverTime", formattedDate );
-			model.addAttribute("list",service.getMainList(vo)); 
+			model.addAttribute("list",service.getMainList(vo));
+			model.addAttribute("list",service.getMainSlide(vo));
 			
 			return "main/main";
 		}

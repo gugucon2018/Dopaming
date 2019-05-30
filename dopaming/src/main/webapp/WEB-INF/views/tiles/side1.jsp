@@ -108,10 +108,10 @@ div.footer {
 				</div>
 				<!-- 사이드바 메뉴목록1 -->
 				<ul class="list-group">
-					<li class="list-group-item"><a href="#">Q&A</a></li>
-					<li class="list-group-item"><a href="#">신고사항</a></li>
-					<li class="list-group-item"><a href="#">건의사항</a></li>
-					<li class="list-group-item"><a href="#">글쓰기</a></li>
+					<li class="list-group-item"><a href="complain_selectlist_nomal?complain_type=qna">Q&A</a></li>
+					<li class="list-group-item"><a href="complain_selectlist_nomal?complain_type=신고">신고사항</a></li>
+					<li class="list-group-item"><a href="complain_selectlist_nomal?complain_type=건의">건의사항</a></li>
+					<li class="list-group-item"><a href="complain_insert_form">글쓰기</a></li>
 				</ul>
 			</div>
 		</div>

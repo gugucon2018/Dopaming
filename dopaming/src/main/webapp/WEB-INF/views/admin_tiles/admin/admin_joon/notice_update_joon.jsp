@@ -6,8 +6,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-//수정 기능
+
+//내용 입력 확인 기능
 function notice_update(){
+	//변수선언
+	var chk = document.getElementById("notice_title").value; //단건 id찾기
+	var chk2 = document.getElementById("notice_content").value; //단건 id찾기
+	
+	if (chk == '') { // 제목에 값이 없을시
+		alert("제목을 입력하세요");
+		return false;
+	}
+	
+	else if(chk.length >= 20){
+		alert("20 자 이내로 적어주세요");
+		return false;
+	}
+	else if (chk2 == '') { // 내용 값이 없을시
+		alert("내용을 입력하세요");
+		return false;
+
+	}
+	else if(chk2.length >= 500){
+		alert("500 자 이내로 적어주세요");
+		return false;
+	}
+	
+
 	alert("수정이 되었습니다."); // 확인창
 	notice_update_frm.action = "notice_update";
 	notice_update_frm.submit(); // 보낸다.

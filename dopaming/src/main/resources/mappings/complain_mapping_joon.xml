@@ -11,13 +11,15 @@
     					 	complain_no,
     					 	complain_type,
 							complain_title,
-							complain_content
+							complain_content,
+							member_id
 									)
 				VALUES (<!-- vo에 값들을 땡겨와 넘긴다 -->
 					complain_seq.nextval
 					,#{complain_type} 
 					,#{complain_title}
 					,#{complain_content}
+					,#{member_id}
 					)
 </insert>
 

@@ -45,10 +45,10 @@ pageEncoding="UTF-8"%>
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="./resources/admin/admin_vendor/jquery/jquery.min.js"></script>
-  <script src="./resources/admin/admin_vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="./resources/admin/admin_vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="./resources/admin/admin_vendor/jquery/jquery.min.js"></script>  
+  <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/jquery/jquery.min.js"></script>  
 
   <!-- Custom scripts for all pages-->
-  <script src="./resources/admin/admin_js/sb-admin-2.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/admin/admin_js/sb-admin-2.min.js"></script>

@@ -6,16 +6,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +50,7 @@ public class FileController_Hwan {
 		return "hwan/upload_hwan";
 	}
 
-	//파일 업로드 처리
+	// 파일 업로드 처리
 	@RequestMapping(value = "/request_upload", method = RequestMethod.POST)
 	public String requestUpload_hwan(MultipartHttpServletRequest request, FileBoardVO_Hwan bvo)
 			throws IllegalStateException, IOException {
@@ -70,53 +74,56 @@ public class FileController_Hwan {
 		return "hwan/file_post_hwan";
 	}
 
-	//파일 다운로드
+	// 파일 다운로드
 	@RequestMapping(value = "/download_hwan", method = RequestMethod.GET)
 	public String download_hwan(FileDownloadVO_Hwan fdvo, Model model) {
 		model.addAttribute("downPost_List", service.select_downloadList(fdvo));
-		model.addAttribute("downPost", service.select_downloadOne(fdvo));				
+		model.addAttribute("downPost", service.select_downloadOne(fdvo));
 		return "hwan/download_hwan";
 	}
-	
-	//파일 다운로드 처리
+
+	// 파일 다운로드 처리
 	@RequestMapping(value = "/request_download")
-	public String requestDownload_hwan( 
-			FileDownloadVO_Hwan fbvo,FileDownloadVO_Hwan fdvo,
-			Model model,HttpServletRequest request, HttpServletResponse response) throws Exception {
-		model.addAttribute("downPost", service.select_downloadOne(fdvo));		
-		String filePath = request.getSession().getServletContext().getRealPath("/resources/upload");
-		String fileCom= System.currentTimeMillis()+"files.zip";
-		FileOutputStream zipFileOutputStream = new FileOutputStream(filePath+"/"+fileCom);
+	public String requestDownload_hwan(FileDownloadVO_Hwan fbvo, FileDownloadVO_Hwan fdvo, HttpSession session,
+			Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		model.addAttribute("downPost", service.select_downloadOne(fdvo));
+		String filePath = request.getSession().getServletContext().getRealPath("./resources/upload");
+		String fileCom = System.currentTimeMillis() + "files.zip";
+		FileOutputStream zipFileOutputStream = new FileOutputStream(filePath + "/" + fileCom);
 		ZipOutputStream zipOutputStream = new ZipOutputStream(zipFileOutputStream);
-					
-			List<FileDownloadVO_Hwan> result = service.select_downloadList(fbvo);
-			double storage=0.0;
-			FileDownloadVO_Hwan f;
-			for(int i=0; i<result.size();i++) {
-					f=result.get(i);
-					ZipEntry zipEntry= new ZipEntry(filePath+"/"+f.getFile_name());
-					zipOutputStream.putNextEntry(zipEntry);
-					System.out.println("각 파일 용량"+f.getFile_storage());
-					storage+=f.getFile_storage();			
-			}					
-			zipOutputStream.close();
-			zipFileOutputStream.close();
-		System.out.println("해당 게시글 총 용량 : "+storage);		
+		List<FileDownloadVO_Hwan> result = service.select_downloadList(fbvo);
+		double storage = 0.0;
+		FileDownloadVO_Hwan f;
+		for (int i = 0; i < result.size(); i++) {
+			f = result.get(i);
+			ZipEntry zipEntry = new ZipEntry(f.getFile_name());			
+			zipOutputStream.putNextEntry(zipEntry);
+			 FileInputStream fis = new FileInputStream(filePath + "/"+f.getFile_name());			 
+			 int data = 0;
+			   while((data=fis.read())!=-1) {
+			    zipOutputStream.write(data);
+			   }							
+			System.out.println("각 파일 용량" + f.getFile_storage());
+			storage += f.getFile_storage();
+		}
+		zipOutputStream.close();
+		zipFileOutputStream.close();
+		System.out.println("해당 게시글 총 용량 : " + storage);
 		model.addAttribute("fileStorage", storage);
-		File uFile = new File(filePath,result.get(0).getFile_name());
-		long fSize=uFile.length();		
-		if (fSize > 0) {
-			//String mimetype = "application/x-msdownload";
-			
-			//아래 두 문구는 같은 의미
-			//response.setContentType(mimetype);
+		// File uFile = new File(filePath,result.get(0).getFile_name());
+		// long fSize=uFile.length();
+		if (storage > 0) {
+			// String mimetype = "application/x-msdownload";
+
+			// 아래 두 문구는 같은 의미
+			// response.setContentType(mimetype);
 			setDisposition(fileCom, request, response);
 
 			BufferedInputStream in = null;
 			BufferedOutputStream out = null;
 
 			try {
-				in = new BufferedInputStream(new FileInputStream(filePath+"/"+fileCom));
+				in = new BufferedInputStream(new FileInputStream(filePath + "/" + fileCom));
 				out = new BufferedOutputStream(response.getOutputStream());
 
 				FileCopyUtils.copy(in, out);
@@ -132,25 +139,26 @@ public class FileController_Hwan {
 			response.setContentType("application/x-msdownload");
 
 			PrintWriter printwriter = response.getWriter();
-			
+
 			printwriter.println("<html>");
-			//printwriter.println("<br><br><br><h2>Could not get file name:<br>" + result.getFilename() + "</h2>");
+			// printwriter.println("<br><br><br><h2>Could not get file name:<br>" +
+			// result.getFilename() + "</h2>");
 			printwriter.println("<br><br><br><center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
 			printwriter.println("<br><br><br>&copy; webAccess");
 			printwriter.println("</html>");
-			
+
 			printwriter.flush();
 			printwriter.close();
-		}		
+		}
+
 		return "hwan/download_hwan";
 	}
-	
 
-	//게시글
+	// 게시글
 	@RequestMapping(value = "/filepost", method = RequestMethod.GET)
 	public String filepost_hwan(FilePostVO_Hwan fpvo, Model model, Paging paging) {
 		model.addAttribute("filePost", service.select_post_hwan(fpvo));
-		model.addAttribute("Board_FileList", service.select_post_fileList(fpvo));		
+		model.addAttribute("Board_FileList", service.select_post_fileList(fpvo));
 
 		// 페이징 처리
 		paging.setPageUnit(5); // 개당 출력건수
@@ -171,7 +179,7 @@ public class FileController_Hwan {
 		System.out.println(fpvo.getBoard_no() + " 게시판 번호");
 		return "hwan/file_post_hwan";
 	}
-	
+
 	/**
 	 * Disposition 지정하기.
 	 *
@@ -180,7 +188,8 @@ public class FileController_Hwan {
 	 * @param response
 	 * @throws Exception
 	 */
-	private void setDisposition(String filename, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	private void setDisposition(String filename, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		String browser = getBrowser(request);
 
 		String dispositionPrefix = "attachment; filename=";
@@ -215,6 +224,7 @@ public class FileController_Hwan {
 			response.setContentType("application/octet-stream;charset=UTF-8");
 		}
 	}
+
 	/**
 	 * 브라우저 구분 얻기.
 	 *

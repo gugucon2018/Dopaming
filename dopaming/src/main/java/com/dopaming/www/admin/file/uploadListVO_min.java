@@ -1,15 +1,42 @@
-package com.dopaming.www.admin.boardlist;
+package com.dopaming.www.admin.file;
 
-public class BoardListVO_min {
+public class uploadListVO_min {
 	private int board_no;
 	private String member_id;
+	private String category_big;
+	private String category_small;
 	private String board_title;
+	private String file_name;
 	private float file_storage;
 	private int first;
 	private int last;
 	private String searchKeyword;
 	private String searchCondition;
 	
+	public String getCategory_big() {
+		return category_big;
+	}
+	public void setCategory_big(String category_big) {
+		this.category_big = category_big;
+	}
+	public String getCategory_small() {
+		return category_small;
+	}
+	public void setCategory_small(String category_small) {
+		this.category_small = category_small;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public float getFile_storage() {
+		return file_storage;
+	}
+	public void setFile_storage(float file_storage) {
+		this.file_storage = file_storage;
+	}
 	public String getSearchCondition() {
 		return searchCondition;
 	}
@@ -51,13 +78,5 @@ public class BoardListVO_min {
 	}
 	public void setBoard_title(String board_title) {
 		this.board_title = board_title;
-	}
-	public float getFile_storage() {
-		return file_storage;
-	}
-	public void setFile_storage(float file_storage) {
-		this.file_storage = file_storage;
-	}
-	
-	
+	}	
 }

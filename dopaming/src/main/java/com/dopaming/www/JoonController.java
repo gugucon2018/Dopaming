@@ -109,7 +109,8 @@ public class JoonController {
 			// 돌려 받은 값들을 list에 받아둔다.
 			model.addAttribute("list", service.notice_selectlist(vo));
 			
-			return "jon/notice_selectlist_joon";
+			//돌려주는 타일즈
+			return "jon/notice_selectlist_joon_nomal";
 		}
 
 	// 공지사항 뷰

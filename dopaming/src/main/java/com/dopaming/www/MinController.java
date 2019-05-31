@@ -32,6 +32,8 @@ import com.dopaming.www.admin.login.Loginservice_min;
 import com.dopaming.www.admin.login.MembersVO_min;
 import com.dopaming.www.common.Paging;
 import com.dopaming.www.notice.NoticeVO;
+import com.dopaming.www.pay.PayVO_min;
+import com.dopaming.www.pay.Payservice_min;
 
 @Controller
 public class MinController {
@@ -46,14 +48,16 @@ public class MinController {
 	BlackListservice service3;
 	@Autowired
 	uploadListService_min service4;
+	@Autowired
+	Payservice_min service5;
 
-	// (관리자)로그인 폼
+	// 관리자 - 로그인 폼
 	@RequestMapping(value = { "/loginForm" }, method = RequestMethod.GET)
 	public String loginFrom() {
 		return "admin/admin_min/adminlogin_min.empty";
 	}
 
-	// (관리자)로그인 처리
+	// 관리자 - 로그인 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void login(@ModelAttribute("members") MembersVO_min vo, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
@@ -80,7 +84,7 @@ public class MinController {
 
 	
 
-	// (관리자)로그아웃 처리
+	// 관리자 - 로그아웃 처리
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); // 세션무효화
@@ -194,7 +198,7 @@ public class MinController {
 			return "admin/admin_min/adminnormallist_min";
 		}
 	
-	//관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 단건조회
+	// 관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 단건조회
 		@RequestMapping("/admin/blackInsert/{member_id}")
 		public String normalInsertForm(Model model,BlackListVO vo,@PathVariable String member_id) {
 			vo.setMember_id(member_id);
@@ -203,7 +207,7 @@ public class MinController {
 			return "admin/admin_min/adminnormalInsert";
 		}
 		
-	//관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 처리구간
+	// 관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 처리구간
 		@RequestMapping(value="/admin/blackInsert", method=RequestMethod.POST)
 		public String normalInsert(@ModelAttribute("blacklist")BlackListVO vo,
 								  SessionStatus st) {
@@ -213,7 +217,7 @@ public class MinController {
 			return "redirect:./blackListForm";
 		}
 		
-		// (관리자)회원관리 - 업로드한 리스트 뷰
+	// 관리자 - 회원관리 - 업로드한 리스트 뷰
 		@RequestMapping(value = { "/admin/uploadlistForm" }, method = RequestMethod.GET)
 		public String getuploadList(Model model, uploadListVO_min vo, Paging paging, HttpServletRequest request) {
 			
@@ -235,21 +239,25 @@ public class MinController {
 			return "admin/admin_min/adminuploadlist_min";
 		}	
 		
+	
+	// 이용자 - 아콘결제처리
+	@RequestMapping(value="/acornForm", method = RequestMethod.POST)
+	public String acornFrom(HttpSession session, PayVO_min vo) {
+		//login패키지에 있는 접속한 id세션 받아서 저장
+		String Id = (String)session.getAttribute("Id");
+		vo.setMember_id(Id);//id값이 있어야 결제에서 이용자확인가능 or insert의 1번째로 받는 member_id  
 		
+		//결제후 해당 아이디값이 있는지 확인
+		System.out.println("==============="+Id);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-	// (유저)아콘결제페이지
+		//매개변수4개받아서 insert에 2번째~5번째값에 적용
+		service5.insertPay(vo);
+		return "redirect:/";
+	}
+	// 이용자 - 결제페이지
 	@RequestMapping(value = { "/acornForm" }, method = RequestMethod.GET)
-	public String acornFrom() {
+	public String acorn() {
 		return "min/useracorn_min";
 	}
-
 
 }

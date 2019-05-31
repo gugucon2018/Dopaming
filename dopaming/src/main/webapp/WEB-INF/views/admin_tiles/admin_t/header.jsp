@@ -177,7 +177,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> 
-				${sessionScope.member_id }님 어서오세요.
+				관리자(${sessionScope.member_id })님 어서오세요.
 				</span>
 				<!-- 세션제거 --> 
 				<input type="button" class="btn btn-success" onclick="location='../logout'" value="로그아웃">	

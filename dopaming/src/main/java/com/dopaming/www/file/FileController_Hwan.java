@@ -153,6 +153,12 @@ public class FileController_Hwan {
 		return "hwan/download_hwan";
 	}
 
+	@RequestMapping(value="/comment_hwan")
+	public String comment_hwan() {
+		
+		
+		return "";
+	}
 	// 게시글
 	@RequestMapping(value = "/filepost", method = RequestMethod.GET)
 	public String filepost_hwan(FilePostVO_Hwan fpvo, Model model, Paging paging) {

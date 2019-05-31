@@ -67,9 +67,6 @@ textarea {
 
 
 </style>
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
 	<div class="cen_form">
@@ -123,7 +120,7 @@ textarea {
 				</tr>
 				<tr>
 					<td colspan="4">																			
-							<input type="file" mutiple name="fileName" 
+							<input type="file" name="fileName"
 								class="afile3" />							
 							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px" class="dropZone">								
 							
@@ -169,10 +166,10 @@ textarea {
             afterFileRemove: function(element, value, master_element) {
               $('#afile3-list').append('<li>afterFileRemove - ' + value + '</li>')
             },*/
-/*             onFileAppend: function(element, value, master_element) {
+             /*onFileAppend: function(element, value, master_element) {
             	console.log(element,value,master_element);
               $('#afile3-list').append('<li name="fileName" class="afile3">'+value+ '</li>')
-            } */
+            }*/ 
             /*afterFileAppend: function(element, value, master_element) {
               $('#afile3-list').append('<li>afterFileAppend - ' + value + '</li>')
             },*/
@@ -301,7 +298,7 @@ textarea {
                              fileSizeList[fileIndex] = fileSize;
 
                              // 업로드 파일 목록 생성
-                             addFileList(files[i]);
+                             addFileList(files);
 
                              // 파일 번호 증가
                              fileIndex++;
@@ -314,8 +311,8 @@ textarea {
 
              // 업로드 파일 목록 생성
              function addFileList(files){
-            	 var m = $('#MultiFile1').MultiFile('data');
-            	 m.addToList(m.slaves, m.files.size, files);
+            	 var m = $('#MultiFile1').MultiFile('data');            	 
+            	$('.dropZone').append(m.addToList(m.files.size, m.files.size, files));
              }
 
              // 업로드 파일 삭제

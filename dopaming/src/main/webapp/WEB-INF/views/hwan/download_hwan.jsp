@@ -74,14 +74,9 @@ th {
 		<form>
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
-					<th><label class="cel1">다운로드 위치 지정</label></th>
-					<th><input placeholder="다운로드 위치" /></th>
-					<th><button class="btn btn-danger btn-sm">다운로드 하기</button></th>
-				</tr>
-				<tr>
-					<td>다운로드 아콘</td>
-					<td>회원아이디</td>
-					<td>결제 날짜</td>
+					<th>다운로드 아콘</th>
+					<th>회원아이디</th>
+					<th>결제 날짜</th>
 				</tr>
 				<tr>
 					<td>${downPost.board_acorn}</td>

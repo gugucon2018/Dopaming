@@ -56,6 +56,33 @@ th {
 	float:right;
 }
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".ComBtn").click(function(){		
+//		$.ajax({
+//			url:"/comment_hwan",
+//			data:$(".ComContent").val(),
+//			dataType:"json",			
+//			success: function(data){
+/* 				var show="";
+				$.each(data, function(index, item){
+					show+="<tr><td>"+(index+1)+"</td>";
+					show+="<td>"+item.name+"</td>";
+					show+="<td>"+item.age+"</td>";
+					show+="<td>"+item.loc+"</td></tr>";
+				});
+				$(".lastTr").append(show); */
+//				console.log('ㅎㅎㅎㅎ');				
+//			}
+//		});		
+		var show="";		
+		show+="<tr colspan='6'>";
+		show+="<td>"++"</td>";
+		show+="</tr>";
+		$(".lastTr").after(show); 
+	});	
+});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -129,16 +156,15 @@ th {
            </div>
            	</td>
 		</tr>
-		<tr>
+		<tr class="lastTr">
 			<td colspan="6" class="no_border">
 			      <div>
-      					<input  width="100%" placeholder="댓글쓰기">
-      					<button class="btn btn-success">댓글 쓰기</button>
+      					<input  width="100%" class="ComContent" placeholder="댓글쓰기">
+      					<button type="button" class="btn btn-success ComBtn">댓글 쓰기</button>
 				 </div>
 			</td>
 		</tr>
 	</table>
 </div>
-
 </body>
 </html>

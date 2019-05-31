@@ -73,7 +73,7 @@ public class MinController {
 			session.setAttribute("member_password", member.getMember_password());
 			session.setAttribute("member", member);
 			out.println("<script>");
-			out.println("location='classForm';"); // 이전페이지로
+			out.println("location='admin/classForm';"); // 이전페이지로
 			out.println("</script>");
 		}
 	}
@@ -88,7 +88,7 @@ public class MinController {
 	}
 
 	// 관리자 - 회원관리 - 등급관리 - 등급List
-	@RequestMapping(value = { "/classForm" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/classForm" }, method = RequestMethod.GET)
 	public String getClass(Model model, GradeVO_min vo, Paging paging) {
 		paging.setPageUnit(10);
 		// 페이지번호 파라미터
@@ -110,7 +110,7 @@ public class MinController {
 	}
 
 	// 관리자 - 회원관리 - 등급관리 - 등급수정
-	@RequestMapping("/grade_update")
+	@RequestMapping("/admin/grade_update")
 	public String grade_update(GradeVO_min vo, HttpServletRequest request) {
 		String[] td_checkbox = request.getParameterValues("td_checkbox");
 		String member_grade = request.getParameter("member_grade2");
@@ -126,11 +126,11 @@ public class MinController {
 			}
 		}
 				
-		return "redirect:classForm";
+		return "redirect:./classForm";
 	}
 
 	// 관리자 - 회원관리 - 블랙회원list + 검색 + 페이징
-	@RequestMapping(value = { "/blackListForm" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/blackListForm" }, method = RequestMethod.GET)
 	public String getBlackList(Model model, BlackListVO vo, Paging paging) {
 
 		paging.setPageUnit(5);
@@ -154,7 +154,7 @@ public class MinController {
 	}
 
 	// 관리자 - 회원관리 - 블랙회원에서 삭제
-	@RequestMapping("/blackList_delete")
+	@RequestMapping("/admin/blackList_delete")
 	public String blackListDelete(BlackListVO vo, HttpServletRequest request) throws ServletException, IOException {
 		// jsp에서 배열값 받는 함수
 		String[] td_checkbox = request.getParameterValues("td_checkbox");
@@ -167,11 +167,11 @@ public class MinController {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:blackListForm";
+		return "redirect:/admin/blackListForm";
 	}
 	
 	// 관리자 - 회원관리 - 일반회원list + 검색 + 페이징
-		@RequestMapping(value = { "/NormalListForm" }, method = RequestMethod.GET)
+		@RequestMapping(value = { "/admin/NormalListForm" }, method = RequestMethod.GET)
 		public String getNormalList(Model model, BlackListVO vo, Paging paging) {
 
 			paging.setPageUnit(5);
@@ -195,7 +195,7 @@ public class MinController {
 		}
 	
 	//관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 단건조회
-		@RequestMapping("/blackInsert/{member_id}")
+		@RequestMapping("/admin/blackInsert/{member_id}")
 		public String normalInsertForm(Model model,BlackListVO vo,@PathVariable String member_id) {
 			vo.setMember_id(member_id);
 			//단건조회
@@ -204,17 +204,17 @@ public class MinController {
 		}
 		
 	//관리자 - 회원관리 - 일반회원에서 블랙리스트로 바꾸기위한 처리구간
-		@RequestMapping(value="/blackInsert", method=RequestMethod.POST)
+		@RequestMapping(value="/admin/blackInsert", method=RequestMethod.POST)
 		public String normalInsert(@ModelAttribute("blacklist")BlackListVO vo,
 								  SessionStatus st) {
 			System.out.println("=================" + vo);
 			service3.normalInsert(vo);
 			st.setComplete(); //세션값 전부 clear
-			return "redirect:blackListForm";
+			return "redirect:./blackListForm";
 		}
 		
 		// (관리자)회원관리 - 업로드한 리스트 뷰
-		@RequestMapping(value = { "/uploadlistForm" }, method = RequestMethod.GET)
+		@RequestMapping(value = { "/admin/uploadlistForm" }, method = RequestMethod.GET)
 		public String getuploadList(Model model, uploadListVO_min vo, Paging paging, HttpServletRequest request) {
 			
 			paging.setPageUnit(10);

@@ -41,11 +41,10 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">회원관리</h6>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/classForm">등급관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/NormalListForm">일반회원관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/blackListForm">블랙회원관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/uploadlistForm">업로드한 리스트 뷰 </a>            
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/classForm">등급관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/NormalListForm">일반회원관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/blackListForm">블랙회원관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/uploadlistForm">업로드한 리스트 뷰 </a>            
           </div>
         </div>
       </li>
@@ -181,7 +180,7 @@
 				${sessionScope.member_id }님 어서오세요.
 				</span>
 				<!-- 세션제거 --> 
-				<input type="button" class="btn btn-success" onclick="location='logout'" value="로그아웃">	
+				<input type="button" class="btn btn-success" onclick="location='../logout'" value="로그아웃">	
               </a>
             </li>
 

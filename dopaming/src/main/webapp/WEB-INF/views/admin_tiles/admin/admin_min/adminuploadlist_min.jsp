@@ -50,7 +50,7 @@ td, th {
    padding: 8px;
    text-align: center;
 }
-span {
+#spann {
 float: right;
 }
 </style>
@@ -66,7 +66,7 @@ function go_page(p) {
 	<div>
 		<h1 style="text-align: center;">업로드한 리스트 뷰</h1>
 		<hr>
-		<span>
+		<span id="spann">
 		<div>
 			<form name="searchFrm" method="get">
 				<input type="hidden" name="page" value="1"> 

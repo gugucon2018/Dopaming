@@ -53,7 +53,7 @@ td, th {
 tr:nth-child(even) {
 	background-color: #dddddd;
 }
-span {
+#spann {
 float: right;
 }
 </style>
@@ -68,7 +68,7 @@ float: right;
 	<div>
 		<h1 style="text-align: center;">일반회원관리</h1>
 		<hr>
-		<span>
+		<span id="spann">
 		<div>
 			<form name="searchFrm" method="get">
 				아이디:<input type="hidden" name="page" value="1"> 

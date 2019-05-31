@@ -38,7 +38,6 @@
                             <button class="btn btn-default">LOGIN 
                             <i class="fa fa-arrow-circle-right fa-2x"></i></button>
                         </div>
-                        <span class="form-footer">already have an account? <a href="#">log in</a></span>
                     </form>
                 </div>
             </div>

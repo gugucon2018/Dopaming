@@ -53,7 +53,7 @@ td, th {
 tr:nth-child(even) {
 	background-color: #dddddd;
 }
-span {
+#spann {
 float: right;
 }
 </style>
@@ -94,7 +94,7 @@ float: right;
 	<hr>
 	
 	<form name="searchFrm" method="get">
-		<span>
+		<span id="spann">
 			<input type="hidden" name="page" value="1"> 
 			<select	name="member_grade">
 				<option value="">전체

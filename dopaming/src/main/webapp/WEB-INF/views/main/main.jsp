@@ -130,12 +130,10 @@
 		<h3>Dopaming 이번주 위</h3>
 		<p>Dopmaing의 최신소식을 즐겨보세요!</p>
 		<ul class="list-group">
-			<c:forEach items="${list}" var="main" end="10" step="1"
+			<c:forEach items="${list}" var="main" end="9" step="1"
 				varStatus="status">
 				<li class="list-group-item list-group-item-action genre_rank"
-					align="center"><a
-					href="filepost?board_no=${main.board_no}&member_id=${main.member_id}">${main.rn}위
-						${main.board_title}</a></li>
+					align="center"><a href="filepost?board_no=${main.board_no}&member_id=${main.member_id}">${main.rn}위 ${main.board_title}</a></li>
 			</c:forEach>
 		</ul>
 	</div>

@@ -90,7 +90,7 @@ public class MinController {
 	// 관리자 - 회원관리 - 등급관리 - 등급List
 	@RequestMapping(value = { "/classForm" }, method = RequestMethod.GET)
 	public String getClass(Model model, GradeVO_min vo, Paging paging) {
-		paging.setPageUnit(5);
+		paging.setPageUnit(10);
 		// 페이지번호 파라미터
 		if (paging.getPage() == 0) {
 			paging.setPage(1);

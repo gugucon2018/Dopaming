@@ -59,18 +59,19 @@ function go_page(p) {
 	searchFrm.page.value = p;
 	searchFrm.submit();
 }
+
 </script>
 </head>
 <body>
 	<div>
-		<h4>업로드한 리스트 뷰</h4>
+		<h1 style="text-align: center;">업로드한 리스트 뷰</h1>
 		<hr>
 		<span>
 		<div>
 			<form name="searchFrm" method="get">
 				<input type="hidden" name="page" value="1"> 
 				아이디:<input name="searchKeyword" value="${boardListVO_min.searchKeyword}" />
-				<button type="submit">검색</button>
+				<button class="btn btn-info" type="submit">검색</button>
 			<script>
 				searchFrm.searchKeyword.value="${uploadListVO_min.searchKeyword}";
 			</script>
@@ -104,7 +105,8 @@ function go_page(p) {
 		</form>
 		</div>
 		<div align="center">
-		<my:paging paging="${paging}" /></div>
+		<my:paging paging="${paging}" />
+		</div>
 		<br> <br> <br>
 	</div>
 </body>

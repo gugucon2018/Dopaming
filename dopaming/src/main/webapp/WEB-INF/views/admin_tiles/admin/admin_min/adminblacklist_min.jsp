@@ -71,7 +71,7 @@ function td_delete(){
 		}
 	}
 	if (cnt == 0) { // 체크수가 0이면
-		alert("블랙리스트에서 삭제할 데이터에 대해서 체크박스를 선택하세요");
+		alert("블랙리스트에서 삭제할 아이디를 체크해주세요.");
 		return false;
 
 	}
@@ -89,14 +89,14 @@ function td_delete(){
 </head>
 <body>
 	<div>
-		<h4>블랙회원관리</h4>
+		<h1 style="text-align: center;">블랙회원관리</h1>
 		<hr>
 		<span>
 		<div>
 			<form name="searchFrm" method="get">
 				아이디:<input type="hidden" name="page" value="1"> 
 				<input name="searchKeyword" value="${boardVO.searchKeyword}" />
-				<button type="submit">검색</button>
+				<button class="btn btn-info" type="submit">검색</button>
 			</form>
 		</div>
 		</span>
@@ -123,11 +123,13 @@ function td_delete(){
 						</tr>
 					</c:forEach>
 			</table>
-			<button style="float:right;" type="button" onclick="td_delete()">블랙회원에서 삭제</button>		
-		</form>
+			
 		</div>
+		<div align="center">
 		<my:paging paging="${paging}" />
-		<br> <br> <br>
+		</div>
+		<button style="float:right;" type="button" class="btn btn-primary" onclick="td_delete()">블랙회원에서 삭제</button>		
+		</form>
 	</div>
 </body>
 </html>

@@ -13,10 +13,13 @@
 	이름<input type="text" name="member_id" value="${normal.member_id}" readonly/><Br>
 	<!-- readonly(VO에 값은 들어가지만 수정은 불가능(disable, VO에 값이 안들어가서 아예 못함 -->
 	내용<br>
-	<textarea name="list_content" cols="105%" rows="10">${normla.list_content}</textarea><br>
+	<div align="center">
+	<textarea name="list_content" cols="90%" rows="10">${normla.list_content}</textarea>
+	<Br>
 	<span style="float:right">
 	<button class="btn btn-primary">등록</button> 
-	</span>               
+	</span>     
+	</div>        
 </form>
 </div>
 </body>

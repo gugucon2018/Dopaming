@@ -22,5 +22,8 @@ public interface ComplainService {
 	
 	// 고객센터 단건 출력
 	ComplainVO complain_select(ComplainVO vo);
+	
+	// 답변 등록
+	void answer_insert(AnswerVO avo, ComplainVO vo);
 
 }

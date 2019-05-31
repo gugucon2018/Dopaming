@@ -36,6 +36,7 @@ a {
 }
 td {
 	border-bottom: 1px solid;
+	height: 50px;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -51,6 +52,10 @@ function changeMenu(){
 	category_form.category_small.value = document.getElementsByName("category_small")[0].value
 	category_form.submit();
 }
+//검색_풀다운
+function changeMenu2(){
+	category_form.category_small.value = document.getElementsByName("searchType")[0].value
+}
 </script>
 </head>
 <body>
@@ -58,29 +63,38 @@ function changeMenu(){
 <h3 align=center><u>게시판 목록</u></h3><br>
 
 <!-- 페이징 값 보내는 폼(category_form) -->
+<span style= "align-self:center; width: 90%;">
 <form name="category_form">
 <input type="hidden" name="page" value="1"></input>
-<select style="float: left;" name="category_small" onchange="changeMenu()">
+<select style="float: left; height: 29px" name="category_small" onchange="changeMenu()">
 		<option value="">전체</option>
 		<option value="최신">최신</option>
 		<option value="국내">국내</option>
 		<option value="외국">외국</option>	
 </select>
+
 <!-- 검색창 -->
 <span>
-	<button style="float: right;" type="submit">제목 검색</button>
+	<button style="float: right;" type="submit"> 검색</button>
 	<input name="searchKeyword" style="float: right;" type="text">
+	<select style="float: right; height: 29px" name="searchType" onchange="changeMenu2()">
+		<option value="board_title">게시물 제목</option>
+		<option value="member_id" >아이디</option>
+	</select>
 </span>
+
 <!-- 지정된 풀다운 메뉴를 고정시키기 -->
 <script>
 category_form.category_small.value='${boardListVO.category_small}';//BoardListVO에 정보를 가져온다.
 category_form.searchKeyword.value='${boardListVO.searchKeyword}';//BoardListVO에 정보를 가져온다.
+category_form.searchType.value='${boardListVO.searchType}';//????
 </script>
 </form>
+</span>
 <br> 
 
 <!-- 테이블(컬럼명) -->
-<table class="joon_table" border="1" width="100%">
+<table width="90%" align="center">
 	<tr align= "center" >
 		<td bgcolor="">번호</td>
 		<td bgcolor="" width="200px">제목</td>

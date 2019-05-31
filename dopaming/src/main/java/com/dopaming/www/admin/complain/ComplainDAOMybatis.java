@@ -49,4 +49,11 @@ public class ComplainDAOMybatis {
 			//DTO(VO)에 순서대로 인서트 시킨다.
 	}
 
+	//고객센터 답변하기
+	public void answer_insert(AnswerVO avo) { //조건 값이 들어오면
+		System.out.println("고객센터 답변등록");
+		//매퍼실행
+		mybatis.insert("ComplainDAO.answer_insert", avo);
+	}
+	
 }

@@ -36,6 +36,7 @@ a {
 }
 td {
 	border-bottom: 1px solid;
+	height: 50px;
 }
 </style>
 <!-- 전체선택을 하기 위해서는 자바스크립트는 포문을 써야하지만 jquery를 쓰면 배열을 자동으로 받아온다 -->
@@ -83,7 +84,7 @@ function complain_check_update(complain_no){
 
 	<u><h3 align=center>${list[0].getComplain_type()}목록</h3></u><br>
 
-	<table width="100%">
+	<table width="90%" align="center">
 		<tr align="center">
 			<td bgcolor="" width="100px">번호</td>
 			<td bgcolor="">제목</td>
@@ -106,7 +107,7 @@ function complain_check_update(complain_no){
 						<option value="Y">YES</option>	
 					</select>
 					<script> //답변상태값을 DB의 값과 맞추어 준다. 
-					document.getElementsByName("complain_check")[${s.count}].value='${ i.getComplain_check()}'
+					document.getElementsByName("complain_check")[${s.count}].value='${ i.getComplain_check()}';
 					</script>
 				</td>
 			</tr>

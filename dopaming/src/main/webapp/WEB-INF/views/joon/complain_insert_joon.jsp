@@ -58,7 +58,7 @@ function complain_insert_btn(){
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
 	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>
 	
-	<input style="float:right;" type="button" class="" value="보내기" onclick="complain_insert_btn"/>
+	<button style="float:right;" type="button" class="" onclick="complain_insert_btn()">보내기</button>
 
 </form>
 </body>

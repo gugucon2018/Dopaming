@@ -73,6 +73,7 @@
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
+							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
 							<li><a class="navbar-brand" href="#">회원정보 수정</a></li>
 							<li><button onclick="location='logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
 						</c:otherwise>

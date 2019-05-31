@@ -17,22 +17,28 @@
 					<li data-target="#genreCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#genreCarousel" data-slide-to="1" class="active"></li>
 					<li data-target="#genreCarousel" data-slide-to="2" class="active"></li>
+					<li data-target="#genreCarousel" data-slide-to="3" class="active"></li>
+					<li data-target="#genreCarousel" data-slide-to="4" class="active"></li>
+					<li data-target="#genreCarousel" data-slide-to="5" class="active"></li>
+					<li data-target="#genreCarousel" data-slide-to="6" class="active"></li>
 				</ol>
-				
+
 				<div class="carousel-inner" role="listbox">
-				<c:forEach items="${slide1}" var="s" varStatus="status">
-					<div   class="item <c:if test="${status.index eq 0}">active</c:if>">
-						<img src="${s.BOARD_IMG}" alt="로고1">
-						<div class="carousel-caption"></div>
-					</div>
-				</c:forEach>
+					<c:forEach items="${slide1}" var="s" varStatus="status">
+						<div class="item <c:if test="${status.index eq 0}">active</c:if>">
+							<a
+								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img
+								src="${s.BOARD_IMG}" alt="로고1"></a>
+							<div class="carousel-caption"></div>
+						</div>
+					</c:forEach>
 				</div>
-					
-<!-- 					<div class="item">
+
+				<!-- 					<div class="item">
 						<img src="./resources/images/logo2.jpg" alt="로고2">
 						<div class="carousel-caption"></div>
 					</div> -->
-				
+
 				<a class="left carousel-control" href="#genreCarousel" role="button"
 					data-slide="prev"> <span
 					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -49,20 +55,25 @@
 			<div id="genreCarousel2" class="carousel slide" data-ride="carousel"
 				data-interval="3000">
 				<ol class="carousel-indicators">
+					<li data-target="#genreCarousel2" data-slide-to="0" class="active"></li>
+					<li data-target="#genreCarousel2" data-slide-to="1" class="active"></li>
+					<li data-target="#genreCarousel2" data-slide-to="2" class="active"></li>
 					<li data-target="#genreCarousel2" data-slide-to="3" class="active"></li>
 					<li data-target="#genreCarousel2" data-slide-to="4" class="active"></li>
 					<li data-target="#genreCarousel2" data-slide-to="5" class="active"></li>
+					<li data-target="#genreCarousel2" data-slide-to="6" class="active"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-						<img src="./resources/images/logo1.png" alt="로고1">
-						<div class="carousel-caption"></div>
-					</div>
-					<div class="item">
-						<img src="./resources/images/logo2.jpg" alt="로고2">
-						<div class="carousel-caption"></div>
-					</div>
+					<c:forEach items="${slide2}" var="s" varStatus="status">
+						<div class="item <c:if test="${status.index eq 0}">active</c:if>">
+							<a
+								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img
+								src="${s.BOARD_IMG}" alt="로고1"></a>
+							<div class="carousel-caption"></div>
+						</div>
+					</c:forEach>
 				</div>
+
 				<a class="left carousel-control" href="#genreCarousel2"
 					role="button" data-slide="prev"> <span
 					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -79,19 +90,23 @@
 			<div id="genreCarousel3" class="carousel slide" data-ride="carousel"
 				data-interval="3000">
 				<ol class="carousel-indicators">
+					<li data-target="#genreCarousel3" data-slide-to="0" class="active"></li>
+					<li data-target="#genreCarousel3" data-slide-to="1" class="active"></li>
+					<li data-target="#genreCarousel3" data-slide-to="2" class="active"></li>
+					<li data-target="#genreCarousel3" data-slide-to="3" class="active"></li>
+					<li data-target="#genreCarousel3" data-slide-to="4" class="active"></li>
+					<li data-target="#genreCarousel3" data-slide-to="5" class="active"></li>
 					<li data-target="#genreCarousel3" data-slide-to="6" class="active"></li>
-					<li data-target="#genreCarousel3" data-slide-to="7" class="active"></li>
-					<li data-target="#genreCarousel3" data-slide-to="8" class="active"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-						<img src="./resources/images/logo1.png" alt="로고1">
-						<div class="carousel-caption"></div>
-					</div>
-					<div class="item">
-						<img src="./resources/images/logo2.jpg" alt="로고2">
-						<div class="carousel-caption"></div>
-					</div>
+					<c:forEach items="${slide3}" var="s" varStatus="status">
+						<div class="item <c:if test="${status.index eq 0}">active</c:if>">
+							<a
+								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img
+								src="${s.BOARD_IMG}" alt="로고1"></a>
+							<div class="carousel-caption"></div>
+						</div>
+					</c:forEach>
 				</div>
 				<a class="left carousel-control" href="#genreCarousel3"
 					role="button" data-slide="prev"> <span

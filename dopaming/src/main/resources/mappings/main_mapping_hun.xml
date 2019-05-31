@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="mainSlide" resultType="map">
-	select board_img, board_no
+	select board_img, board_no,member_id
            				 from board                        
                          <where>
                          <if test="categoryBig != null and categoryBig !=''">
@@ -29,7 +29,7 @@
                          </if>
                          </where>
                          <![CDATA[
-                         and rownum <=3
+                         and rownum <=7
                           ]]>
          
 	</select>

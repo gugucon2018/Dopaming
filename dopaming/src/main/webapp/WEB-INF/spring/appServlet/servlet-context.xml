@@ -65,7 +65,7 @@
 	<!-- Interceptor 설정 -->
  	<interceptors>
     <interceptor>
-        <mvc:mapping path="/admin/classForm"/>         
+        <mvc:mapping path="/admin/*"/>         
         <beans:ref bean="authLoginInterceptor"/>
     </interceptor>
 </interceptors>

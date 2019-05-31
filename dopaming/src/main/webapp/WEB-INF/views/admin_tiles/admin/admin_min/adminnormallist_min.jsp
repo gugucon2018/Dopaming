@@ -53,7 +53,7 @@ td, th {
 tr:nth-child(even) {
 	background-color: #dddddd;
 }
-span {
+#spann {
 float: right;
 }
 </style>
@@ -66,14 +66,14 @@ float: right;
 </head>
 <body>
 	<div>
-		<h4>일반회원관리</h4>
+		<h1 style="text-align: center;">일반회원관리</h1>
 		<hr>
-		<span>
+		<span id="spann">
 		<div>
 			<form name="searchFrm" method="get">
 				아이디:<input type="hidden" name="page" value="1"> 
 				<input name="searchKeyword" value="${boardVO.searchKeyword}" />
-				<button type="submit">검색</button>
+				<button class="btn btn-info" type="submit">검색</button>
 			</form>
 		</div>
 		</span>
@@ -99,7 +99,9 @@ float: right;
 			</table>
 		</form>
 		</div>
+		<div align="center">
 		<my:paging paging="${paging}" />
+		</div>
 		<br> <br> <br>
 	</div>
 </body>

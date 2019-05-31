@@ -1,31 +1,35 @@
 package com.dopaming.www;
 
-	import java.text.DateFormat;
-	import java.util.Date;
-	import java.util.Locale;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
-	import org.slf4j.Logger;
-	import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-	import org.springframework.ui.Model;
-	import org.springframework.web.bind.annotation.RequestMapping;
-	import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dopaming.www.common.ImgExtract;
 import com.dopaming.www.main.MainService_hun;
 import com.dopaming.www.main.MainVO_hun;
 
+/**
+ * Handles requests for the application home page.
+ */
+@Controller
+public class MainController {
+
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
+	@Autowired
+	MainService_hun service;
+
 	/**
-	 * Handles requests for the application home page.
-	 */
-	@Controller
-	public class MainController {
-		
-		private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-		
-		@Autowired
-		MainService_hun service;
-		/**
 		 * Simply selects the home view to render by returning its name.
 		 */
 		@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -37,13 +41,37 @@ import com.dopaming.www.main.MainVO_hun;
 			
 			String formattedDate = dateFormat.format(date);
 			
+			vo.setCategoryBig("영화");
+			List<Map<String, Object>> slide1 = service.getMainSlide(vo);
+			for(int i =0 ; i<slide1.size(); i++) {
+				String text = (String)slide1.get(i).get("BOARD_IMG");
+				String result = ImgExtract.getfirstimage(text);
+				slide1.get(i).put("BOARD_IMG",result);
+			}
+			
+			vo.setCategoryBig("드라마");
+			List<Map<String, Object>> slide2 = service.getMainSlide(vo);
+			for(int i =0 ; i<slide2.size(); i++) {
+				String text = (String)slide2.get(i).get("BOARD_IMG");
+				String result = ImgExtract.getfirstimage(text);
+				slide2.get(i).put("BOARD_IMG",result);
+			}
+			
+			vo.setCategoryBig("음악");
+			List<Map<String, Object>> slide3 = service.getMainSlide(vo);
+			for(int i =0 ; i<slide3.size(); i++) {
+				String text = (String)slide3.get(i).get("BOARD_IMG");
+				String result = ImgExtract.getfirstimage(text);
+				slide3.get(i).put("BOARD_IMG",result);
+			}
+			
 			model.addAttribute("serverTime", formattedDate );
 			model.addAttribute("list",service.getMainList(vo));
-			model.addAttribute("list",service.getMainSlide(vo));
+			model.addAttribute("slide1",slide1);
+			model.addAttribute("slide2",slide2);
+			model.addAttribute("slide3",slide3);
 			
 			return "main/main";
 		}
-		
-			
-		
+
 }

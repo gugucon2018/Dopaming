@@ -21,17 +21,17 @@
 	</select>
 	
 	<select id="mainSlide" resultType="map">
-	select f.file_no
-                                    ,b.board_title
-                                    ,b.board_img
-                                    ,f.member_id
-						 from file_upload f join board b
-                         on f.member_id = b.member_id
+	select board_img, board_no,member_id
+           				 from board                        
                          <where>
-                         <if test="category_big != null and category_big !=''">
-                         b.category_big = #{category_big}
+                         <if test="categoryBig != null and categoryBig !=''">
+                         category_big = #{categoryBig}
                          </if>
                          </where>
+                         <![CDATA[
+                         and rownum <=7
+                          ]]>
+         
 	</select>
 
 </mapper>

@@ -15,11 +15,11 @@
 	join grade g 
 	on m.member_grade = g.member_grade
 	where m.member_id != 'admin'
-	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+	<!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
           <if test="member_grade != null and member_grade !=''"> 
-           g.member_grade=#{member_grade}
+           and g.member_grade=#{member_grade}
           </if>
-    </where>
+    
 	group by m.member_id, g.grade_kor, m.upload_count,m.member_grade
 	order by member_grade desc) b) a 
 	where rn between #{first} and #{last}
@@ -32,12 +32,13 @@
 	on a.member_id = m.member_id 
 	join grade g 
 	on m.member_grade = g.member_grade
-	<where> <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
-          <if test="member_grade != null and member_grade !=''"> 
-           g.member_grade=#{member_grade}
-          </if>
-    </where>
 	where m.member_id != 'admin'
+	 <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
+          <if test="member_grade != null and member_grade !=''"> 
+          and g.member_grade=#{member_grade}
+          </if>
+    
+	
 	</select>
 	
 	<!-- 관리자 - 회원관리 - 등급관리 - 등급수정 -->

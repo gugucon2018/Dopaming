@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
@@ -56,10 +57,18 @@
 	
 	<beans:bean id="localeResolver" 
 		    class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
-	<interceptors>
-		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-			<beans:property name="paramName" value="lang"/>
-		</beans:bean>
-	</interceptors>   
+ 
+	<!-- 인터셉터 객체 생성 -->
+	<beans:bean id="authLoginInterceptor" class="com.dopaming.www.AuthLoginInterceptor">
+	</beans:bean>
 	
+	<!-- Interceptor 설정 -->
+ 	<interceptors>
+    <interceptor>
+        <mvc:mapping path="/admin/*"/>         
+        <beans:ref bean="authLoginInterceptor"/>
+    </interceptor>
+</interceptors>
+
+		
 </beans:beans>

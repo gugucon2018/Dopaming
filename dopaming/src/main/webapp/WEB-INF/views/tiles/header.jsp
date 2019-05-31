@@ -73,6 +73,7 @@
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
+							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
 							<li><a class="navbar-brand" href="#">회원정보 수정</a></li>
 							<li><button onclick="location='logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
 						</c:otherwise>
@@ -105,11 +106,7 @@
 							<li class="divider"></li>
 							<li><a href="mdview?category_small=국내&category_big=영화">국내영화</a></li>
 							<li><a href="mdview?category_small=외국&category_big=영화">외국영화</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">최신영화</a></li>
-							<li class="divider"></li>
-							<li><a href="#">국내영화</a></li>
-							<li><a href="#">외국영화</a></li>
+							<li><a href="mdview?category_small=최신&category_big=영화">최신영화</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
@@ -121,11 +118,7 @@
 							<li class="divider"></li>
 							<li><a href="mdview?category_small=국내&category_big=드라마">국내드라마</a></li>
 							<li><a href="mdview?category_small=외국&category_big=드라마">외국드라마</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">최신드라마</a></li>
-							<li class="divider"></li>
-							<li><a href="#">국내드라마</a></li>
-							<li><a href="#">외국드라마</a></li>							
+							<li><a href="mdview?category_small=최신&category_big=드라마">최신드라마</a></li>						
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
@@ -136,11 +129,7 @@
 							<li class="divider"></li>
 							<li><a href="mdview?category_small=국내&category_big=동영상">국내동영상</a></li>
 							<li><a href="mdview?category_small=외국&category_big=동영상">외국동영상</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">최신동영상</a></li>
-							<li class="divider"></li>
-							<li><a href="#">국내동영상</a></li>
-							<li><a href="#">외국동영상</a></li>
+							<li><a href="mdview?category_small=최신&category_big=동영상">최신드라마</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
@@ -151,11 +140,7 @@
 							<li class="divider"></li>
 							<li><a href="mdview?category_small=국내&category_big=음악">국내음악</a></li>
 							<li><a href="mdview?category_small=외국&category_big=음악">외국음악</a></li>
-							<li class="divider"></li>
-							<li><a class="disabled">최신음악</a></li>
-							<li class="divider"></li>
-							<li><a href="#">국내음악</a></li>
-							<li><a href="#">외국음악</a></li>
+							<li><a href="mdview?category_small=최신&category_big=음악">최신음악</a></li>
 							
 						</ul></li>
 				</ul>

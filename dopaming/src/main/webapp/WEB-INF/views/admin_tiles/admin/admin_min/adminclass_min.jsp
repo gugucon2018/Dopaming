@@ -53,7 +53,7 @@ td, th {
 tr:nth-child(even) {
 	background-color: #dddddd;
 }
-span {
+#spann {
 float: right;
 }
 </style>
@@ -90,11 +90,11 @@ float: right;
 </head>
 <body>
 	<!-- select + 검색 -->
-	<h4>등급관리</h4>
+	<h1 style="text-align: center;">등급관리</h1>
 	<hr>
 	
 	<form name="searchFrm" method="get">
-		<span>
+		<span id="spann">
 			<input type="hidden" name="page" value="1"> 
 			<select	name="member_grade">
 				<option value="">전체
@@ -106,7 +106,7 @@ float: right;
 			<script>
 			searchFrm.member_grade.value='${gradeVO_min.member_grade}';
 			</script>
-			<button>검색</button>
+			<button class="btn btn-info">검색</button>
 		</span>
 	</form>
 	
@@ -132,7 +132,9 @@ float: right;
 					</tr>
 				</c:forEach>
 		</table>
+		<div align="center">
 		<my:paging paging="${paging}" />
+		</div>
 		<div align="right">
 			<select name="member_grade2">
 				<option value="">선택
@@ -141,7 +143,7 @@ float: right;
 				<option value="g2">실버도토리
 				<option value="g1">브론즈도토리
 			</select>
-			<button class="btn btn-primary"onclick="grade_update()">등급수정</button>
+			<button class="btn btn-primary" onclick="grade_update()">등급수정</button>
 		</div>
 	</form>
 </body>

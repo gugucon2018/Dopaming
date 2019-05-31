@@ -8,7 +8,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -19,8 +19,8 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
+      <li class="nav-item" style="text-align: center;" >
+        <a class="nav-link" href="./classForm">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dopaming</span></a>
       </li>
@@ -41,11 +41,10 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">회원관리</h6>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/classForm">등급관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/NormalListForm">일반회원관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/blackListForm">블랙회원관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/uploadlistForm">업로드한 리스트 뷰 </a>            
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/classForm">등급관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/NormalListForm">일반회원관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/blackListForm">블랙회원관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/uploadlistForm">업로드한 리스트 뷰 </a>            
           </div>
         </div>
       </li>
@@ -149,17 +148,7 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i> 검색
-                </button>
-              </div>
-            </div>
-          </form>
+ 
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -188,10 +177,10 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> 
-				${sessionScope.member_id }님 어서오세요.
+				관리자(${sessionScope.member_id })님 어서오세요.
 				</span>
 				<!-- 세션제거 --> 
-				<input type="button" onclick="location='logout'" value="로그아웃">
+				<input type="button" class="btn btn-success" onclick="location='../logout'" value="로그아웃">	
               </a>
             </li>
 

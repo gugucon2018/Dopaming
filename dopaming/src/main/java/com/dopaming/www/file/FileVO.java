@@ -20,6 +20,9 @@ public class FileVO {
 	private int first;
 	private int last;
 	
+	//검색위한 String
+	String searchKeyword;
+	
 	
 	public int getUpload_storage() {
 		return upload_storage;
@@ -111,13 +114,24 @@ public class FileVO {
 	public void setBoard_name(String board_name) {
 		this.board_name = board_name;
 	}
+	
+	
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	@Override
 	public String toString() {
 		return "FileVO [board_title=" + board_title + ", file_name=" + file_name + ", board_name=" + board_name
 				+ ", board_no=" + board_no + ", file_no=" + file_no + ", file_storage=" + file_storage
 				+ ", upload_date=" + upload_date + ", member_id=" + member_id + ", category_small=" + category_small
-				+ ", category_big=" + category_big + ", rn=" + rn + ", first=" + first + ", last=" + last + "]";
+				+ ", category_big=" + category_big + ", upload_storage=" + upload_storage + ", rn=" + rn + ", first="
+				+ first + ", last=" + last + ", searchKeyword=" + searchKeyword + "]";
 	}
+	
+	
 	
 	
 

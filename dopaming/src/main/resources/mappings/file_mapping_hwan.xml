@@ -145,5 +145,20 @@
 		</where>
 		group by b.member_id,b.board_acorn, f.file_no, f.group_no
 	</select>
-
+	<!-- 댓글 추가 -->
+	<insert id="CommentInsert">
+	insert into comments(
+		comment_no,
+		comment_content,
+		member_id,
+		reg_date,
+		board_no
+	)values(
+		#{comment_no},
+		#{comment_content},
+		'lion',
+		SYSDATE,
+		#{board_no}
+	)	
+	</insert>
 </mapper>

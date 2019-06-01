@@ -64,8 +64,8 @@ $(document).ready(function(){
 	$(".ComBtn").click(function(){		
 		$.ajax({
 			url:"comment_hwan",
-			data:{"comment" : $(".ComContent").val()},
-			dataType:"post",
+			data:{"board": $(".fileBoard_no").val() ,"comment" : $(".ComContent").val()},
+			dataType:"json",
 			beforeSend:function(){
 				console.log("읽어오기 시작 전...");
 			},
@@ -113,12 +113,12 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container">	
 	<table class="cen_table  table table-striped table-bordered">
 		<tr>
 			<th width="10%">게시글 번호</th><th class="c1">분류</th><th>제목</th><th>캐시</th><th>용량(MB)</th><th>판매자</th>	
 		</tr>
-		<tr>
+		<tr>			
 			<td>${filePost.board_no}</td>
 			<td class="c1">${filePost.category_big}/${filePost.category_small}</td>
 			<td>${filePost.board_title}</td>
@@ -187,6 +187,7 @@ $(document).ready(function(){
 		<tr class="lastTr">
 			<td colspan="6" class="no_border">
 			      <div>
+			      		<input type="hidden" class="fileBoard_no" name="board_no" value="${filePost.board_no}"/>
       					<input  width="100%" class="ComContent" name="comment_content" placeholder="댓글쓰기">
       					<button type="button" class="btn btn-success ComBtn">댓글 쓰기</button>
 				 </div>

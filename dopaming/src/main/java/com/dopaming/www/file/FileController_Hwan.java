@@ -156,7 +156,7 @@ public class FileController_Hwan {
 
 	@RequestMapping(value="/comment_hwan")
 	@ResponseBody
-	public String comment_hwan(
+	public FileCommentsVO_Hwan comment_hwan(
 			HttpServletRequest request, HttpServletResponse response,
 			FileCommentsVO_Hwan fcvo,@RequestParam("comment") String m) {
 		response.setCharacterEncoding("utf-8");//JSON 한글 깨짐 해결
@@ -164,7 +164,7 @@ public class FileController_Hwan {
 		fcvo.setComment_content(request.getParameter("comment"));		
 		System.out.println(fcvo.getComment_content());		
 		System.out.println(m+" 마지막출력");
-		return m;
+		return fcvo;
 	}
 	// 게시글
 	@RequestMapping(value = "/filepost", method = RequestMethod.GET)

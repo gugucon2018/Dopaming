@@ -14,8 +14,11 @@
           			<if test="category_small != null and category_small !=''"> 
            				category_small=#{category_small}
           			</if>
-          			<if test="searchKeyword != null and searchKeyword !=''">
-					and	board_title LIKE '%' || #{searchKeyword} || '%'
+          			<if test="searchType =='member_id' and searchKeyword !=''">
+						and member_id LIKE '%' || #{searchKeyword} || '%'
+					</if>
+					<if test="searchType =='board_title' and searchKeyword !=''" >
+						and	board_title	LIKE '%' || #{searchKeyword} || '%'
 					</if>
     			</where>
 				order by board_no desc
@@ -30,8 +33,11 @@
         	<if test="category_small != null and category_small !=''"> 
         				category_small=#{category_small}
           	</if>
-          	<if test="searchKeyword != null and searchKeyword !=''">
-						and	board_title LIKE '%' || #{searchKeyword} || '%'
+          	<if test="searchType =='member_id' and searchKeyword !=''">
+				and member_id LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchType =='board_title' and searchKeyword !=''" >
+				and	board_title	LIKE '%' || #{searchKeyword} || '%'
 			</if>
     	</where>
 </select>

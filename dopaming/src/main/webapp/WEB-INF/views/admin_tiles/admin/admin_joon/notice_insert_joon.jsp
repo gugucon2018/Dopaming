@@ -47,7 +47,7 @@ function notice_insert_btn(){
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
 	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
 	
-	공지내용 : <textarea id="notice_content" name="notice_content" 
+	공지내용 :<textarea id="notice_content" name="notice_content" 
 	style="width:100%; height:500; background-color:ivory; border:1 solid blue; 
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
 	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>

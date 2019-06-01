@@ -38,6 +38,11 @@ where complain_no= #{complain_no}
  				select * 
 				from complain
 				where complain_type = #{complain_type}
+		
+          	<if test="member_id != null and member_id !=''">
+				and member_id = #{member_id}
+			</if>
+				
 				order by complain_date desc
 				
   ) b) a where rn between #{first} and #{last}
@@ -55,5 +60,27 @@ where complain_no= #{complain_no}
 		update complain 
 		set complain_check = #{complain_check}
 		where complain_no = #{complain_no}
-</update>   
+		<if test="member_id != null and member_id !=''">
+				and member_id = #{member_id}
+		</if>
+</update>
+
+<!--답변 등록-->
+<insert id="answer_insert">
+    INSERT INTO message(
+    					 	message_no,
+    					 	sender_id,
+							message_title,
+							message_content,
+							receiver_id
+									)
+				VALUES (<!-- vo에 값들을 땡겨와 넘긴다 -->
+					complain_seq.nextval <!--message테이블 시퀀스 사용 -->
+					,'admin' 
+					,#{message_title}
+					,#{message_content}
+					,#{receiver_id}
+					)
+</insert>
+
 </mapper>

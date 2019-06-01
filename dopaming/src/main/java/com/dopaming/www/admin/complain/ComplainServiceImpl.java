@@ -49,4 +49,13 @@ public class ComplainServiceImpl implements ComplainService {
 		//dao를 실행하고 받은 결과값을 ComplainVO에 담는다.
 		return dao.complain_select(vo);
 	}
+	
+	//고객센터 답변 등록//고객센터 답변 상태 수정
+	@Override
+	public void answer_insert(AnswerVO avo,ComplainVO vo) {
+		dao.answer_insert(avo); 
+		vo.setComplain_check("Y");
+		dao.complain_check_update(vo);
+	}
+
 }

@@ -35,7 +35,7 @@ function notice_delete(){
 <input type="hidden" name="notice_title" value="${notice.getNotice_title()}">
 <input type="hidden" name="notice_content" value="${notice.getNotice_content()}">
 
-<table width="100%" height = "40px" border="1">
+<table width="95%" align="center" height = "40px" border="1">
         <tr>        
             <td bgcolor="" width="80p"  align="center">제목</td>
             <td align="center" >${notice.getNotice_title()}</td>
@@ -46,9 +46,9 @@ function notice_delete(){
         </tr>
         </table>
         
-        <table width="100%" height = "500px" border="1">
+        <table width="95%" align="center" height = "500px" border="1">
 	<tr><td valign="top">
-	${notice.getNotice_content()}
+	<pre>${notice.getNotice_content()}</pre>
 	</td></tr>
 	</table><br>
 	<input style="float:right;" type="submit" value="수정"/>

@@ -65,6 +65,7 @@ function complain_check_update(complain_no){
 </script>
 </head>
 <body>
+${sessionScope.Id}
 
 <!-- 답변 수정값(complain_check) 보내는 폼(category_form) -->
 <form name="check_form">
@@ -83,7 +84,7 @@ function complain_check_update(complain_no){
 
 	<u><h3 align=center>${list[0].getComplain_type()}목록</h3></u><br>
 
-	<table width="100%">
+	<table width="90%">
 		<tr align="center">
 			<td bgcolor="" width="100px">번호</td>
 			<td bgcolor="">제목</td>

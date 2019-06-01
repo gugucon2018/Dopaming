@@ -37,6 +37,7 @@ a {
 }
 td {
 	border-bottom: 1px solid;
+	height: 50px;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -88,7 +89,7 @@ function goList(p){
 </form>
 <!-- 로우넘리스트 폼 -->		
 <form name="form">	
-	<table class="joon_table" border="1" width="100%">
+	<table class="joon_table" width="80%" align="center">
 		<tr align= "center" >
 			<td bgcolor="" width="200px">
 				<label for="td_checkAll">번호</label>

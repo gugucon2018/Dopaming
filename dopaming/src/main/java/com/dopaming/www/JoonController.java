@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Locale;
 
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dopaming.www.admin.boardlist.BoardListService;
 import com.dopaming.www.admin.boardlist.BoardListVO;
+import com.dopaming.www.admin.complain.AnswerVO;
 import com.dopaming.www.admin.complain.ComplainService;
 import com.dopaming.www.admin.complain.ComplainVO;
 import com.dopaming.www.admin.login.MembersVO_min;
@@ -94,7 +96,7 @@ public class JoonController {
 		public String notice_selectlist_nomal(Model model, Paging paging, NoticeVO vo) {
 
 			// 페이징 처리
-			paging.setPageUnit(5); // 개당 출력건수
+			paging.setPageUnit(10); // 개당 출력건수
 			// 시작페이지 설정
 			if (paging.getPage() == 0) {
 				paging.setPage(1);
@@ -113,6 +115,17 @@ public class JoonController {
 			return "jon/notice_selectlist_joon_nomal";
 		}
 
+	// 공지 목록 (최신)
+	@RequestMapping("/notice_selectlist_new")
+	public String notice_selectlist_nomal(Model model, NoticeVO vo) {
+
+		// 돌려 받은 값들을 list에 받아둔다.
+		model.addAttribute("list", service.notice_selectlist(vo));
+					
+		//돌려주는 타일즈
+		return "jon/notice_selectlist_new";
+	}		
+		
 	// 공지사항 뷰
 	@RequestMapping(value = "/notice_select") // 뷰에서 notice_select의 값이 보내어지면
 	public String notice_select(NoticeVO vo, Model model, HttpServletRequest request, HttpSession session,
@@ -270,7 +283,11 @@ public class JoonController {
 	
 	//고객센터 리스트(일반)
 		@RequestMapping(value = "/complain_selectlist_nomal")
-		public String complain_selectlist_namal(ComplainVO vo, Model model, Paging paging, HttpServletRequest request) { 
+		public String complain_selectlist_namal(HttpSession session, MemberVO mvo, ComplainVO vo, Model model, Paging paging, HttpServletRequest request) { 
+			
+			//세션에서 받은 아이디 값을 vo에 담는다.
+			mvo = (MemberVO) session.getAttribute("memberSession");
+			vo.setMember_id(mvo.getMember_id());
 			
 			// 페이징 처리
 			paging.setPageUnit(10); // 개당 출력건수
@@ -326,4 +343,29 @@ public class JoonController {
 			// 돌아가는 페이지
 			return "jon/complain_select_joon";
 		}
+
+	//고객센터 답변 등록 폼(게시판의 넘버가 넘어오면 vo에 자동으로 담긴다.)
+	@RequestMapping(value = "/complain_answer_form")
+	public String complain_answer_form(ComplainVO vo, Model model) { 
+		
+		// 돌려 받은 값들을 ComplainVO에 받아둔다.
+		model.addAttribute("ComplainVO", ComplainService.complain_select(vo));
+		
+		return "admin/admin_joon/complain_answer_form_joon"; 
+	}
+	
+	//고객센터 답변 등록
+	@RequestMapping(value = "/answer_insert")
+	public String answer_insert(AnswerVO avo, ComplainVO vo) throws UnsupportedEncodingException {
+			
+	//값들을 지정vo에 넣어준다
+	avo.setReceiver_id(vo.getMember_id());
+			
+	//서비스를 실행시킨다(답변값avo 을 넘기고, 수정을 바로 시켜주기 위해서 수정값이 담긴 vo도 넘겨준다)
+	ComplainService.answer_insert(avo,vo);
+			
+	//redirect의 경우에는 값이 지워지기 때문에 다시 complain_type값을 보내고 돌아갈뷰 지정, 한글값이 깨져서 직접 인코딩해서 보낸다. 
+	return "redirect:complain_selectlist?complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
+	}
+
 }

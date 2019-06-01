@@ -29,7 +29,7 @@
 	</td></tr>
 	</table><br>
 	
-	<a href="../board/commentPost.jsp?complain_no=${ComplainVO.getComplain_no()}">
+	<a href="/dopaming/complain_answer_form?complain_no=${ComplainVO.getComplain_no()}">
 	<button style="float:right;" type="button" class="">답변하기</button>
 	</a>
 </body>

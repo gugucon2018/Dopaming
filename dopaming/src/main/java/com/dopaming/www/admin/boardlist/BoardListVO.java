@@ -3,22 +3,30 @@ package com.dopaming.www.admin.boardlist;
 public class BoardListVO {
 	//컬럼명들
 	int board_no;
-	String member_id;
-	String board_title;
-	String category_big;
-	String category_small;
+	private String member_id;
+	private String board_title;
+	private String category_big;
+	private String category_small;
 	int board_acorn;
 	
 	//로우넘버
 	int rn;
 	
 	//검색하기위한 
-	String searchKeyword;
-		
+	private String searchKeyword;
+	private String searchType;
+	
 	//페이징하기위한 첫,마지막번호
 	private int first;
 	private int last;
-	
+		
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
 	public String getSearchKeyword() {
 		return searchKeyword;
 	}

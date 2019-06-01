@@ -58,7 +58,7 @@
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li><a class="navbar-brand" href="#">아콘충전</a></li>
+					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/acornForm">아콘충전</a></li>
 					<li><a class="navbar-brand" href="#">쪽지</a></li>
 					<li><a class="navbar-brand" href="complain_selectlist_nomal?complain_type=qna">고객센터</a></li>
 					<li><a class="navbar-brand" href="loginForm">(임시)관리자로그인페이지</a></li>

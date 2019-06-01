@@ -14,6 +14,7 @@
 		<typeAlias type="com.dopaming.www.notice.NoticeVO" alias="notice_vo"/>
 		<typeAlias type="com.dopaming.www.admin.boardlist.BoardListVO" alias="boardList_vo"/>
 		<typeAlias type="com.dopaming.www.admin.complain.ComplainVO" alias="complain_vo"/>
+		<typeAlias type="com.dopaming.www.admin.complain.AnswerVO" alias="answer_vo"/>
 		<!-- 태헌_Alias -->
 		<typeAlias type="com.dopaming.www.file.FileVO" alias="file"/>
 		<typeAlias type="com.dopaming.www.main.MainVO_hun" alias="main_vo"/>
@@ -28,6 +29,7 @@
 		<typeAlias type="com.dopaming.www.admin.grade.GradeVO_min" alias="grade"/>
 		<typeAlias type="com.dopaming.www.admin.blacklist.BlackListVO" alias="blacklist"/>
 		<typeAlias type="com.dopaming.www.admin.file.uploadListVO_min" alias="uploadlist"/>
+		<typeAlias type="com.dopaming.www.pay.PayVO_min" alias="pay"/>
 		
 		<!-- hong -->
 		<typeAlias type="com.dopaming.www.login.MemberVO" alias="member"/>

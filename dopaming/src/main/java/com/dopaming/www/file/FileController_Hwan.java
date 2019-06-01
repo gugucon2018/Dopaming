@@ -26,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -154,10 +155,16 @@ public class FileController_Hwan {
 	}
 
 	@RequestMapping(value="/comment_hwan")
-	public String comment_hwan() {
-		
-		
-		return "";
+	@ResponseBody
+	public String comment_hwan(
+			HttpServletRequest request, HttpServletResponse response,
+			FileCommentsVO_Hwan fcvo,@RequestParam("comment") String m) {
+		response.setCharacterEncoding("utf-8");//JSON 한글 깨짐 해결
+		System.out.println("ajax 응답 받음");
+		fcvo.setComment_content(request.getParameter("comment"));		
+		System.out.println(fcvo.getComment_content());		
+		System.out.println(m+" 마지막출력");
+		return m;
 	}
 	// 게시글
 	@RequestMapping(value = "/filepost", method = RequestMethod.GET)

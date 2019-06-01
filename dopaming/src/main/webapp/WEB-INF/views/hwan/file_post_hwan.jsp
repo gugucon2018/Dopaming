@@ -58,29 +58,57 @@ th {
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
+	var judge=0; //첫 댓글 시작
+	var front_count=0; //앞 댓글 카운트
+	var back_count=1; //뒤 댓글 카운트
 	$(".ComBtn").click(function(){		
-//		$.ajax({
-//			url:"/comment_hwan",
-//			data:$(".ComContent").val(),
-//			dataType:"json",			
-//			success: function(data){
-/* 				var show="";
-				$.each(data, function(index, item){
-					show+="<tr><td>"+(index+1)+"</td>";
-					show+="<td>"+item.name+"</td>";
-					show+="<td>"+item.age+"</td>";
-					show+="<td>"+item.loc+"</td></tr>";
-				});
-				$(".lastTr").append(show); */
-//				console.log('ㅎㅎㅎㅎ');				
-//			}
-//		});		
-		var show="";		
-		show+="<tr colspan='6'>";
-		show+="<td>"++"</td>";
+		$.ajax({
+			url:"comment_hwan",
+			data:{"comment" : $(".ComContent").val()},
+			dataType:"post",
+			beforeSend:function(){
+				console.log("읽어오기 시작 전...");
+			},
+			complete:function(){
+				console.log("읽어오기 완료 후...");
+			},
+		    error:function(request,status,error){
+		         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+		    },	 
+			success: function(data){
+				var show="";
+				if(judge ==0){
+				show+="<tr class='rlast"+front_count+"'>";
+				show+="<td colspan='6'>"+$(".ComContent").val()+"</td>";
+				show+="</tr>";
+				$(".lastTr").after(show);
+				judge++;		
+				} else {		  
+				  show+="<tr class='rlast"+back_count+"'>";
+				  show+="<td colspan='6'>"+$(".ComContent").val()+"</td>";
+				  show+="</tr>";
+				  $('.rlast'+front_count).after(show);
+				  back_count++;
+				  front_count++;
+				}
+			}
+		});		
+/* 		var show="";
+		if(judge ==0){
+		show+="<tr class='rlast"+front_count+"'>";
+		show+="<td colspan='6'>"+$(".ComContent").val()+"</td>";
 		show+="</tr>";
-		$(".lastTr").after(show); 
-	});	
+		$(".lastTr").after(show);
+		judge++;		
+		} else {		  
+		  show+="<tr class='rlast"+back_count+"'>";
+		  show+="<td colspan='6'>"+$(".ComContent").val()+"</td>";
+		  show+="</tr>";
+		  $('.rlast'+front_count).after(show);
+		  back_count++;
+		  front_count++;
+ */				
+		});	
 });
 </script>
 </head>
@@ -159,7 +187,7 @@ $(document).ready(function(){
 		<tr class="lastTr">
 			<td colspan="6" class="no_border">
 			      <div>
-      					<input  width="100%" class="ComContent" placeholder="댓글쓰기">
+      					<input  width="100%" class="ComContent" name="comment_content" placeholder="댓글쓰기">
       					<button type="button" class="btn btn-success ComBtn">댓글 쓰기</button>
 				 </div>
 			</td>

@@ -2,7 +2,7 @@ package com.dopaming.www.admin.login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import egovframework.let.utl.sim.service.EgovFileScrty;
+import com.dopaming.www.encryption.EgovFileScrty;
 
 @Service("userService")
 public class LoginServiceImpl_min implements Loginservice_min {

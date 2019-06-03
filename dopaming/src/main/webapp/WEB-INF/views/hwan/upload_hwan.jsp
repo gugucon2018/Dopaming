@@ -75,7 +75,9 @@ textarea {
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
 					<td>제목<br> <input name="boardTitle" size="20" placeholder="제목입력" /></td>
-					<td>회원아이디<br><label name="memberId">${sessionScope.Id}</label>
+					<td>회원아이디<br>
+					<input type="hidden" name="memberId" value="${sessionScope.Id}"/>					
+					<label>${sessionScope.Id}</label>
 					</td>					
 					<td>파일용량(BYTE 단위)<br>
     				<label id="stg" name="fileName"></label></td>

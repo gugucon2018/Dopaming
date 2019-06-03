@@ -98,9 +98,13 @@ th, td {
 	</table>
 	<br>
 	<br>
-	<button class="btn btn-primary btn-sm"
-		onclick="location.href='fileUploadForm_Hwan'" style="float: right">자료
-		올리기</button>
+	 <c:choose>    
+    	 <c:when test="${sessionScope.memberSession ne null || sessionScope.Id eq 'admin'}">	
+			<button class="btn btn-primary btn-sm"
+			onclick="location.href='fileUploadForm_Hwan'" style="float: right">자료
+			올리기</button>
+		</c:when>
+	</c:choose>
 	<!-- 페이징버튼 -->
 	<my:paging_joon paging="${paging}" jsfunc="goList" />
 </body>

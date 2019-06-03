@@ -89,6 +89,8 @@ function complain_check_update(complain_no){
 			<td bgcolor="" width="100px">번호</td>
 			<td bgcolor="">제목</td>
 			<td bgcolor="">작성자</td>
+			<c:if test="${list[0].getComplain_type() == '신고' }"> <!-- 게시판번호가 있다면 출력 -->
+			<td bgcolor="">신고된 게시판</td></c:if>
 			<td bgcolor="">날짜</td>
 			<td bgcolor="">답변유무</td>
 			<td bgcolor="">답변</td>
@@ -100,6 +102,10 @@ function complain_check_update(complain_no){
 				<td><a href="/dopaming/complain_select?complain_no=${ i.getComplain_no()}">
 					${i.getComplain_title()}</a></td>
 				<td>${i.getMember_id() }</td>
+				<c:if test="${i.getBoard_no() != 0}">
+					<td><a href="/dopaming/filepost?board_no=${i.getBoard_no()}  ">
+					${i.getBoard_no() }</a></td>
+				</c:if>
 				<td>${i.getComplain_date() }</td>
 				<td>${i.getComplain_check() }</td>
 				<td><select name="complain_check" onchange="complain_check_update('${ i.getComplain_no()}')">

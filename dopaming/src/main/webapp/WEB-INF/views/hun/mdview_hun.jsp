@@ -71,10 +71,12 @@ th, td {
 	</form>
 	<br>
 	<form action="mdview" name="form2">
-		<input type="hidden" name="page" value="1"></input> <input
+		<input type="hidden" name="page" value="1"></input>
+		<input
 			type="hidden" name="category_small" value="${fileVO.category_small}">
-		</input> <input type="hidden" name="category_big"
-			value="${fileVO.category_big}"> </input>
+		</input>
+		<input type="hidden" name="category_big"
+			value="${fileVO.category_big}"></input>
 	</form>
 
 	<table align="center">
@@ -90,21 +92,19 @@ th, td {
 				<td><a
 					href="filepost?board_no=${file.board_no}&member_id=${file.member_id}">
 						${file.board_title}</a></td>
-				<td>${file.upload_storage}MB</td>
+				<td>${file.file_storage}MB</td>
 				<td>${file.member_id}</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<br>
 	<br>
-	 <c:choose>    
-    	 <c:when test="${sessionScope.memberSession ne null || sessionScope.Id eq 'admin'}">	
-			<button class="btn btn-primary btn-sm"
-			onclick="location.href='fileUploadForm_Hwan'" style="float: right">자료
-			올리기</button>
-		</c:when>
-	</c:choose>
+	<button class="btn btn-primary btn-sm"
+		onclick="location.href='fileUploadForm_Hwan'" style="float: right">자료
+		올리기</button>
 	<!-- 페이징버튼 -->
+	<div align="center">
 	<my:paging_joon paging="${paging}" jsfunc="goList" />
+	</div>
 </body>
 </html>

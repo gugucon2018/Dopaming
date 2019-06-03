@@ -9,9 +9,4 @@
     select * from members where member_id=#{member_id} and member_password=#{member_password}
    </select>
    
-   
-   <!-- 유저 아콘충전 -->   <!-- 조인을 사용하는건 resultType(___VO)보단 map을 사용한다. -->
-   <!-- <select id="acornchange" resultType="acorn">
-    update acorn set acorn_change = acorn_change + #{acorn_change} where member_id=#{member_id}
-   </select> -->  
 </mapper>

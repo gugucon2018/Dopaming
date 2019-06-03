@@ -41,8 +41,8 @@ public class FileServiceImpl implements FileService {
 		return dao.getFileList(vo);
 	}
 	@Override 
-	public int fileList_cnt() {
-		return dao.fileList_cnt();
+	public int fileList_cnt(FileVO vo) {
+		return dao.fileList_cnt(vo);
 	}
 	/*
 	 * @Override public List<FileVO> getFileList_k() {

@@ -87,19 +87,14 @@ div.footer {
 	color: #E0E0E0;
 }
 
-/* div.col-md-3 {
-	float: left;
-	height: 100%;
-} */
 </style>
+
 </head>
 <body>
-
 
 	<div class="container-fluid">
 		<tiles:insertAttribute name="header" />
 	</div>
-
 		<div class="col-md-2">
 			<!-- 사이드 바 메뉴-->
 			<div class="panel panel-info ">
@@ -108,10 +103,11 @@ div.footer {
 				</div>
 				<!-- 사이드바 메뉴목록1 -->
 				<ul class="list-group">
-					<li class="list-group-item"><a href="complain_selectlist_nomal?complain_type=qna">Q&A</a></li>
-					<li class="list-group-item"><a href="complain_selectlist_nomal?complain_type=신고">신고사항</a></li>
-					<li class="list-group-item"><a href="complain_selectlist_nomal?complain_type=건의">건의사항</a></li>
-					<li class="list-group-item"><a href="complain_insert_form">글쓰기</a></li>
+					<li class="list-group-item"><a href="notice_selectlist_nomal">공지사항</a></li>
+					<li class="list-group-item complain"><a href="complain_selectlist_nomal?complain_type=qna">Q&A</a></li>
+					<li class="list-group-item complain"><a href="complain_selectlist_nomal?complain_type=신고">신고사항</a></li>
+					<li class="list-group-item complain"><a href="complain_selectlist_nomal?complain_type=건의">건의사항</a></li>
+					<li class="list-group-item complain"><a href="complain_insert_form">글쓰기</a></li>
 				</ul>
 			</div>
 		</div>

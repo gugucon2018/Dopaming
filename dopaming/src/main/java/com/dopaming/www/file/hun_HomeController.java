@@ -40,7 +40,7 @@ public class hun_HomeController {
 			paging.setPage(1);
 		}
 		// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
-		paging.setTotalRecord(service.fileList_cnt());
+		paging.setTotalRecord(service.fileList_cnt(vo));
 		// db에서 받은 정보로 페이지마다 시작/마지막 레코드 번호
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());

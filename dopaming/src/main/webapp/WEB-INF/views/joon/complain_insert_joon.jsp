@@ -39,6 +39,8 @@ function complain_insert_btn(){
 <body>
 
 <form name="complain_insert_frm">
+
+<input type="hidden" name="board_no" value="${complainVO.board_no}"/>
 	
 	<h3 align=left><u>고객센터</u></h3>
 	

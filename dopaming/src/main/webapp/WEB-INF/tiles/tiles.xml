@@ -21,23 +21,35 @@
 			value="/WEB-INF/views/admin_tiles/admin_t/footer.jsp" />		
 	</definition>
 	
-<!-- 메인 공지사항 리스트-->
-	<definition name="jon/notice_selectlist*" extends="mainTemplate">
+    <!-- 마이페이지 -->
+    <definition name="side" template="/WEB-INF/views/tiles/side_template.jsp">
+    	<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="left_side" value="/WEB-INF/views/tiles/left_side.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+    	<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
+    </definition>
+    
+    <definition name="mypage_hong/*" extends="side">
+        <put-attribute name="content" value="/WEB-INF/views/mypage_hong/{1}.jsp" />     
+    </definition>
+
+<!-- 메인 공지사항 리스트 joon -->
+	<definition name="jon/notice_selectlist*" template="/WEB-INF/views/tiles/side1.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/joon/notice_selectlist_joon_nomal.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
 	</definition>
 	
-<!-- 메인 공지사항 뷰 -->
-	<definition name="jon/notice*" extends="mainTemplate">
+<!-- 메인 공지사항 뷰 joon -->
+	<definition name="jon/notice_select_joon*" template="/WEB-INF/views/tiles/side1.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/joon/notice_select_joon_nomal.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
 	</definition>
 		
-<!-- 메인 고객센터 리스트-->
+<!-- 메인 고객센터 리스트 joon -->
 	<definition name="jon/complain_selectlist*" template="/WEB-INF/views/tiles/side1.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/joon/complain_selectlist_joon_nomal.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
@@ -45,7 +57,7 @@
 		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
 	</definition>
 
-<!-- 메인 고객센터 뷰 -->
+<!-- 메인 고객센터 뷰 joon -->
 	<definition name="jon/complain_select*" template="/WEB-INF/views/tiles/side1.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/joon/complain_select_joon_nomal.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
@@ -53,14 +65,21 @@
 		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
 	</definition>
 
-<!-- 메인 고객센터 글쓰기 -->
+<!-- 메인 고객센터 글쓰기 joon -->
 	<definition name="jon/complain_insert*" template="/WEB-INF/views/tiles/side1.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/joon/complain_insert_joon.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
 	</definition>	
-	
+
+<!-- 메인 공지사항 뷰(고객센터) joon -->
+	<definition name="jon/notice_select_new" template="/WEB-INF/views/tiles/side1.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/joon/notice_select_new_joon.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+		<put-attribute name="modal" value="/WEB-INF/views/hong/modal.jsp"/>
+	</definition>	
 	
 	<definition name="home" extends="mainTemplate">
 		<put-attribute name="content"

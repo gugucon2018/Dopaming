@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class MyBoardVO {
 	private Integer download_no;
+	private Integer board_no;
 	private String board_title;
 	private String member_id;
 	private String sal_id;
@@ -34,6 +35,14 @@ public class MyBoardVO {
 
 	public void setDownload_no(Integer download_no) {
 		this.download_no = download_no;
+	}
+
+	public Integer getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(Integer board_no) {
+		this.board_no = board_no;
 	}
 
 	public String getBoard_title() {

@@ -52,13 +52,14 @@
  				</tr>
  			</thead>
  			<tbody>
- 			<c:forEach items="${list}" var="list">
+ 			<c:forEach items="${list}" var="down">
  				<tr>
- 					<td>${list.download_no}</td>
- 					<td>${list.board_title}</td>
- 					<td>${list.category_big}</td>
- 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.download_date}"/></td>
- 					<td>${list.sal_id}</td>
+ 					<td>${down.download_no}</td>
+ 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${down.board_no}&member_id=${down.member_id}">
+ 					${down.board_title}</td>
+ 					<td>${down.category_big}</td>
+ 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${down.download_date}"/></td>
+ 					<td>${down.sal_id}</td>
  				</tr>
  			</c:forEach>
  			</tbody>

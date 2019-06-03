@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,24 +155,36 @@ public class FileController_Hwan {
 
 		return "hwan/download_hwan";
 	}
-
+	
+	//댓글 리스트 조회 
+	@RequestMapping(value="/comment_list_hwan")
+	@ResponseBody
+	public List<FileCommentsVO_Hwan> comment_selectList_hwan(
+			HttpServletRequest response,
+			FileCommentsVO_Hwan fcvo) throws UnsupportedEncodingException  {
+		response.setCharacterEncoding("utf-8");//JSON 한글 깨짐 해결	
+		return service.comment_selectList_hwan(fcvo);		
+	}
+	
+	//댓글 등록
 	@RequestMapping(value="/comment_hwan")
 	@ResponseBody
 	public FileCommentsVO_Hwan comment_hwan(
 			HttpServletRequest request, HttpServletResponse response,
-			FileCommentsVO_Hwan fcvo,@RequestParam("comment") String m
+			FileCommentsVO_Hwan fcvo
 			, MemberVO mvo, HttpSession session, Model model) {
 		response.setCharacterEncoding("utf-8");//JSON 한글 깨짐 해결
 		mvo = (MemberVO) session.getAttribute("memberSession");
 		System.out.println(mvo.getMember_id());
 		fcvo.setMember_id(mvo.getMember_id());
-		System.out.println("ajax 응답 받음");
-		fcvo.setComment_content(request.getParameter("comment"));		
+		System.out.println("ajax 응답 받음");				
 		System.out.println(fcvo.getComment_content());		
 		//System.out.println(m+" 마지막출력");
-		model.addAttribute("fcvo",fcvo);
-		return fcvo;
+		model.addAttribute("comments",fcvo);
+		service.comment_insert_hwan(fcvo);
+		return service.comment_selectOne_hwan(fcvo);
 	}
+
 	// 게시글
 	@RequestMapping(value = "/filepost", method = RequestMethod.GET)
 	public String filepost_hwan(FilePostVO_Hwan fpvo, Model model, Paging paging) {

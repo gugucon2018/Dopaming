@@ -18,7 +18,7 @@
 	align: center;
 }
 
-img {
+.slide {
 	width: 100%;
 	padding : 10px 15%;
 }
@@ -49,7 +49,7 @@ img {
 					<c:forEach items="${slide1}" var="s" varStatus="status">
 						<div class="item <c:if test="${status.index eq 0}">active</c:if>">
 							<a
-								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img
+								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img class="slide"
 								src="${s.BOARD_IMG}" alt="로고1"></a>
 							<div class="carousel-caption"></div>
 						</div>
@@ -89,7 +89,7 @@ img {
 					<c:forEach items="${slide2}" var="s" varStatus="status">
 						<div class="item <c:if test="${status.index eq 0}">active</c:if>">
 							<a
-								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img
+								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img class="slide"
 								src="${s.BOARD_IMG}" alt="로고1"></a>
 							<div class="carousel-caption"></div>
 						</div>
@@ -124,7 +124,7 @@ img {
 					<c:forEach items="${slide3}" var="s" varStatus="status">
 						<div class="item <c:if test="${status.index eq 0}">active</c:if>">
 							<a
-								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img
+								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img class="slide"
 								src="${s.BOARD_IMG}" alt="로고1"></a>
 							<div class="carousel-caption"></div>
 						</div>

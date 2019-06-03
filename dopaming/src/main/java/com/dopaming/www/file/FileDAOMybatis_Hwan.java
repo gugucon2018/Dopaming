@@ -42,4 +42,16 @@ public class FileDAOMybatis_Hwan {
 	public FileDownloadVO_Hwan select_downloadOne(FileDownloadVO_Hwan fdvo) {
 		return mybatis.selectOne("FileDAOHwan.DownloadPost", fdvo);
 	}	
+	//댓글 등록
+	public void comment_insert_hwan(FileCommentsVO_Hwan fcvo) {
+		mybatis.insert("FileDAOHwan.CommentInsert",fcvo);
+	}
+	//댓글 단건 조회
+	public FileCommentsVO_Hwan comment_selectOne_hwan(FileCommentsVO_Hwan fcvo) {
+		return mybatis.selectOne("FileDAOHwan.CommentSelectOne",fcvo);
+	}
+	//댓글 리스트 조회 
+	public List<FileCommentsVO_Hwan> comment_selectList_hwan(FileCommentsVO_Hwan fcvo){
+		return mybatis.selectList("FileDAOHwan.CommentSelectList", fcvo);
+	}
 }

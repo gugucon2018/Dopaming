@@ -36,4 +36,22 @@ public class MyBoardDAO {
 		System.out.println("===> Mybatis로 getDownCount() 기능 처리");
 		return mybatis.selectOne("MyBoardDAO.getDownCount", vo);
 	}
+	
+	//게시글 삭제
+	public void deleteBoard(FileUploadVO vo) {
+		System.out.println("===> Mybatis로 deleteBoard() 기능 처리");
+		mybatis.delete("MyBoardDAO.deleteBoard",vo);
+	}
+	
+	//업로드 파일 삭제
+	public void deleteUpload(FileUploadVO vo) {
+		System.out.println("===> Mybatis로 deleteUpload() 기능 처리");
+		mybatis.delete("MyBoardDAO.deleteUpload", vo);
+	}
+	
+	//댓글 삭제
+	public void deleteComments(FileUploadVO vo) {
+		System.out.println("===> Mybatis로 deleteComments() 기능 처리");
+		mybatis.delete("MyBoardDAO.deleteComments", vo);
+	}
 }

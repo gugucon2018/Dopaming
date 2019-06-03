@@ -33,6 +33,7 @@
 		
 		<!-- hong -->
 		<typeAlias type="com.dopaming.www.login.MemberVO" alias="member"/>
+		<typeAlias type="com.dopaming.www.member.MyBoardVO" alias="myboard"/>
 	</typeAliases>
 
 </configuration>

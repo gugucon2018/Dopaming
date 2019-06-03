@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<link rel="stylesheet" type="text/css" href="./resources/css/slider.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/slider.css">
 <!DOCTYPE html>
 <html>
 <head>

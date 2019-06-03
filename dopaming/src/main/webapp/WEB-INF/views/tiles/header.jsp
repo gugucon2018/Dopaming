@@ -55,17 +55,11 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>
-			</div> 
+			</div>
 			<div>
 				<ul class="nav navbar-nav">
-				<c:choose>
-				<c:when test="${sessionScope.memberSession eq null || sessionScope.Id eq 'admin'}">
-				</c:when>
-				<c:otherwise>
 					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/acornForm">아콘충전</a></li>
 					<li><a class="navbar-brand" href="#">쪽지</a></li>
-				</c:otherwise>
-				</c:choose>
 					<li><a class="navbar-brand" href="complain_selectlist_nomal?complain_type=qna">고객센터</a></li>
 					<li><a class="navbar-brand" href="loginForm">(임시)관리자로그인페이지</a></li>
 					<li><a class="navbar-brand" href="notice_selectlist_nomal">공지사항</a></li>
@@ -75,13 +69,13 @@
 						<%-- 로그인 안 한 상태 --%>
 						<c:when test="${sessionScope.memberSession eq null || sessionScope.Id eq 'admin'}">
 							<li><a class="navbar-brand" id="loginBtn" data-toggle="modal">로그인</a></li>
-							<li><a class="navbar-brand" id="joinBtn" onclick="location='register'">회원가입</a></li>
+							<li><a class="navbar-brand" id="joinBtn" onclick="location='${pageContext.request.contextPath }/register'">회원가입</a></li>
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
 							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
-							<li><a class="navbar-brand" href="#">회원정보 수정</a></li>
-							<li><button onclick="location='logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
+							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
+							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
 						</c:otherwise>
 					</c:choose>					
 				</ul>

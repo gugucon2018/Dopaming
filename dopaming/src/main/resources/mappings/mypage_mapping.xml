@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dumy_mapper.xml -->
+<mapper namespace="MyBoardDAO">
+	<select id="getDownList" resultType="myboard">
+		select a.*
+		from ( select b.*, rownum rn
+		from (select DISTINCT d.download_no
+		            , bo.board_title
+		            , bo.category_big
+		            , trunc(d.download_date) download_date
+		            , bo.member_id sal_id
+		from board bo 
+		inner join file_download d
+		on bo.board_no = d.group_no
+		where d.member_id = #{member_id}
+        order by d.download_no) b) a
+		where rn between #{first} and #{last}
+	</select>
+	<select id="getDownCount" resultType="int">
+		select count(*)
+		from board bo 
+		inner join file_download d
+		on bo.board_no = d.group_no
+		where d.member_id = #{member_id}
+        order by d.download_no							
+	</select>
+</mapper>

@@ -7,10 +7,32 @@
 <html>
 <head>
 <title>도파밍 프로젝트</title>
+<style>
+.rank_num {
+	font-size: 20pt;
+	align: left;
+}
+
+.rank {
+	font-size: 15pt;
+	align: center;
+}
+
+img {
+	width: 100%;
+	padding : 10px 15%;
+}
+.carousel-inner>.item>a>img{
+	height: 100%;
+	
+}
+.container_center{
+}
+</style>
 </head>
 <body>
-	<div class="container col-sm-8">
-		<div class="container col-sm-12">
+	<div class="container col-sm-8 container_center">
+		<div class="container col-sm-12 container_center1">
 			<div id="genreCarousel" class="carousel slide" data-ride="carousel"
 				data-interval="3000">
 				<ol class="carousel-indicators">
@@ -125,21 +147,26 @@
 	<div class="container col-sm-4">
 		<img src="./resources/images/logo1.png" class="img-responsive"
 			alt="로고1" />
-			
+
 		<form action="mdview" name="searchFrm" method="get">
-		<input type="hidden" name="page" value="1">
-		<input type="text" name="searchKeyword" width="200%" placeholder="입력하세요" />
-		<button class="btn btn-success btn-sm">검색</button>
+			<input type="hidden" name="page" value="1"> <input
+				type="text" name="searchKeyword" width="200%" placeholder="입력하세요" />
+			<button class="btn btn-success btn-sm">검색</button>
 		</form>
-		
+
 		<!-- side menu (link) -->
 		<h3>Dopaming 이번주 위</h3>
 		<p>Dopmaing의 최신소식을 즐겨보세요!</p>
 		<ul class="list-group">
 			<c:forEach items="${list}" var="main" end="9" step="1"
 				varStatus="status">
-				<li class="list-group-item list-group-item-action genre_rank"
-					align="center"><a href="filepost?board_no=${main.board_no}&member_id=${main.member_id}">${main.rn}위 ${main.board_title}</a></li>
+				<li class="list-group-item list-group-item-action genre_rank">
+					<a
+					href="filepost?board_no=${main.board_no}&member_id=${main.member_id}">
+						<font class="rank_num">${main.rn}위</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+						<font class="rank">${main.board_title}</font>
+				</a>
+				</li>
 			</c:forEach>
 		</ul>
 	</div>

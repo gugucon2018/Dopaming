@@ -26,6 +26,10 @@ tr:nth-child(even) {
 	background-color: #dddddd;
 	
 }
+.acorn {
+text-align: left;
+width:500px;
+}
 </style>
 <script> 
 //1.결제방식 radio선택후 버튼클릭하여 value값을 넘기면서 api화면 띄움
@@ -102,35 +106,35 @@ tr:nth-child(even) {
 			<table style="margin-left: auto; margin-right: auto;">
 				<tr >
 					<th >구매금액</th>
-					<th style="text-align: left;"width="350px;">세부충전금액</th>
+					<th style="width="350px;">세부충전금액</th>
 				</tr>
 				<tr>
 				    <td><input type="radio" name="pay" value="0">직접 입력</td>
-				    <td style="text-align: left;"><input type="text" name="inputpay" size='6'>아콘 충전</td>
+				    <td class="acorn"><input type="text" name="inputpay" size='6'>아콘 충전</td>
 				</tr>
 				<tr>
 					<td><input type="radio" name="pay" value="5000">5000 아콘</td>
-					<td style="text-align: left;">5000아콘 충천 + 500아콘 추가 충전</td>
+					<td class="acorn">5000아콘 충천 + 500아콘 추가 충전</td>
 				</tr>
 				<tr>
 					<td><input type="radio" name="pay" value="10000">10000 아콘</td>
-					<td style="text-align: left;">10000아콘 충전 + 1000아콘 추가 충전</td>
+					<td class="acorn">10000아콘 충전 + 1000아콘 추가 충전</td>
 				</tr>
 				<tr>
 					<td><input type="radio" name="pay" value="20000">20000 아콘</td>
-					<td style="text-align: left;">20000원 충천 + 2500아콘 추가 충전</td>
+					<td class="acorn">20000원 충천 + 2500아콘 추가 충전</td>
 				</tr>
 				<tr>
 					<td><input type="radio" name="pay" value="25000">25000 아콘</td>
-					<td style="text-align: left;">25000원 충천 + 3000아콘 추가 충전</td>
+					<td class="acorn">25000원 충천 + 3000아콘 추가 충전</td>
 				</tr>
 				<tr>
 					<td><input type="radio" name="pay" value="50000">50000 아콘</td>
-					<td style="text-align: left;">50000원 충천 + 6500아콘 추가 충전</td>
+					<td class="acorn">50000원 충천 + 6500아콘 추가 충전</td>
 				</tr>
 				<tr>
 					<td><input type="radio" name="pay" value="100000">100000 아콘</td>
-					<td style="text-align: left;">100000원 충천 + 15000아콘 추가 충전</td>
+					<td class="acorn">100000원 충천 + 15000아콘 추가 충전</td>
 				</tr>
 			</table>
 		</div>

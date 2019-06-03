@@ -1,54 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>  --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-table {
-	font-family: arial, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
-	padding: 8px;
-}
-
-tr:nth-child(even) {
-	background-color: #dddddd;
-}
-</style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<style>
+table {
+  width: auto;
+  height: 100px;
+  margin:auto;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+}
+tr:nth-child(even) {
+	background-color: #dddddd;
+	
+}
+</style>
 <script> 
 //1.결제방식 radio선택후 버튼클릭하여 value값을 넘기면서 api화면 띄움
 //2.IMP.request_pay에 적혀잇는 방식으로 api를 실행함
-//3.rsp.imp_uid(결제고유아이디),rsp.merchant_uid(상점거래아이디),
-//rsp.paid_amount(결제금액),rsp.apply_num(카드 승인번호) 를 function payresult의 매개변수로 받음
-//4.해당 4개의 name.value값을 받아 매개변수(param1,2,3,4)에 넘긴후 submit 실행
+//3.rsp.paid_amount(결제금액),rsp.apply_num(카드 승인번호) 를 function payresult의 매개변수로 받음
+//4.해당 2개의 name.value값을 받아 매개변수(param1,2)에 넘긴후 submit 실행
 //5.값이 넘어가면 컨트롤러에서 vo에 저장후 mapping에서 값을 DB에 insert
-//6.또한 값이 무사히 들어갔을시 결제에 성공했다고 alert뜸
+//6.또한 값이 무사히 들어갔을시 결제에 성공했다고 alert뜨고 메인화면으로 이동
 
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp69493421'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 	//결제api사용시 넘어가는 값 4개를 매개변수로 받아 저장후 컨트롤러로 넘김
-	function payresult(param1,param2,param3,param4){
-		$('input[name="pay_code"]').val(param1);
-		$('input[name="shop_code"]').val(param2);
-		$('input[name="acorn_charge"]').val(param3);
-		$('input[name="approval_code"]').val(param4);
+	function payresult(param1,param2){
+		$('input[name="acorn_charge"]').val(param1);
+		$('input[name="approval_code"]').val(param2);
 		
 		
-		console.log(param1," ",param2," ",param3," ",param4);
+		console.log(param1," ",param2);
 		console.log($('input[name="pay_code"]').val());
 		$("#payresult").submit();
 	}
@@ -82,70 +78,65 @@ tr:nth-child(even) {
 		}, function(rsp) {
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
-				payresult(rsp.imp_uid,rsp.merchant_uid,rsp.paid_amount,rsp.apply_num);
-				/* msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
+				payresult(rsp.paid_amount,rsp.apply_num);
+				/*msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num; */
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 			}
-			alert(msg);
+			alert(radioVal + "원 " + msg);
 		})
 	};
 </script>
 </head>
 <body>
 <form id="payresult" action="./acornForm" method="post">
-<input type="hidden" name="pay_code" value=""/>
-<input type="hidden" name="shop_code" value=""/>
 <input type="hidden" name="acorn_charge" value=""/>
 <input type="hidden" name="approval_code" value=""/>
 </form>
 	<div>
-		<h4>결제페이지</h4>
+		<h1 style="text-align: center;">결제페이지</h1>
 		<hr>
 		<div>
-	
-			<table style="width: 70%; ">
-				<tr>
-					<th>선택</th>
-					<th>결제금액</th>
+			<table style="margin-left: auto; margin-right: auto;">
+				<tr >
+					<th >구매금액</th>
+					<th style="text-align: left;"width="350px;">세부충전금액</th>
 				</tr>
 				<tr>
-				    <td><input type="radio" name="pay" value="0"></td>
-				    <td><input type="text" name="inputpay"></td>
+				    <td><input type="radio" name="pay" value="0">직접 입력</td>
+				    <td style="text-align: left;"><input type="text" name="inputpay" size='6'>아콘 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="5000"></td>
-					<td>5000원 충천</td>
+					<td><input type="radio" name="pay" value="5000">5000 아콘</td>
+					<td style="text-align: left;">5000아콘 충천 + 500아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="10000"></td>
-					<td>10000원 충천</td>
+					<td><input type="radio" name="pay" value="10000">10000 아콘</td>
+					<td style="text-align: left;">10000아콘 충전 + 1000아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="20000"></td>
-					<td>20000원 충천</td>
+					<td><input type="radio" name="pay" value="20000">20000 아콘</td>
+					<td style="text-align: left;">20000원 충천 + 2500아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="25000"></td>
-					<td>25000원 충천</td>
+					<td><input type="radio" name="pay" value="25000">25000 아콘</td>
+					<td style="text-align: left;">25000원 충천 + 3000아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="50000"></td>
-					<td>50000원 충천</td>
+					<td><input type="radio" name="pay" value="50000">50000 아콘</td>
+					<td style="text-align: left;">50000원 충천 + 6500아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="100000"></td>
-					<td>100000원 충천</td>
+					<td><input type="radio" name="pay" value="100000">100000 아콘</td>
+					<td style="text-align: left;">100000원 충천 + 15000아콘 추가 충전</td>
 				</tr>
 			</table>
 		</div>
 		<div>
 			<span style="float: right">
-				<button type="button" onclick="payment()">결제하기</button>
+				<button type="button" onclick="payment()" class="btn btn-primary">결제하기</button>
 			</span>
 		</div>
 		

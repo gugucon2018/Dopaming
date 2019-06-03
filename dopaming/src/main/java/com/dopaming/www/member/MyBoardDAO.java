@@ -16,11 +16,23 @@ public class MyBoardDAO {
 	//내가 받은 자료 조회
 	public List<MyBoardVO> getDownList(MyBoardVO vo){
 		System.out.println("===> Mybatis로  getDownList() 기능 처리");
-		return mybatis.selectList("MyBoardDAO.getDownList",vo);
+		return mybatis.selectList("MyBoardDAO.getDownList", vo);
 	}
 	
-	//건수 조회
+	//건수 조회(내가 받은 자료)
 	public Integer getDownCount(MyBoardVO vo) {
+		System.out.println("===> Mybatis로 getDownCount() 기능 처리");
+		return mybatis.selectOne("MyBoardDAO.getDownCount", vo);
+	}
+	
+	//업로드 관리
+	public List<FileUploadVO> getUploadList(FileUploadVO vo){
+		System.out.println("===> Mybatis로 getUploadList() 기능 처리");
+		return mybatis.selectList("MyBoardDAO.getUploadList", vo);
+	}
+	
+	//건수 조회(업로드 관리)
+	public Integer getUploadCount(FileUploadVO vo) {
 		System.out.println("===> Mybatis로 getDownCount() 기능 처리");
 		return mybatis.selectOne("MyBoardDAO.getDownCount", vo);
 	}

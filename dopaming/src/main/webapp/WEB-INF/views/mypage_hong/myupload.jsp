@@ -38,27 +38,29 @@
 </script>
 </head>
 <body>
-	<h1 style="text-align: center;">내가받은자료</h1>
+	<h1 style="text-align: center;">업로드관리</h1>
 	<hr>
 	<form name="downFrm" action="">
  		<table class="table table-striped table-hover">
  			<thead>
  				<tr>
-	 				<th>등록번호</th>
+	 				<th>게시판번호</th>
 	 				<th>제목</th>
 	 				<th>종류</th>
-	 				<th>다운로드일</th>
-	 				<th>판매자</th>	
+	 				<th>용량(단위: MB)</th>	
+	 				<th>등록일</th>	
+	 				<th></th>	
  				</tr>
  			</thead>
  			<tbody>
- 			<c:forEach items="${list}" var="list">
+ 			<c:forEach items="${list}" var="upload">
  				<tr>
- 					<td>${list.download_no}</td>
- 					<td>${list.board_title}</td>
- 					<td>${list.category_big}</td>
- 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.download_date}"/></td>
- 					<td>${list.sal_id}</td>
+ 					<td>${upload.board_no}</td>
+ 					<td>${upload.board_title}</td>
+ 					<td>${upload.category_big}</td>
+ 					<td><fmt:formatNumber pattern="#.00" value="${upload.file_storage}"/>MB</td>
+ 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${upload.upload_date}"/></td>
+ 					<td></td>
  				</tr>
  			</c:forEach>
  			</tbody>

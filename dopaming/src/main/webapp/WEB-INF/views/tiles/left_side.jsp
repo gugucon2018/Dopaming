@@ -10,7 +10,7 @@
 			<!-- 사이드바 메뉴목록1 -->
 			<ul class="list-group">
 				<li class="list-group-item"><a href="${pageContext.request.contextPath }/mypage/myDown">내가받은자료</a></li>
-				<li class="list-group-item"><a href="">업로드관리</a></li>
+				<li class="list-group-item"><a href="${pageContext.request.contextPath }/mypage/myUpload">업로드관리</a></li>
 				<li class="list-group-item"><a href="">캐시사용내역</a></li>
 				<li class="list-group-item"><a href="">회원정보수정</a></li>
 				<li class="list-group-item"><a href="">비밀번호변경</a></li>

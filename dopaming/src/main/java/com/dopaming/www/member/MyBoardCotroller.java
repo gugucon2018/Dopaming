@@ -30,7 +30,7 @@ public class MyBoardCotroller {
 			paging.setPage(1);
 		}
 		
-		//시작/마지막 레코드 번호
+		//시작,마지막 레코드 번호
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 		
@@ -40,5 +40,30 @@ public class MyBoardCotroller {
 		model.addAttribute("paging",paging);
 		model.addAttribute("list",service.getDownList(vo));
 		return "mypage_hong/mydown";
+	}
+	
+	//마이페이지(업로드관리)
+	@RequestMapping(value ="/myUpload", method = RequestMethod.GET )
+	public String getUploadList(FileUploadVO vo, Paging paging, Model model, HttpSession session) {
+		//세션에서 아이디정보값 가져오기
+		String id = (String)session.getAttribute("Id");
+		vo.setMember_id(id);
+		
+		//페이징 처리
+		//페이지번호 파라미터
+		if(paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+		
+		//시작, 마지막 레코드 번호
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		//전체건수
+		paging.setTotalRecord(service.getUploadCount(vo));
+		
+		model.addAttribute("paging",paging);
+		model.addAttribute("list",service.getUploadList(vo));
+		return "mypage_hong/myupload";
 	}
 }

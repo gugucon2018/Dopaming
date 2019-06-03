@@ -19,8 +19,17 @@ public class MyBoardServiceImpl implements MyBoardService {
 
 	@Override
 	public Integer getDownCount(MyBoardVO vo) {
-		// TODO Auto-generated method stub
 		return dao.getDownCount(vo);
+	}
+
+	@Override
+	public List<FileUploadVO> getUploadList(FileUploadVO vo) {
+		return dao.getUploadList(vo);
+	}
+
+	@Override
+	public Integer getUploadCount(FileUploadVO vo) {
+		return dao.getUploadCount(vo);
 	}
 
 }

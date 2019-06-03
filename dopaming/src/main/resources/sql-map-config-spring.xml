@@ -34,6 +34,7 @@
 		<!-- hong -->
 		<typeAlias type="com.dopaming.www.login.MemberVO" alias="member"/>
 		<typeAlias type="com.dopaming.www.member.MyBoardVO" alias="myboard"/>
+		<typeAlias type="com.dopaming.www.member.FileUploadVO" alias="myupload"/>
 	</typeAliases>
 
 </configuration>

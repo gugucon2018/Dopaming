@@ -3,6 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- dumy_mapper.xml -->
 <mapper namespace="MyBoardDAO">
+	<!-- 내가 받은 자료 페이징 -->
 	<select id="getDownList" resultType="myboard">
 		select a.*
 		from ( select b.*, rownum rn
@@ -18,12 +19,40 @@
         order by d.download_no) b) a
 		where rn between #{first} and #{last}
 	</select>
+	<!-- 내가 받은 자료 카운트 -->
 	<select id="getDownCount" resultType="int">
 		select count(*)
 		from board bo 
 		inner join file_download d
 		on bo.board_no = d.group_no
-		where d.member_id = #{member_id}
-        order by d.download_no							
+		where d.member_id = #{member_id}							
+	</select>
+	
+	<!-- 업로드관리 페이징 -->
+	<select id="getUploadList" resultType="myupload">
+		select a.* 
+		from ( select c.*, rownum rn 
+		from ( select b.board_no
+			,b.board_title
+	        ,b.category_big
+			,round(sum(f.file_storage),2) file_storage
+	        ,f.upload_date
+		from board b join file_upload f
+		on b.board_no = f.group_no
+		inner join members m on m.member_id=b.member_id
+        where m.member_id = #{member_id}
+        group by b.board_no, b.board_title, b.category_big, f.upload_date
+        order by b.board_no
+        ) c) a where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 업로드관리 카운트 -->
+	<select id="getUploadCount" resultType="int">
+		select count(*)
+		from board b join file_upload f
+		on b.board_no = f.group_no
+		inner join members m on m.member_id=b.member_id
+        where m.member_id = #{member_id}
+        order by b.board_no
 	</select>
 </mapper>

@@ -94,7 +94,6 @@ th, td {
 				<td>${file.member_id}</td>
 			</tr>
 		</c:forEach>
-
 	</table>
 	<br>
 	<br>

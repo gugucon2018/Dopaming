@@ -60,4 +60,18 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 	public FileDownloadVO_Hwan select_downloadOne(FileDownloadVO_Hwan fdvo) {
 		return dao.select_downloadOne(fdvo);
 	}	
+	
+	//댓글 삽입
+	public void comment_insert_hwan(FileCommentsVO_Hwan fcvo) {
+		dao.comment_insert_hwan(fcvo);
+	}
+	
+	//댓글 단건 조회
+	public FileCommentsVO_Hwan comment_selectOne_hwan(FileCommentsVO_Hwan fcvo) {
+		return dao.comment_selectOne_hwan(fcvo);
+	}
+	//댓글 리스트 조회
+	public List<FileCommentsVO_Hwan> comment_selectList_hwan(FileCommentsVO_Hwan fcvo){
+		return dao.comment_selectList_hwan(fcvo);
+	}
 }

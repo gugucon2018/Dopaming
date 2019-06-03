@@ -191,8 +191,10 @@ function complain_frm_send(){
 		</tr>
 		<tr>
 			<td colspan="6" class="no_border">
-           <div>        
+           <div>
+            <c:if test="${not empty sessionScope.Id}">
             <button type="button" class="hjh" onclick="complain_frm_send()">신고하기</button>
+            </c:if>
             <c:choose>    
            		 <c:when test="${sessionScope.memberSession ne null || sessionScope.Id eq 'admin'}">
             		<button href='#' onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>

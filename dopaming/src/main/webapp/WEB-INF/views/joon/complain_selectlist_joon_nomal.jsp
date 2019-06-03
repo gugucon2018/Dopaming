@@ -65,7 +65,6 @@ function complain_check_update(complain_no){
 </script>
 </head>
 <body>
-${sessionScope.Id}
 
 <!-- 답변 수정값(complain_check) 보내는 폼(category_form) -->
 <form name="check_form">

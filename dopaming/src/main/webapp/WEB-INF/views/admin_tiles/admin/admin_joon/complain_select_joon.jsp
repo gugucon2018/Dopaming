@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,13 @@
 
 	<h3 align=left><u>고객센터</u></h3>
 	
-	유형: ${ComplainVO.complain_type}
+	유형: ${ComplainVO.complain_type}<br>
+	
+	<!-- 신고타입일때만 등장 --> 
+	<c:if test="${ComplainVO.complain_type == '신고' }">
+	신고된 게시판: <a href="/dopaming/filepost?board_no=${ComplainVO.board_no}">${ComplainVO.board_no}</a>
+	</c:if>
+	
 	<table width="100%" height = "40px" border="1">
         <tr>        
             <td bgcolor="" width="80p"  align="center">제목</td>

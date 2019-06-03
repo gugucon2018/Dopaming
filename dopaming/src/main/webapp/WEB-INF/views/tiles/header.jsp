@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
 <!-- 메시지 세션 -->
 <c:if test="${sessionScope.message ne null}">
 	<script>
@@ -49,6 +51,19 @@
 	</script>
 	<c:remove var="error" scope="session" />
 </c:if>
+
+<script>
+//로그인이 안되었을 경우(고객센터)-joon
+$(function(){ //J쿼리형태
+	$(".complain").click(function(){
+		if("${sessionScope.Id}" == ""){
+			alert("로그인을 해주세요");
+				;
+		}
+	})
+})
+</script>
+
 </head>
 <div class="container-fluid">
 	<div class="navbar navbar-inverse">
@@ -60,9 +75,8 @@
 				<ul class="nav navbar-nav">
 					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/acornForm">아콘충전</a></li>
 					<li><a class="navbar-brand" href="#">쪽지</a></li>
-					<li><a class="navbar-brand" href="complain_selectlist_nomal?complain_type=qna">고객센터</a></li>
+					<li><a class="navbar-brand" href="notice_select_new">고객센터</a></li>
 					<li><a class="navbar-brand" href="loginForm">(임시)관리자로그인페이지</a></li>
-					<li><a class="navbar-brand" href="notice_selectlist_nomal">공지사항</a></li>
 				</ul>
 				<ul class="nav navbar-nav navber-right">
 					<c:choose>

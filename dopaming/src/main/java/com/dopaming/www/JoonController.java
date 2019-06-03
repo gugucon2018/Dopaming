@@ -116,14 +116,17 @@ public class JoonController {
 		}
 
 	// 공지 목록 (최신)
-	@RequestMapping("/notice_selectlist_new")
+	@RequestMapping("/notice_select_new")
 	public String notice_selectlist_nomal(Model model, NoticeVO vo) {
-
+		
+		//페이징값을 무조건 줘야하기 때문에 한건만 출력하면 되기에 1에서 1까지 지정한다.
+		vo.setFirst(1);
+		vo.setLast(1);
 		// 돌려 받은 값들을 list에 받아둔다.
 		model.addAttribute("list", service.notice_selectlist(vo));
 					
 		//돌려주는 타일즈
-		return "jon/notice_selectlist_new";
+		return "jon/notice_select_new";
 	}		
 		
 	// 공지사항 뷰

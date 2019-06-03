@@ -4,7 +4,7 @@
 
 <mapper namespace="PayDAO"> 
     <insert id="payInsert" parameterType="pay">
-    insert into acorn(acorn_no,member_id,acorn_charge,acorn_date,PAY_CODE,SHOP_CODE,APPROVAL_CODE) 
-	values((select max(acorn_no)+1 from acorn),#{member_id},#{acorn_charge},sysdate,#{pay_code},#{shop_code},#{approval_code})
+    insert into acorn(acorn_no,member_id,acorn_charge,acorn_date,APPROVAL_CODE) 
+	values((select max(acorn_no)+1 from acorn),#{member_id},#{acorn_charge},sysdate,#{approval_code})
     </insert>
 </mapper>

@@ -22,7 +22,7 @@ public interface FileService {
 	//List<FileVO> getFileList_f();
 	
 	//파일 페이징 건수 출력
-	int fileList_cnt();
+	int fileList_cnt(FileVO vo);
 		
 	public int getFileCount(FileVO vo);
 

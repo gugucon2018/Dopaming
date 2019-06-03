@@ -23,8 +23,8 @@ public class FileDAOmybatis {
 		return mybatis.selectList("fileDAO.fileList",vo);
 	}
 	//페이징 건수
-	public int fileList_cnt() {
-		return mybatis.selectOne("fileDAO.fileList_cnt");
+	public int fileList_cnt(FileVO vo) {
+		return mybatis.selectOne("fileDAO.fileList_cnt",vo);
 	}
 	/*
 	 * public List<FileVO> getFileList_k() { return

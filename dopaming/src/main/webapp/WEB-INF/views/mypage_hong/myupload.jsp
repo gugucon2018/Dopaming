@@ -56,7 +56,8 @@
  			<c:forEach items="${list}" var="upload">
  				<tr>
  					<td>${upload.board_no}</td>
- 					<td>${upload.board_title}</td>
+ 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${upload.board_no}&member_id=${upload.member_id}">
+ 					${upload.board_title}</td>
  					<td>${upload.category_big}</td>
  					<td><fmt:formatNumber pattern="0.00" value="${upload.file_storage}"/>MB</td>
  					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${upload.upload_date}"/></td>

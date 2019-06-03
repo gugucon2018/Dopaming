@@ -11,4 +11,6 @@ public interface MyBoardService {
 	public List<FileUploadVO> getUploadList(FileUploadVO vo);
 	//건수 조회(업로드 관리)
 	public Integer getUploadCount(FileUploadVO vo);
+	//게시물 삭제
+	public void deleteBoard(FileUploadVO vo);
 }

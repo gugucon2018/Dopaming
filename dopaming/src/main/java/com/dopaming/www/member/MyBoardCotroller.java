@@ -1,5 +1,6 @@
 package com.dopaming.www.member;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,14 @@ public class MyBoardCotroller {
 		model.addAttribute("paging",paging);
 		model.addAttribute("list",service.getUploadList(vo));
 		return "mypage_hong/myupload";
+	}
+	
+	//게시물 삭제
+	@RequestMapping(value ="/upload_delete", method = RequestMethod.GET )
+	public String deleteBoard(FileUploadVO vo, HttpServletRequest request) {
+		String filePath = request.getSession().getServletContext().getRealPath("./resources/upload");
+		vo.setPath(filePath);
+		service.deleteBoard(vo);
+		return "redirect:/mypage/myUpload";
 	}
 }

@@ -4,11 +4,13 @@ import java.sql.Date;
 
 public class FileUploadVO {
 	private Integer board_no;
+	private String[] seqs;
 	private String board_title;
 	private String category_big;
 	private String member_id;
 	private String file_storage;
 	private Date upload_date;
+	private String path;
 	private Integer first;
 	private Integer last;
 		
@@ -75,4 +77,21 @@ public class FileUploadVO {
 	public void setUpload_date(Date upload_date) {
 		this.upload_date = upload_date;
 	}
+
+	public String[] getSeqs() {
+		return seqs;
+	}
+
+	public void setSeqs(String[] seqs) {
+		this.seqs = seqs;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 }

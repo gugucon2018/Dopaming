@@ -8,6 +8,7 @@
 		select a.*
 		from ( select b.*, rownum rn
 		from (select DISTINCT d.download_no
+					, bo.board_no
 		            , bo.board_title
 		            , bo.category_big
 		            , trunc(d.download_date) download_date
@@ -55,4 +56,61 @@
         where m.member_id = #{member_id}
         order by b.board_no
 	</select>
+	
+	<!-- 게시글 삭제  -->
+	<delete id="deleteBoard">
+	delete 
+	from board
+	<where>
+		<choose>
+			<when test="seqs != null">
+				board_no in
+				<foreach item="t" collection="seqs" open="(" close=")" separator=",">
+					#{t}
+				</foreach>
+			</when>
+			<otherwise>
+				board_no = #{board_no}
+			</otherwise>
+		</choose>
+	</where> 
+	</delete>
+	
+	<!-- 업로드 파일 삭제 -->
+	<delete id="deleteUpload">
+	delete
+	from file_upload
+	<where>
+		<choose>
+			<when test="seqs != null">
+				group_no in
+				<foreach item="t" collection="seqs" open="(" close=")" separator=",">
+					#{t}
+				</foreach>
+			</when>
+			<otherwise>
+				group_no = #{board_no}
+			</otherwise>
+		</choose>
+	</where> 
+	</delete>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComments">
+	delete
+	from comments
+	<where>
+		<choose>
+			<when test="seqs != null">
+				board_no in
+				<foreach item="t" collection="seqs" open="(" close=")" separator=",">
+					#{t}
+				</foreach>
+			</when>
+			<otherwise>
+				board_no = #{board_no}
+			</otherwise>
+		</choose>
+	</where>
+	</delete>
 </mapper>

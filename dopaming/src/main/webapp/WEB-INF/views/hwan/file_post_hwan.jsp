@@ -26,6 +26,20 @@
 <title>파일 게시글</title>
 <!-- <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> -->
 <style>
+.pagination {
+	display: inline-block;
+}
+
+.pagination ul {
+	display: inline-block;
+	padding: 10px;
+	margin: 0px;
+}
+
+.pagination li {
+	display: inline-block;
+	padding: 10px;
+}
 .cen_table {
 	margin: 0 auto;
 }
@@ -92,31 +106,26 @@ $(document).ready(function(){
 				  front_count++;
 				}
 			}
-		});		
-/* 		var show="";
-		if(judge ==0){
-		show+="<tr class='rlast"+front_count+"'>";
-		show+="<td colspan='6'>"+$(".ComContent").val()+"</td>";
-		show+="</tr>";
-		$(".lastTr").after(show);
-		judge++;		
-		} else {		  
-		  show+="<tr class='rlast"+back_count+"'>";
-		  show+="<td colspan='6'>"+$(".ComContent").val()+"</td>";
-		  show+="</tr>";
-		  $('.rlast'+front_count).after(show);
-		  back_count++;
-		  front_count++;
- */				
-		});	
+		});			
+	});	
 });
 </script>
 </head>
 <body>
-	<div class="container">	
+	<div class="container">
+	       <form action="filepost" name="form2" method="get">
+		<input type="hidden" name="page" value="1"></input>
+		<input type="hidden" name="board_no" value="${filePost.board_no}">
+		</form>	
 	<table class="cen_table  table table-striped table-bordered">
 		<tr>
-			<th width="10%">게시글 번호</th><th class="c1">분류</th><th>제목</th><th>캐시</th><th>용량(MB)</th><th>판매자</th>	
+			<th width="10%">게시글 번호</th>
+			<th class="c1">분류</th>
+			<th>제목</th>
+			<th>캐시</th>
+			<th>용량(MB)</th>
+			<th>판매자</th>
+			<th>신고사항</th>	
 		</tr>
 		<tr>			
 			<td>${filePost.board_no}</td>
@@ -124,7 +133,7 @@ $(document).ready(function(){
 			<td>${filePost.board_title}</td>
 			<td>${filePost.board_acorn}</td>
 			<td>${filePost.board_file_storage}MB</td>
-			<td>${filePost.member_id}</td>	
+			<td>${filePost.member_id}</td>				
 		</tr>		
 		<tr>
 			<td>게시글 파일</td>
@@ -148,21 +157,11 @@ $(document).ready(function(){
             <th width="50%">제목</th>
             <th width="10%">작성자</th>
             <th width="20%">대장르</th>
-            <th width="10%">소장르</th>
+            <th width="10%">소장르</th>            
           </tr>
         </thead>
-        <tbody>   
-        <form name="searchFrm" method="get">
-        <input type="hidden" name="page" value="1">
-        <input type="text" name="member_id">
-        	<script>
-        		searchFrm.member_id.value='${FilePostVO_Hwan.member_id}';
-        	</script>        
-        </form>    	
-        <form action="filepost?member_id=${filePost.member_id}" name="form2">
-		<input type="hidden" name="page" value="1"></input> 
-		</form>
-          	<c:forEach items="${Board_List_Hwan}" var="flist">
+        <tbody>
+           	<c:forEach items="${Board_List_Hwan}" var="flist">
           		<tr>
           		<td>${flist.board_no}</td>
           		<td><a href="filepost?board_no=${flist.board_no}&member_id=${flist.member_id}">${flist.board_title}</a></td>
@@ -179,7 +178,8 @@ $(document).ready(function(){
 		</tr>
 		<tr>
 			<td colspan="6" class="no_border">
-           <div>            
+           <div>        
+            <button type="button" class="btn btn-danger btn-md">신고하기</button>    
             <button href='#' onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>            
            </div>
            	</td>
@@ -187,7 +187,7 @@ $(document).ready(function(){
 		<tr class="lastTr">
 			<td colspan="6" class="no_border">
 			      <div>
-			      		<input type="hidden" class="fileBoard_no" name="board_no" value="${filePost.board_no}"/>
+			      		<input type="hidden" class="fileBoard_no" name="board_no" value="${filePost.board_no}"/>			      		
       					<input  width="100%" class="ComContent" name="comment_content" placeholder="댓글쓰기">
       					<button type="button" class="btn btn-success ComBtn">댓글 쓰기</button>
 				 </div>

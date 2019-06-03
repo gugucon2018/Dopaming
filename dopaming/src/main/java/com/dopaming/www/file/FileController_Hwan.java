@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dopaming.www.common.Paging;
+import com.dopaming.www.login.MemberVO;
 
 @Controller
 public class FileController_Hwan {
@@ -158,18 +159,25 @@ public class FileController_Hwan {
 	@ResponseBody
 	public FileCommentsVO_Hwan comment_hwan(
 			HttpServletRequest request, HttpServletResponse response,
-			FileCommentsVO_Hwan fcvo,@RequestParam("comment") String m) {
+			FileCommentsVO_Hwan fcvo,@RequestParam("comment") String m
+			, MemberVO mvo, HttpSession session, Model model) {
 		response.setCharacterEncoding("utf-8");//JSON 한글 깨짐 해결
+		mvo = (MemberVO) session.getAttribute("memberSession");
+		System.out.println(mvo.getMember_id());
+		fcvo.setMember_id(mvo.getMember_id());
 		System.out.println("ajax 응답 받음");
 		fcvo.setComment_content(request.getParameter("comment"));		
 		System.out.println(fcvo.getComment_content());		
-		System.out.println(m+" 마지막출력");
+		//System.out.println(m+" 마지막출력");
+		model.addAttribute("fcvo",fcvo);
 		return fcvo;
 	}
 	// 게시글
 	@RequestMapping(value = "/filepost", method = RequestMethod.GET)
 	public String filepost_hwan(FilePostVO_Hwan fpvo, Model model, Paging paging) {
-		model.addAttribute("filePost", service.select_post_hwan(fpvo));
+		
+		FilePostVO_Hwan filePostVO_Hwan = service.select_post_hwan(fpvo);
+		model.addAttribute("filePost", filePostVO_Hwan);
 		model.addAttribute("Board_FileList", service.select_post_fileList(fpvo));
 
 		// 페이징 처리
@@ -178,11 +186,14 @@ public class FileController_Hwan {
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
 		}
-		// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
-		paging.setTotalRecord(service.board_Paging());
+
 		// db에서 받은 정보로 페이지마다 시작/마지막 레코드 번호
 		fpvo.setFirst(paging.getFirst());
 		fpvo.setLast(paging.getLast());
+		fpvo.setMember_id(filePostVO_Hwan.getMember_id());
+		
+		// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
+		paging.setTotalRecord(service.board_Paging(fpvo));
 		// 페이징 VO의 데이터를 paging으로 담아둔다.
 		model.addAttribute("paging", paging);
 		// 돌려 받은 값들을 list에 받아둔다.

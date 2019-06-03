@@ -75,8 +75,8 @@ textarea {
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
 					<td>제목<br> <input name="boardTitle" size="20" placeholder="제목입력" /></td>
-					<td>회원아이디<br> <input name="memberId" size="20"
-						placeholder="아이디입력" /></td>					
+					<td>회원아이디<br><label name="memberId">${sessionScope.Id}</label>
+					</td>					
 					<td>파일용량(BYTE 단위)<br>
     				<label id="stg" name="fileName"></label></td>
 					<td>업로드날짜<br><label><%=DateUtil.tDateFormat()%></label></td>
@@ -88,8 +88,9 @@ textarea {
 							<option value="동영상">동영상</option>
 							<option value="음악">음악</option>
 					</select> <select name="categorySmall" class="form-control">	
+							<option value="최신">최신</option>
 							<option value="국내">국내</option>
-							<option value="외국">외국</option>
+							<option value="외국">외국</option>							
 					</select></td>
 					<td colspan="2">게시글아콘<br> <input name="BoardAcorn" placeholder="아콘값 입력" />
 					</td>

@@ -31,8 +31,8 @@ public class FileDAOMybatis_Hwan {
 		return mybatis.selectList("FileDAOHwan.Board_BoardList" , fpvo);
 	}	
 	//게시글 페이징
-	public int board_Paging() {		
-		return mybatis.selectOne("FileDAOHwan.Board_Paging");
+	public int board_Paging(FilePostVO_Hwan fpvo) {		
+		return mybatis.selectOne("FileDAOHwan.Board_Paging",fpvo);
 	}
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_download(FileDownloadVO_Hwan fdvo){

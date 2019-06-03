@@ -13,7 +13,7 @@ public interface FileService_Hwan {
 	//게시글에 게시글 리스트
 	public List<FilePostVO_Hwan> select_board_boardList(FilePostVO_Hwan fpvo);
 	//페이징
-	public int board_Paging();
+	public int board_Paging(FilePostVO_Hwan fpvo);
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_downloadList(FileDownloadVO_Hwan fdvo);
 	

@@ -80,7 +80,7 @@ th {
 				</tr>
 				<tr>
 					<td>${downPost.board_acorn}</td>
-					<td>${downPost.member_id}</td>
+					<td><label>${sessionScope.Id}</label></td>
 					<td><label><%=DateUtil.tDateFormat()%></label></td>
 				</tr>
 				<tr>

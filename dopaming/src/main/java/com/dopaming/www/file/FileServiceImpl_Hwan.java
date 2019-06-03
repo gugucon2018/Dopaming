@@ -46,9 +46,9 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 
 	//게시글 페이징
 	@Override
-	public int board_Paging() {
+	public int board_Paging(FilePostVO_Hwan fpvo) {
 		// TODO Auto-generated method stub		
-		return dao.board_Paging();
+		return dao.board_Paging(fpvo);
 	}		
 	
 	//다운로드 게시글리스트 열람

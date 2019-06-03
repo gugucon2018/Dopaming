@@ -12,8 +12,10 @@
     					 	complain_type,
 							complain_title,
 							complain_content,
-							member_id,
-							board_no
+							member_id
+						<if test="board_no != null and board_no !=''">	
+							,board_no
+						</if>
 									)
 				VALUES (<!-- vo에 값들을 땡겨와 넘긴다 -->
 					complain_seq.nextval
@@ -21,7 +23,9 @@
 					,#{complain_title}
 					,#{complain_content}
 					,#{member_id}
+					<if test="board_no != null and board_no !=''">
 					,#{board_no}
+					</if>
 					)
 </insert>
 

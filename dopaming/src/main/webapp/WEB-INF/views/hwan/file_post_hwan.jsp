@@ -160,14 +160,27 @@ $(document).ready(function(){
 		});			
 	});	
 });
+
+//신고하기기능-joon
+function complain_frm_send(){
+	complain_frm.action = "complain_insert_form";
+	complain_frm.submit();
+}
 </script>
 </head>
 <body>
 	<div class="container">
 	       <form action="filepost" name="form2" method="get">
 		<input type="hidden" name="page" value="1"></input>
-		<input type="hidden" name="board_no" value="${filePost.board_no}">
-		</form>	
+		<input type="hidden" name="board_no" value="${filePost.board_no}"></input>
+		</form>
+	
+<!-- joon -->
+<form name="complain_frm">
+	<input type="hidden" name="board_no" value="${filePost.board_no}"/>
+	<input type="hidden" name="member_id" value="${sessionScope.Id}"/>
+</form>	
+		
 	<table class="cen_table  table table-striped table-bordered">
 		<tr>
 			<th width="10%">게시글 번호</th>
@@ -228,8 +241,10 @@ $(document).ready(function(){
 		</tr>
 		<tr>
 			<td colspan="6" class="no_border">
-           <div>        
-            <button type="button" class="btn btn-danger btn-md">신고하기</button>
+           <div>
+            <c:if test="${not empty sessionScope.Id}">
+            <button type="button" class="hjh" onclick="complain_frm_send()">신고하기</button>
+            </c:if>
             <c:choose>    
            		 <c:when test="${sessionScope.memberSession ne null || sessionScope.Id eq 'admin'}">
             		<button href='#' onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>

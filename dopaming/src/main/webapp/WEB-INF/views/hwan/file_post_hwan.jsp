@@ -178,15 +178,19 @@ $(document).ready(function(){
 		<tr>
 			<td colspan="6" class="no_border">
            <div>        
-            <button type="button" class="btn btn-danger btn-md">신고하기</button>    
-            <button href='#' onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>            
+            <button type="button" class="btn btn-danger btn-md">신고하기</button>
+            <c:choose>    
+           		 <c:when test="${sessionScope.memberSession ne null || sessionScope.Id eq 'admin'}">
+            		<button href='#' onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>
+            	</c:when>  
+            </c:choose>          
            </div>
            	</td>
 		</tr>
 		<tr class="lastTr">
 			<td colspan="6" class="no_border">
 			      <div>
-			      		<input type="hidden" class="fileBoard_no" name="board_no" value="${filePost.board_no}"/>			      		
+			      		<input type="hidden" class="fileBoard_no" name="board_no" value="${filePost.board_no}"/>			      					      		
       					<input  width="100%" class="ComContent" name="comment_content" placeholder="댓글쓰기">
       					<button type="button" class="btn btn-success ComBtn">댓글 쓰기</button>
 				 </div>

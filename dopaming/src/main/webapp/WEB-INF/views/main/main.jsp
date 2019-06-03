@@ -124,8 +124,14 @@
 
 	<div class="container col-sm-4">
 		<img src="./resources/images/logo1.png" class="img-responsive"
-			alt="로고1" /> <input width="200%" placeholder="입력하세요" />
+			alt="로고1" />
+			
+		<form action="mdview" name="searchFrm" method="get">
+		<input type="hidden" name="page" value="1">
+		<input type="text" name="searchKeyword" width="200%" placeholder="입력하세요" />
 		<button class="btn btn-success btn-sm">검색</button>
+		</form>
+		
 		<!-- side menu (link) -->
 		<h3>Dopaming 이번주 위</h3>
 		<p>Dopmaing의 최신소식을 즐겨보세요!</p>

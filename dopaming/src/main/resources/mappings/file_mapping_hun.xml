@@ -8,11 +8,13 @@
 	<!--파일영화 출력 -->
 	<select id="fileList" resultType="file">
 		select a.* from ( select c.*, rownum rn from(
-		select distinct b.board_no
+		select b.board_no
 		,b.board_title
-		,m.upload_storage
-		,f.member_id
-		from file_upload f join board b
+		,f.file_storage
+		,b.member_id
+		from (select round(sum(file_storage),2) file_storage,group_no
+       from file_upload
+       group by group_no) f join board b
 		on f.group_no = b.board_no
 		inner join members m on m.member_id=b.member_id
 		<where>
@@ -26,6 +28,7 @@
 				and b.board_title LIKE '%' || #{searchKeyword} || '%'
 			</if>
 		</where>
+		order by b.board_no desc
 		) c) a where rn between #{first} and #{last}
 	</select>
 

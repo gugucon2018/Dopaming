@@ -125,7 +125,6 @@ $(document).ready(function(){
 			<th>캐시</th>
 			<th>용량(MB)</th>
 			<th>판매자</th>
-			<th>신고사항</th>	
 		</tr>
 		<tr>			
 			<td>${filePost.board_no}</td>

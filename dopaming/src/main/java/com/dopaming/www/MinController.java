@@ -63,7 +63,13 @@ public class MinController {
 			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();		
-		MembersVO_min member = service.getMembers(vo);
+		MembersVO_min member = null;
+		try {
+			member = service.getMembers(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//DB에 없는 값이거나(DB에 없는값도 Null, 빈공백도 Null) DB에 admin아닌 값(=즉 admin제외한 모든것)
 		if(member==null || !member.getMember_id().equals("admin")) {

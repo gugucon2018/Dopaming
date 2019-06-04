@@ -11,80 +11,112 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
- <link rel="icon" href="../../favicon.ico">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="icon" href="../../favicon.ico">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+	crossorigin="anonymous">
 <meta charset="utf-8">
 <title>도파밍 프로젝트</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="./resources/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->    
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-   
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    	<style>
+<!-- Custom styles for this template -->
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+	rel="stylesheet">
 
-		.navber-right{
-			float:right;
-		}
-		.jumbotron{
-			clear:both;
-			margin: 0px auto 0px auto;
-			background-image: url(./resources/images/logo2.jpg);
-			background-size: 100px;
-		}
- 		@media (min-width: 768px) {
-  		.container .jumbotron {  			
-	    		width: 100%;	    		
-  		}	
-		}
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<style>
 
-		@media (min-width: 992px) {
- 		 .container .jumbotron{ 		 	
-    			width: 100%;
-  		}
-		}	 
-		.carousel-caption{
-			position:absolute;
-			right:15%;
-			left:15%;
-			z-index:10;
-			padding-top:20px;
-			padding-bottom: 20px;
-		}
-		.carousel-inner{
-			display:block;
-			max-width:100%;
-			height:300px;
-		}
-		.navbar{
-			margin: 0px auto 0px auto;
-			width:100%;
-		}
-		.genre_rank{
-			max-width:100%;
-			height:82px;
-		}
-		div.footer{
-			clear: both;
-			width: 100%;
-			float: left;
-			background-color: #1f2022;
-			text-align: center;
-			padding-top: 15px;
-			padding-bottom: 15px;
-			margin-left: 10px;
-			color: #E0E0E0;
-		}
-	</style>
+.btn_msg {
+	background-color: #000;
+	padding: 0px;
+	margin-top: 12px;
+	margin-right: 10px;
+	border-color: #000;
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+.btn_msg:hover {
+	opacity: 1;
+}
+
+.cnt_msg {
+	margin-top: 16.5px;
+	margin-right: 3px;
+}
+
+.navber-right {
+	float: right;
+}
+
+.jumbotron {
+	clear: both;
+	margin: 0px auto 0px auto;
+	background-image: url(./resources/images/logo2.jpg);
+	background-size: 100px;
+}
+
+@media ( min-width : 768px) {
+	.container .jumbotron {
+		width: 100%;
+	}
+}
+
+@media ( min-width : 992px) {
+	.container .jumbotron {
+		width: 100%;
+	}
+}
+
+.carousel-caption {
+	position: absolute;
+	right: 15%;
+	left: 15%;
+	z-index: 10;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.carousel-inner {
+	display: block;
+	max-width: 100%;
+	height: 300px;
+}
+
+.navbar {
+	margin: 0px auto 0px auto;
+	width: 100%;
+}
+
+.genre_rank {
+	max-width: 100%;
+	height: 82px;
+}
+
+div.footer {
+	clear: both;
+	width: 100%;
+	float: left;
+	background-color: #1f2022;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-left: 10px;
+	color: #E0E0E0;
+}
+</style>
 </head>
 <body>
 	<div class="container-fluid">
-			<tiles:insertAttribute name="header" />
-			<tiles:insertAttribute name="content" />
-			<tiles:insertAttribute name="footer" />
-			<tiles:insertAttribute name="modal" />
+		<tiles:insertAttribute name="header" />
+		<tiles:insertAttribute name="content" />
+		<tiles:insertAttribute name="footer" />
+		<tiles:insertAttribute name="modal" />
+		<tiles:insertAttribute name="msg" />
 	</div>
 </body>
 </html>

@@ -78,7 +78,6 @@ $(function(){ //J쿼리형태
 				</c:when>
 				<c:otherwise>
 					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/acornForm">아콘충전</a></li>
-					<li><a class="navbar-brand" href="#">쪽지</a></li>
 				</c:otherwise>
 				</c:choose>
 					<li><a class="navbar-brand" href="notice_select_new">고객센터</a></li>
@@ -93,6 +92,8 @@ $(function(){ //J쿼리형태
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
+							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>
+						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="./resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
 							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
 							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>

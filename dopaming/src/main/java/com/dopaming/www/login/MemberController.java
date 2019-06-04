@@ -45,7 +45,7 @@ public class MemberController {
 		}else { //로그인 성공
 			if(id.equals(service.valueCheckId(id)))
 			{
-				// 여기서 암호화된 비밀번호를 확인한다 (암호화된비번 = 암호화된비번)
+				// 여기서 암호화된 비밀번호를 비교해서 맞으면 로그인패스한다 (암호화된비번 = 암호화된비번 비교)
 				try {
 					pass = EgovFileScrty.encryptPassword(pass, id);
 				} catch (Exception e1) {
@@ -83,6 +83,8 @@ public class MemberController {
 		session.removeAttribute("Id");	//세션 아이디 제거
 		session.removeAttribute("Pass");//세션 비번 제거 
 		session.removeAttribute("memberSession");	//세션 제거
+		session.removeAttribute("Id");	//세션 제거
+		session.removeAttribute("Pass");	//세션 제거
 		session.setAttribute("message", "로그아웃 되었습니다.");
 		return "redirect:/"; 
 	}
@@ -93,7 +95,7 @@ public class MemberController {
 		return "hong/register";
 	}
 	
-	//회원가입 처리
+	//회원가입 처리(비밀번호 암호화는 Impl에서 했음)
 	@RequestMapping(value="/register", method = RequestMethod.POST )
 	public String register(@ModelAttribute MemberVO vo, Errors errors) throws Exception {
 		//유효성 검사

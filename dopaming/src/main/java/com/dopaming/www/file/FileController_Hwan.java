@@ -168,8 +168,11 @@ public class FileController_Hwan {
 			for(int i=0;i<result.size();i++) {
 				f= result.get(i);
 				fdvo.setMember_id(f.getMember_id());
+				System.out.println(fdvo.getMember_id());
 				fdvo.setFile_no(f.getFile_no());
+				System.out.println(fdvo.getFile_no());
 				fdvo.setGroup_no(f.getGroup_no());
+				System.out.println(fdvo.getGroup_no());
 				service.download_insert_hwan(fdvo);
 			}
 		}

@@ -179,6 +179,7 @@ function complain_frm_send(){
 <form name="complain_frm">
 	<input type="hidden" name="board_no" value="${filePost.board_no}"/>
 	<input type="hidden" name="member_id" value="${sessionScope.Id}"/>
+	<input type="hidden" name="complain_type" value="신고"/>
 </form>	
 		
 	<table class="cen_table  table table-striped table-bordered">

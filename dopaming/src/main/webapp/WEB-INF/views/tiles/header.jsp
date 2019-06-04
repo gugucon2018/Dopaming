@@ -7,6 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 var context = "${pageContext.request.contextPath}";
+var id = "${sessionScope.Id}"
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
 <style>
@@ -84,6 +85,7 @@ $(function(){ //J쿼리형태
 		}
 	})
 })
+
 </script>
 
 </head>
@@ -114,7 +116,7 @@ $(function(){ //J쿼리형태
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
-							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>
+							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>						    
 						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="${pageContext.request.contextPath}/resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
 							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>

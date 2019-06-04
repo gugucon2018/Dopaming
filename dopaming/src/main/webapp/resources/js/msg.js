@@ -1,10 +1,12 @@
 //최초 함수 호출
 var oldCnt = 0
 $(document).ready(function () {
-	
+	if(id == "") {
+		return false;
+	}
 	msgCnt("0");
 	
-	setInterval(msgCnt, 1000000);
+	setInterval(msgCnt, 1000);
 	
 	msgReceive();
 		

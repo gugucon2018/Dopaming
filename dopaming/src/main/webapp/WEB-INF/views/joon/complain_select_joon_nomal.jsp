@@ -10,7 +10,8 @@
 
 	<h3 align=left><u>고객센터</u></h3>
 	
-	유형: ${ComplainVO.complain_type}
+	유형: ${ComplainVO.complain_type}<br>
+	신고게시판 : ${ComplainVO.board_no}
 	<table width="100%" height = "40px" border="1">
         <tr>        
             <td bgcolor="" width="80p"  align="center">제목</td>

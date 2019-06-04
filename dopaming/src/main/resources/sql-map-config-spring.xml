@@ -37,7 +37,7 @@
 		<typeAlias type="com.dopaming.www.member.FileUploadVO" alias="myupload"/>
 		
 		<!-- ho -->
-		<typeAlias type="com.dopaming.www.msg.MsgVO" alias="msg"/>
+		<typeAlias type="com.dopaming.www.msg.MsgVO" alias="msg"/> 
 	</typeAliases>
 
 </configuration>

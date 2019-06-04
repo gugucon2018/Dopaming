@@ -5,8 +5,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+var context = "${pageContext.request.contextPath}";
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
+<style>
+.btn_msg {
+	background-color: #000;
+	padding: 0px;
+	margin-top: 12px;
+	margin-right: 10px;
+	border-color: #000;
+	cursor: pointer;
+	opacity: 0.5;
+}
 
+.btn_msg:hover {
+	opacity: 1;
+}
 
+.cnt_msg {
+	margin-top: 16.5px;
+	margin-right: 3px;
+}
+</style>
 <!-- 메시지 세션 -->
 <c:if test="${sessionScope.message ne null}">
 	<script>

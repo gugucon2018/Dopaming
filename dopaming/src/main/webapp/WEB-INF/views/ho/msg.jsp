@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="./resources/css/msg.css">
-<script src="./resources/js/msg.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/msg.css">
+<script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
 </head>
 <body>
 <div class="modal fade" id="open_msg" role="dialog">

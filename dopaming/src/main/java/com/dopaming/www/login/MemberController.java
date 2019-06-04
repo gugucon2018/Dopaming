@@ -67,7 +67,6 @@ public class MemberController {
 					 
 					session.setAttribute("message", id + "님, 로그인 되었습니다.");
 				}else { //비밀번호 일치하지 않으면
-					System.out.println("해당 아이디==========="+ memberVO.getMember_id() +" 암호화된 비번 확인" + memberVO.getMember_password());
 					session.setAttribute("error", "비밀번호가 일치하지 않습니다.");
 				}
 			}else { //아이디가 존재하지 않으면
@@ -83,8 +82,6 @@ public class MemberController {
 		session.removeAttribute("Id");	//세션 아이디 제거
 		session.removeAttribute("Pass");//세션 비번 제거 
 		session.removeAttribute("memberSession");	//세션 제거
-		session.removeAttribute("Id");	//세션 제거
-		session.removeAttribute("Pass");	//세션 제거
 		session.setAttribute("message", "로그아웃 되었습니다.");
 		return "redirect:/"; 
 	}

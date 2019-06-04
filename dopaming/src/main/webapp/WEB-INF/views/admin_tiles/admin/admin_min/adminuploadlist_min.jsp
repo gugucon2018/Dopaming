@@ -21,29 +21,6 @@
     display: inline-block; /* 페이징 가로효과 */
 	padding: 10px;
 }
-
-.active {
-	color: red;
-}
-
-a {
-	text-decoration: none;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
 td, th {
    border: 1px solid #dddddd;
    text-align: left;
@@ -79,9 +56,10 @@ function go_page(p) {
 		</div>
 		</span>
 		<div>
-			<table>
+			<table class="table table-striped table-hover">
+			<thead>
 				<tr >
-					<td style="width: 100px">게시판번호(내림차순)</td>
+					<td style="width: 110px">게시판번호<br>(내림차순)</td>
 					<td>아이디</td>
 					<td>대분류</td>
 					<td>소분류</td>
@@ -89,6 +67,8 @@ function go_page(p) {
 					<td>파일이름</td>
 					<td>파일용량</td>
 				<tr>
+			</thead>
+			<tbody>
 					<c:forEach items="${uploadList}" var="list1">
 						<!-- 등급관리 전체조회 -->
 						<tr>
@@ -101,6 +81,7 @@ function go_page(p) {
 							<td>${list1.file_storage }MB</td>
 						</tr>
 					</c:forEach>
+			</tbody>
 			</table>	
 		</form>
 		</div>

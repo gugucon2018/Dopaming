@@ -64,11 +64,20 @@
 	
 	<!-- Interceptor 설정 -->
  	<interceptors>
-    <interceptor>
-        <mvc:mapping path="/admin/*"/>         
-        <beans:ref bean="authLoginInterceptor"/>
-    </interceptor>
-</interceptors>
+	    <interceptor>
+	        <mvc:mapping path="/admin/*"/>         
+	        <beans:ref bean="authLoginInterceptor"/>
+	    </interceptor>
+	</interceptors>
+	
+	<!-- 로그인인 터셉터 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage/**"/>
+			<!-- 인터셉터 객체 생성 -->
+			<beans:bean class="com.dopaming.www.common.AuthLoginInterceptor" />
+		</interceptor>
+	</interceptors>
 
 		
 </beans:beans>

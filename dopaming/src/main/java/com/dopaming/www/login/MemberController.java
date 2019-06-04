@@ -80,12 +80,10 @@ public class MemberController {
 	//로그아웃 처리
 	@RequestMapping(value = "/logoutA", method = RequestMethod.GET)
 	public String logout(HttpSession session) {		
-		session.removeAttribute("Id");	//세션 아이디 제거
-		session.removeAttribute("Pass");//세션 비번 제거 
-		session.removeAttribute("memberSession");	//세션 제거
 		session.removeAttribute("Id");	//세션 제거
-		session.removeAttribute("Pass");	//세션 제거
+		session.removeAttribute("Pass");	//세션 제거		
 		session.setAttribute("message", "로그아웃 되었습니다.");
+		session.invalidate();
 		return "redirect:/"; 
 	}
 

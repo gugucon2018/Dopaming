@@ -34,6 +34,16 @@ public class FileDAOMybatis_Hwan {
 	public int board_Paging(FilePostVO_Hwan fpvo) {		
 		return mybatis.selectOne("FileDAOHwan.Board_Paging",fpvo);
 	}
+	//다운로드 등록
+	public void download_insert_hwan(FileDownloadVO_Hwan fdvo){
+		mybatis.insert("FileDAOHwan.DownloadInsert",fdvo);
+	}
+	
+	//다운로드 등록 유무 확인
+	public int download_check_hwan(FileDownloadVO_Hwan fdvo) {
+		return mybatis.selectOne("FileDAOHwan.DownloadCheck",fdvo);
+	}
+	
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_download(FileDownloadVO_Hwan fdvo){
 		return mybatis.selectList("FileDAOHwan.Download_List", fdvo);

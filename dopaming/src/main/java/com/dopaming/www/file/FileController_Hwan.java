@@ -27,11 +27,11 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.dopaming.www.common.FileRenamePolicy;
 import com.dopaming.www.common.Paging;
 import com.dopaming.www.login.MemberVO;
 
@@ -57,29 +57,30 @@ public class FileController_Hwan {
 			throws IllegalStateException, IOException {
 		List<MultipartFile> files = request.getFiles("fileName");
 		String filePath = request.getSession().getServletContext().getRealPath("/resources/upload");
-		File file = new File(filePath);
+		File file;		
 		List<FileUploadVO_Hwan> fvolist = new ArrayList<FileUploadVO_Hwan>();
 		FileUploadVO_Hwan fvo;
 		for (int i = 0; i < files.size(); i++) {
 			System.out.println(files.get(i).getOriginalFilename() + "업로드");
 			// 파일 업로드 소스 여기에 삽입
-			file = new File(filePath, files.get(i).getOriginalFilename());
+			file = new FileRenamePolicy().rename(new File(filePath, files.get(i).getOriginalFilename()));			
 			files.get(i).transferTo(file);
 			fvo = new FileUploadVO_Hwan();
 			fvo.setFileName(file.getName());
-			fvo.setFileStorage((double) file.length() / 1024 / 1024);
+			fvo.setFileStorage(Math.ceil(((double) file.length() / 1024 / 1024)*100)/100);
 			fvolist.add(fvo);
 		}
 		service.board_file_upload(bvo, fvolist);
 
-		return "hwan/file_post_hwan";
+		return "redirect:/";
 	}
 
 	// 파일 다운로드
 	@RequestMapping(value = "/download_hwan", method = RequestMethod.GET)
 	public String download_hwan(FileDownloadVO_Hwan fdvo, Model model) {
 		model.addAttribute("downPost_List", service.select_downloadList(fdvo));
-		model.addAttribute("downPost", service.select_downloadOne(fdvo));
+		model.addAttribute("downPost", service.select_downloadOne(fdvo));		
+		
 		return "hwan/download_hwan";
 	}
 
@@ -93,7 +94,7 @@ public class FileController_Hwan {
 		String fileCom = System.currentTimeMillis() + "files.zip";
 		FileOutputStream zipFileOutputStream = new FileOutputStream(filePath + "/" + fileCom);
 		ZipOutputStream zipOutputStream = new ZipOutputStream(zipFileOutputStream);
-		List<FileDownloadVO_Hwan> result = service.select_downloadList(fbvo);
+		List<FileDownloadVO_Hwan> result = service.select_downloadList(fbvo);		
 		double storage = 0.0;
 		FileDownloadVO_Hwan f;
 		for (int i = 0; i < result.size(); i++) {
@@ -106,7 +107,7 @@ public class FileController_Hwan {
 			    zipOutputStream.write(data);
 			   }							
 			System.out.println("각 파일 용량" + f.getFile_storage());
-			storage += f.getFile_storage();
+			storage += f.getFile_storage();			
 		}
 		zipOutputStream.close();
 		zipFileOutputStream.close();
@@ -151,6 +152,26 @@ public class FileController_Hwan {
 
 			printwriter.flush();
 			printwriter.close();
+		}
+		/*
+		for (int i = 0; i < result.size(); i++) {
+			f = result.get(i);
+			ZipEntry zipEntry = new ZipEntry(f.getFile_name());			
+			zipOutputStream.putNextEntry(zipEntry);
+			 FileInputStream fis = new FileInputStream(filePath + "/"+f.getFile_name());			 
+			 int data = 0;
+			   while((data=fis.read())!=-1) {
+			    zipOutputStream.write(data);
+			   }
+		*/
+		if(service.download_check_hwan(fdvo)==0) {
+			for(int i=0;i<result.size();i++) {
+				f= result.get(i);
+				fdvo.setMember_id(f.getMember_id());
+				fdvo.setFile_no(f.getFile_no());
+				fdvo.setGroup_no(f.getGroup_no());
+				service.download_insert_hwan(fdvo);
+			}
 		}
 
 		return "hwan/download_hwan";
@@ -213,6 +234,7 @@ public class FileController_Hwan {
 
 		model.addAttribute("Board_List_Hwan", service.select_board_boardList(fpvo));
 		System.out.println(fpvo.getBoard_no() + " 게시판 번호");
+		
 		return "hwan/file_post_hwan";
 	}
 

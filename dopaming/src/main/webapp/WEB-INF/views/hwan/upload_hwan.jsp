@@ -70,11 +70,11 @@ textarea {
 </head>
 <body>
 	<div class="cen_form">
-		<form class="container" action="request_upload" method="post" id="uploadForm"
+		<form class="container" name="upload_frm" action="request_upload" method="post" id="uploadForm"
 			enctype="multipart/form-data">
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
-					<td>제목<br> <input name="boardTitle" size="20" placeholder="제목입력" /></td>
+					<td>제목<br> <input class="chk1" name="boardTitle" size="20" placeholder="제목입력" /></td>
 					<td>회원아이디<br>
 					<input type="hidden" name="memberId" value="${sessionScope.Id}"/>					
 					<label>${sessionScope.Id}</label>
@@ -94,7 +94,7 @@ textarea {
 							<option value="국내">국내</option>
 							<option value="외국">외국</option>							
 					</select></td>
-					<td colspan="2">게시글아콘<br> <input name="BoardAcorn" placeholder="아콘값 입력" />
+					<td colspan="2">게시글아콘<br> <input class="chk2" name="BoardAcorn" placeholder="아콘값 입력" />
 					</td>
 				</tr>
 				<tr>
@@ -114,18 +114,18 @@ textarea {
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="4"><textarea rows="5" cols="130" name="boardContent">	    
-						</textarea><br>
-						<button type="submit" class="btn btn-danger btn-danger pull-right">업로드
-							하기</button>
+				<tr>					
+					<td colspan="4">						
+						<textarea rows="5" cols="130" name="boardContent" class="chk3" placeholder="게시글 내용을 입력하시오"></textarea><br>						
+						<button type="button" class="btn btn-danger btn-danger pull-right" onclick="checkUpload()">업로드 하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">																			
+					<td colspan="4">
+							<label>업로드할 파일</label>																			
 							<input type="file" name="fileName"
 								class="afile3" />							
-							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px" class="dropZone">								
+							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px" class="dropZone chk4">								
 							
 							</div>
 					</td>
@@ -138,7 +138,16 @@ textarea {
 	<!--CDN방식-->
 	<script src="./resources/multifile-master/jquery.MultiFile.js"></script>
 	<script>
-	
+    //값 확인
+    function checkUpload(){
+   	 	if($('.chk1').val()=="" || $('.chk2').val()=="" || CKEDITOR.instances.p_content.getData()=="" 
+   			 || $('.chk3').val()=="" || $('.chk4').text()=="" ){
+   		 	alert("제목, 게시글 아콘, 편집창, 게시글내용, 파일을 모두 입력하세요");
+   	 	} else {
+   	 		upload_frm.action="request_upload";
+   	 		upload_frm.submit();
+   	 	}        			 
+    }    
 	        $(function(){ // wait for page to load
                 $('input.afile3').MultiFile({
             max: 5, 
@@ -199,7 +208,7 @@ textarea {
             }
             */
 			
-          });	        
+          });      
 
              // 파일 리스트 번호
              var fileIndex = 0;
@@ -212,12 +221,12 @@ textarea {
              // 등록 가능한 파일 사이즈 MB
              var uploadSize = 50;
              // 등록 가능한 총 파일 사이즈 MB
-             var maxUploadSize = 500;
-
+             var maxUploadSize = 500;            
+             
              $(function (){
                  // 파일 드롭 다운
                  fileDropDown();
-             });
+             });         
 
              // 파일 드롭 다운
              function fileDropDown(){
@@ -251,8 +260,9 @@ textarea {
                          if(files.length < 1){
                              alert("폴더 업로드 불가");
                              return;
-                         }
-                         selectFile(files)
+                         }                         
+                         $("[name=fileName]").last().get(0).files=files;
+                         $("[name=fileName]").last().change();                         
                      }else{
                          alert("ERROR");
                      }
@@ -310,13 +320,12 @@ textarea {
                  }else{
                      alert("ERROR");
                  }
-             }
-
-             // 업로드 파일 목록 생성
-             function addFileList(files){
-            	 var m = $('#MultiFile1').MultiFile('data');            	 
-            	$('.dropZone').append(m.addToList(m.files.size, m.files.size, files));
-             }
+             } 
+             
+//             function addFileList(){
+//            	 var m =$('MultiFile1').MultiFile('data');
+ //           	 $('dropZone').append(m.addToList(m.files.size, m.files.size, files));
+  //           }
 
              // 업로드 파일 삭제
              function deleteFile(fIndex){
@@ -358,27 +367,7 @@ textarea {
                      var formData = new FormData(form);
                      for(var i = 0; i < uploadFileList.length; i++){
                          formData.append('files', fileList[uploadFileList[i]]);
-                     }     
-                     
-             /*         $.post({
-                         url:"/request_upload",
-                         data:formData,
-                         type:'POST',
-                         enctype:'multipart/form-data',
-                         processData:false,
-                         contentType:false,
-                         dataType:'json',
-                         cache:false,
-                         success:function(result){
-                             if(result.data.length > 0){
-                                 alert("성공");
-                                 location.reload();
-                             }else{
-                                 alert("실패");
-                                 location.reload();
-                             }
-                         }
-                     });    */ 
+                     }    
                  }
              }
 

@@ -75,7 +75,7 @@ th {
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
 					<th>다운로드 아콘</th>
-					<th>회원아이디</th>
+					<th>회원 아이디</th>
 					<th>결제 날짜</th>
 				</tr>
 				<tr>

@@ -123,14 +123,25 @@
  				</tr>
  			</thead>
  			<tbody>
- 			<c:forEach items="${list}" var="acorn">
- 				<tr>
- 					<td><input type="checkbox" name="seqs" value="${acorn.acorn_no}"></td>
- 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${acorn.acorn_date}"/></td>
- 					<td>${acorn.acorn_point}</td>
- 					<td>${acorn.acorn_content}</td>
- 				</tr>
- 			</c:forEach>
+ 			<c:choose>
+ 			 	<c:when test="${fn:length(list) == 0}">
+ 					<tr>
+ 						<td colspan="4" align="center">
+ 							충전/사용내역이 없습니다.
+ 						</td>
+ 					</tr>
+ 				</c:when>
+ 				<c:otherwise>
+		 			<c:forEach items="${list}" var="acorn">
+		 				<tr>
+		 					<td><input type="checkbox" name="seqs" value="${acorn.acorn_no}"></td>
+		 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${acorn.acorn_date}"/></td>
+		 					<td>${acorn.acorn_point}</td>
+		 					<td>${acorn.acorn_content}</td>
+		 				</tr>
+		 			</c:forEach>
+ 				</c:otherwise>
+ 			</c:choose>
  			</tbody>
  		</table>
  		<div align="center">

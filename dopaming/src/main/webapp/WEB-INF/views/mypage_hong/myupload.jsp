@@ -88,17 +88,28 @@
  				</tr>
  			</thead>
  			<tbody>
- 			<c:forEach items="${list}" var="upload">
- 				<tr>
- 					<td><input type="checkbox" name="seqs" value="${upload.board_no}"></td>
- 					<td>${upload.board_no}</td>
- 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${upload.board_no}&member_id=${upload.member_id}">
- 					${upload.board_title}</td>
- 					<td>${upload.category_big}</td>
- 					<td><fmt:formatNumber pattern="0.00" value="${upload.file_storage}"/>MB</td>
- 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${upload.upload_date}"/></td>
- 				</tr>
- 			</c:forEach>
+ 			<c:choose>
+ 				<c:when test="${fn:length(list) == 0}">
+ 					<tr>
+ 						<td colspan="6" align="center">
+ 							판매내역이 없습니다.
+ 						</td>
+ 					</tr>
+ 				</c:when>
+ 				<c:otherwise>
+		 			<c:forEach items="${list}" var="upload">
+		 				<tr>
+		 					<td><input type="checkbox" name="seqs" value="${upload.board_no}"></td>
+		 					<td>${upload.board_no}</td>
+		 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${upload.board_no}&member_id=${upload.member_id}">
+		 					${upload.board_title}</td>
+		 					<td>${upload.category_big}</td>
+		 					<td><fmt:formatNumber pattern="0.00" value="${upload.file_storage}"/>MB</td>
+		 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${upload.upload_date}"/></td>
+		 				</tr>
+		 			</c:forEach>
+ 				</c:otherwise>
+ 			</c:choose>
  			</tbody>
  		</table>
  		<input type="hidden" name="page" value="1">

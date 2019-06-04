@@ -78,7 +78,6 @@ $(function(){ //J쿼리형태
 				</c:when>
 				<c:otherwise>
 					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/acornForm">아콘충전</a></li>
-					<li><a class="navbar-brand" href="#">쪽지</a></li>
 				</c:otherwise>
 				</c:choose>
 					<li><a class="navbar-brand" href="notice_select_new">고객센터</a></li>

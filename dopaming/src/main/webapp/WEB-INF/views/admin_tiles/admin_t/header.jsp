@@ -58,9 +58,9 @@
         <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">게시판관리</h6>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/boardList">게시글관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/notice_selectlist">공지사항</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/fileList">파일리스트 </a>            
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/boardList">게시글관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/notice_selectlist">공지사항</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/fileList">파일리스트 </a>            
           </div>
         </div>
       </li>
@@ -116,9 +116,9 @@
         <div id="collapseUtilities5" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">신고관리</h6>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/complain_selectlist?complain_type=qna">QnA</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/complain_selectlist?complain_type=신고">신고 사항</a>            
-         	<a class="collapse-item" href="${pageContext.request.contextPath }/complain_selectlist?complain_type=건의">건의 사항</a>  
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/complain_selectlist?complain_type=qna">QnA</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/complain_selectlist?complain_type=신고">신고 사항</a>            
+         	<a class="collapse-item" href="${pageContext.request.contextPath }/admin/complain_selectlist?complain_type=건의">건의 사항</a>  
           </div>
         </div>
       </li>

@@ -9,15 +9,20 @@
 function black_insert(){
 	//체크박스 입력 체크
 	if(confirm("블랙리스트에 등록할까요?")){
-		//내용있는지 확인
+		//내용없을땐 경고띄움
 		if($("textarea[name=list_content]").val()==""){
 			alert("내용을 적어주세요");
 			return false;
+		
 		}else{
+		//내용있을때 블랙에 데이터 넘김
 		form.action = "${pageContext.request.contextPath }/admin/blackInsert"
 		form.submit();
 		}
 	}	
+	else{
+		return true;
+	}
 }	
 </script>
 </head>

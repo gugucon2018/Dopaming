@@ -31,9 +31,19 @@ public class FileDAOMybatis_Hwan {
 		return mybatis.selectList("FileDAOHwan.Board_BoardList" , fpvo);
 	}	
 	//게시글 페이징
-	public int board_Paging() {		
-		return mybatis.selectOne("FileDAOHwan.Board_Paging");
+	public int board_Paging(FilePostVO_Hwan fpvo) {		
+		return mybatis.selectOne("FileDAOHwan.Board_Paging",fpvo);
 	}
+	//다운로드 등록
+	public void download_insert_hwan(FileDownloadVO_Hwan fdvo){
+		mybatis.insert("FileDAOHwan.DownloadInsert",fdvo);
+	}
+	
+	//다운로드 등록 유무 확인
+	public int download_check_hwan(FileDownloadVO_Hwan fdvo) {
+		return mybatis.selectOne("FileDAOHwan.DownloadCheck",fdvo);
+	}
+	
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_download(FileDownloadVO_Hwan fdvo){
 		return mybatis.selectList("FileDAOHwan.Download_List", fdvo);
@@ -42,4 +52,16 @@ public class FileDAOMybatis_Hwan {
 	public FileDownloadVO_Hwan select_downloadOne(FileDownloadVO_Hwan fdvo) {
 		return mybatis.selectOne("FileDAOHwan.DownloadPost", fdvo);
 	}	
+	//댓글 등록
+	public void comment_insert_hwan(FileCommentsVO_Hwan fcvo) {
+		mybatis.insert("FileDAOHwan.CommentInsert",fcvo);
+	}
+	//댓글 단건 조회
+	public FileCommentsVO_Hwan comment_selectOne_hwan(FileCommentsVO_Hwan fcvo) {
+		return mybatis.selectOne("FileDAOHwan.CommentSelectOne",fcvo);
+	}
+	//댓글 리스트 조회 
+	public List<FileCommentsVO_Hwan> comment_selectList_hwan(FileCommentsVO_Hwan fcvo){
+		return mybatis.selectList("FileDAOHwan.CommentSelectList", fcvo);
+	}
 }

@@ -46,10 +46,21 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 
 	//게시글 페이징
 	@Override
-	public int board_Paging() {
+	public int board_Paging(FilePostVO_Hwan fpvo) {
 		// TODO Auto-generated method stub		
-		return dao.board_Paging();
+		return dao.board_Paging(fpvo);
 	}		
+	
+	//다운로드 등록 
+	public void download_insert_hwan(FileDownloadVO_Hwan fdvo) {
+			dao.download_insert_hwan(fdvo);
+	}
+	
+	//다운로드 등록 유무 확인
+	@Override
+	public int download_check_hwan(FileDownloadVO_Hwan fdvo) {
+		return dao.download_check_hwan(fdvo);
+	}
 	
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_downloadList(FileDownloadVO_Hwan fdvo){
@@ -60,4 +71,18 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 	public FileDownloadVO_Hwan select_downloadOne(FileDownloadVO_Hwan fdvo) {
 		return dao.select_downloadOne(fdvo);
 	}	
+	
+	//댓글 삽입
+	public void comment_insert_hwan(FileCommentsVO_Hwan fcvo) {
+		dao.comment_insert_hwan(fcvo);
+	}
+	
+	//댓글 단건 조회
+	public FileCommentsVO_Hwan comment_selectOne_hwan(FileCommentsVO_Hwan fcvo) {
+		return dao.comment_selectOne_hwan(fcvo);
+	}
+	//댓글 리스트 조회
+	public List<FileCommentsVO_Hwan> comment_selectList_hwan(FileCommentsVO_Hwan fcvo){
+		return dao.comment_selectList_hwan(fcvo);
+	}
 }

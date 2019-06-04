@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,15 +40,21 @@ function complain_insert_btn(){
 <body>
 
 <form name="complain_insert_frm">
+
+<input type="hidden" name="board_no" value="${complainVO.board_no}"/>
 	
 	<h3 align=left><u>고객센터</u></h3>
 	
+	
 	타입:<select name = "complain_type">
 			<option value="신고">신고</option>
+			<c:if test="${complainVO.complain_type != '신고'}">
 			<option value="건의">건의</option>
-			<option value="qna">Q&A</option>
+			<option value="qna">Q&A</option></c:if>
 		</select><br>
-		
+	<c:if test="${complainVO.complain_type == '신고'}">	
+	신고게시판 : ${complainVO.board_no}<br></c:if>
+	
 	제목 : <input type="text" id="complain_title" name="complain_title" 
 	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 

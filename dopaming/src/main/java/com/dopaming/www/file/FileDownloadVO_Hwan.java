@@ -4,6 +4,10 @@ import java.sql.Date;
 
 // 다운로드 게시글 열람
 public class FileDownloadVO_Hwan {
+	
+	//다운로드 넘버
+	private int download_no;
+	
 	//멤버 아이디
 	private String member_id;
 	//게시글 아콘
@@ -17,6 +21,14 @@ public class FileDownloadVO_Hwan {
 	//파일명
 	private String file_name;
 	
+	
+	
+	public int getDownload_no() {
+		return download_no;
+	}
+	public void setDownload_no(int download_no) {
+		this.download_no = download_no;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

@@ -22,37 +22,6 @@
 	display: inline-block;
 	padding: 10px;
 }
-
-.active {
-	color: red;
-}
-
-a {
-	text-decoration: none;
-}
-
-* {
-	box-sizing: border-box;
-}
-td {
-	border-bottom: 1px solid;
-}
-table {
-	font-family: arial, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
-	padding: 8px;
- 	text-align: center;
-}
-
-tr:nth-child(even) {
-	background-color: #dddddd;
-}
 #spann {
 float: right;
 }
@@ -102,7 +71,8 @@ function td_delete(){
 		</span>
 		<div>
 		<form name="form">
-			<table>
+			<table class="table table-striped table-hover">
+			<thead>
 				<tr>
 					<td></td>
 					<td>아이디</td>
@@ -111,6 +81,8 @@ function td_delete(){
 					<td>등록된날짜(내림차순)</td>
 					<td>사유</td>
 				<tr>
+				<thead>
+				<tbody>
 					<c:forEach items="${blackList}" var="list1">
 						<!-- 등급관리 전체조회 -->
 						<tr>
@@ -122,8 +94,8 @@ function td_delete(){
 							<td>${list1.list_content }
 						</tr>
 					</c:forEach>
+				</tbody>
 			</table>
-			
 		</div>
 		<div align="center">
 		<my:paging paging="${paging}" />

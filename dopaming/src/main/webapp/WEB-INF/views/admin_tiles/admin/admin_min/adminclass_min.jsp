@@ -23,38 +23,8 @@
 	padding: 10px;
 }
 
-.active {
-	color: red;
-}
-
-a {
-	text-decoration: none;
-}
-
-* {
-	box-sizing: border-box;
-}
-td {
-	border-bottom: 1px solid;
-}
-
-table {
-	font-family: arial, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
-	padding: 8px;
-}
-
-tr:nth-child(even) {
-	background-color: #dddddd;
-}
 #spann {
-float: right;
+	float: right;
 }
 </style>
 <script>
@@ -73,7 +43,7 @@ float: right;
 				cnt++
 			}
 		}
-		if(cnt == 0 ){
+		if (cnt == 0) {
 			alert("등급을 수정할 아이디를 선택해주세요");
 			return false;
 		}
@@ -83,7 +53,7 @@ float: right;
 			alert("선택!!");
 			return;
 		}
-		form.action="grade_update"
+		form.action = "grade_update"
 		form.submit();
 	}
 </script>
@@ -92,48 +62,50 @@ float: right;
 	<!-- select + 검색 -->
 	<h1 style="text-align: center;">등급관리</h1>
 	<hr>
-	
+
 	<form name="searchFrm" method="get">
-		<span id="spann">
-			<input type="hidden" name="page" value="1"> 
-			<select	name="member_grade">
+		<span id="spann"> <input type="hidden" name="page" value="1">
+			<select name="member_grade">
 				<option value="">전체
 				<option value="g4">다이아도토리
 				<option value="g3">골드도토리
 				<option value="g2">실버도토리
 				<option value="g1">브론즈도토리
-			</select>
-			<script>
-			searchFrm.member_grade.value='${gradeVO_min.member_grade}';
-			</script>
+		</select> <script>
+			searchFrm.member_grade.value = '${gradeVO_min.member_grade}';
+		</script>
 			<button class="btn btn-info">검색</button>
 		</span>
 	</form>
-	
+
 	<!-- 테이블 -->
 	<form name="form">
-		<table>
-			<tr>
-				<td></td>
-				<td>아이디</td>
-				<td>총 현질합계</td>
-				<td>등급(내림차순)</td>
-				<td>총 업로드횟수</td>
-			<tr>
-				<c:forEach items="${classList}" var="classs">
-					<!-- 등급관리 전체조회 -->
-					<tr>
-						<td><input type="checkbox" name="td_checkbox"
-							value="${classs.member_id }"></td>
-						<td>${classs.member_id }</td>
-						<td>${classs.acron }</td>
-						<td>${classs.grade_kor }</td>
-						<td>${classs.upload_count }</td>
-					</tr>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th></th>
+					<th>아이디</th>
+					<th>총 현질합계</th>
+					<th>등급(내림차순)</th>
+					<th>총 업로드횟수</th>
+				<tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${classList}" var="classs">				
+				<!-- 등급관리 전체조회 -->
+				<tr>
+					<td><input type="checkbox" name="td_checkbox"
+						value="${classs.member_id }"></td>
+					<td>${classs.member_id }</td>
+					<td>${classs.acron }</td>
+					<td>${classs.grade_kor }</td>
+					<td>${classs.upload_count }</td>
+				</tr>				
 				</c:forEach>
+			<tbody>
 		</table>
 		<div align="center">
-		<my:paging paging="${paging}" />
+			<my:paging paging="${paging}" />
 		</div>
 		<div align="right">
 			<select name="member_grade2">

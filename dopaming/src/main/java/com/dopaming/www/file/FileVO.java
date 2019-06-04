@@ -8,7 +8,7 @@ public class FileVO {
 	private String board_name;
 	private String board_no;
 	private int file_no;
-	private int file_storage;
+	private double file_storage;
 	private Date upload_date;
 	private String member_id;
 	private String category_small;
@@ -70,12 +70,6 @@ public class FileVO {
 		this.file_no = file_no;
 	}
 	
-	public int getFile_storage() {
-		return file_storage;
-	}
-	public void setFile_storage(int file_storage) {
-		this.file_storage = file_storage;
-	}
 	public Date getUpload_date() {
 		return upload_date;
 	}
@@ -121,6 +115,13 @@ public class FileVO {
 	}
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+	
+	public double getFile_storage() {
+		return file_storage;
+	}
+	public void setFile_storage(double file_storage) {
+		this.file_storage = file_storage;
 	}
 	@Override
 	public String toString() {

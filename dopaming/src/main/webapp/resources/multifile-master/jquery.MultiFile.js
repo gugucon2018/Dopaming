@@ -160,7 +160,7 @@ if (window.jQuery)(function ($) {
 					generateID: function (z) {
 						return MultiFile.instanceKey + (z > 0 ? '_F' + String(z) : '');
 					},
-					trigger: function (event, element, MultiFile, files) {						
+					trigger: function (event, element, MultiFile, files) {
 						$('#stg').html($('#MultiFile1').MultiFile('size'));
 						var rv, handler = MultiFile[event] || MultiFile['on'+event] ;
 						if (handler){

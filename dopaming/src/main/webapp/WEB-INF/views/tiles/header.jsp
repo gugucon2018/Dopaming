@@ -5,6 +5,31 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+var context = "${pageContext.request.contextPath}";
+var id = "${sessionScope.Id}"
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
+<style>
+.btn_msg {
+	background-color: #000;
+	padding: 0px;
+	margin-top: 12px;
+	margin-right: 10px;
+	border-color: #000;
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+.btn_msg:hover {
+	opacity: 1;
+}
+
+.cnt_msg {
+	margin-top: 16.5px;
+	margin-right: 3px;
+}
+</style>
 <!-- 메시지 세션 -->
 <c:if test="${sessionScope.message ne null}">
 	<script>
@@ -49,6 +74,20 @@
 	</script>
 	<c:remove var="error" scope="session" />
 </c:if>
+
+<script>
+//로그인이 안되었을 경우(고객센터)-joon
+$(function(){ //J쿼리형태
+	$(".complain").click(function(){
+		if("${sessionScope.Id}" == ""){
+			alert("로그인을 해주세요");
+			return false;
+		}
+	})
+})
+
+</script>
+
 </head>
 <div class="container-fluid">
 	<div class="navbar navbar-inverse">
@@ -58,24 +97,30 @@
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
+				<c:choose>
+				<c:when test="${sessionScope.memberSession eq null || sessionScope.Id eq 'admin'}">
+				</c:when>
+				<c:otherwise>
 					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/acornForm">아콘충전</a></li>
-					<li><a class="navbar-brand" href="#">쪽지</a></li>
-					<li><a class="navbar-brand" href="complain_selectlist_nomal?complain_type=qna">고객센터</a></li>
+				</c:otherwise>
+				</c:choose>
+					<li><a class="navbar-brand" href="notice_select_new">고객센터</a></li>
 					<li><a class="navbar-brand" href="loginForm">(임시)관리자로그인페이지</a></li>
-					<li><a class="navbar-brand" href="notice_selectlist_nomal">공지사항</a></li>
 				</ul>
 				<ul class="nav navbar-nav navber-right">
 					<c:choose>
 						<%-- 로그인 안 한 상태 --%>
 						<c:when test="${sessionScope.memberSession eq null || sessionScope.Id eq 'admin'}">
 							<li><a class="navbar-brand" id="loginBtn" data-toggle="modal">로그인</a></li>
-							<li><a class="navbar-brand" id="joinBtn" onclick="location='register'">회원가입</a></li>
+							<li><a class="navbar-brand" id="joinBtn" onclick="location='${pageContext.request.contextPath }/register'">회원가입</a></li>
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
+							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>						    
+						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="${pageContext.request.contextPath}/resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
 							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
-							<li><a class="navbar-brand" href="#">회원정보 수정</a></li>
-							<li><button onclick="location='logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
+							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
+							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
 						</c:otherwise>
 					</c:choose>					
 				</ul>

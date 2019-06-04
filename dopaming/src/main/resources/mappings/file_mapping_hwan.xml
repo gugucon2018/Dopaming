@@ -145,5 +145,88 @@
 		</where>
 		group by b.member_id,b.board_acorn, f.file_no, f.group_no
 	</select>
-
+	<!-- 다운로드 등록 -->
+   	<insert id="DownloadInsert">
+   		<selectKey keyProperty="download_no" resultType="int"
+			order="BEFORE">
+			select DOWNLOAD_INSERT_SEQ_HWAN.nextval from dual
+		</selectKey>
+   		INSERT INTO file_download(
+   			    download_no,
+    			download_date,
+    			member_id,
+    			download_acorn,
+    			file_no,
+    			group_no
+   		) VALUES(
+   			#{download_no},
+   			SYSDATE,
+   			#{member_id},
+   			#{file_no},
+   			#{group_no}
+   		)   	
+   	</insert>
+   	<!-- 다운로드 등록 유무 확인 -->
+   	<select id="DownloadCheck" resultType="int">
+   		select count(*) 
+		from file_download
+		<where>
+			<if test="group_no!=null and group_no!='' ">
+			 group_no=#{group_no}	
+			 </if>
+   		</where>
+   	</select>
+   	
+	<!-- 댓글 추가 -->
+	<insert id="CommentInsert">
+			<selectKey keyProperty="comment_no" resultType="int"
+			order="BEFORE">
+			select COMMENTS_INSERT_SEQ_HWAN.nextval from dual
+		</selectKey>
+	insert into comments(
+		comment_no,
+		comment_content,
+		member_id,
+		reg_date,
+		board_no
+	)values(
+		#{comment_no},
+		#{comment_content},
+		#{member_id},
+		SYSDATE,
+		#{board_no}
+	)	
+	</insert>
+	<!-- 댓글 단건 조회 -->
+	<select id="CommentSelectOne" resultType="com.dopaming.www.file.FileCommentsVO_Hwan">
+		select 
+			comment_no,
+			comment_content,
+			member_id,
+			reg_date,
+			board_no
+		from
+			comments
+		<where>
+			<if test="comment_no!=null and comment_no!='' ">
+				comment_no=#{comment_no}
+			</if>
+		</where>
+	</select>
+	<!-- 댓글 리스트 조회 -->
+	<select id="CommentSelectList" resultType="com.dopaming.www.file.FileCommentsVO_Hwan">
+			select 
+			comment_no,
+			comment_content,
+			member_id,
+			reg_date,
+			board_no
+		from
+			comments            
+        <where>
+        	<if test="board_no!=null and board_no!='' ">
+            	board_no=#{board_no}
+            </if>
+        </where>
+   	</select>   	
 </mapper>

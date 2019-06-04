@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 쪽지 DAO 매핑 -->
+<mapper namespace="MsgDAO">
+
+	<!-- 받은 쪽지 전체 목록 -->
+	<select id="list_receive_all" resultType="msg">
+		select message_no, sender_id, message_title, message_check   
+		from message 
+		where receiver_id=#{receiver_id} and message_check in ('N','Y')
+		order by 1 desc
+	</select>
+	
+	<!-- 보낸 쪽지 전체 목록 -->
+	<select id="list_sent_all" resultType="msg">
+		select message_no, receiver_id, message_title, message_check   
+		from message 
+		where sender_id=#{sender_id}
+		order by 1 desc
+	</select>
+	
+	<!-- 확인하지 않은 받은 쪽지 수 확인-->
+	<select id="unselect_receive_cnt" resultType="int">
+		select count(*)
+		from message
+		where receiver_id=#{receiver_id} and message_check='N'
+	</select>
+	
+	<!-- 보관함으로 보낼 쪽지 선택 -->
+	<update id="keeping">
+		update message
+		set message_check='K'
+		<where>
+			<choose>
+				<when test="ck != null">
+				 	message_no in
+				 	<foreach item="t" collection="ck" open="(" close=")" separator=",">
+				 		#{t}
+				 	</foreach>			
+				</when>
+				<otherwise>
+					message_no=#{message_no}
+				</otherwise>
+			</choose>
+		</where>	
+	</update>
+	
+	<!-- 받은 쪽지 내용 확인하기 -->
+	<select id="select_receive" resultType="msg">
+		select sender_id, message_date, message_content
+		from message
+		where message_no=#{message_no} 
+	</select>
+	
+	<!-- 받은 쪽지 확인상태 변경 -->
+	<update id="changing">
+		update message
+		set message_check='Y'
+		where message_no=#{message_no}   	
+	</update>
+	
+	<!-- 쪽지 보내기 -->
+	<insert id="sending_write">
+		insert into message(message_no, sender_id, message_title, message_content, receiver_id)
+		values (complain_seq.nextval, #{sender_id}, #{message_title}, #{message_content}, #{receiver_id})
+	</insert>
+		
+</mapper>

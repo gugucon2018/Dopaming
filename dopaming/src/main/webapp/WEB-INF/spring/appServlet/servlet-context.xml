@@ -74,6 +74,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/mypage/**"/>
+			<mapping path="/msg*/**"/>
 			<!-- 인터셉터 객체 생성 -->
 			<beans:bean class="com.dopaming.www.common.AuthLoginInterceptor" />
 		</interceptor>

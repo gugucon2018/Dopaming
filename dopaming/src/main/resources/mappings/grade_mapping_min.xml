@@ -14,7 +14,7 @@
 	on a.member_id = m.member_id 
 	join grade g 
 	on m.member_grade = g.member_grade
-	where m.member_id != 'admin'
+	where m.member_id != 'admin' and m.member_id != 'admin2' and m.member_id != 'admin3' 
 	<!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
           <if test="member_grade != null and member_grade !=''"> 
            and g.member_grade=#{member_grade}
@@ -32,7 +32,7 @@
 	on a.member_id = m.member_id 
 	join grade g 
 	on m.member_grade = g.member_grade
-	where m.member_id != 'admin'
+	where m.member_id != 'admin' and m.member_id != 'admin2' and m.member_id != 'admin3' 
 	 <!-- 동적연산자가 있으면 자동으로 where가 붙는 방식 -->
           <if test="member_grade != null and member_grade !=''"> 
           and g.member_grade=#{member_grade}

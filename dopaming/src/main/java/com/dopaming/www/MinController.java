@@ -89,8 +89,6 @@ public class MinController {
 		}
 	}
 
-	
-
 	// 관리자 - 로그아웃 처리
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
@@ -261,6 +259,7 @@ public class MinController {
 		service5.insertPay(vo);
 		return "redirect:/";
 	}
+	
 	// 이용자 - 결제페이지
 	@RequestMapping(value = { "/acornForm" }, method = RequestMethod.GET)
 	public String acorn() {

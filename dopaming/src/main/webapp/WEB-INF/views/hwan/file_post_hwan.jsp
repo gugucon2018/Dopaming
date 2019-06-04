@@ -75,8 +75,8 @@ $(document).ready(function(){
 	var judge=0; //첫 댓글 시작
 	var front_count=0; //앞 댓글 카운트
 	var back_count=1; //뒤 댓글 카운트
-	var id = "<%=(String)session.getAttribute("Id")%>";
-	if(id != null){
+	var id = "${sessionScope.Id}";	
+	if(id != ""){
 	$.ajax({
 		url:"comment_list_hwan",
 		data:{"board_no": $(".fileBoard_no").val() ,"comment_content" : $(".ComContent").val()},

@@ -65,6 +65,7 @@ public class MinController {
 		PrintWriter out = response.getWriter();		
 		MembersVO_min member = null;
 		try {
+			//관리자(admin)을 위한 암호화, 암호화는 서비스에서 처리했음
 			member = service.getMembers(vo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

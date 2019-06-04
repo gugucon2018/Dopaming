@@ -21,4 +21,6 @@ public interface MyBoardService {
 	public Integer getAcornCount(MyAcornVO vo);
 	//내 캐시 조회
 	public Integer getAcorn(MyAcornVO vo);
+	//내 캐시 내역 삭제
+	public void deleteAcorn(MyAcornVO vo);
 }

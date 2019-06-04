@@ -69,4 +69,9 @@ public class MyBoardServiceImpl implements MyBoardService {
 		return dao.getAcorn(vo);
 	}
 
+	@Override
+	public void deleteAcorn(MyAcornVO vo) {
+		dao.deleteAcorn(vo);
+	}
+
 }

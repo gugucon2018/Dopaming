@@ -94,7 +94,7 @@
 
 		}
 		if(confirm("삭제할까요?")){
-			acornFrm.action = "${pageContext.request.contextPath}/mypage/"
+			acornFrm.action = "${pageContext.request.contextPath}/mypage/acorn_delete"
 			acornFrm.submit();
 		}
 	}
@@ -110,9 +110,7 @@
 					<i class="fa fa-credit-card"></i>
 				</span>
 				<input type="text" class="title_w" value="${acorn}" readonly="readonly">
-				<button class="btn btn-info btn-sm" type="button" onclick="td_delete()">삭제
-					<img src='${pageContext.request.contextPath}/resources/images/ho/icon_trashing.png' width='22px' height='24px'">
-				</button>
+				<button class="btn btn-danger btn-sm" type="button" onclick="td_delete()">삭제</button>
 			</div>
 		</span>
  		<table class="table table-striped table-hover">
@@ -138,16 +136,16 @@
  		<div align="center">
 			<my:paging paging="${paging}"/>
 		</div>
-		<div align="right">
+	</form>
+	<div align="right">
 		<form name="searchFrm" method="get">
 			<input type="hidden" name="page" value="1"> 
 			사용내역 : <input name="searchKeyword" value="${MyAcornVO.searchKeyword}" />
 			<button class="btn btn-info" type="submit">검색</button>
 			<script>
-				searchFrm.searchKeyword.value="${MyAcornVO.searchKeyword}";
+				document.searchFrm.searchKeyword.value="${MyAcornVO.searchKeyword}";
 			</script>
 		</form>
 	</div>
-	</form>
 </body>
 </html>

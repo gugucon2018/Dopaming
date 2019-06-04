@@ -146,6 +146,25 @@
 	<select id="getAcorn" resultType="int">
 		select acorn_stock
 		from members
-		where member_id = 'lion'
+		where member_id = #{member_id}
 	</select>
+	
+	<!-- 캐시 내역 삭제 -->
+	<delete id="deleteAcorn">
+	delete 
+	from acorn
+	<where>
+		<choose>
+			<when test="seqs != null">
+				acorn_no in
+				<foreach item="t" collection="seqs" open="(" close=")" separator=",">
+					#{t}
+				</foreach>
+			</when>
+			<otherwise>
+				acorn_no = #{acorn_no}
+			</otherwise>
+		</choose>
+	</where>
+	</delete>
 </mapper>

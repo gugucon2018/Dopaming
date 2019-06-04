@@ -74,4 +74,10 @@ public class MyBoardDAO {
 		System.out.println("===> Mybatis로 getAcorn() 기능 처리");
 		return mybatis.selectOne("MyBoardDAO.getAcorn", vo);
 	}
+	
+	//내 캐시 내역 삭제
+	public void deleteAcorn(MyAcornVO vo) {
+		System.out.println("===> Mybatis로 deleteAcorn() 기능 처리");
+		mybatis.delete("MyBoardDAO.deleteAcorn", vo);
+	}
 }

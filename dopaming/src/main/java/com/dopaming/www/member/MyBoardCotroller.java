@@ -103,4 +103,11 @@ public class MyBoardCotroller {
 		
 		return "mypage_hong/myacorn";
 	}
+	
+	//내 캐시 내역 삭제
+	@RequestMapping(value ="/acorn_delete", method = RequestMethod.GET )
+	public String deleteAcorn(MyAcornVO vo, HttpServletRequest request) {
+		service.deleteAcorn(vo);
+		return "redirect:/mypage/myAcorn";
+	}
 }

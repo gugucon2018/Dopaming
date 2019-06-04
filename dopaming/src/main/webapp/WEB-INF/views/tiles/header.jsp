@@ -93,7 +93,7 @@ $(function(){ //J쿼리형태
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
 							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>
-						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="./resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
+						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="${pageContext.request.contextPath}/resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
 							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
 							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>

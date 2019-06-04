@@ -62,6 +62,15 @@ function msgReceiveResult(data) {
 	$("#wrap").remove();
 	var $tag = "<div id='wrap'>"
 	$tag += "<div class='head_receive'>" + "Receive" + "</div>"
+	$tag += "<button type='button' class='btn_unselect' id='unselect_msg'>"
+	$tag += "<img src='./resources/images/ho/icon_unselect.png' width='22p' height='24px'>"
+	$tag += "</button>"
+	$tag += "<button type='button' class='btn_keeping' onclick='msgKeeping()'>"
+	$tag += "<img src='./resources/images/ho/icon_keeping.png' width='22px' height='24px'>"
+	$tag += "</button>"
+	$tag += "<button type='button' class='btn_trashing' id='trashing_msg'>"
+	$tag += "<img src='./resources/images/ho/icon_trashing.png' width='22px' height='24px'>"
+	$tag += "</button>"
 	$tag += "<p>" 
 	$tag += "<span class='sender_bar'>" + "sender" + "</span>"
 	$tag += "<span class='title_bar_r'>" + "title" + "</span>"
@@ -178,7 +187,6 @@ function msgSending() {
 
 //쪽지 Keeping 버튼	
 function msgKeeping() {
-	$("#keeping_msg").click(function(){
 		$.ajax({
 			url:'msg_keeping',
 			type:'GET',
@@ -186,7 +194,6 @@ function msgKeeping() {
 			data: $("#form_receive").serialize(),
 			success:function() { $("#receive_msg").click(); }
 		});
-	});
 }
 
 //받은 쪽지 확인상태 변경

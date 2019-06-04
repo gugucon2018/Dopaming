@@ -52,16 +52,27 @@
  				</tr>
  			</thead>
  			<tbody>
- 			<c:forEach items="${list}" var="down">
- 				<tr>
- 					<td>${down.download_no}</td>
- 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${down.board_no}&member_id=${down.member_id}">
- 					${down.board_title}</td>
- 					<td>${down.category_big}</td>
- 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${down.download_date}"/></td>
- 					<td>${down.sal_id}</td>
- 				</tr>
- 			</c:forEach>
+ 			<c:choose>
+ 				<c:when test="${fn:length(list) == 0}">
+ 					<tr>
+ 						<td colspan="5" align="center">
+ 							구매내역이 없습니다.
+ 						</td>
+ 					</tr>
+ 				</c:when>
+ 				<c:otherwise>
+		 			<c:forEach items="${list}" var="down">
+		 				<tr>
+		 					<td>${down.download_no}</td>
+		 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${down.board_no}&member_id=${down.member_id}">
+		 					${down.board_title}</td>
+		 					<td>${down.category_big}</td>
+		 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${down.download_date}"/></td>
+		 					<td>${down.sal_id}</td>
+		 				</tr>
+		 			</c:forEach>
+ 				</c:otherwise>
+ 			</c:choose>
  			</tbody>
  		</table>
  		<input type="hidden" name="page" value="1">

@@ -40,13 +40,13 @@ public class JoonController {
 	@Autowired BoardListService BoardList_service;
 	@Autowired ComplainService ComplainService;
 	
-	//공지 등록폼
-	@RequestMapping(value = "/notice_insert_form")
+	//공지 등록폼(관리자)
+	@RequestMapping(value = "/admin/notice_insert_form")
 	public String notice_insert_form() { 
 		return "admin/admin_joon/notice_insert_joon"; 
 			}
 	
-	// 공지 등록 입력값 받아와서 넘겨주기
+	// 공지 등록 입력값 받아와서 넘겨주기(관리자)
 	@RequestMapping(value = "/notice_insert") // 뷰에서 notice_insert의 값이 보내어지면
 	public String notice_insert(NoticeVO vo, Model model, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
@@ -64,12 +64,12 @@ public class JoonController {
 		} else {
 		
 			// 돌아갈 화면
-			return "redirect:/notice_selectlist";
+			return "redirect:admin/notice_selectlist";
 		}
 	}
 
 	// 공지 목록 (관리자)
-	@RequestMapping("/notice_selectlist")
+	@RequestMapping("/admin/notice_selectlist")
 	public String notice_selectlist(Model model, Paging paging, NoticeVO vo) {
 
 		// 페이징 처리
@@ -129,8 +129,8 @@ public class JoonController {
 		return "jon/notice_select_new";
 	}		
 		
-	// 공지사항 뷰
-	@RequestMapping(value = "/notice_select") // 뷰에서 notice_select의 값이 보내어지면
+	// 공지사항 뷰(관리자)
+	@RequestMapping(value = "/admin/notice_select") // 뷰에서 notice_select의 값이 보내어지면
 	public String notice_select(NoticeVO vo, Model model, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		
@@ -157,14 +157,14 @@ public class JoonController {
 			return "jon/notice_select_joon";
 		}
 	
-	// 공지 단건 삭제
+	// 공지 단건 삭제(관리자)
 	@RequestMapping("/notice_delete")
 	public String notice_delete(NoticeVO vo) {
 		service.notice_delete(vo);
-		return "redirect:notice_selectlist";
+		return "redirect:admin/notice_selectlist";
 	}
 
-	// 선택 삭제
+	// 선택 삭제(관리자)
 	@RequestMapping("/notice_deletelist")
 	public String notice_deletelist(NoticeVO vo, HttpServletRequest request) throws ServletException, IOException {
 		// jsp에서 배열값 받는 함수
@@ -179,11 +179,11 @@ public class JoonController {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:notice_selectlist";
+		return "redirect:admin/notice_selectlist";
 	}
 
-	//공지 수정폼
-	@RequestMapping(value = "/notice_update_form") 
+	//공지 수정폼(관리자)
+	@RequestMapping(value = "/admin/notice_update_form") 
 	public String notice_update(NoticeVO vo, Model model) { 
 		
 		//JSP에서 넘어온값(VO)를 다시 수정폼화면에 뿌리기위해서 모델에 notice로 담아둔다.
@@ -210,12 +210,12 @@ public class JoonController {
 				return "admin/admin_joon/notice_update_joon";
 			} else {
 				// 돌아갈 화면
-				return "redirect:notice_selectlist";
+				return "redirect:admin/notice_selectlist";
 			}
 		}
 		
-	//게시판 목록 연결
-		@RequestMapping("/boardList")
+	//게시판 목록 연결(관리자)
+		@RequestMapping("/admin/boardList")
 		public String boardList(Model model, Paging paging, BoardListVO vo, HttpServletRequest request) {
 			
 			// 페이징 처리
@@ -235,6 +235,7 @@ public class JoonController {
 			model.addAttribute("paging", paging);
 			// 돌려 받은 값들을 list에 받아둔다.
 			model.addAttribute("list", BoardList_service.boardList_select(vo));
+			//타일즈 동작
 			return "admin/admin_joon/boardList_joon";
 		}
 		
@@ -259,8 +260,8 @@ public class JoonController {
 		return "redirect:complain_selectlist_nomal?complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
 	}
 	
-	//고객센터 리스트
-	@RequestMapping(value = "/complain_selectlist")
+	//고객센터 리스트(관리자)
+	@RequestMapping(value = "/admin/complain_selectlist")
 	public String complain_selectlist(ComplainVO vo, Model model, Paging paging, HttpServletRequest request) { 
 		
 		// 페이징 처리
@@ -314,7 +315,7 @@ public class JoonController {
 		}
 	
 	//고객센터 답변수정
-	@RequestMapping(value = "/complain_check_update")
+	@RequestMapping(value = "/admin/complain_check_update")
 	public String complain_check_update(ComplainVO vo, HttpServletRequest request) throws UnsupportedEncodingException {
 		
 		//페이지 고정값
@@ -324,11 +325,11 @@ public class JoonController {
 		ComplainService.complain_check_update(vo);	
 		
 		//redirect의 경우에는 값이 지워지기 때문에 다시 complain_type값을 보내고 돌아갈뷰 지정, 한글값이 깨져서 직접 인코딩해서 보낸다. 
-		return "redirect:complain_selectlist?page="+page+"&complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
+		return "redirect:admin/complain_selectlist?page="+page+"&complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
 	}
 	
-	// 고객센터 뷰
-	@RequestMapping(value = "/complain_select") // 뷰에서 notice_select의 값이 보내어지면
+	// 고객센터 뷰(관리자)
+	@RequestMapping(value = "admin/complain_select") // 뷰에서 complain_select의 값이 보내어지면
 	public String complain_select(ComplainVO vo, Model model, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		// 돌려 받은 값들을 ComplainVO에 받아둔다.
@@ -347,8 +348,8 @@ public class JoonController {
 			return "jon/complain_select_joon";
 		}
 
-	//고객센터 답변 등록 폼(게시판의 넘버가 넘어오면 vo에 자동으로 담긴다.)
-	@RequestMapping(value = "/complain_answer_form")
+	//고객센터 답변 등록 폼(관리자)(게시판의 넘버가 넘어오면 vo에 자동으로 담긴다.)
+	@RequestMapping(value = "/admin/complain_answer_form")
 	public String complain_answer_form(ComplainVO vo, Model model) { 
 		
 		// 돌려 받은 값들을 ComplainVO에 받아둔다.
@@ -357,8 +358,8 @@ public class JoonController {
 		return "admin/admin_joon/complain_answer_form_joon"; 
 	}
 	
-	//고객센터 답변 등록
-	@RequestMapping(value = "/answer_insert")
+	//고객센터 답변 등록(관리자)
+	@RequestMapping(value = "/admin/answer_insert")
 	public String answer_insert(AnswerVO avo, ComplainVO vo) throws UnsupportedEncodingException {
 			
 	//값들을 지정vo에 넣어준다
@@ -368,7 +369,7 @@ public class JoonController {
 	ComplainService.answer_insert(avo,vo);
 			
 	//redirect의 경우에는 값이 지워지기 때문에 다시 complain_type값을 보내고 돌아갈뷰 지정, 한글값이 깨져서 직접 인코딩해서 보낸다. 
-	return "redirect:complain_selectlist?complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
+	return "redirect:/admin/complain_selectlist?complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
 	}
 
 }

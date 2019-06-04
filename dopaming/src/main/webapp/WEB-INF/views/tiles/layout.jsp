@@ -29,26 +29,6 @@
 
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <style>
-
-.btn_msg {
-	background-color: #000;
-	padding: 0px;
-	margin-top: 12px;
-	margin-right: 10px;
-	border-color: #000;
-	cursor: pointer;
-	opacity: 0.5;
-}
-
-.btn_msg:hover {
-	opacity: 1;
-}
-
-.cnt_msg {
-	margin-top: 16.5px;
-	margin-right: 3px;
-}
-
 .navber-right {
 	float: right;
 }

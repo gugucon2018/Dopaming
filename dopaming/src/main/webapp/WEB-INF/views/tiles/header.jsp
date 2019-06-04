@@ -5,8 +5,31 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+var context = "${pageContext.request.contextPath}";
+var id = "${sessionScope.Id}"
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
+<style>
+.btn_msg {
+	background-color: #000;
+	padding: 0px;
+	margin-top: 12px;
+	margin-right: 10px;
+	border-color: #000;
+	cursor: pointer;
+	opacity: 0.5;
+}
 
+.btn_msg:hover {
+	opacity: 1;
+}
 
+.cnt_msg {
+	margin-top: 16.5px;
+	margin-right: 3px;
+}
+</style>
 <!-- 메시지 세션 -->
 <c:if test="${sessionScope.message ne null}">
 	<script>
@@ -62,6 +85,7 @@ $(function(){ //J쿼리형태
 		}
 	})
 })
+
 </script>
 
 </head>
@@ -92,8 +116,8 @@ $(function(){ //J쿼리형태
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
-							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>
-						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="./resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
+							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>						    
+						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="${pageContext.request.contextPath}/resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
 							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
 							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>

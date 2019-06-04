@@ -27,6 +27,7 @@ public class MsgController {
 	@ResponseBody
 	public List<MsgVO> receiveAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
 		memberVO = (MemberVO) session.getAttribute("memberSession");
+		System.out.println("아직 로그인 되지 않았습니다!");
 		vo.setReceiver_id(memberVO.getMember_id());
 		return service.list_receive_all(vo);
 	}

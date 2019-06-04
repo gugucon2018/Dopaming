@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
 	public void register(MemberVO vo) throws Exception {
 		String email = vo.getMember_email();
 		String id = vo.getMember_id();
-		//회원가입시 암호화처리
+		//회원가입시 비밀번호 암호화처리
 		String enpassword = EgovFileScrty.encryptPassword(vo.getMember_password(), vo.getMember_id());
 		vo.setMember_password(enpassword);
 		

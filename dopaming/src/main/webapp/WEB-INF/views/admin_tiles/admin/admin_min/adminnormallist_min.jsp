@@ -22,37 +22,6 @@
 	display: inline-block;
 	padding: 10px;
 }
-
-.active {
-	color: red;
-}
-
-a {
-	text-decoration: none;
-}
-
-* {
-	box-sizing: border-box;
-}
-td {
-	border-bottom: 1px solid;
-}
-table {
-	font-family: arial, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
-	padding: 8px;
- 	text-align: center;
-}
-
-tr:nth-child(even) {
-	background-color: #dddddd;
-}
 #spann {
 float: right;
 }
@@ -80,13 +49,16 @@ float: right;
 		<div>
 		
 		<form name="form">
-			<table>
+			<table class="table table-striped table-hover">
+			   <thead>
 				<tr>
 					<td>아이디</td>
 					<td>이메일</td>
 					<td>가입날짜(내림차순)</td>
 					<td>등급</td>
 				<tr>
+				<thead>
+				<tbody>
 					<c:forEach items="${normalList}" var="list1">
 						<!-- 등급관리 전체조회 -->
 						<tr>
@@ -96,6 +68,7 @@ float: right;
 							<td>${list1.grade_kor }</td>
 						</tr>
 					</c:forEach>
+				<tbody>
 			</table>
 		</form>
 		</div>

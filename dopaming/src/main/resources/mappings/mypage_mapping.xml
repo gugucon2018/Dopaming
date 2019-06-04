@@ -20,6 +20,7 @@
         order by d.download_no) b) a
 		where rn between #{first} and #{last}
 	</select>
+	
 	<!-- 내가 받은 자료 카운트 -->
 	<select id="getDownCount" resultType="int">
 		select count(*)
@@ -54,7 +55,6 @@
 		on b.board_no = f.group_no
 		inner join members m on m.member_id=b.member_id
         where m.member_id = #{member_id}
-        order by b.board_no
 	</select>
 	
 	<!-- 게시글 삭제  -->
@@ -109,6 +109,60 @@
 			</when>
 			<otherwise>
 				board_no = #{board_no}
+			</otherwise>
+		</choose>
+	</where>
+	</delete>
+	
+	<!-- 캐시사용내역 페이징 -->
+	<select id="getAcornList" resultType="myacorn">
+		select a.*
+		from ( select c.*, rownum rn
+		from ( select acorn_no
+		      , case when acorn_pay > 0 then acorn_pay
+		         else acorn_charge end acorn_point
+		      , acorn_content
+		      , acorn_date
+		from acorn
+		where member_id = #{member_id}
+		<if test="searchKeyword != null and searchKeyword !=''">
+			and acorn_content like '%'||#{searchKeyword}||'%'
+		</if>
+		order by acorn_no
+		) c) a where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 캐시사용내역 카운트 -->
+	<select id="getAcornCount" resultType="int">
+		select count(*)
+		from acorn
+		where member_id = #{member_id}
+		<if test="searchKeyword != null and searchKeyword !=''">
+			and acorn_content like '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	<!-- 내 캐시 조회 -->
+	<select id="getAcorn" resultType="int">
+		select acorn_stock
+		from members
+		where member_id = #{member_id}
+	</select>
+	
+	<!-- 캐시 내역 삭제 -->
+	<delete id="deleteAcorn">
+	delete 
+	from acorn
+	<where>
+		<choose>
+			<when test="seqs != null">
+				acorn_no in
+				<foreach item="t" collection="seqs" open="(" close=")" separator=",">
+					#{t}
+				</foreach>
+			</when>
+			<otherwise>
+				acorn_no = #{acorn_no}
 			</otherwise>
 		</choose>
 	</where>

@@ -1,7 +1,12 @@
 //최초 함수 호출
+var oldCnt = 0
 $(document).ready(function () {
+	if(id == "") {
+		return false;
+	}
+	msgCnt("0");
 	
-	msgCnt();
+	setInterval(msgCnt, 1000);
 	
 	msgReceive();
 		
@@ -23,7 +28,7 @@ $(document).ready(function () {
 //쪽지 최초 open		
 function msgOpen() {
 	$.ajax({
-		url:'msg',
+		url:context+'/msg',
 		type:'GET',
 		contentType:'application/json;charset=utf-8',
 		dataType:'json',
@@ -32,14 +37,17 @@ function msgOpen() {
 }
 
 //확인되지 않은 받은 쪽지 수
-function msgCnt() {
+function msgCnt(count) {
 	$.ajax({
-		url:'cnt',
+		url:context+'/cnt',
 		type:'GET',
 		contentType:'application/json;charset=utf-8',
 		dataType:'json',
 		success: function (result) {
 			$("#cnt").html(result.cnt)
+			if(count != "0" && oldCnt < result.cnt)
+				alert("도착")			
+			oldCnt = result.cnt	
 		}
 	});
 }
@@ -48,7 +56,7 @@ function msgCnt() {
 function msgReceive() {
 	$("#receive_msg").click(function(){			
 		$.ajax({
-			url:'msg',
+			url:context+'/msg',
 			type:'GET',
 			contentType:'application/json;charset=utf-8',
 			dataType:'json',
@@ -62,6 +70,15 @@ function msgReceiveResult(data) {
 	$("#wrap").remove();
 	var $tag = "<div id='wrap'>"
 	$tag += "<div class='head_receive'>" + "Receive" + "</div>"
+	$tag += "<button type='button' class='btn_unselect' id='unselect_msg'>"
+	$tag += "<img src='"+context+"/resources/images/ho/icon_unselect.png' width='22p' height='24px'>"
+	$tag += "</button>"
+	$tag += "<button type='button' class='btn_keeping' onclick='msgKeeping()'>"
+	$tag += "<img src='"+context+"/resources/images/ho/icon_keeping.png' width='22px' height='24px'>"
+	$tag += "</button>"
+	$tag += "<button type='button' class='btn_trashing' id='trashing_msg'>"
+	$tag += "<img src='"+context+"/resources/images/ho/icon_trashing.png' width='22px' height='24px'>"
+	$tag += "</button>"
 	$tag += "<p>" 
 	$tag += "<span class='sender_bar'>" + "sender" + "</span>"
 	$tag += "<span class='title_bar_r'>" + "title" + "</span>"
@@ -72,9 +89,12 @@ function msgReceiveResult(data) {
 	$("#list").find("span").remove();	
 	//결과출력
 	$.each(data,function(idx,item) {
+		if(item.message_check == "N") {
+			var color = "color:red;"
+		} else var color = ""
 		$('<p>')
-		.append($('<span class="sender_receive">').html(item.sender_id)) 
-		.append($('<span class="title_receive" onclick="msgSelect('+item.message_no+'); msgChange('+item.message_no+')">').html(item.message_title))
+		.append($('<span class="sender_receive">').html(item.sender_id))
+		.append($('<span class="title_receive" onclick="msgSelect('+item.message_no+'); msgChange('+item.message_no+')" style="'+color+'">').html(item.message_title))
 		.append($('<input type="checkbox" id="c'+idx+'" name="ck" value="'+item.message_no+'">'))
 		.append($('<label id="ck_receive" for="c'+idx+'" />'))
 		.appendTo("#list");
@@ -86,7 +106,7 @@ function msgSent() {
 	$("#sent_msg").click(function(){	
 	//보낸쪽지 검색 		
 		$.ajax({
-			url:'msg',
+			url:context+'/msg',
 			type:'POST',
 			contentType:'application/json;charset=utf-8',
 			dataType:'json',
@@ -164,7 +184,7 @@ function msgSending() {
 		var message_title = $('input:text[name="message_title"]').val();
 		var message_content = $('textarea[name="message_content"]').val();
 		$.ajax({
-			url:'msg',
+			url:context+'/msg',
 			type:'PUT',			
 			dataType:'json',
 			data:JSON.stringify({ receiver_id:receiver_id, message_title:message_title, message_content:message_content }),
@@ -178,21 +198,19 @@ function msgSending() {
 
 //쪽지 Keeping 버튼	
 function msgKeeping() {
-	$("#keeping_msg").click(function(){
 		$.ajax({
-			url:'msg_keeping',
+			url:context+'/msg_keeping',
 			type:'GET',
 			dataType:'json',
 			data: $("#form_receive").serialize(),
 			success:function() { $("#receive_msg").click(); }
 		});
-	});
 }
 
 //받은 쪽지 확인상태 변경
 function msgChange(no) {
 	$.ajax({
-		url:'msg_changing',
+		url:context+'/msg_changing',
 		data: {message_no: no},
 		type:'GET',
 		dataType:'json',
@@ -202,7 +220,7 @@ function msgChange(no) {
 //받은 쪽지 선택
 function msgSelect(no) {
 	$.ajax({
-		url:'msg_select',
+		url:context+'/msg_select',
 		data: {message_no: no},
 		type:'GET',
 		dataType:'json',

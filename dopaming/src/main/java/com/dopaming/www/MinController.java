@@ -72,14 +72,14 @@ public class MinController {
 			e.printStackTrace();
 		}
 		
-		//DB에 없는 값이거나(DB에 없는값도 Null, 빈공백도 Null) DB에 admin아닌 값(=즉 admin제외한 모든것)
-		if(member==null || !member.getMember_id().equals("admin")) {
+		//DB에 없는 값이거나(DB에 없는값도 Null, 빈공백도 Null) DB에 admin,admin2,admin3아닌 값(=즉 admin,admin2,admin3제외한 모든것)
+		if(member==null || !member.getMember_id().equals("admin") &&!member.getMember_id().equals("admin2")&&!member.getMember_id().equals("admin3")) {
 			out.println("<script>");
 			out.println("alert('관리자만 접근가능합니다.');");
 			out.println("history.go(-1);"); // 이전페이지로
 			out.println("</script>");
 		} else {
-			//admin만 접속가능
+			//admin,admin2,admin3만 접속가능
 			session.setAttribute("member_id", member.getMember_id());
 			session.setAttribute("member_password", member.getMember_password());
 			session.setAttribute("member", member);
@@ -88,8 +88,6 @@ public class MinController {
 			out.println("</script>");
 		}
 	}
-
-	
 
 	// 관리자 - 로그아웃 처리
 	@RequestMapping("/logout")
@@ -261,6 +259,7 @@ public class MinController {
 		service5.insertPay(vo);
 		return "redirect:/";
 	}
+	
 	// 이용자 - 결제페이지
 	@RequestMapping(value = { "/acornForm" }, method = RequestMethod.GET)
 	public String acorn() {

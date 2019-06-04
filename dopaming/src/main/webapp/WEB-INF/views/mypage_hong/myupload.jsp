@@ -31,12 +31,19 @@
 #spann {
 	float: right;
 }
+input[type=checkbox]
+{
+  display: inline-block;
+}
+th, td {
+  text-align: center;
+}
 </style>
 <script>
 	//페이징 기능
 	function go_page(p) {
-		downFrm.page.value = p;
-		downFrm.submit();
+		uploadFrm.page.value = p;
+		uploadFrm.submit();
 	}
 	//전체선택
 	function checkAll(){
@@ -63,8 +70,8 @@
 
 		}
 		if(confirm("삭제할까요?")){
-			downFrm.action = "${pageContext.request.contextPath}/mypage/upload_delete"
-			downFrm.submit();
+			uploadFrm.action = "${pageContext.request.contextPath}/mypage/upload_delete"
+			uploadFrm.submit();
 		}
 	}
 </script>
@@ -75,11 +82,11 @@
 	<span id="spann">
 		<button class="btn btn-danger" type="button" onclick="td_delete()">삭제</button>
 	</span>
-	<form name="downFrm">
+	<form name="uploadFrm">
  		<table class="table table-striped table-hover">
  			<thead>
  				<tr>
-	 				<th><input type="checkbox" id="td_checkAll" onclick="checkAll();"/></th>	
+	 				<td><input type="checkbox" id="td_checkAll" onclick="checkAll();"/></th>	
 	 				<th>게시판번호</th>
 	 				<th>제목</th>
 	 				<th>종류</th>
@@ -102,7 +109,7 @@
 		 					<td><input type="checkbox" name="seqs" value="${upload.board_no}"></td>
 		 					<td>${upload.board_no}</td>
 		 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${upload.board_no}&member_id=${upload.member_id}">
-		 					${upload.board_title}</td>
+		 					${upload.board_title}</a></td>
 		 					<td>${upload.category_big}</td>
 		 					<td><fmt:formatNumber pattern="0.00" value="${upload.file_storage}"/>MB</td>
 		 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${upload.upload_date}"/></td>

@@ -47,10 +47,10 @@
     border-collapse: separate;
 }
 
-.title_w {
+.title_c {
 	height: 35px;
 	border: 3px solid #fff;
-	border-radius: 20px;
+	border-radius: 10px;
 	text-align: center;
 	vertical-align: middle;
 	background-color: #BDBDBD; 
@@ -59,8 +59,15 @@
 	display: table-cell; 	
 }
 
-.title_w:focus {
+.title_c:focus {
 	outline: none;
+}
+input[type=checkbox]
+{
+  display: inline-block;
+}
+th, td {
+  text-align: center;
 }
 </style>
 <script>
@@ -109,7 +116,7 @@
 				<span class="trashing">
 					<i class="fa fa-credit-card"></i>
 				</span>
-				<input type="text" class="title_w" value="${acorn}" readonly="readonly">
+				<input type="text" class="title_c" value="${acorn}" readonly="readonly">
 				<button class="btn btn-danger btn-sm" type="button" onclick="td_delete()">삭제</button>
 			</div>
 		</span>

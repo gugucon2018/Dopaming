@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dopaming.www.acorn.AcornVO;
 import com.dopaming.www.file.FileDAOMybatis_Hwan;
 import com.dopaming.www.file.FilePostVO_Hwan;
 
@@ -51,6 +52,21 @@ public class MyBoardServiceImpl implements MyBoardService {
 		dao.deleteUpload(vo);
 		dao.deleteComments(vo);
 		dao.deleteBoard(vo);
+	}
+
+	@Override
+	public List<AcornVO> getAcornList(MyAcornVO vo) {
+		return dao.getAcornList(vo);
+	}
+
+	@Override
+	public Integer getAcornCount(MyAcornVO vo) {
+		return dao.getAcornCount(vo);
+	}
+
+	@Override
+	public Integer getAcorn(MyAcornVO vo) {
+		return dao.getAcorn(vo);
 	}
 
 }

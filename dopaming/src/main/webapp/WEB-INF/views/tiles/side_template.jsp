@@ -11,6 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
 <meta charset="utf-8">
 <title>도파밍 프로젝트</title>
 
@@ -21,6 +23,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
    
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+
     	<style>
 
 		.navber-right{
@@ -29,7 +32,7 @@
 		.jumbotron{
 			clear:both;
 			margin: 0px auto 0px auto;
-			background-image: url(./resources/images/logo2.jpg);
+			background-image: url(${pageContext.request.contextPath}/resources/images/logo2.jpg);
 			background-size: 100px;
 		}
  		@media (min-width: 768px) {
@@ -78,7 +81,10 @@
 	</style>
 </head>
 <body>
-	<tiles:insertAttribute name="header" />
+	<div class="container-fluid">
+		<tiles:insertAttribute name="header" />
+		<tiles:insertAttribute name="msg" />
+	</div>
 	<div class="container-fluid">
 		<tiles:insertAttribute name="left_side" />
 		<div class="container-fluid" style="width:80%; float:right;">

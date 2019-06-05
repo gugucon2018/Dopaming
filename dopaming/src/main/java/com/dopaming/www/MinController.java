@@ -34,6 +34,8 @@ import com.dopaming.www.common.Paging;
 import com.dopaming.www.notice.NoticeVO;
 import com.dopaming.www.pay.PayVO_min;
 import com.dopaming.www.pay.Payservice_min;
+import com.dopaming.www.pay.payinterface;
+
 
 @Controller
 public class MinController {
@@ -50,6 +52,9 @@ public class MinController {
 	uploadListService_min service4;
 	@Autowired
 	Payservice_min service5;
+	@Autowired
+	payinterface payreturn;
+	
 
 	// 관리자 - 로그인 폼
 	@RequestMapping(value = { "/loginForm" }, method = RequestMethod.GET)
@@ -65,20 +70,21 @@ public class MinController {
 		PrintWriter out = response.getWriter();		
 		MembersVO_min member = null;
 		try {
+			//관리자(admin)을 위한 암호화, 암호화는 서비스에서 처리했음
 			member = service.getMembers(vo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//DB에 없는 값이거나(DB에 없는값도 Null, 빈공백도 Null) DB에 admin아닌 값(=즉 admin제외한 모든것)
-		if(member==null || !member.getMember_id().equals("admin")) {
+		//DB에 없는 값이거나(DB에 없는값도 Null, 빈공백도 Null) DB에 admin,admin2,admin3아닌 값(=즉 admin,admin2,admin3제외한 모든것)
+		if(member==null || !member.getMember_id().equals("admin") &&!member.getMember_id().equals("admin2")&&!member.getMember_id().equals("admin3")) {
 			out.println("<script>");
 			out.println("alert('관리자만 접근가능합니다.');");
 			out.println("history.go(-1);"); // 이전페이지로
 			out.println("</script>");
 		} else {
-			//admin만 접속가능
+			//admin,admin2,admin3만 접속가능
 			session.setAttribute("member_id", member.getMember_id());
 			session.setAttribute("member_password", member.getMember_password());
 			session.setAttribute("member", member);
@@ -87,8 +93,6 @@ public class MinController {
 			out.println("</script>");
 		}
 	}
-
-	
 
 	// 관리자 - 로그아웃 처리
 	@RequestMapping("/logout")
@@ -258,12 +262,37 @@ public class MinController {
 		
 		//매개변수4개받아서 insert에 2번째~5번째값에 적용
 		service5.insertPay(vo);
-		return "redirect:/";
+		return "redirect:/"; 
 	}
+	
 	// 이용자 - 결제페이지
 	@RequestMapping(value = { "/acornForm" }, method = RequestMethod.GET)
 	public String acorn() {
 		return "min/useracorn_min";
 	}
 
+	// 결제한사람 (아이디만)리스트(중복제거)
+	@RequestMapping(value = { "/acornlist" }, method = RequestMethod.GET)
+	public String acornlist(Model md) {
+		md.addAttribute("acornlist",service5.returnPay());
+		return "min/acornlsit_min";
+	}
+	
+	// 결제했는 사람(단건)에 대한 세부내용(아이디,결제금액,충전날짜,결제고유코드)
+	@RequestMapping(value = { "/acorndetaillist" }, method = RequestMethod.GET)
+	public String acorndetaillist(Model md,PayVO_min vo) {
+		md.addAttribute("acorndetail",service5.detailPay(vo));
+		return "min/acorndetail_min";
+	}
+	
+	// 실질적으로 결제가 환불처리되는 과정
+	@RequestMapping(value = { "/acornreturn" }, method = RequestMethod.GET)
+	public String acornreturn(Model md,PayVO_min vo) {
+		//결제코드 누를시(a태그) 아임포트 서버에서 환불처리가 완료됨
+		payreturn.CancelPaymentAlreadyCancelledImpUid(vo);
+		//아임포트에선 환불처리되었지만 DB는 남아있으므로 환불처리한 데이터 역시 DB에서 삭제
+		service5.deletePay(vo);
+		return "redirect:/acornlist";
+	}
+	
 }

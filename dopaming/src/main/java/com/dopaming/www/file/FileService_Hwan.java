@@ -14,6 +14,10 @@ public interface FileService_Hwan {
 	public List<FilePostVO_Hwan> select_board_boardList(FilePostVO_Hwan fpvo);
 	//페이징
 	public int board_Paging(FilePostVO_Hwan fpvo);
+	//다운로드 등록
+	public void download_insert_hwan(FileDownloadVO_Hwan fdvo);
+	//다운로드 등록 유무 확인 
+	public int download_check_hwan(FileDownloadVO_Hwan fdvo);	
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_downloadList(FileDownloadVO_Hwan fdvo);
 	//다운로드 게시글 열람

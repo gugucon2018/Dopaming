@@ -35,6 +35,10 @@
 		<typeAlias type="com.dopaming.www.login.MemberVO" alias="member"/>
 		<typeAlias type="com.dopaming.www.member.MyBoardVO" alias="myboard"/>
 		<typeAlias type="com.dopaming.www.member.FileUploadVO" alias="myupload"/>
+		<typeAlias type="com.dopaming.www.member.MyAcornVO" alias="myacorn"/>		
+		
+		<!-- ho -->
+		<typeAlias type="com.dopaming.www.msg.MsgVO" alias="msg"/> 
 	</typeAliases>
 
 </configuration>

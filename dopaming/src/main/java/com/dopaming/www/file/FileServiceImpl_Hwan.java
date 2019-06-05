@@ -51,6 +51,17 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 		return dao.board_Paging(fpvo);
 	}		
 	
+	//다운로드 등록 
+	public void download_insert_hwan(FileDownloadVO_Hwan fdvo) {
+			dao.download_insert_hwan(fdvo);
+	}
+	
+	//다운로드 등록 유무 확인
+	@Override
+	public int download_check_hwan(FileDownloadVO_Hwan fdvo) {
+		return dao.download_check_hwan(fdvo);
+	}
+	
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_downloadList(FileDownloadVO_Hwan fdvo){
 		return dao.select_download(fdvo);

@@ -29,18 +29,24 @@
 .loginmodal_loginid,
 .loginmodal_loginpass {
     width: 90%;
+    height: 30px;
     padding: 1.5% 3%;
+    text-align: center;
     padding-left: 8%;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 20px;
     margin-bottom: 4%;
-    border: 1px solid #4e96f4;
-    display: inline;
+    border: 3px solid #fff;
+    background-color: #00ffff;
+    color: #000;
+    font-weight: bold;
+    display: table-cell;
 }
 
 .loginmodal_loginid:focus,
 .loginmodal_loginpass:focus {
-	 border: 2px solid #096ef2;
+	 border: 3px solid #00ffff;
+	 background-color: #fff;
+	 outline: none;	
 }
 
 .loginmodal_loginbtn {

@@ -75,6 +75,8 @@ $(document).ready(function(){
 	var judge=0; //첫 댓글 시작
 	var front_count=0; //앞 댓글 카운트
 	var back_count=1; //뒤 댓글 카운트
+	var id = "${sessionScope.Id}";	
+	if(id != ""){
 	$.ajax({
 		url:"comment_list_hwan",
 		data:{"board_no": $(".fileBoard_no").val() ,"comment_content" : $(".ComContent").val()},
@@ -97,6 +99,9 @@ $(document).ready(function(){
 			}			
 		}
 	});
+	} else{
+		alert("로그인을 하셔야 댓글내용을 보실 수 있습니다.");
+	}
 	
 	function makeCommentView(comment){
 		var tr=$("<tr>");
@@ -107,7 +112,9 @@ $(document).ready(function(){
 		
 		var str="<td colspan='6'>"+comment.comment_content
 		+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
-		+formatDate(d_com);
+		+"글쓴이 : "+comment.member_id
+		+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+		+"날짜 : "+formatDate(d_com);
 		+"</td>";
 		tr.html(str);
 		return tr;
@@ -135,13 +142,16 @@ $(document).ready(function(){
 		         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 		    },	 
 			success: function(data){
+				var d_com = new Date(data.reg_date);
 				var show="";
 				var sysdate=new Date(data.reg_date);				
 				if(judge ==0){
 				show+="<tr class='rlast"+front_count+"'>";
 				show+="<td colspan='6'>"+$(".ComContent").val()
 				+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
-				+sysdate.toLocaleDateString()
+				+"글쓴이 : "+data.member_id
+				+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+				+"날짜 : "+formatDate(d_com);
 				+"</td>";
 				show+="</tr>";
 				$(".lastTr").after(show);
@@ -150,7 +160,10 @@ $(document).ready(function(){
 				  show+="<tr class='rlast"+back_count+"'>";
 				  show+="<td colspan='6'>"+$(".ComContent").val()
 				  +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
-				  +sysdate.toLocaleDateString()+"</td>";
+				  +"글쓴이 : "+data.member_id
+				  +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+				  +"날짜 : "+formatDate(d_com);
+				  +"</td>";
 				  show+="</tr>";
 				  $('.rlast'+front_count).after(show);
 				  back_count++;
@@ -179,6 +192,7 @@ function complain_frm_send(){
 <form name="complain_frm">
 	<input type="hidden" name="board_no" value="${filePost.board_no}"/>
 	<input type="hidden" name="member_id" value="${sessionScope.Id}"/>
+	<input type="hidden" name="complain_type" value="신고"/>
 </form>	
 		
 	<table class="cen_table  table table-striped table-bordered">

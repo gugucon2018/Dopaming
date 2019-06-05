@@ -15,7 +15,7 @@
 	
 	<!-- 신고타입일때만 등장 --> 
 	<c:if test="${ComplainVO.complain_type == '신고' }">
-	신고된 게시판: <a href="/dopaming/filepost?board_no=${ComplainVO.board_no}">${ComplainVO.board_no}</a>
+	신고된 게시판: <a href="${pageContext.request.contextPath}/filepost?board_no=${ComplainVO.board_no}">${ComplainVO.board_no}</a>
 	</c:if>
 	
 	<table width="100%" height = "40px" border="1">
@@ -36,7 +36,7 @@
 	</td></tr>
 	</table><br>
 	
-	<a href="/dopaming/complain_answer_form?complain_no=${ComplainVO.getComplain_no()}">
+	<a href="${pageContext.request.contextPath}/admin/complain_answer_form?complain_no=${ComplainVO.getComplain_no()}">
 	<button style="float:right;" type="button" class="">답변하기</button>
 	</a>
 </body>

@@ -76,4 +76,38 @@ public class MyBoardCotroller {
 		service.deleteBoard(vo);
 		return "redirect:/mypage/myUpload";
 	}
+	
+	//마이페이지(캐시 사용 내역)
+	@RequestMapping(value ="/myAcorn", method = RequestMethod.GET )
+	public String getAcornList(MyAcornVO vo, Paging paging, Model model, HttpSession session) {
+		//세션에서 아이디정보값 가져오기
+		String id = (String)session.getAttribute("Id");
+		vo.setMember_id(id);
+		
+		//페이징 처리
+		//페이지번호 파라미터
+		if(paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+		
+		//시작, 마지막 레코드 번호
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		//전체건수
+		paging.setTotalRecord(service.getAcornCount(vo));
+		
+		model.addAttribute("paging",paging);
+		model.addAttribute("acorn",service.getAcorn(vo));
+		model.addAttribute("list",service.getAcornList(vo));
+		
+		return "mypage_hong/myacorn";
+	}
+	
+	//내 캐시 내역 삭제
+	@RequestMapping(value ="/acorn_delete", method = RequestMethod.GET )
+	public String deleteAcorn(MyAcornVO vo, HttpServletRequest request) {
+		service.deleteAcorn(vo);
+		return "redirect:/mypage/myAcorn";
+	}
 }

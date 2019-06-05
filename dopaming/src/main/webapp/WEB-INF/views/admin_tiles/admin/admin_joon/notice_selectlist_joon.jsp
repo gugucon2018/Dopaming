@@ -104,14 +104,14 @@ function goList(p){
 <input type="hidden" name="notice_no" value="${i.getNotice_no()}">
 			<tr align = "center">
 				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
-				<td><a href="${pageContext.request.contextPath}/notice_select?notice_no=${ i.getNotice_no()}">${i.getNotice_title()}</a></td>
+				<td><a href="${pageContext.request.contextPath}/admin/notice_select?notice_no=${ i.getNotice_no()}">${i.getNotice_title()}</a></td>
 				<td>${i.getNotice_date()}</td>
 			</tr>
 		</c:forEach>
 </table><br>
 
 <button style="float:right;" type="button" onclick="td_delete()">삭제</button>	
-<a href="${pageContext.request.contextPath}/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a>
+<a href="${pageContext.request.contextPath}/admin/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a>
 </form>
 
 <!-- 페이징버튼 -->

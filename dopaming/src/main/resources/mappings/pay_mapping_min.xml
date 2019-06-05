@@ -3,8 +3,27 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="PayDAO"> 
+	<!-- 결제충전 -->
     <insert id="payInsert" parameterType="pay">
-    insert into acorn(acorn_no,member_id,acorn_charge,acorn_date,APPROVAL_CODE) 
-	values((select max(acorn_no)+1 from acorn),#{member_id},#{acorn_charge},sysdate,#{approval_code})
+    insert into acorn(acorn_no,member_id,acorn_charge,acorn_date,pay_code) 
+	values((select max(acorn_no)+1 from acorn),#{member_id},#{acorn_charge},sysdate,#{pay_code})
     </insert>
+    
+    <!-- 결제했는사람 (아이디만)리스트 -->
+    <select id="payReturn" resultType="pay">
+    	select DISTINCT (member_id) from acorn
+    </select>
+    
+    <!-- 결제했는 사람(단건)에 대한 세부내용(아이디,결제금액,충전날짜,결제고유코드) -->
+    <select id="datailpay" parameterType="pay" resultType="pay">
+    	select member_id,acorn_charge,acorn_date,pay_code 
+    	from acorn
+    	where member_id = #{member_id}
+    </select>
+    <!-- 환불처리후 DB에서도 환불내용 삭제 -->
+    <delete id="deletepay" parameterType="pay">
+	    delete
+	    from acorn
+	    where pay_code = #{pay_code}
+    </delete>
 </mapper>

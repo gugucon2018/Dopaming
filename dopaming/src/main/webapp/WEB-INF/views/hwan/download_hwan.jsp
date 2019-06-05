@@ -72,9 +72,9 @@ th {
 <body>
 	<div class="container cen_form">
 		<form>
-		<input type="hidden" name="download_acorn" value="${downPost.board_acorn}" />
-		<input type="hidden" name="member_id" value="${sessionScope.Id}" />
-		<input type="hidden" name="member_id" value="${downPost.board_acorn}" />
+		
+		<input type="hidden" name="download_acorn" value="${downPost.board_acorn}" />		
+		<input type="hidden" name="board_acorn" value="${downPost.board_acorn}" />
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
 					<th>각 파일 다운로드 아콘</th>
@@ -108,7 +108,7 @@ th {
 					<td style="border-right: none;"></td>
 					<td colspan="2" class="cen_table" style="border-left: none;">
 						<button type="button" class="btn btn-success btn-md"
-							onclick="location.href='request_download?group_no=${downPost.group_no}'">다운로드
+							onclick="location.href='request_download?group_no=${downPost.group_no}&member_id=${sessionScope.Id}'">다운로드
 							하기</button>
 						<!-- <button type="button" id="btnDown" class="btn btn-success btn-md btnDown" >다운로드 하기</button>&nbsp; -->
 						<button class="btn btn-success btn-md">취소 하기</button>

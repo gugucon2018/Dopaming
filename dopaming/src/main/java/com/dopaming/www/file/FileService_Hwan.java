@@ -18,6 +18,8 @@ public interface FileService_Hwan {
 	public void download_insert_hwan(FileDownloadVO_Hwan fdvo);
 	//다운로드 등록 유무 확인 
 	public int download_check_hwan(FileDownloadVO_Hwan fdvo);	
+	//다운로드 등록 유무 확인2 	
+	public FileDownloadVO_Hwan download_check_hwan2(FileDownloadVO_Hwan fdvo);
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_downloadList(FileDownloadVO_Hwan fdvo);
 	//다운로드 게시글 열람

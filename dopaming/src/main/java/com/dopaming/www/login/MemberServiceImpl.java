@@ -79,7 +79,7 @@ public class MemberServiceImpl implements MemberService {
 		msg += vo.getMember_id() + "님 회원가입을 환영합니다.</h3>";
 		msg += "<div style='font-size: 130%'>";
 		msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
-		msg += "<form method='post' action='http://dopaming.com:8000/dopaming/approval_member'>";
+		msg += "<form method='post' action='http://dopaming.com:80/dopaming/approval_member'>";
 		msg += "<input type='hidden' name='member_email' value='" + vo.getMember_email() + "'>";
 		msg += "<input type='hidden' name='approval_key' value='" + vo.getApproval_key() + "'>";
 		msg += "<input type='submit' value='인증'></form><br/></div>";
@@ -158,7 +158,7 @@ public class MemberServiceImpl implements MemberService {
 		} else { // 이메일 인증을 성공하였을 경우
 			out.println("<script>");
 			out.println("alert('인증이 완료되었습니다. 로그인 후 이용하세요.');");
-			out.println("location.href='http://localhost:8000/dopaming/';");
+			out.println("location.href='http://192.168.0.68:80/dopaming/';");
 			out.println("</script>");
 			out.close();
 		}

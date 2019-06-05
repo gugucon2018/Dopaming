@@ -56,7 +56,7 @@ public class FileController_Hwan {
 	public String requestUpload_hwan(MultipartHttpServletRequest request, FileBoardVO_Hwan bvo)
 			throws IllegalStateException, IOException {
 		List<MultipartFile> files = request.getFiles("fileName");
-		String filePath = request.getSession().getServletContext().getRealPath("/resources/upload");
+		String filePath = request.getSession().getServletContext().getRealPath("./resources/upload");
 		File file;		
 		List<FileUploadVO_Hwan> fvolist = new ArrayList<FileUploadVO_Hwan>();
 		FileUploadVO_Hwan fvo;
@@ -102,13 +102,15 @@ public class FileController_Hwan {
 			f = result.get(i);
 			ZipEntry zipEntry = new ZipEntry(f.getFile_name());			
 			zipOutputStream.putNextEntry(zipEntry);
-			 FileInputStream fis = new FileInputStream(filePath + "/"+f.getFile_name());			 
+			 FileInputStream fis = new FileInputStream(filePath + "/"+f.getFile_name());
+			 System.out.println(fis.toString());
 			 int data = 0;
 			   while((data=fis.read())!=-1) {
 			    zipOutputStream.write(data);
 			   }							
 			System.out.println("각 파일 용량" + f.getFile_storage());
-			storage += f.getFile_storage();			
+			storage += f.getFile_storage();	
+			fis.close();
 		}
 		zipOutputStream.close();
 		zipFileOutputStream.close();
@@ -154,7 +156,13 @@ public class FileController_Hwan {
 			printwriter.flush();
 			printwriter.close();
 		}		
-		if(service.download_check_hwan(fdvo)==0) {
+		FileDownloadVO_Hwan fdchk2 = service.download_check_hwan2(fdvo);
+		System.out.println("다운로드 체크 : "+fdchk2.getMember_id());
+		System.out.println(fdchk2.getMember_id().equals(session.getAttribute("Id")));
+		
+		if(fdchk2.getMember_id().equals(session.getAttribute("Id"))==false){
+			System.out.println("아이디값 다름을 확인");
+			if(service.download_check_hwan(fdvo)==0) {			
 			for(int i=0;i<result.size();i++) {
 				f= result.get(i);
 				mvo = (MemberVO) session.getAttribute("memberSession");
@@ -164,11 +172,12 @@ public class FileController_Hwan {
 				fdvo.setGroup_no(f.getGroup_no());				
 				service.download_insert_hwan(fdvo);
 				System.out.println("다운로드 DB 삽입 성공");
-			}			
+				}
+			}
 		}else {
 			System.out.println("다운로드 DB 삽입 실패 => 다운로드만 될 것임");
-		}
-
+		}		
+		System.out.println("현재 아이디 체크 : "+session.getAttribute("Id"));
 		return "hwan/download_hwan";
 	}
 	

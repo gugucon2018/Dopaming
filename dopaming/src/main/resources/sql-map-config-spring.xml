@@ -16,6 +16,7 @@
 		<typeAlias type="com.dopaming.www.admin.complain.ComplainVO" alias="complain_vo"/>
 		<typeAlias type="com.dopaming.www.admin.complain.AnswerVO" alias="answer_vo"/>
 		<!-- 태헌_Alias -->
+		<typeAlias type="com.dopaming.www.admin.chart.ChartVO" alias="chart"/>
 		<typeAlias type="com.dopaming.www.file.FileVO" alias="file"/>
 		<typeAlias type="com.dopaming.www.main.MainVO_hun" alias="main_vo"/>
 		<!-- 정환 start point Alias -->

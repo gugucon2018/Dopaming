@@ -20,7 +20,7 @@
 
 .slide {
 	width: 100%;
-	padding : 10px 15%;
+	padding : 5px 15%;
 }
 .carousel-inner>.item>a>img{
 	height: 100%;

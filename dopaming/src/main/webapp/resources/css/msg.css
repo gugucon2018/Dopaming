@@ -346,7 +346,7 @@ p {
 	background-color: #31B404;
 }
 
-input[type="checkbox"] + label[id="ck_receive"] {
+input[name="ck"] + label[id="ck_receive"] {
 	display: table-cell;
 	width: 23px;
 	border-radius: 20px;
@@ -354,12 +354,12 @@ input[type="checkbox"] + label[id="ck_receive"] {
 	cursor: pointer;
 }
 
-input[type="checkbox"]:checked + label[id="ck_receive"] {
+input[name="ck"]:checked + label[id="ck_receive"] {
 	border: 5px solid #fff;
 	background-color: #F7D358;
 }
 
-input[type="checkbox"] + label[id="ck_sent"] {
+input[name="ck"] + label[id="ck_sent"] {
 	display: table-cell;
 	width: 23px;
 	border-radius: 20px;
@@ -367,11 +367,11 @@ input[type="checkbox"] + label[id="ck_sent"] {
 	cursor: pointer;
 }
 
-input[type="checkbox"]:checked + label[id="ck_sent"] {
+input[name="ck"]:checked + label[id="ck_sent"] {
 	border: 5px solid #fff;
 	background-color: #31B404;
 }
 
-input[type="checkbox"] {
+input[name="ck"] {
 	display: none;
 }

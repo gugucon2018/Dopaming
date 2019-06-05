@@ -31,7 +31,7 @@
 #spann {
 	float: right;
 }
-input[type=checkbox]
+input[name=seqs]
 {
   display: inline-block;
 }

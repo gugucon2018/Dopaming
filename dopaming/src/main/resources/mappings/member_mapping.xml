@@ -14,22 +14,37 @@
     </select>
     <!-- 패스워드 체크 -->
     <select id="valueCheckPW" resultType="String">
-     	select member_password from members where member_id = #{member_password}
+     	select member_password from members where member_id = #{member_id}
     </select>
    <!-- 이메일 체크 -->
     <select id="valueCheckEmail" resultType="String">
     	select member_email from members where member_email = #{member_email}
     </select>
+    
+    <!-- 아이디 중복 검사 -->
+    <select id = "check_id" parameterType="String" resultType="int">
+    	select count(*) from members where member_id = #{member_id}
+    </select>
+    
+    <!-- 이메일 중복 검사 -->
+    <select id="check_email" parameterType="String" resultType="int">
+    	select count(*) from membes where member_email = #{member_email}
+    </select>
+    
     <!-- 회원가입 -->
     <insert id="register">
     	insert into members (
     		member_id
     		, member_password
     		, member_email
+    		, approval_status
+    		, approval_key
     	) values (
     		#{member_id}
     		, #{member_password}
-    		, #{member_email} 
+    		, #{member_email}
+    		, 'false'
+    		, #{approval_key} 
     	)
     </insert>
     

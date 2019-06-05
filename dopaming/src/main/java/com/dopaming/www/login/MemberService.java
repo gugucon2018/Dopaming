@@ -1,15 +1,23 @@
 package com.dopaming.www.login;
 
+import javax.servlet.http.HttpServletResponse;
+
 public interface MemberService {
-	// 로그인
+	//로그인
 	public MemberVO login(MemberVO vo);
 
-	// 아이디 체크
+	//아이디 체크
 	public String valueCheckId(String value);
 	
 	//비밀번호 체크
 	public String valueCheckPW(String value);
 	
+	//아이디 중복 검사
+	public void check_id(String id,HttpServletResponse response) throws Exception;
+	
+	//이메일 중복 검사
+	public void check_email(String email, HttpServletResponse response) throws Exception;
+	
 	//회원가입
-	public void register(MemberVO vo) throws Exception;
+	public int register(MemberVO vo, HttpServletResponse response) throws Exception;
 }

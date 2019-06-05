@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script>
+	var contextPath = "${pageContext.request.contextPath}";
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/register.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -15,44 +19,34 @@
 				<div class="joinmodal_title">
 					<h1>회원가입</h1>
 				</div>
-				<form:form role="form" commandName="memberVO" action="register">
-					<!-- 아이디 -->
+				<form id="joinForm" action="${pageContext.request.contextPath }/register" method="post">
 					<div class="form-group input-group">
 						<span class="input-group-addon"><i class="fa fa-check"></i></span>
-						<form:input path="member_id" type="text" class="form-control" placeholder="아이디" />
+						<input type="text" id="member_id" name="member_id" class="form-control" placeholder="아이디">
 					</div>
-					<div class="form-group">
-						<form:errors cssStyle="color:red;" path="member_id" />
-					</div>
-					<!-- 비밀번호 -->
+					<span id="id_check" style="color:red;"></span>
+					
 					<div class="form-group input-group">
 						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-						<form:password path="member_password" class="form-control" placeholder="비밀번호" />
+						<input type="password" id="member_password" name="member_password" class="form-control" placeholder="비밀번호">
 					</div>
-					<div class="form-group">
-						<form:errors cssStyle="color:red;" path="member_password" />
-					</div>
-					<!-- 비밀번호 재확인 -->
+					
 					<div class="form-group input-group">
 						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-						<form:password path="check_passowrd" class="form-control" placeholder="비밀번호 확인" />
+						<input type="password" id="check_passowrd" class="form-control" placeholder="비밀번호 확인">					
 					</div>
-					<div class="form-group">
-						<form:errors cssStyle="color:red;" path="check_passowrd" />
-					</div>
-					<!-- 본인확인 이메일 -->
+					
 					<div class="form-group input-group">
 						<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-						<form:input path="member_email" type="email" class="form-control" placeholder="이메일" />
+						<input type="eamil" id="member_email" name="member_email" class="form-control" placeholder="hong@naver.com">
 					</div>
-					<div class="form-group">
-						<form:errors cssStyle="color: red;" path="member_email" />
-					</div>
+						<span id="email_check"></span>
+					
 					<div style="text-align: center;">
-						<button class="btn btn-info" type="submit">가입</button>		
-		    		    <button class="btn btn-primary" type="reset">취소</button>
+						<button class="btn btn-info" id="joinBtn" type="submit">가입</button>		
+		    		    <button class="btn btn-primary" type="button" onclick="history.go(-1);">취소</button>
 					</div>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -255,7 +255,7 @@ public class MinController {
 		//결제후 해당 아이디값이 있는지 확인
 		System.out.println("==============="+Id);
 		
-		//매개변수4개받아서 insert에 2번째~5번째값에 적용
+		//매개변수2개받아서 insert에 2번째~3번째값에 적용
 		service5.insertPay(vo);
 		return "redirect:/";
 	}

@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dopaming.www.admin.chart.ChartVO;
+import com.dopaming.www.admin.chart.Chartservice;
 import com.dopaming.www.common.Paging;
 import com.dopaming.www.main.MainService_hun;
 import com.dopaming.www.main.MainVO_hun;
@@ -26,8 +28,8 @@ public class hun_HomeController {
 
 	@Autowired
 	FileService service;
-	
-	
+	@Autowired
+	Chartservice service1;
 
 	@RequestMapping(value = "/mdview", method = RequestMethod.GET)
 	public String hwan(Model model, FileVO vo, Paging paging) {
@@ -51,6 +53,26 @@ public class hun_HomeController {
 		model.addAttribute("list", service.getFileList(vo));
 		return "hun/mdview_hun";
 	}
-	
-	
+
+	@RequestMapping(value = "/admin/chartList", method = RequestMethod.GET)
+	public String chart(Model model, ChartVO vo, Paging paging) {
+		// 페이징 처리
+		paging.setPageUnit(5); // 개당 출력건수
+		// 시작페이지 설정
+		if (paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+		// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
+		paging.setTotalRecord(service1.chartList_cnt(vo));
+		// db에서 받은 정보로 페이지마다 시작/마지막 레코드 번호
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		// 페이징 VO의 데이터를 paging으로 담아둔다.
+		model.addAttribute("paging", paging);
+		// 돌려 받은 값들을 list에 받아둔다.
+		model.addAttribute("list", service1.getChartList(vo));
+
+		return "admin/admin_hun/chart_hun";
+	}
+
 }

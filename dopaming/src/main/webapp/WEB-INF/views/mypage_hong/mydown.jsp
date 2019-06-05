@@ -28,7 +28,9 @@
 .active {
 	color: red;
 }
-
+th, td {
+  text-align: center;
+}
 </style>
 <script>
 	function go_page(p) {

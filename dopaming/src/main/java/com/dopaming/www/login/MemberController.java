@@ -1,5 +1,6 @@
 package com.dopaming.www.login;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dopaming.www.encryption.EgovFileScrty;
 
@@ -88,6 +92,20 @@ public class MemberController {
 		return "redirect:/"; 
 	}
 
+	//아이디 중복 검사(AJAX)
+	@RequestMapping(value = "/check_id", method = RequestMethod.POST)
+	@ResponseBody
+	public void check_id(@RequestParam("id") String id, HttpServletResponse response) throws Exception {
+		service.check_id(id, response);
+	}
+	
+	//이메일 중복 검사(AJAX)
+	@RequestMapping(value = "/check_email", method = RequestMethod.POST)
+	@ResponseBody
+	public void check_email(@RequestParam("email") String email, HttpServletResponse response) throws Exception {
+		service.check_email(email, response);
+	}
+	
 	//회원가입 페이지
 	@RequestMapping(value ="/register", method = RequestMethod.GET )
 	public String registerForm() {
@@ -96,26 +114,10 @@ public class MemberController {
 	
 	//회원가입 처리(비밀번호 암호화는 Impl에서 했음)
 	@RequestMapping(value="/register", method = RequestMethod.POST )
-	public String register(@ModelAttribute MemberVO vo, Errors errors) throws Exception {
-		//유효성 검사
-		new MemberValiadator().validate(vo, errors);
+	public String register(@ModelAttribute MemberVO vo,RedirectAttributes rttr, HttpServletResponse response) throws Exception {
 		
-		if(errors.hasErrors()) {
-			return "hong/register";
-		}
+		rttr.addFlashAttribute("result", service.register(vo, response));
 		
-		try {
-			service.register(vo);			
-		}catch (AlreadyExistingEmailException e) {
-            errors.rejectValue("member_email", "duplicate", "이미 가입된 이메일입니다.");
-            return "hong/register";
-        } catch (AlreadyExistingIdException e) {
-            errors.rejectValue("member_id", "duplicate", "이미 가입된 아이디입니다.");
-            System.out.println(errors);
-            return "hong/register";
-        }
-
 		return "redirect:/";
 	}
-
 }

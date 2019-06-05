@@ -44,7 +44,8 @@
             <a class="collapse-item" href="${pageContext.request.contextPath }/admin/classForm">등급관리</a>
             <a class="collapse-item" href="${pageContext.request.contextPath }/admin/NormalListForm">일반회원관리</a>
             <a class="collapse-item" href="${pageContext.request.contextPath }/admin/blackListForm">블랙회원관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/uploadlistForm">업로드한 리스트 뷰 </a>            
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/uploadlistForm">업로드한 리스트 뷰 </a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/acornlist">환불처리 </a>              
           </div>
         </div>
       </li>

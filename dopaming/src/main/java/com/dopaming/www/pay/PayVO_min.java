@@ -8,7 +8,7 @@ public class PayVO_min {
 	private int acorn_charge;
 	private int acorn_pay;
 	private String acron_content;
-	private Date acorn_date;
+	private String acorn_date;
 	private String pay_code;
 	private String shop_code;
 	private String approval_code;
@@ -44,10 +44,12 @@ public class PayVO_min {
 	public void setAcron_content(String acron_content) {
 		this.acron_content = acron_content;
 	}
-	public Date getAcorn_date() {
+	
+	
+	public String getAcorn_date() {
 		return acorn_date;
 	}
-	public void setAcorn_date(Date acorn_date) {
+	public void setAcorn_date(String acorn_date) {
 		this.acorn_date = acorn_date;
 	}
 	public String getPay_code() {

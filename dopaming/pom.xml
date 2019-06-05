@@ -174,7 +174,11 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.2</version>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> branch 'master' of https://github.com/gugucon2018/Dopaming.git
 		<!-- log jdbc -->
 		<dependency>
 			<groupId>org.lazyluke</groupId>

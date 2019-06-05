@@ -272,27 +272,27 @@ public class MinController {
 	}
 
 	// 결제한사람 (아이디만)리스트(중복제거)
-	@RequestMapping(value = { "/acornlist" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/acornlist" }, method = RequestMethod.GET)
 	public String acornlist(Model md) {
 		md.addAttribute("acornlist",service5.returnPay());
-		return "min/acornlsit_min";
+		return "admin/admin_min/acornlist_min";
 	}
 	
 	// 결제했는 사람(단건)에 대한 세부내용(아이디,결제금액,충전날짜,결제고유코드)
-	@RequestMapping(value = { "/acorndetaillist" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/acorndetaillist" }, method = RequestMethod.GET)
 	public String acorndetaillist(Model md,PayVO_min vo) {
 		md.addAttribute("acorndetail",service5.detailPay(vo));
-		return "min/acorndetail_min";
+		return "admin/admin_min/acorndetail_min";
 	}
 	
 	// 실질적으로 결제가 환불처리되는 과정
-	@RequestMapping(value = { "/acornreturn" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/acornreturn" }, method = RequestMethod.GET)
 	public String acornreturn(Model md,PayVO_min vo) {
 		//결제코드 누를시(a태그) 아임포트 서버에서 환불처리가 완료됨
 		payreturn.CancelPaymentAlreadyCancelledImpUid(vo);
 		//아임포트에선 환불처리되었지만 DB는 남아있으므로 환불처리한 데이터 역시 DB에서 삭제
 		service5.deletePay(vo);
-		return "redirect:/acornlist";
+		return "redirect:/admin/acornlist";
 	}
 	
 }

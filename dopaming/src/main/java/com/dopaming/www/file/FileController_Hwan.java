@@ -157,10 +157,10 @@ public class FileController_Hwan {
 			printwriter.close();
 		}		
 		FileDownloadVO_Hwan fdchk2 = service.download_check_hwan2(fdvo);
-		System.out.println("다운로드 체크 : "+fdchk2.getMember_id());
-		System.out.println(fdchk2.getMember_id().equals(session.getAttribute("Id")));
 		
-		if(fdchk2.getMember_id().equals(session.getAttribute("Id"))==false){
+		//System.out.println(fdchk2.getMember_id().equals(session.getAttribute("Id")));
+		
+		if(fdchk2==null){
 			System.out.println("아이디값 다름을 확인");
 			if(service.download_check_hwan(fdvo)==0) {			
 			for(int i=0;i<result.size();i++) {

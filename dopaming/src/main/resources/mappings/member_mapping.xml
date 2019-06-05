@@ -28,7 +28,7 @@
     
     <!-- 이메일 중복 검사 -->
     <select id="check_email" parameterType="String" resultType="int">
-    	select count(*) from membes where member_email = #{member_email}
+    	select count(*) from members where member_email = #{member_email}
     </select>
     
     <!-- 회원가입 -->

@@ -79,7 +79,7 @@ $(function() {
 					success : function(result) {
 						if (result == 1) {
 							$("#id_check").html("중복된 아이디가 있습니다.");
-							$("#joinBtn").attr("disabled", "disabled");
+							$("#joinBtn").attr("disabled", "true");
 						} else {
 							$("#id_check").html("");
 							$("#joinBtn").removeAttr("disabled");
@@ -97,10 +97,8 @@ $(function() {
 			success : function(result) {
 				if (result == 1) {
 					$("#email_check").html("중복된 이메일이 있습니다.");
-					$("#joinBtn").attr("disabled", "disabled");
 				} else {
 					$("#email_check").html("");
-					$("#joinBtn").removeAttr("disabled");
 				}
 			},
 		})

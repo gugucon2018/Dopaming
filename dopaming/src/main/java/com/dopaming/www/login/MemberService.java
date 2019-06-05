@@ -20,4 +20,7 @@ public interface MemberService {
 	
 	//회원가입
 	public int register(MemberVO vo, HttpServletResponse response) throws Exception;
+	
+	//인증키 생성
+	public String create_key() throws Exception;
 }

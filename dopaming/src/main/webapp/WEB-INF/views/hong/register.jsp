@@ -24,7 +24,7 @@
 						<span class="input-group-addon"><i class="fa fa-check"></i></span>
 						<input type="text" id="member_id" name="member_id" class="form-control" placeholder="아이디">
 					</div>
-					<span id="id_check" style="color:red;"></span>
+					<span id="id_check" style="color:red;text-align: left;"></span>
 					
 					<div class="form-group input-group">
 						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -40,7 +40,7 @@
 						<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 						<input type="eamil" id="member_email" name="member_email" class="form-control" placeholder="hong@naver.com">
 					</div>
-						<span id="email_check"></span>
+					<span id="email_check" style="color:red;text-align: left;"></span>
 					
 					<div style="text-align: center;">
 						<button class="btn btn-info" id="joinBtn" type="submit">가입</button>		

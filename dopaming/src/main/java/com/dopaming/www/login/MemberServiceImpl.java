@@ -1,6 +1,7 @@
 package com.dopaming.www.login;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,6 +45,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public String create_key() throws Exception {
+		String key = "";
+		Random rd = new Random();
+		
+		for(int i = 0; i < 8; i++) {
+			key += rd.nextInt(10);
+		}
+		return key;
+	}
+	
+	@Override
 	public int register(MemberVO vo, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -70,6 +82,8 @@ public class MemberServiceImpl implements MemberService {
 			out.close();
 			return 0;
 		}else {
+			//인증키 설정
+			vo.setApproval_key(create_key());
 			dao.register(vo);
 			return 1;
 		}

@@ -6,7 +6,7 @@ $(document).ready(function () {
 	}
 	msgCnt("0");
 	
-	setInterval(msgCnt, 1000);
+	setInterval(msgCnt, 100000);
 	
 	msgReceive();
 		

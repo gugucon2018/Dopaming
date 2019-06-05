@@ -174,7 +174,10 @@ public class FileController_Hwan {
 				fdvo.setGroup_no(f.getGroup_no());
 				System.out.println(fdvo.getGroup_no());
 				service.download_insert_hwan(fdvo);
+				System.out.println("다운로드 DB 삽입 성공");
 			}
+		}else {
+			System.out.println("다운로드 DB 삽입 실패");
 		}
 
 		return "hwan/download_hwan";

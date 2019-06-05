@@ -65,7 +65,7 @@ th, td {
  				<c:otherwise>
 		 			<c:forEach items="${list}" var="down">
 		 				<tr>
-		 					<td>${down.download_no}</td>
+		 					<td>${down.board_no}</td>
 		 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${down.board_no}&member_id=${down.member_id}">
 		 					${down.board_title}</td>
 		 					<td>${down.category_big}</td>

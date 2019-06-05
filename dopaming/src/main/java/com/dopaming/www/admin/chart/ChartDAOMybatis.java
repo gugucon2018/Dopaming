@@ -16,7 +16,15 @@ public class ChartDAOMybatis {
 	
 	// 관리자 -  회원관리  - 업로드만 리스트 뷰 건수 
 	public int uploadListCount(ChartVO vo) {
-		return mybatis.selectOne("ChartDAO.ChartCount", vo);
+		return mybatis.selectOne("chartDAO.ChartCount", vo);
+	}
+	
+	public List<ChartVO> getChartList(ChartVO vo) {
+		return mybatis.selectList("chartDAO.chartList",vo);
+	}
+	//페이징 건수
+	public int chartList_cnt(ChartVO vo) {
+		return mybatis.selectOne("chartDAO.chartList_cnt",vo);
 	}
 	
 

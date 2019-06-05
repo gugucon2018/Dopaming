@@ -3,6 +3,7 @@ package com.dopaming.www.login;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class MemberDAO {
@@ -48,9 +49,17 @@ public class MemberDAO {
 	}
 	
 	//회원가입
+	@Transactional
 	public int register(MemberVO vo) {
 		System.out.println("===> Mybatis로  register() 기능 처리");
 		return mybatis.insert("MemberDAO.register",vo);
+	}
+	
+	//이메일 인증
+	@Transactional
+	public int approval_memeber(MemberVO vo) {
+		System.out.println("===> Mybatis로  approval_memeber() 기능 처리");
+		return mybatis.update("MemberDAO.approval_memeber", vo);
 	}
 }
 

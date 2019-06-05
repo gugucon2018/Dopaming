@@ -23,4 +23,10 @@ public interface MemberService {
 	
 	//인증키 생성
 	public String create_key() throws Exception;
+	
+	//이메일 발송
+	public void send_mail(MemberVO vo) throws Exception;
+	
+	//회원 인증
+	public void approval_memeber(MemberVO vo, HttpServletResponse response) throws Exception;
 }

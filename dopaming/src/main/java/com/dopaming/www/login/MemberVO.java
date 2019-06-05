@@ -6,15 +6,9 @@ public class MemberVO {
 	private String member_id;
 	private String member_password;
 	private String member_email;
-	private String check_passowrd;
 	private Date member_date;
 	private String approval_status;
 	private String approval_key;
-	
-	//비밀번호 확인
-	public boolean isPwEqualToCheckPw() {
-		return member_password.equals(check_passowrd);
-	}
 	
 	public String getMember_id() {
 		return member_id;
@@ -30,14 +24,6 @@ public class MemberVO {
 
 	public void setMember_password(String member_password) {
 		this.member_password = member_password;
-	}
-
-	public String getCheck_passowrd() {
-		return check_passowrd;
-	}
-
-	public void setCheck_passowrd(String check_passowrd) {
-		this.check_passowrd = check_passowrd;
 	}
 
 	public String getMember_email() {

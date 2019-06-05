@@ -6,7 +6,7 @@
  	
  	<!-- 로그인 -->
     <select id="login" resultType="member">
-    	select * from members where member_id=#{member_id} and member_password=#{member_password}
+    	select * from members where member_id=#{member_id}
     </select>
     <!-- id 체크 -->
     <select id="valueCheckId" resultType="String">
@@ -47,5 +47,11 @@
     		, #{approval_key} 
     	)
     </insert>
-    
+    <!-- 이메일 인증 -->
+    <update id="approval_memeber" parameterType="member">
+    	update members set 
+    	approval_status = 'true'
+    	where member_email = #{member_email}
+    	and approval_key = #{approval_key}  
+    </update>
 </mapper>

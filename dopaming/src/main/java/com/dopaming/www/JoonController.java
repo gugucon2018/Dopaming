@@ -47,7 +47,7 @@ public class JoonController {
 			}
 	
 	// 공지 등록 입력값 받아와서 넘겨주기(관리자)
-	@RequestMapping(value = "/notice_insert") // 뷰에서 notice_insert의 값이 보내어지면
+	@RequestMapping(value = "/admin/notice_insert") // 뷰에서 notice_insert의 값이 보내어지면
 	public String notice_insert(NoticeVO vo, Model model, HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		
@@ -64,7 +64,7 @@ public class JoonController {
 		} else {
 		
 			// 돌아갈 화면
-			return "redirect:admin/notice_selectlist";
+			return "redirect:/admin/notice_selectlist";
 		}
 	}
 

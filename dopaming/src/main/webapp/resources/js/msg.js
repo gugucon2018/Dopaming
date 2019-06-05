@@ -15,8 +15,6 @@ $(document).ready(function () {
 	msgWrite();
 	
 	msgSending();
-		
-	msgKeeping();
 	
 	//쪽지버튼 클릭
 	$("#chk_msg").click(function(){

@@ -32,7 +32,7 @@
 		.jumbotron{
 			clear:both;
 			margin: 0px auto 0px auto;
-			background-image: url(./resources/images/logo2.jpg);
+			background-image: url(${pageContext.request.contextPath}/resources/images/logo2.jpg);
 			background-size: 100px;
 		}
  		@media (min-width: 768px) {

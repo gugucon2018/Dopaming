@@ -45,8 +45,8 @@ width:500px;
 
 	//결제api사용시 넘어가는 값 4개를 매개변수로 받아 저장후 컨트롤러로 넘김
 	function payresult(param1,param2){
-		$('input[name="acorn_charge"]').val(param1);
-		$('input[name="approval_code"]').val(param2);
+		$('input[name="pay_code"]').val(param1);
+		$('input[name="acorn_charge"]').val(param2);
 		
 		
 		console.log(param1," ",param2);
@@ -83,7 +83,7 @@ width:500px;
 		}, function(rsp) {
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
-				payresult(rsp.paid_amount,rsp.apply_num);
+				payresult(rsp.imp_uid,rsp.paid_amount);
 				/*msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num; */
 			} else {
@@ -98,7 +98,7 @@ width:500px;
 <body>
 <form id="payresult" action="./acornForm" method="post">
 <input type="hidden" name="acorn_charge" value=""/>
-<input type="hidden" name="approval_code" value=""/>
+<input type="hidden" name="pay_code" value=""/>
 </form>
 	<div>
 		<h1 style="text-align: center;">결제페이지</h1>

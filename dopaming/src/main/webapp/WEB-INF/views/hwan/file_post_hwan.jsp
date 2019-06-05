@@ -195,12 +195,13 @@ function complain_frm_send(){
 	<input type="hidden" name="complain_type" value="신고"/>
 </form>	
 		
+	<input type="hidden" name="board_acorn" value="${filePost.board_acorn}" />
 	<table class="cen_table  table table-striped table-bordered">
 		<tr>
 			<th width="10%">게시글 번호</th>
 			<th class="c1">분류</th>
 			<th>제목</th>
-			<th>캐시</th>
+			<th>각 파일 아콘</th>
 			<th>용량(MB)</th>
 			<th>판매자</th>
 		</tr>

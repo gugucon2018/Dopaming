@@ -94,7 +94,7 @@ textarea {
 							<option value="국내">국내</option>
 							<option value="외국">외국</option>							
 					</select></td>
-					<td colspan="2">게시글아콘<br> <input class="chk2" name="BoardAcorn" placeholder="아콘값 입력" />
+					<td colspan="2">각 파일 아콘<br> <input class="chk2" name="BoardAcorn" placeholder="아콘값 입력" />
 					</td>
 				</tr>
 				<tr>

@@ -88,7 +88,8 @@ public class FileController_Hwan {
 	@RequestMapping(value = "/request_download")
 	@ResponseBody
 	public String requestDownload_hwan(FileDownloadVO_Hwan fbvo, FileDownloadVO_Hwan fdvo, HttpSession session,
-			Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+			Model model, HttpServletRequest request, HttpServletResponse response
+			,MemberVO mvo) throws Exception {
 		model.addAttribute("downPost", service.select_downloadOne(fdvo));
 		String filePath = request.getSession().getServletContext().getRealPath("./resources/upload");
 		String fileCom = System.currentTimeMillis() + "files.zip";
@@ -152,32 +153,20 @@ public class FileController_Hwan {
 
 			printwriter.flush();
 			printwriter.close();
-		}
-		/*
-		for (int i = 0; i < result.size(); i++) {
-			f = result.get(i);
-			ZipEntry zipEntry = new ZipEntry(f.getFile_name());			
-			zipOutputStream.putNextEntry(zipEntry);
-			 FileInputStream fis = new FileInputStream(filePath + "/"+f.getFile_name());			 
-			 int data = 0;
-			   while((data=fis.read())!=-1) {
-			    zipOutputStream.write(data);
-			   }
-		*/
+		}		
 		if(service.download_check_hwan(fdvo)==0) {
 			for(int i=0;i<result.size();i++) {
 				f= result.get(i);
-				fdvo.setMember_id(f.getMember_id());
-				System.out.println(fdvo.getMember_id());
-				fdvo.setFile_no(f.getFile_no());
-				System.out.println(fdvo.getFile_no());
-				fdvo.setGroup_no(f.getGroup_no());
-				System.out.println(fdvo.getGroup_no());
+				mvo = (MemberVO) session.getAttribute("memberSession");
+				fdvo.setMember_id(mvo.getMember_id());
+				fdvo.setDownload_acorn(f.getBoard_acorn());
+				fdvo.setFile_no(f.getFile_no());				
+				fdvo.setGroup_no(f.getGroup_no());				
 				service.download_insert_hwan(fdvo);
 				System.out.println("다운로드 DB 삽입 성공");
-			}
+			}			
 		}else {
-			System.out.println("다운로드 DB 삽입 실패");
+			System.out.println("다운로드 DB 삽입 실패 => 다운로드만 될 것임");
 		}
 
 		return "hwan/download_hwan";

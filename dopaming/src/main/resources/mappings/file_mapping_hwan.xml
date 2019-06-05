@@ -162,6 +162,7 @@
    			#{download_no},
    			SYSDATE,
    			#{member_id},
+   			#{download_acorn},
    			#{file_no},
    			#{group_no}
    		)   	

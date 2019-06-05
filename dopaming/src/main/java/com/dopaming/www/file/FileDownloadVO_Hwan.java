@@ -7,7 +7,8 @@ public class FileDownloadVO_Hwan {
 	
 	//다운로드 넘버
 	private int download_no;
-	
+	//다운로드 아콘
+	private int download_acorn;
 	//멤버 아이디
 	private String member_id;
 	//게시글 아콘
@@ -21,8 +22,12 @@ public class FileDownloadVO_Hwan {
 	//파일명
 	private String file_name;
 	
-	
-	
+	public int getDownload_acorn() {
+		return download_acorn;
+	}
+	public void setDownload_acorn(int download_acorn) {
+		this.download_acorn = download_acorn;
+	}
 	public int getDownload_no() {
 		return download_no;
 	}

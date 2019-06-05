@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <body>
+<h1 style="text-align: center;">결제코드누를시 즉시 환불</h1> <hr>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<td>아이디</td>
-				<td>금액</td>
+				<td>충전금액</td>
 				<td>충전날짜</td>
 				<td>결제코드</td>
 			<tr>
@@ -23,8 +24,7 @@
 					<td>${list.member_id }</td>
 					<td>${list.acorn_charge }</td>
 					<td>${list.acorn_date }</td>
-					<td><a href="./acornreturn?pay_code=${list.pay_code }">${list.pay_code }</a></td>
-				
+					<td><button><a href="./acornreturn?pay_code=${list.pay_code }" onclick="alert('환불시켰다!')">${list.pay_code }</a></button></td>				
 				</tr>
 			</c:forEach>
 		</tbody>

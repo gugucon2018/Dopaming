@@ -11,14 +11,23 @@
     
     <!-- 결제했는사람 (아이디만)리스트 -->
     <select id="payReturn" resultType="pay">
-    	select DISTINCT (member_id) from acorn
+    	select member_id , trunc(acorn_date) acorn_date
+		from acorn 
+		where trunc(acorn_date) = trunc(sysdate) and pay_code = pay_code
+		group by member_id, trunc(acorn_date)
     </select>
     
     <!-- 결제했는 사람(단건)에 대한 세부내용(아이디,결제금액,충전날짜,결제고유코드) -->
     <select id="datailpay" parameterType="pay" resultType="pay">
     	select member_id,acorn_charge,acorn_date,pay_code 
     	from acorn
-    	where member_id = #{member_id}
+    	where trunc(acorn_date) = TRUNC(sysdate) 
+    	and pay_code=pay_code 
+    	<![CDATA[
+    	and acorn_charge <= (select acorn_stock from members where member_id = #{member_id} )
+    	]]>  
+    	 and member_id = #{member_id}
+    	order by acorn_date
     </select>
     <!-- 환불처리후 DB에서도 환불내용 삭제 -->
     <delete id="deletepay" parameterType="pay">

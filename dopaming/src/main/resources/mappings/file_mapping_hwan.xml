@@ -137,14 +137,14 @@
 		select distinct b.member_id, b.board_acorn,f.group_no
 		from board b
 		inner join file_upload f
-		on b.member_id = f.member_id
+		on b.board_no = f.group_no
 		<where>
 			<if test="group_no!=null and group_no!='' ">
 				f.group_no=#{group_no}
 			</if>
 		</where>
 		group by b.member_id,b.board_acorn, f.file_no, f.group_no
-	</select>
+	</select>	
 	<!-- 다운로드 등록 -->
    	<insert id="DownloadInsert">
    		<selectKey keyProperty="download_no" resultType="int"
@@ -172,12 +172,24 @@
    		select count(*) 
 		from file_download
 		<where>
-			<if test="group_no!=null and group_no!='' ">
+			<if test="group_no!=null and group_no!='' and member_id!=null and member_id!='' ">
 			 group_no=#{group_no}	
+			 and member_id=#{member_id}
 			 </if>
    		</where>
    	</select>
-   	
+   	<!-- 다운로드 등록 유무 확인2 -->
+   	<select id="DownloadCheck2" 
+   	resultType="com.dopaming.www.file.FileDownloadVO_Hwan">
+   		select distinct member_id
+			from file_download
+		<where>
+			<if test="group_no!=null and group_no!='' and member_id!=null and member_id!='' ">
+				group_no=#{group_no}
+				and member_id=#{member_id}
+			</if>
+		</where>   	
+   	</select>
 	<!-- 댓글 추가 -->
 	<insert id="CommentInsert">
 			<selectKey keyProperty="comment_no" resultType="int"

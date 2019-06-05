@@ -83,7 +83,7 @@
         <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">통계관리</h6>
-            <a class="collapse-item" href="utilities-color.html">유저별 사용량</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/chartList">유저별 사용량</a>
             <a class="collapse-item" href="utilities-border.html">파일별 용량</a>
             <a class="collapse-item" href="utilities-animation.html">회사 파일 보유량</a>            
           </div>

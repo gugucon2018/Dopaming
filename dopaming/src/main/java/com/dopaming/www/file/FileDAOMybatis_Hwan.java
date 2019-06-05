@@ -44,6 +44,11 @@ public class FileDAOMybatis_Hwan {
 		return mybatis.selectOne("FileDAOHwan.DownloadCheck",fdvo);
 	}
 	
+	//다운로드 등록 유무 확인2
+	public FileDownloadVO_Hwan download_check_hwan2(FileDownloadVO_Hwan fdvo) {
+		return mybatis.selectOne("FileDAOHwan.DownloadCheck2",fdvo);
+	}
+	
 	//다운로드 게시글리스트 열람
 	public List<FileDownloadVO_Hwan> select_download(FileDownloadVO_Hwan fdvo){
 		return mybatis.selectList("FileDAOHwan.Download_List", fdvo);

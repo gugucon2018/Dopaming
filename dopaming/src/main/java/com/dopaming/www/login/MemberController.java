@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,13 +19,6 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
-	
-	//form태그에 Command객체로 넘겨주는 메소드
-	//<form:form commandName="memberVO">이면 MemberVO객체를 리터
-	@ModelAttribute("memberVO")
-	protected Object formBack() {
-		return new MemberVO();
-	}
 	
 	//로그인 처리
 	@RequestMapping(value = "/loginA",method = RequestMethod.POST)
@@ -53,7 +45,6 @@ public class MemberController {
 				try {
 					pass = EgovFileScrty.encryptPassword(pass, id);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				memberVO.setMember_password(pass);
@@ -61,15 +52,17 @@ public class MemberController {
 					try {
 						memberVO = service.login(memberVO);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					// 세션 등록
-					session.setAttribute("memberSession", memberVO);					
-					session.setAttribute("Id", memberVO.getMember_id()); 
-					session.setAttribute("Pass", memberVO.getMember_password());
-					 
-					session.setAttribute("message", id + "님, 로그인 되었습니다.");
+					if(!memberVO.getApproval_status().equals("true")) { //이메일 인증을 하지 않은 경우
+						session.setAttribute("error", "이메일 인증 후 로그인 해주세요.");
+					}else {
+						// 세션 등록
+						session.setAttribute("memberSession", memberVO);					
+						session.setAttribute("Id", memberVO.getMember_id()); 
+						session.setAttribute("Pass", memberVO.getMember_password());	 
+						session.setAttribute("message", id + "님, 로그인 되었습니다.");
+					}
 				}else { //비밀번호 일치하지 않으면
 					System.out.println("해당 아이디==========="+ memberVO.getMember_id() +" 암호화된 비번 확인" + memberVO.getMember_password());
 					session.setAttribute("error", "비밀번호가 일치하지 않습니다.");
@@ -119,5 +112,11 @@ public class MemberController {
 		rttr.addFlashAttribute("result", service.register(vo, response));
 		
 		return "redirect:/";
+	}
+	
+	//회원 인증
+	@RequestMapping(value = "/approval_member", method = RequestMethod.POST)
+	public void approval_memeber(@ModelAttribute MemberVO vo, HttpServletResponse response) throws Exception {
+		service.approval_memeber(vo, response);
 	}
 }

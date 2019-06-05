@@ -7,8 +7,7 @@
 	<select id="getDownList" resultType="myboard">
 		select a.*
 		from ( select b.*, rownum rn
-		from (select DISTINCT d.download_no
-					, bo.board_no
+		from (select DISTINCT bo.board_no 
 		            , bo.board_title
 		            , bo.category_big
 		            , trunc(d.download_date) download_date
@@ -17,7 +16,7 @@
 		inner join file_download d
 		on bo.board_no = d.group_no
 		where d.member_id = #{member_id}
-        order by d.download_no) b) a
+        order by bo.board_no) b) a
 		where rn between #{first} and #{last}
 	</select>
 	

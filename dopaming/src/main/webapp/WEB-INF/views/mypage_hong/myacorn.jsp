@@ -62,7 +62,7 @@
 .title_c:focus {
 	outline: none;
 }
-input[type=checkbox]
+input[name=seqs]
 {
   display: inline-block;
 }

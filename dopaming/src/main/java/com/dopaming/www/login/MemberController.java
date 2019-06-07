@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -118,5 +119,13 @@ public class MemberController {
 	@RequestMapping(value = "/approval_member", method = RequestMethod.POST)
 	public void approval_memeber(@ModelAttribute MemberVO vo, HttpServletResponse response) throws Exception {
 		service.approval_memeber(vo, response);
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping(value = "/find_pw/{member_email}", method = RequestMethod.GET)
+	@ResponseBody
+	public void find_pw(@ModelAttribute MemberVO member, HttpServletResponse response, @PathVariable("member_email")String member_email) throws Exception{
+		member.setMember_email(member_email);
+		service.find_pw(response, member);
 	}
 }

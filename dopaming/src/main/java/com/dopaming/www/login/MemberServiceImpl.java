@@ -171,7 +171,7 @@ public class MemberServiceImpl implements MemberService {
 		} else { // 이메일 인증을 성공하였을 경우
 			out.println("<script>");
 			out.println("alert('인증이 완료되었습니다. 로그인 후 이용하세요.');");
-			out.println("location.href='http://192.168.0.68:80/dopaming/';");
+			out.println("location.href='/dopaming/';");
 			out.println("</script>");
 			out.close();
 		}
@@ -180,7 +180,45 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void find_pw(HttpServletResponse response, MemberVO member) throws Exception {
-		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		//가입에 사용한 이메일이 없으면
+		if(dao.check_email(member.getMember_email()) == 1) {
+			out.println("<script>");
+			out.println("alert('잘못된 이메일 입니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+		}else {
+			//임시 비밀번호 생성
+			String pw = "";
+			for (int i = 0; i < 12; i++) {
+				pw += (char) ((Math.random() * 26) + 97);
+			}
+			member.setMember_password(pw);
+			
+			// 비밀번호 변경 메일 발송
+			send_mail(member, "password");
+			
+			// 여기서 암호화된 비밀번호를 비교해서 맞으면 로그인패스한다 (암호화된비번 = 암호화된비번 비교)
+			try {
+				pw = EgovFileScrty.encryptPassword(pw, member.getMember_id());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			
+			member.setMember_password(pw);
+			
+			// 비밀번호 변경
+			dao.changepass(member);
+			
+			out.println("<script>");
+			out.println("alert('이메일로 임시 비밀번호를 발송하였습니다.');");
+			out.println("location.href='/dopaming/';");
+			out.println("</script>");
+			out.close();
+		}
 		
 	}
 }

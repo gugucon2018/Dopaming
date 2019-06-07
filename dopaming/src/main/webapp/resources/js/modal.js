@@ -7,7 +7,7 @@ $(document).ready(function () {
 	
     // 비밀번호변경 모달창 호출
     $('#recovery-password').on('click', () => {
-        ajaxAlert('가입하신 이메일을 입력하세요.', '/changepass/', '이메일이 전송되었습니다.', '이메일이 올바르지 않습니다.');
+        ajaxAlert('가입하신 이메일을 입력하세요.', '/dopaming/find_pw/', '이메일이 전송되었습니다.', '이메일이 올바르지 않습니다.');
     });
     
     // SweetAlert Ajax
@@ -51,5 +51,16 @@ $(document).ready(function () {
                 successAlert(successText);
             }, 300);
         })
+    }
+    
+    // SweetAlert Success
+    const successAlert = (text) => {
+        Swal.fire({
+            type: 'success',
+            title: text,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            timer: 2000
+        });
     }
 });

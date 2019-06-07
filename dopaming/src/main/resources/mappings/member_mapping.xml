@@ -58,6 +58,6 @@
     <update id="changepass" parameterType="member">
     	update members set
     	member_password = #{member_password}
-    	where member_id = #{member_id}
+    	where member_email = #{member_email}
     </update>
 </mapper>

@@ -11,6 +11,7 @@ function complain_insert_btn(){
 	//변수선언
 	var chk = document.getElementById("complain_title").value; //단건 id찾기
 	var chk2 = document.getElementById("complain_content").value; //단건 id찾기
+	var chk3 = document.getElementById("complain_type").value; //단건 id찾기
 	
 	if (chk == '') { // 제목에 값이 없을시
 		alert("제목을 입력하세요");
@@ -20,7 +21,6 @@ function complain_insert_btn(){
 		alert("20 자 이내로 적어주세요");
 		return false;
 	}
-	
 	else if (chk2 == '') { // 내용 값이 없을시
 		alert("내용을 입력하세요");
 		return false;
@@ -28,6 +28,10 @@ function complain_insert_btn(){
 	}
 	else if(chk2.length >= 500){
 		alert("500 자 이내로 적어주세요");
+		return false;
+	}
+	else if(chk3 == ''){
+		alert("타입을 선택해주세요");
 		return false;
 	}
 	
@@ -46,7 +50,8 @@ function complain_insert_btn(){
 	<h3 align=left><u>고객센터</u></h3>
 	
 	
-	타입:<select name = "complain_type">
+	타입:<select id = "complain_type" name= "complain_type">
+			<option value="">선택</option>
 			<option value="신고">신고</option>
 			<c:if test="${complainVO.complain_type != '신고'}">
 			<option value="건의">건의</option>

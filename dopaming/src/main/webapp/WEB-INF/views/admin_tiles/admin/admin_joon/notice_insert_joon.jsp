@@ -62,7 +62,7 @@ function notice_insert_btn(){
 	</form>
 <script type='text/javascript'>
 			// // 사용할 앱의 JavaScript 키를 설정해 주세요.
-			Kakao.init('f98be4f404409ef11e38b90311e98ca0');
+			Kakao.init('f98be4f404409ef11e38b90311e98ca0'); //내꺼
 			
 			// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 			Kakao.Auth.createLoginButton({
@@ -78,7 +78,7 @@ function notice_insert_btn(){
 										            "web_url": "http://localhost/dopaming/notice_select_new",
 										            "mobile_web_url": "http://localhost/dopaming/notice_select_new"
 										        },
-												"text": "공지제목: "+notice_frm.notice_content.value +"\n"+"공지내용:\n"+notice_frm.notice_title.value,
+												"text": "공지제목: "+notice_frm.notice_title.value +"\n"+"공지내용:\n"+notice_frm.notice_content.value,
 										        
 										        "button_title": "바로 확인"
 												

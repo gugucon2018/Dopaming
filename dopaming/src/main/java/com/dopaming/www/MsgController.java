@@ -21,27 +21,28 @@ public class MsgController {
 	
 	@Autowired
 	MsgService service;
+
+//Receive
 	
 	//받은 쪽지 전체 목록
 	@RequestMapping(value="/msg", method=RequestMethod.GET)
 	@ResponseBody
 	public List<MsgVO> receiveAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
 		memberVO = (MemberVO) session.getAttribute("memberSession");
-		System.out.println("아직 로그인 되지 않았습니다!");
 		vo.setReceiver_id(memberVO.getMember_id());
-		return service.list_receive_all(vo);
+		return service.all_receive_list(vo);
 	}
-	
-	//보낸 쪽지 전체 목록
-	@RequestMapping(value="/msg", method=RequestMethod.POST)
+		
+	//읽지않은 쪽지 목록
+	@RequestMapping(value="/msg_unselect", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> sentAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		public List<MsgVO> unSelect(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
 		memberVO = (MemberVO) session.getAttribute("memberSession");
-		vo.setSender_id(memberVO.getMember_id());
-		return service.list_sent_all(vo);
+		vo.setReceiver_id(memberVO.getMember_id());
+		return service.unselect_receive_list(vo);
 	}
-	
-	//확인하지 않은 받은 쪽지 수 확인
+		
+	//읽지않은 쪽지 수
 	@RequestMapping(value="/cnt", method=RequestMethod.GET)
 	@ResponseBody
 	public MsgVO receiveCnt(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
@@ -51,11 +52,18 @@ public class MsgController {
 		return vo;
 	}
 	
-	//보관함으로 보낼 쪽지 선택
+	//받은쪽지함에서 보관함으로 이동 전 상태 체크
+	@RequestMapping(value="/msg_checking", method=RequestMethod.GET)
+	@ResponseBody
+	public List<MsgVO> checking(Model model, HttpSession session, MsgVO vo) {
+		return service.check_keeping(vo);
+	}
+		
+	//받은쪽지함에서 보관함으로 이동 
 	@RequestMapping(value="/msg_keeping", method=RequestMethod.GET)
 	@ResponseBody
-	public MsgVO keeping(MsgVO vo) {
-		service.keeping(vo);
+	public MsgVO receive_keeping(MsgVO vo) {
+		service.receive_keeping(vo);
 		return vo;
 	}
 	
@@ -66,7 +74,7 @@ public class MsgController {
 		service.changing(vo);
 		return vo;
 	}
-		
+
 	//받은 쪽지 내용 확인하기
 	@RequestMapping(value="/msg_select", method=RequestMethod.GET)
 	@ResponseBody
@@ -74,13 +82,68 @@ public class MsgController {
 		return service.select_receive(vo);
 	}
 	
+	//받은 쪽지함에서 휴지통으로 이동
+	@RequestMapping(value="/msg_traching_r", method=RequestMethod.GET)
+	@ResponseBody
+	public MsgVO receiveTrashing(MsgVO vo) {
+		service.receive_trashing(vo);
+		return vo;
+	}
+	
+	
+//Sent
+	
+	//보낸 쪽지 전체 목록
+	@RequestMapping(value="/msg", method=RequestMethod.POST)
+	@ResponseBody
+	public List<MsgVO> sentAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		memberVO = (MemberVO) session.getAttribute("memberSession");
+		vo.setSender_id(memberVO.getMember_id());
+		return service.all_sent_list(vo);
+	}
+	
+	//보낸 쪽지함에서 휴지통으로 이동
+	@RequestMapping(value="msg_traching_s", method=RequestMethod.GET)
+	@ResponseBody
+	public MsgVO sentTrashing(MsgVO vo) {
+		service.sent_trashing(vo);
+		return vo;
+	}
+	
+
+	
+//Write
+	
 	//쪽지 보내기
 	@RequestMapping(value="/msg", method=RequestMethod.PUT, headers = {"Content-type=application/json"})
 	@ResponseBody
 	public MsgVO sending(Model model, HttpSession session, MemberVO memberVO, @RequestBody MsgVO vo) {
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setSender_id(memberVO.getMember_id());
+		String no = String.valueOf(service.write_no(vo));
+		vo.setMessage_no(no);
 		service.sending_write(vo);
+		return vo;
+	}
+	
+	
+	
+//Keep
+	
+	//쪽지 보관함 전체 목록
+	@RequestMapping(value="/msg", method=RequestMethod.PATCH)
+	@ResponseBody
+	public List<MsgVO> keepAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		memberVO = (MemberVO) session.getAttribute("memberSession");
+		vo.setReceiver_id(memberVO.getMember_id());
+		return service.all_keep_list(vo);
+	}
+	
+	//보관함 이전으로 복원
+	@RequestMapping(value="/msg_returning_k", method=RequestMethod.GET)
+	@ResponseBody
+	public MsgVO keepReturning(MsgVO vo) {
+		service.keep_returning(vo);
 		return vo;
 	}
 }

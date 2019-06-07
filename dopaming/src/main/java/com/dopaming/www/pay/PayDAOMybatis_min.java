@@ -20,6 +20,11 @@ public class PayDAOMybatis_min {
 		return mybatis.selectList("PayDAO.payReturn");
 	}
 	
+	//결제한사람 리스트 카운터
+	public int returnPayCount(PayVO_min vo){
+		return mybatis.selectOne("PayDAO.payReturnCount",vo);
+	}
+	
 	//결제했는 사람(단건)에 대한 세부내용(아이디,결제금액,충전날짜,결제고유코드)
 	public List<PayVO_min> detailPay(PayVO_min vo){
 		return mybatis.selectList("PayDAO.datailpay",vo); 

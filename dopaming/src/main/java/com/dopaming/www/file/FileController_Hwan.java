@@ -61,14 +61,17 @@ public class FileController_Hwan {
 		List<FileUploadVO_Hwan> fvolist = new ArrayList<FileUploadVO_Hwan>();
 		FileUploadVO_Hwan fvo;
 		for (int i = 0; i < files.size(); i++) {
+			//파일이 null인지 체크
+			if(!files.get(i).isEmpty() && files.get(i).getSize() > 0) {
 			System.out.println(files.get(i).getOriginalFilename() + "업로드");
 			// 파일 업로드 소스 여기에 삽입
-			file = new FileRenamePolicy().rename(new File(filePath, files.get(i).getOriginalFilename()));			
+			file = new FileRenamePolicy().rename(new File(filePath, files.get(i).getOriginalFilename()));
 			files.get(i).transferTo(file);
 			fvo = new FileUploadVO_Hwan();
 			fvo.setFileName(file.getName());
 			fvo.setFileStorage(Math.ceil(((double) file.length() / 1024 / 1024)*100)/100);
 			fvolist.add(fvo);
+			}
 		}
 		service.board_file_upload(bvo, fvolist);
 
@@ -83,6 +86,12 @@ public class FileController_Hwan {
 		
 		return "hwan/download_hwan";
 	}
+	// 파일 다운로드
+	@RequestMapping(value = "/download_cancel", method = RequestMethod.GET)
+	public String download_cancel_hwan() {
+		return "redirect:/";
+	}
+		
 
 	// 파일 다운로드 처리
 	@RequestMapping(value = "/request_download")

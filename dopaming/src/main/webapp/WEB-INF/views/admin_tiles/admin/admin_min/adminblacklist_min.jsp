@@ -71,7 +71,7 @@ function td_delete(){
 		</span>
 		<div>
 		<form name="form">
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover" style="text-align: center;">
 			<thead>
 				<tr>
 					<td></td>

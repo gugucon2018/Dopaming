@@ -13,6 +13,10 @@ public class PayVO_min {
 	private String shop_code;
 	private String approval_code;
 	
+	//페이징하기위한 첫,마지막번호
+	private int first;
+	private int last;
+	
 	
 	public int getAcorn_charge() {
 		return acorn_charge;
@@ -69,6 +73,18 @@ public class PayVO_min {
 	}
 	public void setApproval_code(String approval_code) {
 		this.approval_code = approval_code;
+	}
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
 	}
 	
 	

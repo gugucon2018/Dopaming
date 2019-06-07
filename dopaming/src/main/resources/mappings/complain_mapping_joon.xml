@@ -59,6 +59,9 @@ where complain_no= #{complain_no}
 		SELECT count(*)
 		FROM complain
 		where complain_type = #{complain_type}
+		<if test="member_id != null and member_id !=''">
+			and member_id = #{member_id}
+		</if>
 </select>
 
 <!-- 답변완료 -->

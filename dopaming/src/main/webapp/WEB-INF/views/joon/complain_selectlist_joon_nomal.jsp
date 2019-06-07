@@ -36,6 +36,7 @@ a {
 }
 td {
 	border-bottom: 1px solid;
+	height: 50px;
 }
 </style>
 <!-- 전체선택을 하기 위해서는 자바스크립트는 포문을 써야하지만 jquery를 쓰면 배열을 자동으로 받아온다 -->
@@ -81,9 +82,9 @@ function complain_check_update(complain_no){
 <input type="hidden" name="complain_type" value="${list[0].getComplain_type()}" />
 </form>
 
-	<u><h3 align=center>${list[0].getComplain_type()}목록</h3></u><br>
+	<u><h3 align=center>${complainVO.getComplain_type()}목록</h3></u><br>
 
-	<table width="90%">
+	<table width="90%" >
 		<tr align="center">
 			<td bgcolor="" width="100px">번호</td>
 			<td bgcolor="">제목</td>
@@ -103,6 +104,9 @@ function complain_check_update(complain_no){
 			</tr>
 		</c:forEach>
 	</table>
+	<c:if test="${empty list}">
+		<h3 align=center>요청하신 자료가 없습니다.</h3>
+		</c:if>
 	<br>
 <!-- 페이징버튼 -->
 <div align="center">

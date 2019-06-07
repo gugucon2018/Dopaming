@@ -35,4 +35,9 @@ public class PayServiceImpl_min implements Payservice_min {
 	public void deletePay(PayVO_min vo) {
 		mambersDAO.deletePay(vo);
 	}
+
+	@Override
+	public int returnPayCount(PayVO_min vo) {
+		return mambersDAO.returnPayCount(vo);
+	}
 }

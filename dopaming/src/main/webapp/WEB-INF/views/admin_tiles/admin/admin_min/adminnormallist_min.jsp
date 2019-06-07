@@ -49,7 +49,7 @@ float: right;
 		<div>
 		
 		<form name="form">
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover" style="text-align: center;">
 			   <thead>
 				<tr>
 					<td>아이디</td>

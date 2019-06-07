@@ -54,4 +54,10 @@
     	where member_email = #{member_email}
     	and approval_key = #{approval_key}  
     </update>
+    <!-- 비밀번호 변경 -->
+    <update id="changepass" parameterType="member">
+    	update members set
+    	member_password = #{member_password}
+    	where member_id = #{member_id}
+    </update>
 </mapper>

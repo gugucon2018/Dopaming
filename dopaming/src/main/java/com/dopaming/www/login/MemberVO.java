@@ -7,6 +7,10 @@ public class MemberVO {
 	private String member_password;
 	private String member_email;
 	private Date member_date;
+	private String member_grade;
+	private Integer acorn_stock;
+	private Integer upload_storage;
+	private Integer upload_count;
 	private String approval_status;
 	private String approval_key;
 	
@@ -42,6 +46,38 @@ public class MemberVO {
 		this.member_date = member_date;
 	}
 	
+	public String getMember_grade() {
+		return member_grade;
+	}
+
+	public void setMember_grade(String member_grade) {
+		this.member_grade = member_grade;
+	}
+
+	public Integer getAcorn_stock() {
+		return acorn_stock;
+	}
+
+	public void setAcorn_stock(Integer acorn_stock) {
+		this.acorn_stock = acorn_stock;
+	}
+
+	public Integer getUpload_storage() {
+		return upload_storage;
+	}
+
+	public void setUpload_storage(Integer upload_storage) {
+		this.upload_storage = upload_storage;
+	}
+
+	public Integer getUpload_count() {
+		return upload_count;
+	}
+
+	public void setUpload_count(Integer upload_count) {
+		this.upload_count = upload_count;
+	}
+
 	public String getApproval_status() {
 		return approval_status;
 	}

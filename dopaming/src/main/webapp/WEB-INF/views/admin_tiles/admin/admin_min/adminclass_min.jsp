@@ -80,12 +80,12 @@
 
 	<!-- 테이블 -->
 	<form name="form">
-		<table class="table table-striped table-hover">
+		<table class="table table-striped table-hover" style="text-align: center;">
 			<thead>
 				<tr>
 					<th></th>
 					<th>아이디</th>
-					<th>총 현질합계</th>
+					<th>Total 충전금액</th>
 					<th>등급(내림차순)</th>
 					<th>총 업로드횟수</th>
 				<tr>

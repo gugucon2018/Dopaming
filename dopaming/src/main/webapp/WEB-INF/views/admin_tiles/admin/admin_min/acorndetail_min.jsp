@@ -9,7 +9,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <body>
 <h1 style="text-align: center;">결제코드누를시 즉시 환불</h1> <hr>
-	<table class="table table-striped table-hover">
+	<table class="table table-striped table-hover" style="text-align: center;">
 		<thead>
 			<tr>
 				<td>아이디</td>
@@ -24,7 +24,7 @@
 					<td>${list.member_id }</td>
 					<td>${list.acorn_charge }</td>
 					<td>${list.acorn_date }</td>
-					<td><button><a href="./acornreturn?pay_code=${list.pay_code }" onclick="alert('환불시켰다!')">${list.pay_code }</a></button></td>				
+					<td><button><a href="./acornreturn?pay_code=${list.pay_code}" onclick="alert('환불시켰습니다!')">즉시 환불하기</a></button></td>				
 				</tr>
 			</c:forEach>
 		</tbody>

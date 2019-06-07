@@ -1,7 +1,11 @@
 package com.dopaming.www;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -273,10 +277,25 @@ public class MinController {
 
 	// 결제한사람 (아이디만)리스트(중복제거)
 	@RequestMapping(value = { "/admin/acornlist" }, method = RequestMethod.GET)
-	public String acornlist(Model md) {
-		md.addAttribute("acornlist",service5.returnPay());
+	public String acornlist(Model model, Paging paging,PayVO_min vo) {
+		paging.setPageUnit(5);
+		// 페이지번호 파라미터
+		if (paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+
+		// 시작/마지막 레코드 번호
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		// 전체 건수
+		paging.setTotalRecord(service5.returnPayCount(vo));
+		
+		model.addAttribute("paging", paging);		
+		model.addAttribute("acornlist",service5.returnPay());
 		return "admin/admin_min/acornlist_min";
 	}
+
 	
 	// 결제했는 사람(단건)에 대한 세부내용(아이디,결제금액,충전날짜,결제고유코드)
 	@RequestMapping(value = { "/admin/acorndetaillist" }, method = RequestMethod.GET)
@@ -295,4 +314,42 @@ public class MinController {
 		return "redirect:/admin/acornlist";
 	}
 	
+//	@RequestMapping(value = "/testLogin")
+//	public String isComplete(HttpSession session) {
+//	    return "min/loginView";
+//	}	
+//	
+//	
+//	  @RequestMapping(value = "/callback") public String
+//	  navLogin(HttpServletRequest request) throws Exception { return
+//	  "min/callback"; }
+//	 
+//	@RequestMapping(value = "/personalInfo")
+//	public void personalInfo(HttpServletRequest request) throws Exception {
+//	        String token = "AAAAOa7ErrEfURhFwkyDeXk1KsuFkaZ9n6xNDbk-eH1Ce_aBN6qjEDKhIQz-6r5ijAQhZddnNvgvJh07zyQPvt_Wf5w";// 네이버 로그인 접근 토큰; 여기에 복사한 토큰값을 넣어줍니다.
+//	        String header = "Bearer " + token; // Bearer 다음에 공백 추가
+//	        try {
+//	            String apiURL = "https://openapi.naver.com/v1/nid/me";
+//	            URL url = new URL(apiURL);
+//	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+//	            con.setRequestMethod("GET");
+//	            con.setRequestProperty("Authorization", header);
+//	            int responseCode = con.getResponseCode();
+//	            BufferedReader br;
+//	            if(responseCode==200) { // 정상 호출
+//	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//	            } else {  // 에러 발생
+//	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+//	            }
+//	            String inputLine;
+//	            StringBuffer response = new StringBuffer();
+//	            while ((inputLine = br.readLine()) != null) {
+//	                response.append(inputLine);
+//	            }
+//	            br.close();
+//	            System.out.println(response.toString());
+//	        } catch (Exception e) {
+//	            System.out.println(e);
+//	        }
+//	}
 }

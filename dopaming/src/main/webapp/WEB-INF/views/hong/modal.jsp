@@ -18,7 +18,7 @@
 							<span class="slider round"></span>
 						</label>
 						<label class="form-check-label" for="loginCheck">아이디 저장</label>
-						<label class="forgot-password"><a href="#">비밀번호 찾기<a></label>
+						<p class="forgot-password" id="recovery-password"><a href="#">비밀번호 찾기<a></p>
                     </div>
                     <button class="btn btn-primary loginmodal_loginbtn" type="submit">로그인</button>
                    	<div class="content_modalsocialwarp">

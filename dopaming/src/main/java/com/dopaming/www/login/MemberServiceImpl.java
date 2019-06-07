@@ -58,7 +58,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void send_mail(MemberVO vo) throws Exception {
+	public void send_mail(MemberVO vo, String type) throws Exception {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com";
@@ -71,18 +71,31 @@ public class MemberServiceImpl implements MemberService {
 		String subject = "";
 		String msg = "";
 		
-		
-		// 회원가입 메일 내용
-		subject = "Dopaming 회원가입 인증 메일입니다.";
-		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-		msg += "<h3 style='color: blue;'>";
-		msg += vo.getMember_id() + "님 회원가입을 환영합니다.</h3>";
-		msg += "<div style='font-size: 130%'>";
-		msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
-		msg += "<form method='post' action='http://dopaming.com:80/dopaming/approval_member'>";
-		msg += "<input type='hidden' name='member_email' value='" + vo.getMember_email() + "'>";
-		msg += "<input type='hidden' name='approval_key' value='" + vo.getApproval_key() + "'>";
-		msg += "<input type='submit' value='인증'></form><br/></div>";
+		switch(type) {
+			case "register":
+				// 회원가입 메일 내용
+				subject = "[Dopaming] 회원가입 인증 메일입니다.";
+				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+				msg += "<h3 style='color: blue;'>";
+				msg += vo.getMember_id() + "님 회원가입을 환영합니다.</h3>";
+				msg += "<div style='font-size: 130%'>";
+				msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
+				msg += "<form method='post' action='http://dopaming.com:80/dopaming/approval_member'>";
+				msg += "<input type='hidden' name='member_email' value='" + vo.getMember_email() + "'>";
+				msg += "<input type='hidden' name='approval_key' value='" + vo.getApproval_key() + "'>";
+				msg += "<input type='submit' value='인증'></form><br/></div>";
+				break;
+				
+			case "password":
+				//임시 비밀번호 찾기 내용
+				subject = "[Dopaming] 임시 비밀번호 입니다.";
+				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+				msg += "<h3 style='color: blue;'>";
+				msg += vo.getMember_id() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
+				msg += "<p>임시 비밀번호 : ";
+				msg += vo.getMember_password() + "</p></div>";
+		}
+
 		
 		// 받는 사람 E-Mail 주소
 		String mail = vo.getMember_email();
@@ -140,7 +153,7 @@ public class MemberServiceImpl implements MemberService {
 			vo.setApproval_key(create_key());
 			dao.register(vo);
 			//인증 메일 발송
-			send_mail(vo);
+			send_mail(vo,"register");
 			return 1;
 		}
 	}
@@ -162,6 +175,12 @@ public class MemberServiceImpl implements MemberService {
 			out.println("</script>");
 			out.close();
 		}
+		
+	}
+
+	@Override
+	public void find_pw(HttpServletResponse response, MemberVO member) throws Exception {
+		// TODO Auto-generated method stub
 		
 	}
 }

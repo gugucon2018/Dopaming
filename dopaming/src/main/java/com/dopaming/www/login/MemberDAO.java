@@ -61,5 +61,12 @@ public class MemberDAO {
 		System.out.println("===> Mybatis로  approval_memeber() 기능 처리");
 		return mybatis.update("MemberDAO.approval_memeber", vo);
 	}
+	
+	//비밀번호 변경
+	@Transactional
+	public int changepass(MemberVO vo) {
+		System.out.println("===> Mybatis로  changepass() 기능 처리");
+		return mybatis.update("MemberDAO.changepass", vo);
+	}
 }
 

@@ -96,5 +96,11 @@ public class MsgDAO {
 		mybatis.insert("MsgDAO.keep_returning",vo);
 	}
 	
+	//보관함에서 휴지통으로 이동
+	public void keep_trashing(MsgVO vo) {
+		mybatis.insert("MsgDAO.keep_trashing",vo);
+	}
+	
+	
 	
 }

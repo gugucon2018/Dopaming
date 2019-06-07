@@ -15,7 +15,7 @@
             <button class="btn btn-warning btn_size" id="receive_msg" type="button">Receive</button>
             <button class="btn btn-success btn_size" id="sent_msg" type="button">Sent</button>
             <button class="btn btn-primary btn_size" id="keep_msg" type="button">Keep</button>
-            <button class="btn btn-default btn_size" type="button">Trash</button>
+            <button class="btn btn-default btn_size" id="trash_msg" type="button">Trash</button>
         </div>
 		<div class="modal-content">
 			<div class="modal-body">

@@ -104,8 +104,7 @@ $(function(){ //J쿼리형태
 					<li><a class="navbar-brand" href="${pageContext.request.contextPath }/acornForm">아콘충전</a></li>
 				</c:otherwise>
 				</c:choose>
-					<li><a class="navbar-brand" href="notice_select_new">고객센터</a></li>
-					<li><a class="navbar-brand" href="loginForm">(임시)관리자로그인페이지</a></li>
+					<li><a class="navbar-brand" href="${pageContext.request.contextPath}/notice_select_new">고객센터</a></li>
 				</ul>
 				<ul class="nav navbar-nav navber-right">
 					<c:choose>
@@ -147,11 +146,11 @@ $(function(){ //J쿼리형태
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">영화<span class="caret"></span></a>
 						<ul class="dropdown-menu"><li>
-							<a href="mdview?category_big=영화">전체영화</a></li>
+							<a href="${pageContext.request.contextPath}/mdview?category_big=영화">전체영화</a></li>
 							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=영화">국내영화</a></li>
-							<li><a href="mdview?category_small=외국&category_big=영화">외국영화</a></li>
-							<li><a href="mdview?category_small=최신&category_big=영화">최신영화</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=국내&category_big=영화">국내영화</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=외국&category_big=영화">외국영화</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=최신&category_big=영화">최신영화</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
@@ -159,33 +158,33 @@ $(function(){ //J쿼리형태
 						data-toggle="dropdown" href="#">드라마<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							
-							<li><a href="mdview?category_big=드라마">전체드라마</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_big=드라마">전체드라마</a></li>
 							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=드라마">국내드라마</a></li>
-							<li><a href="mdview?category_small=외국&category_big=드라마">외국드라마</a></li>
-							<li><a href="mdview?category_small=최신&category_big=드라마">최신드라마</a></li>						
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=국내&category_big=드라마">국내드라마</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=외국&category_big=드라마">외국드라마</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=최신&category_big=드라마">최신드라마</a></li>						
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">동영상<span class="caret"></span></a>
 						<ul class="dropdown-menu">							
-							<li><a href="mdview?category_big=동영상">전체동영상</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_big=동영상">전체동영상</a></li>
 							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=동영상">국내동영상</a></li>
-							<li><a href="mdview?category_small=외국&category_big=동영상">외국동영상</a></li>
-							<li><a href="mdview?category_small=최신&category_big=동영상">최신드라마</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=국내&category_big=동영상">국내동영상</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=외국&category_big=동영상">외국동영상</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=최신&category_big=동영상">최신드라마</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">음악<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="mdview?category_big=음악">전체음악</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_big=음악">전체음악</a></li>
 							<li class="divider"></li>
-							<li><a href="mdview?category_small=국내&category_big=음악">국내음악</a></li>
-							<li><a href="mdview?category_small=외국&category_big=음악">외국음악</a></li>
-							<li><a href="mdview?category_small=최신&category_big=음악">최신음악</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=국내&category_big=음악">국내음악</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=외국&category_big=음악">외국음악</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=최신&category_big=음악">최신음악</a></li>
 							
 						</ul></li>
 				</ul>

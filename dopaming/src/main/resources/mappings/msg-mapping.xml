@@ -13,7 +13,7 @@
 		            else sender_id 
 		       end as sender_id   
 		from message 
-		where receiver_id=#{receiver_id} and message_check in ('N','Y','YSD')
+		where receiver_id=#{receiver_id} and message_check in ('N','Y','YSD','YBD')
 		order by 1 desc
 	</select>
 	
@@ -95,7 +95,7 @@
 		            else receiver_id 
 		       end as receiver_id    
 		from message 
-		where sender_id=#{sender_id} and message_check in ('N','Y','K','YRD')
+		where sender_id=#{sender_id} and message_check in ('N','Y','K','YRD','KRD','YAD','KAD')
 		order by 1 desc
 	</select>
 	
@@ -146,14 +146,14 @@
 		            else sender_id 
 		       end as sender_id    
 		from message 
-		where receiver_id=#{receiver_id} and message_check in ('K')
+		where receiver_id=#{receiver_id} and message_check in ('K','KSD'.'KBD')
 		order by 1 desc
 	</select>
 	
 	<!-- 보관함 이전으로 복원 -->
 	<update id="keep_returning">
 		update message
-		set message_check='Y'
+		set message_check=replace(message_check,'K','Y')
 		<where>
 			<choose>
 				<when test="ck != null">
@@ -168,5 +168,41 @@
 			</choose>
 		</where>	
 	</update>
+	
+	<!-- 보관함에서 휴지통으로 이동 -->
+	<update id="keep_trashing">
+		update message
+		set message_check=message_check||'RD'
+		<where>
+			<choose>
+				<when test="ck != null">
+				 	message_no in
+				 	<foreach item="t" collection="ck" open="(" close=")" separator=",">
+				 		#{t}
+				 	</foreach>			
+				</when>
+				<otherwise>
+					message_no=#{message_no}
+				</otherwise>
+			</choose>
+		</where>	
+	</update>
+
+
+
+<!-- Trash -->
+
+	<!-- 휴지통 전체 목록 -->
+	<select id="all_trash_list" resultType="msg">
+		select message_no, message_title, message_check, 
+			   case when sender_id=#{receiver_id} then '나' 
+		            when sender_id like '%admin%' then '관리자'
+		            else sender_id 
+		       end as sender_id    
+		from message 
+		where receiver_id=#{receiver_id} and message_check in ('YRD','YSD','YAD','YBD','KRD','KSD','KAD','KBD','YRDSD','YADSD','YRDBD','YSDRD','YBDRD','YSDAD')
+		order by 1 desc
+	</select>
+
 			
 </mapper>

@@ -274,9 +274,10 @@ function msgSentTrashing() {
 		type:'GET',
 		dataType:'json',
 		data: $("#form_receive").serialize(),
-		success:function() { $("##sent_msg").click(); }
+		success:function() { $("#sent_msg").click(); }
 	});
 }
+
 
 
 /*
@@ -372,7 +373,7 @@ function msgKeepResult(data) {
 	$tag += "<button type='button' class='btn_back' onclick='msgKeepReturning()'>"
 	$tag += "<img src='"+context+"/resources/images/ho/icon_back.png' width='22p' height='24px'>"
 	$tag += "</button>"
-	$tag += "<button type='button' class='btn_trashing' id='trashing_msg'>"
+	$tag += "<button type='button' class='btn_trashing' onclick='msgKeepTrashing()'>"
 	$tag += "<img src='"+context+"/resources/images/ho/icon_trashing.png' width='22px' height='24px'>"
 	$tag += "</button>"
 	$tag += "<p>" 
@@ -404,9 +405,67 @@ function msgKeepReturning() {
 		});
 }
 
+//보낸쪽지 휴지통_버튼
+function msgKeepTrashing() {
+	$.ajax({
+		url:context+'/msg_traching_k',
+		type:'GET',
+		dataType:'json',
+		data: $("#form_receive").serialize(),
+		success:function() { $("#keep_msg").click(); }
+	});
+}
+
+
 
 /*
  * 
  * Trach
  * 
  */
+ 
+ //휴지통_버튼
+function msgTrash() {
+	$("#trash_msg").click(function(){			
+		$.ajax({
+			url:context+'/msg',
+			type:'DELETE',
+			contentType:'application/json;charset=utf-8',
+			data: $("#form_receive").serialize(),
+			dataType:'json',
+			success:msgTrashResult
+		});
+	});
+}
+
+//쪽지보관함_목록
+function msgTrashResult(data) {
+	$("#wrap").remove();
+	var $tag = "<div id='wrap'>"
+	$tag += "<div class='head_trash'>" + "Trash" + "</div>"
+	$tag += "<button type='button' class='btn_back' onclick='msgTrashReturning()'>"
+	$tag += "<img src='"+context+"/resources/images/ho/icon_back.png' width='22p' height='24px'>"
+	$tag += "</button>"
+	$tag += "<button type='button' class='btn_trashing' onclick='msgTrashTrashing()'>"
+	$tag += "<img src='"+context+"/resources/images/ho/icon_trashing.png' width='22px' height='24px'>"
+	$tag += "</button>"
+	$tag += "<p>" 
+	$tag += "<span class='sender_bar_t'>" + "sender" + "</span>"
+	$tag += "<span class='title_bar_t'>" + "title" + "</span>"
+	$tag += "</p>"
+	$tag += "<div id='list'>" + "</div>"
+	$tag += "</div>"
+	$("#form_receive").append($tag);	
+	$("#list").find("span").remove();	
+	$.each(data,function(idx,item) {
+		$('<p>')
+		.append($('<span class="sender_trash">').html(item.sender_id))
+		.append($('<span class="title_trash">').html(item.message_title))
+		.append($('<input type="checkbox" id="c'+idx+'" name="ck" value="'+item.message_no+'">'))
+		.append($('<label id="ck_keep" for="c'+idx+'" />'))
+		.appendTo("#list");
+	});
+}
+ 
+ 
+ 

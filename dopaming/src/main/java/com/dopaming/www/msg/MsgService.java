@@ -60,6 +60,9 @@ public interface MsgService {
 	//keep_returning
 	public void keep_returning(MsgVO vo);
 	
+	//keep_trashing
+	public void keep_trashing(MsgVO vo);
+	
 	
 	
 }

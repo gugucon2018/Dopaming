@@ -514,3 +514,87 @@ input[name="ck"]:checked + label[id="ck_keep"] {
 	border: 5px solid #fff;
 	background-color: #2E9AFE;
 }
+
+
+
+/*
+*
+*휴지통(Trash)_목록
+*
+*/
+.head_trash { 
+	font-weight: bold;
+	font-size: 5.0rem;
+	color: #6E6E6E;
+	text-align: left;
+	margin-top: -10px;
+	margin-left: 20px;
+	display:inline-block;
+}
+
+.sender_bar_t {
+	width: 130px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #BDBDBD;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+.title_bar_t {
+    width: 380px;
+    height:25px;
+    vertical-align: middle;
+	text-align: center;
+	background-color: #BDBDBD;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+.sender_trash {
+	width: 130px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #E6E6E6;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+}
+
+.sender_trash:hover {
+	background-color: #BDBDBD;
+}
+
+.title_trash {
+    width: 380px;
+    height:25px;
+    vertical-align: middle;
+	text-align: center;
+	background-color: #E6E6E6;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+}
+
+.title_trash:hover {
+	background-color: #BDBDBD;
+}
+
+input[name="ck"] + label[id="ck_trash"] {
+	display: table-cell;
+	width: 23px;
+	border-radius: 20px;
+	border: 2px solid #E6E6E6;
+	cursor: pointer;
+}
+
+input[name="ck"]:checked + label[id="ck_trash"] {
+	border: 5px solid #fff;
+	background-color: #BDBDBD;
+}

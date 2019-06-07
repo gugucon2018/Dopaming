@@ -146,4 +146,12 @@ public class MsgController {
 		service.keep_returning(vo);
 		return vo;
 	}
+	
+	//보관함에서 휴지통으로 이동
+	@RequestMapping(value="msg_traching_k", method=RequestMethod.GET)
+	@ResponseBody
+	public MsgVO keepTrashing(MsgVO vo) {
+		service.keep_trashing(vo);
+		return vo;
+	}
 }

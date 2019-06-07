@@ -95,4 +95,9 @@ public class MsgServiceImpl implements MsgService{
 	public void keep_returning(MsgVO vo) {
 		dao.keep_returning(vo);
 	}
+	
+	@Override
+	public void keep_trashing(MsgVO vo) {
+		dao.keep_trashing(vo);
+	}
 }

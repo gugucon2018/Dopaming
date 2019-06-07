@@ -10,15 +10,17 @@ public class MsgServiceImpl implements MsgService{
 	
 	@Autowired
 	private MsgDAO dao;
+
+//Receive
 	
 	@Override
-	public List<MsgVO> list_receive_all(MsgVO vo) {
-		return dao.list_receive_all(vo);
+	public List<MsgVO> all_receive_list(MsgVO vo) {
+		return dao.all_receive_list(vo);
 	}
-	
+		
 	@Override
-	public List<MsgVO> list_sent_all(MsgVO vo) {
-		return dao.list_sent_all(vo);
+	public List<MsgVO> unselect_receive_list(MsgVO vo) {
+		return dao.unselect_receive_list(vo);
 	}
 	
 	@Override
@@ -27,8 +29,14 @@ public class MsgServiceImpl implements MsgService{
 	}
 	
 	@Override
-	public void keeping(MsgVO vo) {
-		dao.keeping(vo);
+	public List<MsgVO> check_keeping(MsgVO vo) {
+		return dao.check_keeping(vo);
+	}
+	
+	
+	@Override
+	public void receive_keeping(MsgVO vo) {
+		dao.receive_keeping(vo);
 	}
 	
 	@Override
@@ -42,7 +50,54 @@ public class MsgServiceImpl implements MsgService{
 	}
 		
 	@Override
+	public void receive_trashing(MsgVO vo) {
+		dao.receive_trashing(vo);
+	}
+
+	
+	
+//Sent
+	
+	@Override
+	public List<MsgVO> all_sent_list(MsgVO vo) {
+		return dao.all_sent_list(vo);
+	}
+	
+	@Override
+	public void sent_trashing(MsgVO vo) {
+		dao.sent_trashing(vo);
+	}
+	
+
+	
+//Write
+	
+	@Override
+	public int write_no(MsgVO vo) {
+		return dao.write_no(vo);
+	}
+	
+	@Override
 	public void sending_write(MsgVO vo) {
 		dao.sending_write(vo);
+	}
+	
+	
+	
+//Keep
+	
+	@Override
+	public List<MsgVO> all_keep_list(MsgVO vo) {
+		return dao.all_keep_list(vo);
+	}
+	
+	@Override
+	public void keep_returning(MsgVO vo) {
+		dao.keep_returning(vo);
+	}
+	
+	@Override
+	public void keep_trashing(MsgVO vo) {
+		dao.keep_trashing(vo);
 	}
 }

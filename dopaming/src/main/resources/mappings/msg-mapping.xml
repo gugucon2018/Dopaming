@@ -4,33 +4,42 @@
 <!-- 쪽지 DAO 매핑 -->
 <mapper namespace="MsgDAO">
 
+<!-- Receive -->
 	<!-- 받은 쪽지 전체 목록 -->
-	<select id="list_receive_all" resultType="msg">
-		select message_no, sender_id, message_title, message_check   
+	<select id="all_receive_list" resultType="msg">
+		select message_no, message_title, message_check,
+		       case when sender_id=#{receiver_id} then '나' 
+		            when sender_id like '%admin%' then '관리자'
+		            else sender_id 
+		       end as sender_id   
 		from message 
-		where receiver_id=#{receiver_id} and message_check in ('N','Y')
+		where receiver_id=#{receiver_id} and message_check in ('N','Y','YSD','YBD')
 		order by 1 desc
 	</select>
 	
-	<!-- 보낸 쪽지 전체 목록 -->
-	<select id="list_sent_all" resultType="msg">
-		select message_no, receiver_id, message_title, message_check   
+	<!-- 읽지않은 쪽지 목록 -->
+	<select id="unselect_receive_list" resultType="msg">
+		select message_no, message_title, message_check,
+		       case when sender_id=#{receiver_id} then '나' 
+		            when sender_id like '%admin%' then '관리자'
+		            else sender_id 
+		       end as sender_id   
 		from message 
-		where sender_id=#{sender_id}
+		where receiver_id=#{receiver_id} and message_check in ('N')
 		order by 1 desc
 	</select>
 	
-	<!-- 확인하지 않은 받은 쪽지 수 확인-->
+	<!-- 읽지않은 쪽지 수 -->
 	<select id="unselect_receive_cnt" resultType="int">
 		select count(*)
 		from message
 		where receiver_id=#{receiver_id} and message_check='N'
 	</select>
 	
-	<!-- 보관함으로 보낼 쪽지 선택 -->
-	<update id="keeping">
-		update message
-		set message_check='K'
+	<!-- 받은쪽지함에서 보관함으로 이동 전 상태 체크 -->
+	<select id="check_keeping" resultType="msg">
+		select message_no, message_check
+		from message
 		<where>
 			<choose>
 				<when test="ck != null">
@@ -43,7 +52,14 @@
 					message_no=#{message_no}
 				</otherwise>
 			</choose>
-		</where>	
+		</where>		
+	</select>
+	
+	<!-- 받은쪽지함에서 보관함으로 이동 -->
+	<update id="receive_keeping">
+		update message
+		set message_check='K'
+		where message_no=#{message_no}
 	</update>
 	
 	<!-- 받은 쪽지 내용 확인하기 -->
@@ -60,10 +76,133 @@
 		where message_no=#{message_no}   	
 	</update>
 	
+	<!-- 받은 쪽지함에서 휴지통으로 이동 -->
+	<update id="receive_trashing">
+		update message
+		set message_check=message_check||'RD'
+		where message_no=#{message_no}   	
+	</update>
+	
+	
+	
+<!-- Send -->
+
+	<!-- 보낸 쪽지 전체 목록 -->
+	<select id="all_sent_list" resultType="msg">
+		select message_no, message_title, message_check, 
+			   case when receiver_id=#{sender_id} then '나' 
+		            when receiver_id like '%admin%' then '관리자'
+		            else receiver_id 
+		       end as receiver_id    
+		from message 
+		where sender_id=#{sender_id} and message_check in ('N','Y','K','YRD','KRD','YAD','KAD')
+		order by 1 desc
+	</select>
+	
+	<!-- 보낸 쪽지함에서 휴지통으로 이동 -->
+	<update id="sent_trashing">
+		update message
+		set message_check=message_check||'SD'
+		<where>
+			<choose>
+				<when test="ck != null">
+				 	message_no in
+				 	<foreach item="t" collection="ck" open="(" close=")" separator=",">
+				 		#{t}
+				 	</foreach>			
+				</when>
+				<otherwise>
+					message_no=#{message_no}
+				</otherwise>
+			</choose>
+		</where>	
+	</update>
+
+
+
+<!-- Write -->
+	
+	<!-- 전송 쪽지 번호 부여 -->
+	<select id="write_no" resultType="int">
+		select max(message_no) + 1
+		from message
+	</select>
+	
 	<!-- 쪽지 보내기 -->
 	<insert id="sending_write">
 		insert into message(message_no, sender_id, message_title, message_content, receiver_id)
-		values (complain_seq.nextval, #{sender_id}, #{message_title}, #{message_content}, #{receiver_id})
+		values (#{message_no}, #{sender_id}, #{message_title}, #{message_content}, #{receiver_id})
 	</insert>
-		
+
+
+
+<!-- Keep -->
+
+	<!-- 쪽지 보관함 전체 목록 -->
+	<select id="all_keep_list" resultType="msg">
+		select message_no, message_title, message_check, 
+			   case when sender_id=#{receiver_id} then '나' 
+		            when sender_id like '%admin%' then '관리자'
+		            else sender_id 
+		       end as sender_id    
+		from message 
+		where receiver_id=#{receiver_id} and message_check in ('K','KSD'.'KBD')
+		order by 1 desc
+	</select>
+	
+	<!-- 보관함 이전으로 복원 -->
+	<update id="keep_returning">
+		update message
+		set message_check=replace(message_check,'K','Y')
+		<where>
+			<choose>
+				<when test="ck != null">
+				 	message_no in
+				 	<foreach item="t" collection="ck" open="(" close=")" separator=",">
+				 		#{t}
+				 	</foreach>			
+				</when>
+				<otherwise>
+					message_no=#{message_no}
+				</otherwise>
+			</choose>
+		</where>	
+	</update>
+	
+	<!-- 보관함에서 휴지통으로 이동 -->
+	<update id="keep_trashing">
+		update message
+		set message_check=message_check||'RD'
+		<where>
+			<choose>
+				<when test="ck != null">
+				 	message_no in
+				 	<foreach item="t" collection="ck" open="(" close=")" separator=",">
+				 		#{t}
+				 	</foreach>			
+				</when>
+				<otherwise>
+					message_no=#{message_no}
+				</otherwise>
+			</choose>
+		</where>	
+	</update>
+
+
+
+<!-- Trash -->
+
+	<!-- 휴지통 전체 목록 -->
+	<select id="all_trash_list" resultType="msg">
+		select message_no, message_title, message_check, 
+			   case when sender_id=#{receiver_id} then '나' 
+		            when sender_id like '%admin%' then '관리자'
+		            else sender_id 
+		       end as sender_id    
+		from message 
+		where receiver_id=#{receiver_id} and message_check in ('YRD','YSD','YAD','YBD','KRD','KSD','KAD','KBD','YRDSD','YADSD','YRDBD','YSDRD','YBDRD','YSDAD')
+		order by 1 desc
+	</select>
+
+			
 </mapper>

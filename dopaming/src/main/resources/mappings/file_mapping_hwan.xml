@@ -6,6 +6,9 @@
 
 	<!-- 파일 등록 -->
 	<insert id="file_insert_hwan">
+		<selectKey keyProperty="fileNo" resultType="int" order="BEFORE">
+			select FILE_UPLOAD_SEQ_HWAN.nextval from dual
+		</selectKey>
 		INSERT INTO file_upload(
 		file_no,
 		group_no,
@@ -14,7 +17,7 @@
 		file_storage,
 		upload_date
 		)values(
-		FILE_UPLOAD_SEQ_HWAN.nextval,
+		#{fileNo},
 		#{groupNo},
 		#{memberId},
 		#{fileName},

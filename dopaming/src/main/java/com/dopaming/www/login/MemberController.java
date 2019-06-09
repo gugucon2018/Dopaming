@@ -61,7 +61,8 @@ public class MemberController {
 						// 세션 등록
 						session.setAttribute("memberSession", memberVO);					
 						session.setAttribute("Id", memberVO.getMember_id()); 
-						session.setAttribute("Pass", memberVO.getMember_password());	 
+						session.setAttribute("Pass", memberVO.getMember_password());
+						session.setAttribute("Acorn_stock", memberVO.getAcorn_stock());
 						session.setAttribute("message", id + "님, 로그인 되었습니다.");
 					}
 				}else { //비밀번호 일치하지 않으면

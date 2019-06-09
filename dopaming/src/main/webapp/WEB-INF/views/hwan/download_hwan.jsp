@@ -73,7 +73,7 @@ th {
 	<div class="container cen_form">
 		<form>
 		
-		<input type="hidden" name="download_acorn" value="${downPost.board_acorn}" />		
+		<input type="hidden" name="download_acorn" value="${downPost.board_acorn}" />
 		<input type="hidden" name="board_acorn" value="${downPost.board_acorn}" />
 			<table class="cen_table table table-striped table-bordered">
 				<tr>
@@ -98,12 +98,9 @@ th {
 				<tr>
 					<td colspan="3">
 						<div class="progress">
-						<%-- <% for(int i =0; i<=10;i++){
-							Thread.sleep(1000);%> --%>
 							<div class="progress-bar progress-bar-striped active"
 								role="progressbar" aria-valuenow="0" aria-valuemin="0"
-								aria-valuemax="100" style="width: 60%">60%</div>
-						<%-- <%} %> --%>
+								aria-valuemax="100" style="width: 60%">60%</div>						
 						</div>
 					</td>
 				</tr>
@@ -111,10 +108,9 @@ th {
 					<td style="border-right: none;"></td>
 					<td colspan="2" class="cen_table" style="border-left: none;">
 						<button type="button" class="btn btn-success btn-md"
-							onclick="location.href='request_download?group_no=${downPost.group_no}&member_id=${sessionScope.Id}'">다운로드
-							하기</button>
-						<!-- <button type="button" id="btnDown" class="btn btn-success btn-md btnDown" >다운로드 하기</button>&nbsp; -->
-						<button class="btn btn-success btn-md" onclick="location.href='download_cancel'">취소 하기</button>
+							onclick="location.href='request_download?group_no=${downPost.group_no}&member_id=${sessionScope.Id}&seller=${downPost.member_id}'">다운로드
+							하기</button>						
+						<button type="button" class="btn btn-success btn-md" onclick="location.href='download_cancel'">취소 하기</button>
 					</td>
 				</tr>
 			</table>

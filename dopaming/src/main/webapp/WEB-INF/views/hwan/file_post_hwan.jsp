@@ -71,6 +71,9 @@ th {
 }
 </style>
 <script type="text/javascript">
+function acorn_check(){
+	alert("아콘 잔액이 부족합니다.");
+}
 $(document).ready(function(){
 	var judge=0; //첫 댓글 시작
 	var front_count=0; //앞 댓글 카운트
@@ -249,7 +252,7 @@ function complain_frm_send(){
           		</tr>
           	</c:forEach>          
         </tbody>
-    </table>
+     </table>    
 	<!-- 페이징버튼 -->
 	<my:paging_joon paging="${paging}" jsfunc="goList" />
 		</td>
@@ -257,13 +260,22 @@ function complain_frm_send(){
 		<tr>
 			<td colspan="6" class="no_border">
            <div>
-            <c:if test="${not empty sessionScope.Id}">
-            <button type="button" class="hjh" onclick="complain_frm_send()">신고하기</button>
+            <c:if test="${not empty sessionScope.Id}">            
+            	<button type="button" class="btn btn-primary hjh" onclick="complain_frm_send()">신고하기</button>            
             </c:if>
-            <c:choose>    
-           		 <c:when test="${sessionScope.memberSession ne null || sessionScope.Id eq 'admin'}">
-            		<button href='#' onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>
-            	</c:when>  
+            <c:if test="${sessionScope.Id eq filePost.member_id}">
+            	<button type="button" class="btn btn-primary" onclick="location.href='filepostUpdate?board_no=${filePost.board_no}&member_id=${filePost.member_id}'">수정하기</button>
+            </c:if>
+            <c:choose>   
+                <c:when test="${sessionScope.Id eq filePost.member_id}">
+            			<button onclick="location.href='download_hwan?group_no=${filePost.board_no}'" class="btn btn-success write_on">다운로드 하기</button>
+            	</c:when> 
+            	<c:when test="${(sessionScope.Acorn_stock lt filePost.board_acorn)}">
+            			<button onclick="acorn_check()" class="btn btn-success write_on">다운로드 하기</button>
+            	</c:when>
+            	<c:when test="${(sessionScope.memberSession ne null || sessionScope.Id eq 'admin')}">
+            			<button onclick="location.href='download_hwan?group_no=${filePost.board_no}&member_id=${filePost.member_id}'" class="btn btn-success write_on">다운로드 하기</button>
+            	</c:when> 
             </c:choose>          
            </div>
            	</td>
@@ -274,7 +286,7 @@ function complain_frm_send(){
                 <c:choose>    
            		 	<c:when test="${sessionScope.memberSession ne null || sessionScope.Id eq 'admin'}">
  			      		<input type="hidden" class="fileBoard_no" name="board_no" value="${filePost.board_no}"/>				      					      		
-      					<input  width="100%" class="ComContent" name="comment_content" placeholder="댓글쓰기">
+      					<input  width="100%" class="ComContent" name="comment_content" placeholder="댓글쓰기">		
       					<button type="button" class="btn btn-success ComBtn">댓글 쓰기</button>
       				 </c:when>  
             	</c:choose>      			

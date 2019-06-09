@@ -21,7 +21,15 @@ public class FileDownloadVO_Hwan {
 	private double file_storage;
 	//파일명
 	private String file_name;
+	//판매자 아이디
+	private String seller;	
 	
+	public String getSeller() {
+		return seller;
+	}
+	public void setSeller(String seller) {
+		this.seller = seller;
+	}
 	public int getDownload_acorn() {
 		return download_acorn;
 	}

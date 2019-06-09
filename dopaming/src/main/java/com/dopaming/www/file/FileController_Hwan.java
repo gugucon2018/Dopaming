@@ -27,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -98,7 +99,7 @@ public class FileController_Hwan {
 	@ResponseBody
 	public String requestDownload_hwan(FileDownloadVO_Hwan fbvo, FileDownloadVO_Hwan fdvo, HttpSession session,
 			Model model, HttpServletRequest request, HttpServletResponse response
-			,MemberVO mvo) throws Exception {
+			,MemberVO mvo,@RequestParam("seller") String id) throws Exception {
 		model.addAttribute("downPost", service.select_downloadOne(fdvo));
 		String filePath = request.getSession().getServletContext().getRealPath("./resources/upload");
 		String fileCom = System.currentTimeMillis() + "files.zip";
@@ -165,16 +166,14 @@ public class FileController_Hwan {
 			printwriter.flush();
 			printwriter.close();
 		}		
-		FileDownloadVO_Hwan fdchk2 = service.download_check_hwan2(fdvo);
-		
-		//System.out.println(fdchk2.getMember_id().equals(session.getAttribute("Id")));
-		
-		if(fdchk2==null){
-			System.out.println("아이디값 다름을 확인");
-			if(service.download_check_hwan(fdvo)==0) {			
+		FileDownloadVO_Hwan fdchk2 = service.download_check_hwan2(fdvo);	
+		mvo.setMember_id((String)session.getAttribute("Id"));
+		System.out.println("세션 아이디값 : "+mvo.getMember_id());
+		System.out.println("판매자 아이디값 : "+request.getParameter("seller"));
+		if(fdchk2==null){			
+			if((service.download_check_hwan(fdvo)==0)&&(!mvo.getMember_id().equals(id))) {			
 			for(int i=0;i<result.size();i++) {
-				f= result.get(i);
-				mvo = (MemberVO) session.getAttribute("memberSession");
+				f= result.get(i);										
 				fdvo.setMember_id(mvo.getMember_id());
 				fdvo.setDownload_acorn(f.getBoard_acorn());
 				fdvo.setFile_no(f.getFile_no());				
@@ -182,6 +181,8 @@ public class FileController_Hwan {
 				service.download_insert_hwan(fdvo);
 				System.out.println("다운로드 DB 삽입 성공");
 				}
+			} else {
+				System.out.println("아이디값이 같으므로 DB 삽입 실패 => 다운로드만 될 것임");
 			}
 		}else {
 			System.out.println("다운로드 DB 삽입 실패 => 다운로드만 될 것임");
@@ -250,7 +251,37 @@ public class FileController_Hwan {
 		
 		return "hwan/file_post_hwan";
 	}
+	//게시글 수정
+	@RequestMapping(value = "/filepostUpdate", method = RequestMethod.GET)
+	public String filepost_update_hwan(FilePostVO_Hwan fpvo, Model model, Paging paging) {
+		
+		FilePostVO_Hwan filePostVO_Hwan = service.select_post_hwan(fpvo);
+		model.addAttribute("filePost", filePostVO_Hwan);
+		model.addAttribute("Board_FileList", service.select_post_fileList(fpvo));
 
+		// 페이징 처리
+		paging.setPageUnit(5); // 개당 출력건수
+		// 시작페이지 설정
+		if (paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+
+		// db에서 받은 정보로 페이지마다 시작/마지막 레코드 번호
+		fpvo.setFirst(paging.getFirst());
+		fpvo.setLast(paging.getLast());
+		fpvo.setMember_id(filePostVO_Hwan.getMember_id());
+		
+		// 돌려주는 값(전체레코드)이 페이징vo에 셋팅이된다.
+		paging.setTotalRecord(service.board_Paging(fpvo));
+		// 페이징 VO의 데이터를 paging으로 담아둔다.
+		model.addAttribute("paging", paging);
+		// 돌려 받은 값들을 list에 받아둔다.
+
+		model.addAttribute("Board_List_Hwan", service.select_board_boardList(fpvo));
+		System.out.println(fpvo.getBoard_no() + " 게시판 번호");
+		
+		return "hwan/file_post_update_hwan";
+	}
 	/**
 	 * Disposition 지정하기.
 	 *

@@ -1,6 +1,8 @@
 package com.dopaming.www;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dopaming.www.common.Paging;
 import com.dopaming.www.login.MemberVO;
 import com.dopaming.www.msg.MsgService;
 import com.dopaming.www.msg.MsgVO;
@@ -27,30 +30,81 @@ public class MsgController {
 	//받은 쪽지 전체 목록
 	@RequestMapping(value="/msg", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> receiveAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> receiveAll(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
-		vo.setReceiver_id(memberVO.getMember_id());		
-		return service.all_receive_list(vo);
+		vo.setReceiver_id(memberVO.getMember_id());	
+		
+		paging.setPageUnit(5);
+		
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		paging.setTotalRecord(service.receive_cnt(vo));
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.all_receive_list(vo));
+		
+		return map;
 	}
 	
 	//받는쪽지 보낸이 그룹
 	@RequestMapping(value="/msg_sender_r", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> receiveSender(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> receiveSender(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setReceiver_id(memberVO.getMember_id());
 		String id = service.sender_receive(vo);
 		vo.setSender_id(id);
-		return service.sender_receive_list(vo);
+		
+		paging.setPageUnit(5);
+		
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+				
+		paging.setTotalRecord(service.sender_receive_cnt(vo));
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.sender_receive_list(vo));
+				
+		return map;
 	}
 		
 	//읽지않은 쪽지 목록
 	@RequestMapping(value="/msg_unselect", method=RequestMethod.GET)
 	@ResponseBody
-		public List<MsgVO> unSelect(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		public Map<String, Object> unSelect(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
-		vo.setReceiver_id(memberVO.getMember_id());
-		return service.unselect_receive_list(vo);
+		vo.setReceiver_id(memberVO.getMember_id());	
+		
+		paging.setPageUnit(5);
+		
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		paging.setTotalRecord(service.unselect_receive_cnt(vo));
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.unselect_receive_list(vo));
+		
+		return map;
 	}
 		
 	//읽지않은 쪽지 수
@@ -107,21 +161,55 @@ public class MsgController {
 	//보낸 쪽지 전체 목록
 	@RequestMapping(value="/msg", method=RequestMethod.POST)
 	@ResponseBody
-	public List<MsgVO> sentAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> sentAll(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setSender_id(memberVO.getMember_id());
-		return service.all_sent_list(vo);
+		
+		paging.setPageUnit(5);
+		
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		paging.setTotalRecord(service.sent_cnt(vo));
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.all_sent_list(vo));
+				
+		return map;
 	}
 	
 	//보낸쪽지 받은이 그룹
 	@RequestMapping(value="/msg_receiver", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> receiverSent(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> receiverSent(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setSender_id(memberVO.getMember_id());
 		String id = service.receiver_sent(vo);
 		vo.setReceiver_id(id);
-		return service.receiver_sent_list(vo);
+		
+		paging.setPageUnit(5);
+		
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		paging.setTotalRecord(service.receiver_sent_cnt(vo));
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.receiver_sent_list(vo));
+				
+		return map;
 	}
 	
 	//받은 쪽지 내용 확인하기

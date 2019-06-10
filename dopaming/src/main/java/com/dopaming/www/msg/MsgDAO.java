@@ -19,12 +19,22 @@ public class MsgDAO {
 		return mybatis.selectList("MsgDAO.all_receive_list",vo);
 	}
 	
-	//받는쪽지 보낸이 id
+	//받은 쪽지 전체 수
+	public int receive_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.receive_cnt", vo);
+	}
+	
+	//받은쪽지 보낸이 id
 	public String sender_receive(MsgVO vo) {
 		return mybatis.selectOne("MsgDAO.sender_receive",vo);
 	}
 	
-	//받는쪽지 보낸이 그룹
+	//받은쪽지 보낸이 쪽지 수
+	public int sender_receive_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.sender_receive_cnt", vo);
+	}
+	
+	//받은쪽지 보낸이 그룹
 	public List<MsgVO> sender_receive_list(MsgVO vo) {
 		return mybatis.selectList("MsgDAO.sender_receive_list",vo);
 	}
@@ -73,9 +83,19 @@ public class MsgDAO {
 		return mybatis.selectList("MsgDAO.all_sent_list",vo);
 	}
 	
+	//보낸 쪽지 전체 수
+	public int sent_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.sent_cnt", vo);
+	}
+	
 	//보낸쪽지 받은이 id
 	public String receiver_sent(MsgVO vo) {
 		return mybatis.selectOne("MsgDAO.receiver_sent",vo);
+	}
+	
+	//받은 쪽지 전체 수
+	public int receiver_sent_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.receiver_sent_cnt", vo);
 	}
 	
 	//보낸쪽지 받은이 그룹

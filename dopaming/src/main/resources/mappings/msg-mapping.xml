@@ -7,6 +7,7 @@
 <!-- Receive -->
 	<!-- 받은 쪽지 전체 목록 -->
 	<select id="all_receive_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check,
 		       case when sender_id=#{receiver_id} then '나' 
 		            when sender_id like '%admin%' then '관리자'
@@ -15,17 +16,33 @@
 		from message 
 		where receiver_id=#{receiver_id} and message_check in ('N','Y','NSD','YSD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
 	</select>
 	
-	<!-- 받는쪽지 보낸이 id -->
+	<!-- 받은 쪽지 전체 수 -->
+	<select id="receive_cnt" resultType="int">
+		select count(*)
+		from message
+		where receiver_id=#{receiver_id} and message_check in ('N','Y','NSD','YSD')
+	</select>
+	
+	<!-- 받은쪽지 보낸이 id -->
 	<select id="sender_receive" resultType="String">
 		select sender_id
 		from message
 		where message_no=#{message_no}
 	</select>
 	
-	<!-- 받는쪽지 보낸이 그룹 -->
+	<!-- 받은쪽지 보낸이 쪽지 수 -->
+	<select id="sender_receive_cnt" resultType="int">
+		select count(*)
+		from message
+		where receiver_id=#{receiver_id} and sender_id=#{sender_id} and message_check in ('N','Y','NSD','YSD')	
+	</select>
+		
+	<!-- 받은쪽지 보낸이 그룹 -->
 	<select id="sender_receive_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check,
 		       case when sender_id=#{receiver_id} then '나' 
 		            when sender_id like '%admin%' then '관리자'
@@ -34,10 +51,12 @@
 		from message
 		where receiver_id=#{receiver_id} and sender_id=#{sender_id} and message_check in ('N','Y','NSD','YSD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
 	</select>
 		
 	<!-- 읽지않은 쪽지 목록 -->
 	<select id="unselect_receive_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check,
 		       case when sender_id=#{receiver_id} then '나' 
 		            when sender_id like '%admin%' then '관리자'
@@ -46,6 +65,7 @@
 		from message 
 		where receiver_id=#{receiver_id} and message_check in ('N','NSD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
 	</select>
 	
 	<!-- 읽지않은 쪽지 수 -->
@@ -108,6 +128,7 @@
 
 	<!-- 보낸 쪽지 전체 목록 -->
 	<select id="all_sent_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check, 
 			   case when receiver_id=#{sender_id} then '나' 
 		            when receiver_id like '%admin%' then '관리자'
@@ -116,6 +137,14 @@
 		from message 
 		where sender_id=#{sender_id} and message_check in ('N','Y','K','YRD','KRD','DRD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 보낸 쪽지 전체 수 -->
+	<select id="sent_cnt" resultType="int">
+		select count(*)
+		from message
+		where sender_id=#{sender_id} and message_check in ('N','Y','K','YRD','KRD','DRD')
 	</select>
 	
 	<!-- 보낸쪽지 받은이 id -->
@@ -125,8 +154,16 @@
 		where message_no=#{message_no}
 	</select>
 	
+	<!-- 보낸쪽지 받은이 쪽지 수 -->
+	<select id="receiver_sent_cnt" resultType="int">
+		select count(*)
+		from message
+		where sender_id=#{sender_id} and receiver_id=#{receiver_id} and message_check in ('N','Y','K','YRD','KRD','DRD')
+	</select>
+	
 	<!-- 보낸쪽지 받은이 그룹 -->
 	<select id="receiver_sent_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check, 
 			   case when receiver_id=#{sender_id} then '나' 
 		            when receiver_id like '%admin%' then '관리자'
@@ -135,6 +172,7 @@
 		from message 
 		where sender_id=#{sender_id} and receiver_id=#{receiver_id} and message_check in ('N','Y','K','YRD','KRD','DRD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
 	</select>
 	
 	<!-- 보낸 쪽지 내용 확인하기 -->

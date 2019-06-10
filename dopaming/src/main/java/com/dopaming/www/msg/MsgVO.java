@@ -11,7 +11,24 @@ public class MsgVO {
 	private String message_check;
 	private String [] ck;
 	private int cnt;
-		
+	private int first;
+	private int last;
+	
+	
+	//first		
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	//last
+	public int getLast() {
+		return last;
+	}
+	public void setLast(int last) {
+		this.last = last;
+	}
 	//cnt
 	public int getCnt() {
 		return cnt;

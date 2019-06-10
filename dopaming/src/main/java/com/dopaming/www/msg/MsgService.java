@@ -9,8 +9,14 @@ public interface MsgService {
 	//all_receive_list
 	public List<MsgVO> all_receive_list(MsgVO vo);
 	
+	//receive_cnt
+	public int receive_cnt(MsgVO vo);
+	
 	//sender_receive
 	public String sender_receive(MsgVO vo);
+	
+	//sender_receive_cnt
+	public int sender_receive_cnt(MsgVO vo);
 	
 	//sender_receive_list
 	public List<MsgVO> sender_receive_list(MsgVO vo);
@@ -43,8 +49,14 @@ public interface MsgService {
 	//all_sent_list
 	public List<MsgVO> all_sent_list(MsgVO vo);
 	
+	//sent_cnt
+	public int sent_cnt(MsgVO vo);
+	
 	//receiver_sent
 	public String receiver_sent(MsgVO vo);
+	
+	//receiver_sent_cnt
+	public int receiver_sent_cnt(MsgVO vo);
 	
 	//receiver_sent_list
 	public List<MsgVO> receiver_sent_list(MsgVO vo);

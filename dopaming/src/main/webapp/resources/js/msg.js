@@ -73,6 +73,12 @@ function msgCnt(count) {
 	});
 }
 
+//페이징 처리
+function goList_r(p) {
+	form_body.page.value=p;
+	$("#receive_msg").click();
+}
+
 //받은쪽지_버튼
 function msgReceive() {
 	$("#receive_msg").click(function(){			
@@ -107,11 +113,13 @@ function msgReceiveResult(data) {
 	$tag += "<div id='list'>" + "</div>"
 	$tag += "</div>"
 	$("#form_body").append($tag);
-	$("#list").find("span").remove();	
-	$.each(data,function(idx,item) {
+	$("#list").find("span").remove();
+	var color;	
+	$.each(data.list,function(idx,item) {
 		if(item.message_check == "N" || item.message_check == "NSD") {
-			var color = "color:red;"
-		} else var color = ""
+			color = "color:red;"
+		} else
+			color = ""			
 		$('<p>')
 		.append($('<span class="sender_receive" onclick="msgSenderReceive('+item.message_no+')">').html(item.sender_id))
 		.append($('<span class="title_receive" onclick="msgSelect('+item.message_no+'); msgChange('+item.message_no+')" style="'+color+'">').html(item.message_title))
@@ -119,6 +127,11 @@ function msgReceiveResult(data) {
 		.append($('<label id="ck_receive" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
+	for(i=data.paging.startPage; i <= data.paging.endPage; i++) {
+		$('<span>')
+		.append('<a href="javascript:goList_r('+i+')">'+i+'</a>')
+		.appendTo("#wrap");
+	}
 }
 
 //받는쪽지 보낸이 그룹
@@ -277,12 +290,19 @@ function msgReceiveTrashingResult(data) {
  * 
  */
 
+//페이징 처리
+function goList_s(p) {
+	form_body.page.value=p;
+	$("#sent_msg").click();
+}
+
 //보낸쪽지_버튼	
 function msgSent() {	
 	$("#sent_msg").click(function(){			
 		$.ajax({
 			url:context+'/msg',
 			type:'POST',
+			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgSentResult
 		});
@@ -306,7 +326,7 @@ function msgSentResult(data) {
 	$tag += "</div>"
 	$("#form_body").append($tag);
 	$("#list").find("span").remove();
-	$.each(data,function(idx,item){
+	$.each(data.list,function(idx,item){
 		if(item.message_check == "N") {
 			var color = "color:red;"
 		} else var color = ""
@@ -317,6 +337,11 @@ function msgSentResult(data) {
 		.append($('<label id="ck_sent" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
+	for(i=data.paging.startPage; i <= data.paging.endPage; i++) {
+		$('<li>')
+		.append('<a href="javascript:goList_s('+i+')">'+i+'</a>')
+		.appendTo("#wrap");
+	}
 }
 
 //보낸쪽지 받은이 그룹

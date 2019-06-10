@@ -19,7 +19,6 @@ public class Paging {
 		last = getPage() * getPageUnit();
 		return last;
 	}
-
 	
 	public int getPageUnit() {
 		return pageUnit;

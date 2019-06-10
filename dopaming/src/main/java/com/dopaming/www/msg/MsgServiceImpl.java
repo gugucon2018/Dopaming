@@ -19,8 +19,18 @@ public class MsgServiceImpl implements MsgService{
 	}
 	
 	@Override
+	public int receive_cnt(MsgVO vo) {
+		return dao.receive_cnt(vo);
+	}
+		
+	@Override
 	public String sender_receive(MsgVO vo) {
 		return dao.sender_receive(vo);
+	}
+	
+	@Override
+	public int sender_receive_cnt(MsgVO vo) {
+		return dao.sender_receive_cnt(vo);
 	}
 	
 	@Override
@@ -74,8 +84,18 @@ public class MsgServiceImpl implements MsgService{
 	}
 	
 	@Override
+	public int sent_cnt(MsgVO vo) {
+		return dao.sent_cnt(vo);
+	}
+	
+	@Override
 	public String receiver_sent(MsgVO vo) {
 		return dao.receiver_sent(vo);
+	}
+	
+	@Override
+	public int receiver_sent_cnt(MsgVO vo) {
+		return dao.receiver_sent_cnt(vo);
 	}
 	
 	@Override

@@ -25,6 +25,36 @@
 		SYSDATE
 		)
 	</insert>
+	<!-- 게시글 수정 -->
+	<update id="board_update_hwan">
+			update board
+				set board_title=#{boardTitle},
+				category_big=#{categoryBig},
+				category_small=#{categorySmall},
+				board_acorn=#{boardAcorn},
+				board_img=#{boardImg},
+				board_content=#{boardContent}
+				<where>
+					<if test="board_no!=null and board_no !='' ">
+					board_no=#{board_no}
+					</if>
+				</where>	
+	</update>
+	<!-- 게시글 수정 열람 -->
+	<select id="board_update_select_hwan" resultType="com.dopaming.www.file.FileBoardVO_Hwan">
+		select board_title, 
+		category_big, 
+		category_small, 
+		board_acorn, 
+		board_img, 
+		board_content 
+		from board
+		<where>
+			<if test="board_no!=null and board_no !='' ">
+			board_no=#{board_no}
+			</if>
+		</where>	
+	</select>
 
 	<!-- 게시글 등록 -->
 	<insert id="board_insert_hwan">
@@ -121,13 +151,12 @@
 	<select id="Download_List"
 		resultType="com.dopaming.www.file.FileDownloadVO_Hwan">
 		select distinct m.member_id,
-		b.board_acorn, f.file_no, f.group_no,
+		f.file_no, f.group_no,
 		f.file_storage,f.file_name
 		from members m inner join file_upload f
 		on
 		m.member_id = f.member_id inner join board b
-		on m.member_id
-		=b.member_id
+		on m.member_id=b.member_id
 		<where>
 			<if test="group_no!=null and group_no!='' ">
 				group_no=#{group_no}

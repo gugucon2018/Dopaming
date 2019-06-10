@@ -70,8 +70,6 @@ height:100px;
 			/* searchFrm.board_title.value='${FileVO.board_title}'; */
 			searchFrm.board_title.value = '${FileVO.searchKeyword}';
 		</script>
-
-
 	</form>
 	<br>
 	<form action="mdview" name="form2">
@@ -105,9 +103,11 @@ height:100px;
 	</table>
 	<br>
 	<br>
-	<button class="btn btn-primary btn-sm"
+	<c:if test="${not empty sessionScope.Id}">
+		<button class="btn btn-primary btn-sm"
 		onclick="location.href='fileUploadForm_Hwan'" style="float: right">자료
 		올리기</button>
+	</c:if>
 	<!-- 페이징버튼 -->
 	<div align="center">
 		<my:paging_joon paging="${paging}" jsfunc="goList" />

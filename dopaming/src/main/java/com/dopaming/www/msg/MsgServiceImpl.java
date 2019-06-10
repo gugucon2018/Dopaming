@@ -17,6 +17,16 @@ public class MsgServiceImpl implements MsgService{
 	public List<MsgVO> all_receive_list(MsgVO vo) {
 		return dao.all_receive_list(vo);
 	}
+	
+	@Override
+	public String sender_receive(MsgVO vo) {
+		return dao.sender_receive(vo);
+	}
+	
+	@Override
+	public List<MsgVO> sender_receive_list(MsgVO vo) {
+		return dao.sender_receive_list(vo);
+	}
 		
 	@Override
 	public List<MsgVO> unselect_receive_list(MsgVO vo) {
@@ -64,6 +74,21 @@ public class MsgServiceImpl implements MsgService{
 	}
 	
 	@Override
+	public String receiver_sent(MsgVO vo) {
+		return dao.receiver_sent(vo);
+	}
+	
+	@Override
+	public List<MsgVO> receiver_sent_list(MsgVO vo) {
+		return dao.receiver_sent_list(vo);
+	}
+	
+	@Override
+	public MsgVO select_sent(MsgVO vo) {
+		return dao.select_sent(vo);
+	}
+	
+	@Override
 	public void sent_trashing(MsgVO vo) {
 		dao.sent_trashing(vo);
 	}
@@ -90,6 +115,11 @@ public class MsgServiceImpl implements MsgService{
 	public List<MsgVO> all_keep_list(MsgVO vo) {
 		return dao.all_keep_list(vo);
 	}
+		
+	@Override
+	public List<MsgVO> sender_keep_list(MsgVO vo) {
+		return dao.sender_keep_list(vo);
+	}
 	
 	@Override
 	public void keep_returning(MsgVO vo) {
@@ -100,4 +130,29 @@ public class MsgServiceImpl implements MsgService{
 	public void keep_trashing(MsgVO vo) {
 		dao.keep_trashing(vo);
 	}
+	
+
+	
+//Trash
+	
+	@Override
+	public List<MsgVO> all_trash_list(MsgVO vo) {
+		return dao.all_trash_list(vo);
+	}
+	
+	@Override
+	public List<MsgVO> sender_trash_list(MsgVO vo) {
+		return dao.sender_trash_list(vo);
+	}
+	
+	@Override
+	public void trash_returning(MsgVO vo) {
+		dao.trash_returning(vo);
+	}
+	
+	@Override
+	public void delete(MsgVO vo) {
+		dao.delete(vo);
+	}
+	
 }

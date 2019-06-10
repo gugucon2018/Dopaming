@@ -6,9 +6,15 @@ public interface MsgService {
 
 //Receive
 	
-	//list_receive_all
+	//all_receive_list
 	public List<MsgVO> all_receive_list(MsgVO vo);
-		
+	
+	//sender_receive
+	public String sender_receive(MsgVO vo);
+	
+	//sender_receive_list
+	public List<MsgVO> sender_receive_list(MsgVO vo);
+			
 	//unselect_receive_list
 	public List<MsgVO> unselect_receive_list(MsgVO vo);
 	
@@ -21,7 +27,7 @@ public interface MsgService {
 	//receive_keeping
 	public void receive_keeping(MsgVO vo);
 	
-	//msg_changing
+	//changing
 	public void changing(MsgVO vo);
 	
 	//select_receive
@@ -34,8 +40,17 @@ public interface MsgService {
 
 //Sent
 	
-	//list_sent_all
+	//all_sent_list
 	public List<MsgVO> all_sent_list(MsgVO vo);
+	
+	//receiver_sent
+	public String receiver_sent(MsgVO vo);
+	
+	//receiver_sent_list
+	public List<MsgVO> receiver_sent_list(MsgVO vo);
+	
+	//select_receive
+	public MsgVO select_sent(MsgVO vo);
 	
 	//sent_trashing
 	public void sent_trashing(MsgVO vo);
@@ -54,8 +69,11 @@ public interface MsgService {
 	
 //Keep
 	
-	//list_keep_all
+	//all_keep_list
 	public List<MsgVO> all_keep_list(MsgVO vo);
+		
+	//sender_keep_list
+	public List<MsgVO> sender_keep_list(MsgVO vo);
 	
 	//keep_returning
 	public void keep_returning(MsgVO vo);
@@ -63,6 +81,20 @@ public interface MsgService {
 	//keep_trashing
 	public void keep_trashing(MsgVO vo);
 	
+
 	
+//Trash
+	
+	//all_trash_list
+	public List<MsgVO> all_trash_list(MsgVO vo);
+	
+	//sender_trash_list
+	public List<MsgVO> sender_trash_list(MsgVO vo);
+	
+	//trash_returning
+	public void trash_returning(MsgVO vo);
+	
+	//delete
+	public void delete(MsgVO vo);
 	
 }

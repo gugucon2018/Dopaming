@@ -16,29 +16,31 @@ p {
 h5 {
 	position: absolute;
 	top: 42px;
-	right: 150px;
+	right: 125px;
 }
 
 .msg_modal {
+	width:560px;
 	margin-top: 50px;
-	margin-left: 34%;
-}
-
-.btn_size {
-	width: 110.4px;	
-}
-
-.btn_position {
-	margin-bottom: 10px;
-	margin-left: 15px;
+	margin-left: 36%;
 }
 
 .content_position {
 	margin-left: 20px;
 }
 
+.btn_size {
+	width: 90px;
+	margin-left: 5px;	
+}
+
+.btn_position {
+	margin-bottom: 10px;
+	margin-left: 33px;
+}
+
 .byte_position {
-	margin-left: 350px;
+	margin-left: 322px;
 }
 
 input[name="ck"] {
@@ -48,7 +50,7 @@ input[name="ck"] {
 .btn_trashing {
 	position: absolute;
 	top: 42px;
-	right: 55px;
+	right: 40px;
 	width: 33px;
 	border-radius: 8px;
 	border: none;
@@ -64,7 +66,7 @@ input[name="ck"] {
 .btn_back {
 	position: absolute;
 	top: 42px;
-	right: 95px;
+	right: 80px;
 	width: 33px;
 	border-radius: 8px;
 	border: 1px solid #fff;
@@ -94,19 +96,18 @@ input[name="ck"] {
 }
 
 .sender_bar_r {
-	width: 130px;
+	width: 125px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
 	background-color: #F7D358;
 	border-radius: 20px;
 	display: table-cell;
-	font-weight: bold;
-	
+	font-weight: bold;	
 }
 
 .title_bar_r {
-    width: 380px;
+    width: 360px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
@@ -117,7 +118,7 @@ input[name="ck"] {
 }
 
 .sender_receive {
-	width: 130px;
+	width: 127px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
@@ -128,10 +129,11 @@ input[name="ck"] {
 
 .sender_receive:hover {
 	background-color: #F7D358;
+	cursor: pointer;
 }
 
 .title_receive {
-    width: 380px;
+    width: 370px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
@@ -142,6 +144,7 @@ input[name="ck"] {
 
 .title_receive:hover {
 	background-color: #F7D358;
+	cursor: pointer;
 }
 
 input[name="ck"] + label[id="ck_receive"] {
@@ -160,7 +163,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 .btn_unselect {
 	position: absolute;
 	top: 42px;
-	right: 135px;
+	right: 120px;
 	width: 33px;
 	border-radius: 8px;
 	border: none;
@@ -176,7 +179,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 .btn_keeping {
 	position: absolute;
 	top: 42px;
-	right: 95px;
+	right: 80px;
 	width: 33px;
 	border-radius: 8px;
 	border: none;
@@ -196,17 +199,28 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 *받은 쪽지(Receive)_내용확인
 *
 */
-.sender_r {
-	width: 200px;
-	height: 30px;
-	border: 3px solid #fff;
-	border-radius: 20px;
-	text-align: center;
+.sender_tag_r {
+	width: 80px;
+	height:25px;
 	vertical-align: middle;
-	background-color: #F3E2A9; 
+	text-align: center;
+	background-color: #F7D358;
 	color: #000;
+	border-radius: 20px;
+	display: table-cell;
 	font-weight: bold;
-	display: table-cell; 	
+}
+
+.sender_r {
+	width: 127px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #F7D358;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
 }
 
 .sender_r:hover {
@@ -214,24 +228,16 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 	background-color: #fff;	
 }
 
-.blank {
-	width: 127.5px;
-	height: 30px;
-	border: 3px solid #fff;
-	display: table-cell; 	
-}
-
 .date_r {
-	width: 200px;
-	height: 30px;
-	border: 3px solid #fff;
-	border-radius: 20px;
+    width: 283px;
+    height:25px;
+    vertical-align: middle;
 	text-align: center;
-	vertical-align: middle;
-	background-color: #F3E2A9; 
+	background-color: #F7D358;
 	color: #000;
-	font-weight: bold;
-	display: table-cell; 	
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;	
 }
 
 .date_r:hover {
@@ -240,14 +246,13 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .content_r {
-	width: 527.5px;
+	width: 92.6%;
 	height: 40%;
-	border: 3px solid #fff;
 	border-radius: 10px;
 	background-color: #F3E2A9; 
 	color: #000;
 	font-weight: bold;
-	margin-top: 8px;	
+	margin-left: 20px;	
 }
 
 .content_r:hover {
@@ -273,7 +278,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .receiver_w {
-	width: 180px;
+	width: 32.5%;
 	height: 30px;
 	border: 3px solid #fff;
 	border-radius: 20px;
@@ -292,7 +297,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .title_w {
-	width: 347.5px;
+	width: 63.5%;
 	height: 30px;
 	border: 3px solid #fff;
 	border-radius: 20px;
@@ -311,14 +316,14 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .content_w {
-	width: 527.5px;
+	width: 96%;
 	height: 40%;
 	border: 3px solid #fff;
 	border-radius: 10px;
 	background-color: #F5A9A9; 
 	color: #000;
 	font-weight: bold;
-	margin-top: 8px;
+	margin-top: 5px;
 }
 
 .content_w:focus {
@@ -337,7 +342,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 .btn_sending {
 	position: absolute;
 	top: 42px;
-	right: 42px;
+	right: 41px;
 	width: 33px;
 	border-radius: 8px;
 	border: none;
@@ -369,7 +374,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .receiver_bar {
-	width: 130px;
+	width: 125px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
@@ -380,7 +385,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .title_bar_s {
-    width: 380px;
+    width: 360px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
@@ -391,7 +396,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .receiver_sent {
-	width: 130px;
+	width: 127px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
@@ -402,10 +407,11 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 
 .receiver_sent:hover {
 	background-color: #31B404;
+	cursor: pointer;
 }
 
 .title_sent {
-    width: 380px;
+    width: 370px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
@@ -416,6 +422,7 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 
 .title_sent:hover {
 	background-color: #31B404;
+	cursor: pointer;
 }
 
 input[name="ck"] + label[id="ck_sent"] {
@@ -429,6 +436,74 @@ input[name="ck"] + label[id="ck_sent"] {
 input[name="ck"]:checked + label[id="ck_sent"] {
 	border: 5px solid #fff;
 	background-color: #31B404;
+}
+
+
+
+/*
+*
+*보낸 쪽지(Sent)_내용확인
+*
+*/
+.receiver_tag_s {
+	width: 80px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #31B404;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+.receiver_s {
+	width: 127px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #31B404;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+.receiver_s:hover {
+	border: 3px solid #31B404;
+	background-color: #fff;	
+}
+
+.date_s {
+    width: 283px;
+    height:25px;
+    vertical-align: middle;
+	text-align: center;
+	background-color: #31B404;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;	
+}
+
+.date_s:hover {
+	border: 3px solid #31B404;
+	background-color: #fff;		
+}
+
+.content_s {
+	width: 92.6%;
+	height: 40%;
+	border-radius: 10px;
+	background-color: #BCF5A9; 
+	color: #000;
+	font-weight: bold;
+	margin-left: 20px;	
+}
+
+.content_s:hover {
+	border: 3px solid #31B404;
+	background-color: #fff;	
 }
 
 
@@ -449,7 +524,7 @@ input[name="ck"]:checked + label[id="ck_sent"] {
 }
 
 .sender_bar_k {
-	width: 130px;
+	width: 125px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
@@ -461,7 +536,7 @@ input[name="ck"]:checked + label[id="ck_sent"] {
 }
 
 .title_bar_k {
-    width: 380px;
+    width: 360px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
@@ -473,11 +548,11 @@ input[name="ck"]:checked + label[id="ck_sent"] {
 }
 
 .sender_keep {
-	width: 130px;
+	width: 127px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
-	background-color: #81BEF7;
+	background-color: #A9D0F5;
 	color: #000;
 	border-radius: 20px;
 	display: table-cell;
@@ -485,14 +560,15 @@ input[name="ck"]:checked + label[id="ck_sent"] {
 
 .sender_keep:hover {
 	background-color: #2E9AFE;
+	cursor: pointer;
 }
 
 .title_keep {
-    width: 380px;
+    width: 370px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
-	background-color: #81BEF7;
+	background-color: #A9D0F5;
 	color: #000;
 	border-radius: 20px;
 	display: table-cell;
@@ -500,13 +576,14 @@ input[name="ck"]:checked + label[id="ck_sent"] {
 
 .title_keep:hover {
 	background-color: #2E9AFE;
+	cursor: pointer;
 }
 
 input[name="ck"] + label[id="ck_keep"] {
 	display: table-cell;
 	width: 23px;
 	border-radius: 20px;
-	border: 2px solid #81BEF7;
+	border: 2px solid #A9D0F5;
 	cursor: pointer;
 }
 
@@ -519,13 +596,81 @@ input[name="ck"]:checked + label[id="ck_keep"] {
 
 /*
 *
+*쪽지 보관함(Keep)_내용확인
+*
+*/
+.sender_tag_k {
+	width: 80px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #2E9AFE;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+.sender_k {
+	width: 127px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #2E9AFE;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+.sender_k:hover {
+	border: 3px solid #2E9AFE;
+	background-color: #fff;	
+}
+
+.date_k {
+    width: 283px;
+    height:25px;
+    vertical-align: middle;
+	text-align: center;
+	background-color: #2E9AFE;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;	
+}
+
+.date_k:hover {
+	border: 3px solid #2E9AFE;
+	background-color: #fff;		
+}
+
+.content_k {
+	width: 92.6%;
+	height: 40%;
+	border-radius: 10px;
+	background-color: #A9D0F5; 
+	color: #000;
+	font-weight: bold;
+	margin-left: 20px;	
+}
+
+.content_k:hover {
+	border: 3px solid #2E9AFE;
+	background-color: #fff;	
+}
+
+
+
+/*
+*
 *휴지통(Trash)_목록
 *
 */
 .head_trash { 
 	font-weight: bold;
 	font-size: 5.0rem;
-	color: #6E6E6E;
+	color: #424242;
 	text-align: left;
 	margin-top: -10px;
 	margin-left: 20px;
@@ -533,11 +678,11 @@ input[name="ck"]:checked + label[id="ck_keep"] {
 }
 
 .sender_bar_t {
-	width: 130px;
+	width: 125px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
-	background-color: #BDBDBD;
+	background-color: #848484;
 	color: #000;
 	border-radius: 20px;
 	display: table-cell;
@@ -545,11 +690,11 @@ input[name="ck"]:checked + label[id="ck_keep"] {
 }
 
 .title_bar_t {
-    width: 380px;
+    width: 360px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
-	background-color: #BDBDBD;
+	background-color: #848484;
 	color: #000;
 	border-radius: 20px;
 	display: table-cell;
@@ -557,44 +702,116 @@ input[name="ck"]:checked + label[id="ck_keep"] {
 }
 
 .sender_trash {
-	width: 130px;
+	width: 127px;
 	height:25px;
 	vertical-align: middle;
 	text-align: center;
-	background-color: #E6E6E6;
+	background-color: #D8D8D8;
 	color: #000;
 	border-radius: 20px;
 	display: table-cell;
 }
 
 .sender_trash:hover {
-	background-color: #BDBDBD;
+	background-color: #848484;
+	cursor: pointer;
 }
 
 .title_trash {
-    width: 380px;
+    width: 370px;
     height:25px;
     vertical-align: middle;
 	text-align: center;
-	background-color: #E6E6E6;
+	background-color: #D8D8D8;
 	color: #000;
 	border-radius: 20px;
 	display: table-cell;
 }
 
 .title_trash:hover {
-	background-color: #BDBDBD;
+	background-color: #848484;
+	cursor: pointer;
 }
 
 input[name="ck"] + label[id="ck_trash"] {
 	display: table-cell;
 	width: 23px;
 	border-radius: 20px;
-	border: 2px solid #E6E6E6;
+	border: 2px solid #D8D8D8;
 	cursor: pointer;
 }
 
 input[name="ck"]:checked + label[id="ck_trash"] {
 	border: 5px solid #fff;
-	background-color: #BDBDBD;
+	background-color: #848484;
+}
+
+
+
+/*
+*
+*휴지통(Trash)_내용확인
+*
+*/
+.sender_tag_t {
+	width: 80px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #848484;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+
+.sender_t {
+	width: 127px;
+	height:25px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #848484;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;
+}
+
+.sender_t:hover {
+	border: 3px solid #848484;
+	background-color: #fff;	
+}
+
+
+.date_t {
+    width: 283px;
+    height:25px;
+    vertical-align: middle;
+	text-align: center;
+	background-color: #848484;
+	color: #000;
+	border-radius: 20px;
+	display: table-cell;
+	font-weight: bold;	
+}
+
+.date_t:hover {
+	border: 3px solid #848484;
+	background-color: #fff;		
+}
+
+.content_t {
+	width: 92.6%;
+	height: 40%;
+	border-radius: 10px;
+	background-color: #D8D8D8;
+	color: #000;
+	font-weight: bold;
+	margin-left: 20px;	
+}
+
+.content_t:hover {
+	border: 3px solid #848484;
+	background-color: #fff;	
 }

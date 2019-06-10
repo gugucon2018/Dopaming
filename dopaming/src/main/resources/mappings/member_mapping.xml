@@ -6,7 +6,7 @@
  	
  	<!-- 로그인 -->
     <select id="login" resultType="member">
-    	select * from members where member_id=#{member_id}
+    	select a.*,(select grade_kor from grade where member_grade=a.member_grade) grade_kor from members a where member_id=#{member_id}
     </select>
     <!-- id 체크 -->
     <select id="valueCheckId" resultType="String">

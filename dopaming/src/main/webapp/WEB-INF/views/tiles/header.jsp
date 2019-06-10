@@ -118,13 +118,14 @@ $(function(){ //J쿼리형태
 							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>						    
 						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="${pageContext.request.contextPath}/resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
 						    <li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</a></li>
-						    <li><a class="navbar-brand">${memberSession.acorn_stock}아콘</a></li>
-							<li><a class="navbar-brand">${memberSession.member_grade}.</a></li>
+						    <li><a class="navbar-brand">아콘 : ${memberSession.acorn_stock}</a></li>
+							<li><a class="navbar-brand">등급 : ${memberSession.grade_kor}</a></li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
 							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
 						</c:otherwise>
 					</c:choose>					
 				</ul>
+				
 			</div>
 		</div>
 	</div>
@@ -176,7 +177,7 @@ $(function(){ //J쿼리형태
 							<li class="divider"></li>
 							<li><a href="${pageContext.request.contextPath}/mdview?category_small=국내&category_big=동영상">국내동영상</a></li>
 							<li><a href="${pageContext.request.contextPath}/mdview?category_small=외국&category_big=동영상">외국동영상</a></li>
-							<li><a href="${pageContext.request.contextPath}/mdview?category_small=최신&category_big=동영상">최신드라마</a></li>
+							<li><a href="${pageContext.request.contextPath}/mdview?category_small=최신&category_big=동영상">최신동영상</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav">

@@ -33,7 +33,7 @@ public class MainController {
 		 * Simply selects the home view to render by returning its name.
 		 */
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String home(Locale locale, Model model,MainVO_hun vo) {
+		public String home(Locale locale, Model model, MainVO_hun vo) {
 			logger.info("Welcome home! The client locale is {}.", locale);
 			
 			Date date = new Date();
@@ -57,7 +57,7 @@ public class MainController {
 				slide2.get(i).put("BOARD_IMG",result);
 			}
 			
-			vo.setCategoryBig("음악");
+			vo.setCategoryBig("동영상");
 			List<Map<String, Object>> slide3 = service.getMainSlide(vo);
 			for(int i =0 ; i<slide3.size(); i++) {
 				String text = (String)slide3.get(i).get("BOARD_IMG");
@@ -65,11 +65,20 @@ public class MainController {
 				slide3.get(i).put("BOARD_IMG",result);
 			}
 			
+			vo.setCategoryBig("음악");
+			List<Map<String, Object>> slide4 = service.getMainSlide(vo);
+			for(int i =0 ; i<slide4.size(); i++) {
+				String text = (String)slide4.get(i).get("BOARD_IMG");
+				String result = ImgExtract.getfirstimage(text);
+				slide4.get(i).put("BOARD_IMG",result);
+			}
+			
 			model.addAttribute("serverTime", formattedDate );
 			model.addAttribute("list",service.getMainList(vo));
 			model.addAttribute("slide1",slide1);
 			model.addAttribute("slide2",slide2);
 			model.addAttribute("slide3",slide3);
+			model.addAttribute("slide4",slide4);
 			
 			return "main/main";
 		}

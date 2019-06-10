@@ -28,6 +28,13 @@
 }
 .container_center{
 }
+
+.slidename{
+color: black;
+font-size : 25pt;
+}
+
+
 </style>
 </head>
 <body>
@@ -62,7 +69,7 @@
 					</div> -->
 
 				<a class="left carousel-control" href="#genreCarousel" role="button"
-					data-slide="prev"> <span
+					data-slide="prev"><span class="slidename"><b>영     화</b></span> <span
 					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a> <a class="right carousel-control" href="#genreCarousel"
@@ -97,7 +104,9 @@
 				</div>
 
 				<a class="left carousel-control" href="#genreCarousel2"
-					role="button" data-slide="prev"> <span
+					role="button" data-slide="prev">
+					<span class="slidename"><b>드 라 마</b></span>
+					 <span
 					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a> <a class="right carousel-control" href="#genreCarousel2"
@@ -106,10 +115,9 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
-
 		</div>
 		<div class="container col-sm-12">
-			<div id="genreCarousel3" class="carousel slide" data-ride="carousel"
+			<div id="genreCarousel2" class="carousel slide" data-ride="carousel"
 				data-interval="3000">
 				<ol class="carousel-indicators">
 					<li data-target="#genreCarousel3" data-slide-to="0" class="active"></li>
@@ -130,11 +138,46 @@
 						</div>
 					</c:forEach>
 				</div>
+
 				<a class="left carousel-control" href="#genreCarousel3"
-					role="button" data-slide="prev"> <span
+					role="button" data-slide="prev"><span class="slidename"><b>동 영 상</b></span> <span
 					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a> <a class="right carousel-control" href="#genreCarousel3"
+					role="button" data-slide="next"> <span
+					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+		
+		<div class="container col-sm-12">
+			<div id="genreCarousel3" class="carousel slide" data-ride="carousel"
+				data-interval="3000">
+				<ol class="carousel-indicators">
+					<li data-target="#genreCarousel4" data-slide-to="0" class="active"></li>
+					<li data-target="#genreCarousel4" data-slide-to="1" class="active"></li>
+					<li data-target="#genreCarousel4" data-slide-to="2" class="active"></li>
+					<li data-target="#genreCarousel4" data-slide-to="3" class="active"></li>
+					<li data-target="#genreCarousel4" data-slide-to="4" class="active"></li>
+					<li data-target="#genreCarousel4" data-slide-to="5" class="active"></li>
+					<li data-target="#genreCarousel4" data-slide-to="6" class="active"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<c:forEach items="${slide4}" var="s" varStatus="status">
+						<div class="item <c:if test="${status.index eq 0}">active</c:if>">
+							<a
+								href="filepost?board_no=${s.BOARD_NO}&member_id=${s.MEMBER_ID}"><img class="slide"
+								src="${s.BOARD_IMG}" alt="로고1"></a>
+							<div class="carousel-caption"></div>
+						</div>
+					</c:forEach>
+				</div>
+				<a class="left carousel-control" href="#genreCarousel4"
+					role="button" data-slide="prev"><span class="slidename"><b>음     악</b></span> <span
+					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a> <a class="right carousel-control" href="#genreCarousel4"
 					role="button" data-slide="next"> <span
 					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>

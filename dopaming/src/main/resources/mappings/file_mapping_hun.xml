@@ -8,8 +8,9 @@
 	<!--파일영화 출력 -->
 	<select id="fileList" resultType="file">
 		select a.* from ( select c.*, rownum rn from(
-		select b.board_no
-		,b.board_title
+		select b.board_no,
+		b.board_img "boardImg"
+		,b.board_title   
 		,f.file_storage
 		,b.member_id
 		from (select round(sum(file_storage),2) file_storage,group_no

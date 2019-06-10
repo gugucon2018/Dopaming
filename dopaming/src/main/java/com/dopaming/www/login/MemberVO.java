@@ -13,6 +13,7 @@ public class MemberVO {
 	private Integer upload_count;
 	private String approval_status;
 	private String approval_key;
+	private String grade_kor;
 	
 	public String getMember_id() {
 		return member_id;
@@ -93,12 +94,26 @@ public class MemberVO {
 	public void setApproval_key(String approval_key) {
 		this.approval_key = approval_key;
 	}
+	
+
+	public String getGrade_kor() {
+		return grade_kor;
+	}
+
+	public void setGrade_kor(String grade_kor) {
+		this.grade_kor = grade_kor;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberVO [member_id=" + member_id + ", member_password=" + member_password + ", member_email="
-				+ member_email + "]";
+				+ member_email + ", member_date=" + member_date + ", member_grade=" + member_grade + ", acorn_stock="
+				+ acorn_stock + ", upload_storage=" + upload_storage + ", upload_count=" + upload_count
+				+ ", approval_status=" + approval_status + ", approval_key=" + approval_key + ", grade_kor=" + grade_kor
+				+ "]";
 	}
+
+
 
 	
 }

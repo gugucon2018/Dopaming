@@ -13,6 +13,7 @@ public class FileVO {
 	private String member_id;
 	private String category_small;
 	private String category_big;
+	private String boardImg;
 	private int upload_storage;
 	private int rn;
 		
@@ -123,14 +124,21 @@ public class FileVO {
 	public void setFile_storage(double file_storage) {
 		this.file_storage = file_storage;
 	}
+	public String getBoardImg() {
+		return boardImg;
+	}
+	public void setBoardImg(String boardImg) {
+		this.boardImg = boardImg;
+	}
 	@Override
 	public String toString() {
 		return "FileVO [board_title=" + board_title + ", file_name=" + file_name + ", board_name=" + board_name
 				+ ", board_no=" + board_no + ", file_no=" + file_no + ", file_storage=" + file_storage
 				+ ", upload_date=" + upload_date + ", member_id=" + member_id + ", category_small=" + category_small
-				+ ", category_big=" + category_big + ", upload_storage=" + upload_storage + ", rn=" + rn + ", first="
-				+ first + ", last=" + last + ", searchKeyword=" + searchKeyword + "]";
+				+ ", category_big=" + category_big + ", boardImg=" + boardImg + ", upload_storage=" + upload_storage
+				+ ", rn=" + rn + ", first=" + first + ", last=" + last + ", searchKeyword=" + searchKeyword + "]";
 	}
+
 	
 	
 	

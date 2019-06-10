@@ -54,6 +54,10 @@ th, td {
 	border-bottom: 1px solid #444444;
 	padding: 10px;
 }
+.thumb{
+width:80px;
+height:100px;
+}
 </style>
 <body>
 	<h1 align=center>${small}${big}</h1>
@@ -71,17 +75,16 @@ th, td {
 	</form>
 	<br>
 	<form action="mdview" name="form2">
-		<input type="hidden" name="page" value="1"></input>
-		<input
+		<input type="hidden" name="page" value="1"></input> <input
 			type="hidden" name="category_small" value="${fileVO.category_small}">
-		</input>
-		<input type="hidden" name="category_big"
+		 <input type="hidden" name="category_big"
 			value="${fileVO.category_big}"></input>
 	</form>
 
 	<table align="center">
 		<tr>
 			<td width="150px">게시판번호</td>
+			<td width="200px" height="100px">썸네일</td>
 			<td>제목</td>
 			<td width="150px">용량(단위: MB)</td>
 			<td width="150px">아이디</td>
@@ -89,6 +92,9 @@ th, td {
 		<c:forEach items="${list}" var="file">
 			<tr>
 				<td>${file.board_no}</td>
+				<td><a
+					href="filepost?board_no=${file.board_no}&member_id=${file.member_id}"><img
+						class="thumb" src="${file.boardImg}"></a></td>
 				<td><a
 					href="filepost?board_no=${file.board_no}&member_id=${file.member_id}">
 						${file.board_title}</a></td>
@@ -104,7 +110,7 @@ th, td {
 		올리기</button>
 	<!-- 페이징버튼 -->
 	<div align="center">
-	<my:paging_joon paging="${paging}" jsfunc="goList" />
+		<my:paging_joon paging="${paging}" jsfunc="goList" />
 	</div>
 </body>
 </html>

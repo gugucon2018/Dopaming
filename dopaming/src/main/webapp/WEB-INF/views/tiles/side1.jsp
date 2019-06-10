@@ -95,6 +95,7 @@ div.footer {
 	<div class="container-fluid">
 		<tiles:insertAttribute name="header" />
 	</div>
+	<div class="container-fluid">
 		<div class="col-md-2">
 			<!-- 사이드 바 메뉴-->
 			<div class="panel panel-info ">
@@ -110,14 +111,12 @@ div.footer {
 					<li class="list-group-item complain"><a href="complain_insert_form">글쓰기</a></li>
 				</ul>
 			</div>
+			</div>
+		<div class="container-fluid" style="width:80%; float:right;">
+		<tiles:insertAttribute name="content"/>
 		</div>
-
-	<div class="container-fluid" style="width:80%; float:right;">
-		<tiles:insertAttribute name="content" />
 	</div>
-	
-
-	<div class="container-fluid" style="height:70%">
+	<div class="container-fluid">
 		<tiles:insertAttribute name="modal" />
 	</div>
 	<div class="container-fluid">

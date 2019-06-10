@@ -80,7 +80,8 @@ function goList(p){
 }
 </script>
 </head>
-<body>
+<body >
+<div style="height:800px; width:90%; align-content: center">
 
 <h3 align=center><u>공지사항 목록</u></h3><br>
 <!-- 페이징 값 보내는 폼(form2) -->
@@ -114,6 +115,8 @@ function goList(p){
 <!-- 페이징버튼 -->
 <div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
+
 </div>
 </body>
 </html>

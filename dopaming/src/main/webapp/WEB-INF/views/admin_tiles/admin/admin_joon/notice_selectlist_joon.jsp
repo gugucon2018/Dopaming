@@ -81,6 +81,7 @@ function goList(p){
 </script>
 </head>
 <body>
+<div style="height:800px">
 
 <h3 align=center><u>공지사항 목록</u></h3><br>
 <!-- 페이징 값 보내는 폼(form2) -->
@@ -111,12 +112,14 @@ function goList(p){
 </table><br>
 
 <button style="float:right;" type="button" onclick="td_delete()">삭제</button>	
-<a href="${pageContext.request.contextPath}/admin/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a>
+<a href="${pageContext.request.contextPath}/admin/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a><br>
 </form>
 
 <!-- 페이징버튼 -->
 <div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
+
 </div>
 </body>
 </html>

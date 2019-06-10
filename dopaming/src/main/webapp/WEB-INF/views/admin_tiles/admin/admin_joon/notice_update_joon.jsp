@@ -52,12 +52,12 @@ function notice_update(){
 	
 	공지제목 : <input type="text" id="notice_title" name="notice_title"   value="${notice.notice_title}" 
 	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
 	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
 	
 	공지내용 : <textarea id="notice_content" name="notice_content" 
 	style="width:100%; height:500; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
 	onMouseOut="this.style.backgroundColor='ivory'">${notice.notice_content}</textarea><br><br>
 	
 	<button style="float:right;" type="button" class="" onclick="notice_update()">수정</button>

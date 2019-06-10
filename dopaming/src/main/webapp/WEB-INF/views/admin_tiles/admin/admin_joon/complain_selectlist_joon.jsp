@@ -113,7 +113,7 @@ function complain_check_update(complain_no){
 						<option value="Y">YES</option>	
 					</select>
 					<script> //답변상태값을 DB의 값과 맞추어 준다. 
-					document.getElementsByName("complain_check")[${s.count}].value='${ i.getComplain_check()}';
+					document.getElementsByName("complain_check")[${s.count}].value='${ i.getComplain_check()}'
 					</script>
 				</td>
 			</tr>

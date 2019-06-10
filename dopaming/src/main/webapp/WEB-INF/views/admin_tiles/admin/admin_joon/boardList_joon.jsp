@@ -58,7 +58,8 @@ function changeMenu2(){
 }
 </script>
 </head>
-<body>
+<body >
+<div style="height:700px">
 
 <h3 align=center><u>게시판 목록</u></h3><br>
 
@@ -115,10 +116,17 @@ category_form.searchType.value='${boardListVO.searchType}';//????
 	</tr>
 </c:forEach>
 </table>
+<br>
+<c:if test="${empty list}">
+		<h3 align=center>요청하신 자료가 없습니다.</h3>
+</c:if>
 
 <!-- 페이징버튼 -->
+<c:if test="${not empty list}">
 <div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
+</c:if>
 </div>
 </body>
 </html>

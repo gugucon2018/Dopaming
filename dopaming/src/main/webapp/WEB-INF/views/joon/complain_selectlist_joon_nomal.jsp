@@ -66,6 +66,7 @@ function complain_check_update(complain_no){
 </script>
 </head>
 <body>
+<div style="height:700px; width:90%; margin: 0px;" align="center">
 
 <!-- 답변 수정값(complain_check) 보내는 폼(category_form) -->
 <form name="check_form">
@@ -82,9 +83,9 @@ function complain_check_update(complain_no){
 <input type="hidden" name="complain_type" value="${list[0].getComplain_type()}" />
 </form>
 
-	<u><h3 align=center>${complainVO.getComplain_type()}목록</h3></u><br>
+	<u><h3 align=center>${complainVO.getComplain_type()} 목록</h3></u><br>
 
-	<table width="90%" >
+	<table width="100%" >
 		<tr align="center">
 			<td bgcolor="" width="100px">번호</td>
 			<td bgcolor="">제목</td>
@@ -109,8 +110,12 @@ function complain_check_update(complain_no){
 		</c:if>
 	<br>
 <!-- 페이징버튼 -->
+<c:if test="${not empty list}">
 <div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
+</c:if>
+
 </div>
 </body>
 </html>

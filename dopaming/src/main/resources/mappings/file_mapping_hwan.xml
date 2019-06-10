@@ -151,13 +151,12 @@
 	<select id="Download_List"
 		resultType="com.dopaming.www.file.FileDownloadVO_Hwan">
 		select distinct m.member_id,
-		b.board_acorn, f.file_no, f.group_no,
+		f.file_no, f.group_no,
 		f.file_storage,f.file_name
 		from members m inner join file_upload f
 		on
 		m.member_id = f.member_id inner join board b
-		on m.member_id
-		=b.member_id
+		on m.member_id=b.member_id
 		<where>
 			<if test="group_no!=null and group_no!='' ">
 				group_no=#{group_no}

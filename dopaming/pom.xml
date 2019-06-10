@@ -228,11 +228,11 @@
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
-				<encoding>UTF-8</encoding>
+			<plugin>				
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
+					<encoding>UTF-8</encoding>
 					<additionalProjectnatures>
 						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
 					</additionalProjectnatures>

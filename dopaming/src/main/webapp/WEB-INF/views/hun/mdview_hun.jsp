@@ -56,7 +56,7 @@ th, td {
 }
 </style>
 <body>
-	<h3 align=center>${small}${big}</h3>
+	<h1 align=center>${small}${big}</h1>
 
 	<form name="searchFrm" method="get">
 		<input type="hidden" name="page" value="1">

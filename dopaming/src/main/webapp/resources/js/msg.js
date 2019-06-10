@@ -6,6 +6,11 @@
 
 //전역변수
 var oldCnt = 0
+var state = 0
+var check_r = 0
+var check_s = 0
+var check_k = 0
+var check_t = 0
 
 //최초 함수 호출
 $(document).ready(function () {
@@ -23,6 +28,8 @@ $(document).ready(function () {
 	msgWrite();
 	
 	msgKeep();
+	
+	msgTrash();
 	
 	//쪽지버튼 클릭
 	$("#chk_msg").click(function(){
@@ -60,7 +67,7 @@ function msgCnt(count) {
 		success: function (result) {
 			$("#cnt").html(result.cnt)
 			if(count != "0" && oldCnt < result.cnt)
-				alert("도착")			
+				alert("새로운 쪽지를 받았습니다.")			
 			oldCnt = result.cnt	
 		}
 	});
@@ -72,8 +79,7 @@ function msgReceive() {
 		$.ajax({
 			url:context+'/msg',
 			type:'GET',
-			contentType:'application/json;charset=utf-8',
-			data: $("#form_receive").serialize(),
+			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgReceiveResult
 		});
@@ -100,19 +106,42 @@ function msgReceiveResult(data) {
 	$tag += "</p>"
 	$tag += "<div id='list'>" + "</div>"
 	$tag += "</div>"
-	$("#form_receive").append($tag);	
+	$("#form_body").append($tag);
 	$("#list").find("span").remove();	
 	$.each(data,function(idx,item) {
-		if(item.message_check == "N") {
+		if(item.message_check == "N" || item.message_check == "NSD") {
 			var color = "color:red;"
 		} else var color = ""
 		$('<p>')
-		.append($('<span class="sender_receive">').html(item.sender_id))
+		.append($('<span class="sender_receive" onclick="msgSenderReceive('+item.message_no+')">').html(item.sender_id))
 		.append($('<span class="title_receive" onclick="msgSelect('+item.message_no+'); msgChange('+item.message_no+')" style="'+color+'">').html(item.message_title))
 		.append($('<input type="checkbox" id="c'+idx+'" name="ck" value="'+item.message_no+'">'))
 		.append($('<label id="ck_receive" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
+}
+
+//받는쪽지 보낸이 그룹
+function msgSenderReceive(no) {
+	if(check_r == 0) {
+		$.ajax({
+			url:context+'/msg_sender_r',		
+			type:'GET',
+			data: {message_no: no},
+			dataType:'json',
+			success:msgReceiveResult
+		});
+	check_r = 1
+	} else {
+		$.ajax({
+			url:context+'/msg',
+			type:'GET',
+			data: $("#form_body").serialize(),
+			dataType:'json',
+			success:msgReceiveResult
+		});
+	check_r = 0
+	}
 }
 
 //쪽지읽음_상태변경
@@ -141,37 +170,54 @@ function msgSelectResult(result) {
 	$("#wrap").remove();
 	var $tag= "<div id='wrap'>"
 	$tag += "<div class='head_receive'>" + "Read" + "</div>"
-	$tag += "<div class='content_position'>"
-	$tag += "<span class='sender_r'>" + "보낸이: " + result.sender_id + "</span>"
-	$tag += "<span class='blank'>" + "</span>"
+	$tag += "<p>"
+	$tag += "<span class='sender_tag_r'>" + "보낸이" + "</span>"
+	$tag += "<span class='sender_r'>" + result.sender_id + "</span>"
 	$tag += "<span class='date_r'>" + result.message_date + "</span>"
+	$tag += "</p>"
 	$tag += "<div class='content_r'>" + result.message_content + "</div>"
 	$tag += "</div>"
-	$tag += "</div>"
-	$("#form_receive").append($tag);	
+	$("#form_body").append($tag);	
 }
 
 //읽지않은쪽지_버튼
 function msgUnselect() {
-	$.ajax({
-		url:context+'/msg_unselect',
-		type:'GET',
-		contentType:'application/json;charset=utf-8',
-		dataType:'json',
-		success:msgReceiveResult
-	});	
+	if(state == 0) {
+		$.ajax({
+			url:context+'/msg_unselect',
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			success:msgReceiveResult			
+		});
+	state = 1	
+	} else {
+		$.ajax({
+			url:context+'/msg',
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			success:msgReceiveResult
+		});
+	state = 0
+	}
 }
 
 //쪽지보관_버튼	
 function msgKeeping() {
-	$.ajax({
-		url:context+'/msg_checking',
-		type:'GET',
-		contentType:'application/json;charset=utf-8',
-		data: $("#form_receive").serialize(),
-		dataType:'json',
-		success:msgKeepingResult
-	});
+	var message_check = $('input:checkbox[name="ck"]').is(":checked")
+	if(message_check == false) {
+		alert("보관함에 보관할 쪽지를 선택해주세요.")
+	} else {
+		$.ajax({
+			url:context+'/msg_checking',
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			data: $("#form_body").serialize(),
+			dataType:'json',
+			success:msgKeepingResult
+		});
+	}
 }	
 
 //쪽지보관_수행
@@ -190,19 +236,24 @@ function msgKeepingResult(data) {
 	});
 }
 
-//보낸쪽지 휴지통_버튼
+//받은쪽지 휴지통_버튼
 function msgReceiveTrashing() {
-	$.ajax({
-		url:context+'/msg_checking',
-		type:'GET',
-		contentType:'application/json;charset=utf-8',
-		data: $("#form_receive").serialize(),
-		dataType:'json',
-		success:msgReceiveTrashingResult
-	});
+	var message_check = $('input:checkbox[name="ck"]').is(":checked")
+	if(message_check == false) {
+		alert("휴지통으로 버릴 쪽지를 선택해주세요.")
+	} else {
+		$.ajax({
+			url:context+'/msg_checking',
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			data: $("#form_body").serialize(),
+			dataType:'json',
+			success:msgReceiveTrashingResult
+		});
+	}
 }	
 
-//보낸쪽지 휴지통_수행
+//받은쪽지 휴지통_수행
 function msgReceiveTrashingResult(data) {
 	$.each(data,function(idx,item) {
 		if(item.message_check == 'N') {
@@ -218,6 +269,8 @@ function msgReceiveTrashingResult(data) {
 	});
 }
 
+
+
 /*
  * 
  * Sent
@@ -230,7 +283,6 @@ function msgSent() {
 		$.ajax({
 			url:context+'/msg',
 			type:'POST',
-			contentType:'application/json;charset=utf-8',
 			dataType:'json',
 			success:msgSentResult
 		});
@@ -252,30 +304,88 @@ function msgSentResult(data) {
 	$tag += "</p>"
 	$tag += "<div id='list'>" + "</div>"
 	$tag += "</div>"
-	$("#form_receive").append($tag);
+	$("#form_body").append($tag);
 	$("#list").find("span").remove();
 	$.each(data,function(idx,item){
 		if(item.message_check == "N") {
 			var color = "color:red;"
 		} else var color = ""
 		$('<p>')
-		.append($('<span class="receiver_sent">').html(item.receiver_id)) 
-		.append($('<span class="title_sent" style="'+color+'">').html(item.message_title))
+		.append($('<span class="receiver_sent" onclick="msgReceiverSent('+item.message_no+')">').html(item.receiver_id)) 
+		.append($('<span class="title_sent" onclick="msgSelectSent('+item.message_no+')" style="'+color+'">').html(item.message_title))
 		.append($('<input type="checkbox" id="c'+idx+'" name="ck" value="'+item.message_no+'">'))
 		.append($('<label id="ck_sent" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
 }
 
+//보낸쪽지 받은이 그룹
+function msgReceiverSent(no) {
+	if(check_s == 0) {
+		$.ajax({
+			url:context+'/msg_receiver',		
+			type:'GET',
+			data: {message_no: no},
+			dataType:'json',
+			success:msgSentResult
+		});
+	check_s = 1
+	} else {
+		$.ajax({
+			url:context+'/msg',
+			type:'POST',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			success:msgSentResult
+		});
+	check_s = 0
+	}
+}
+
+//보낸쪽지읽기_선택 
+function msgSelectSent(no) {
+	$.ajax({
+		url:context+'/msg_select_s',		
+		type:'GET',
+		data: {message_no: no},
+		dataType:'json',
+		success:msgSelectSentResult
+	});
+}
+
+//보낸쪽지읽기_내용확인
+function msgSelectSentResult(result) {
+	$("#wrap").remove();
+	var $tag= "<div id='wrap'>"
+	$tag += "<div class='head_sent'>" + "Read" + "</div>"
+	$tag += "<p>"
+	$tag += "<span class='receiver_tag_s'>" + "받은이" + "</span>"
+	$tag += "<span class='receiver_s'>" + result.receiver_id + "</span>"
+	$tag += "<span class='date_s'>" + result.message_date + "</span>"
+	$tag += "</p>"
+	$tag += "<div class='content_s'>" + result.message_content + "</div>"
+	$tag += "</div>"
+	$("#form_body").append($tag);	
+}
+
 //보낸쪽지 휴지통_버튼
 function msgSentTrashing() {
-	$.ajax({
-		url:context+'/msg_traching_s',
-		type:'GET',
-		dataType:'json',
-		data: $("#form_receive").serialize(),
-		success:function() { $("#sent_msg").click(); }
-	});
+	var message_check = $('input:checkbox[name="ck"]').is(":checked")
+	if(message_check == false) {
+		alert("휴지통으로 버릴 쪽지를 선택해주세요.")
+	} else {
+		if(confirm("보낸 쪽지의 삭제는 복원이 불가합니다. 완전히 삭제 하시겠습니까?") == true) {
+			$.ajax({
+				url:context+'/msg_traching_s',
+				type:'GET',
+				dataType:'json',
+				data: $("#form_body").serialize(),
+				success:function() { $("#sent_msg").click(); }
+			});
+		} else {
+			return false;
+		}
+	}
 }
 
 
@@ -304,7 +414,7 @@ function msgWrite() {
 		$tag += "</div>"		
 		$tag += "</div>"
 		$tag += "</div>"
-		$("#form_receive").append($tag);
+		$("#form_body").append($tag);
 	});
 }
 
@@ -329,18 +439,26 @@ function checkByte(frm) {
 
 //쪽지발송
 function msgSending() {
-		var receiver_id = $('input:text[name="receiver_id"]').val();
-		var message_title = $('input:text[name="message_title"]').val();
-		var message_content = $('textarea[name="message_content"]').val();
+	var receiver_id = $('input:text[name="receiver_id"]').val();
+	var message_title = $('input:text[name="message_title"]').val();
+	var message_content = $('textarea[name="message_content"]').val();
+	if(receiver_id == "") {
+		alert("받는이 id를 입력하여 주세요.")
+	} else if(message_title == "") {
+		alert("쪽지 제목을 입력하여 주세요.") 
+	} else if(message_content == "") {
+		alert("쪽지 내용을 입력하여 주세요.")
+	} else {
 		$.ajax({
 			url:context+'/msg',
 			type:'PUT',
 			data:JSON.stringify({ receiver_id:receiver_id, message_title:message_title, message_content:message_content }),
 			dataType:'json',			
-		    contentType: 'application/json',
-		    mimeType: 'application/json',
+			contentType: 'application/json',
+			mimeType: 'application/json',
 			success:function() { $("#sent_msg").click(); }
 		});
+	}	
 }
 
 
@@ -357,8 +475,7 @@ function msgKeep() {
 		$.ajax({
 			url:context+'/msg',
 			type:'PATCH',
-			contentType:'application/json;charset=utf-8',
-			data: $("#form_receive").serialize(),
+			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgKeepResult
 		});
@@ -382,38 +499,97 @@ function msgKeepResult(data) {
 	$tag += "</p>"
 	$tag += "<div id='list'>" + "</div>"
 	$tag += "</div>"
-	$("#form_receive").append($tag);	
+	$("#form_body").append($tag);	
 	$("#list").find("span").remove();	
 	$.each(data,function(idx,item) {
 		$('<p>')
-		.append($('<span class="sender_keep">').html(item.sender_id))
-		.append($('<span class="title_keep">').html(item.message_title))
+		.append($('<span class="sender_keep" onclick="msgSenderKeep('+item.message_no+')">').html(item.sender_id))
+		.append($('<span class="title_keep" onclick="msgSelectKeep('+item.message_no+')">').html(item.message_title))
 		.append($('<input type="checkbox" id="c'+idx+'" name="ck" value="'+item.message_no+'">'))
 		.append($('<label id="ck_keep" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
 }
 
+//보관함 보낸이 그룹
+function msgSenderKeep(no) {
+	if(check_k == 0) {
+		$.ajax({
+			url:context+'/msg_sender_k',		
+			type:'GET',
+			data: {message_no: no},
+			dataType:'json',
+			success:msgKeepResult
+		});
+	check_k = 1
+	} else {
+		$.ajax({
+			url:context+'/msg',
+			type:'PATCH',
+			data: $("#form_body").serialize(),
+			dataType:'json',
+			success:msgKeepResult
+		});
+	check_k = 0
+	}
+}
+
+//쪽지읽기_선택 
+function msgSelectKeep(no) {
+	$.ajax({
+		url:context+'/msg_select',		
+		type:'GET',
+		data: {message_no: no},
+		dataType:'json',
+		success:msgSelectKeepResult
+	});
+}
+
+//쪽지읽기_내용확인
+function msgSelectKeepResult(result) {
+	$("#wrap").remove();
+	var $tag= "<div id='wrap'>"
+	$tag += "<div class='head_keep'>" + "Read" + "</div>"
+	$tag += "<p>"
+	$tag += "<span class='sender_tag_k'>" + "보낸이" + "</span>"
+	$tag += "<span class='sender_k'>" + result.sender_id + "</span>"
+	$tag += "<span class='date_k'>" + result.message_date + "</span>"
+	$tag += "</p>"
+	$tag += "<div class='content_k'>" + result.message_content + "</div>"
+	$tag += "</div>"
+	$("#form_body").append($tag);	
+}
+
 //보관함 이전으로 복원	
 function msgKeepReturning() {
+	var message_check = $('input:checkbox[name="ck"]').is(":checked")
+	if(message_check == false) {
+		alert("이전으로 복원할 쪽지를 선택해주세요.")
+	} else {
 		$.ajax({
 			url:context+'/msg_returning_k',
 			type:'GET',
-			data: $("#form_receive").serialize(),
+			data: $("#form_body").serialize(),
 			dataType:'json',			
 			success:function() { $("#keep_msg").click(); }
 		});
+	}
 }
 
-//보낸쪽지 휴지통_버튼
+//보관함 휴지통_버튼
 function msgKeepTrashing() {
-	$.ajax({
-		url:context+'/msg_traching_k',
-		type:'GET',
-		dataType:'json',
-		data: $("#form_receive").serialize(),
-		success:function() { $("#keep_msg").click(); }
-	});
+	var message_check = $('input:checkbox[name="ck"]').is(":checked")
+	if(message_check == false) {
+		alert("휴지통으로 버릴 쪽지를 선택해주세요.")
+	} else {
+		$.ajax({
+			url:context+'/msg_traching_k',
+			type:'GET',
+			dataType:'json',
+			data: $("#form_body").serialize(),
+			success:function() { $("#keep_msg").click(); }
+		});
+	}
 }
 
 
@@ -430,8 +606,7 @@ function msgTrash() {
 		$.ajax({
 			url:context+'/msg',
 			type:'DELETE',
-			contentType:'application/json;charset=utf-8',
-			data: $("#form_receive").serialize(),
+			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgTrashResult
 		});
@@ -446,7 +621,7 @@ function msgTrashResult(data) {
 	$tag += "<button type='button' class='btn_back' onclick='msgTrashReturning()'>"
 	$tag += "<img src='"+context+"/resources/images/ho/icon_back.png' width='22p' height='24px'>"
 	$tag += "</button>"
-	$tag += "<button type='button' class='btn_trashing' onclick='msgTrashTrashing()'>"
+	$tag += "<button type='button' class='btn_trashing' onclick='msgDelete()'>"
 	$tag += "<img src='"+context+"/resources/images/ho/icon_trashing.png' width='22px' height='24px'>"
 	$tag += "</button>"
 	$tag += "<p>" 
@@ -455,17 +630,101 @@ function msgTrashResult(data) {
 	$tag += "</p>"
 	$tag += "<div id='list'>" + "</div>"
 	$tag += "</div>"
-	$("#form_receive").append($tag);	
+	$("#form_body").append($tag);	
 	$("#list").find("span").remove();	
 	$.each(data,function(idx,item) {
 		$('<p>')
-		.append($('<span class="sender_trash">').html(item.sender_id))
-		.append($('<span class="title_trash">').html(item.message_title))
+		.append($('<span class="sender_trash" onclick="msgSenderTrash('+item.message_no+')">').html(item.sender_id))
+		.append($('<span class="title_trash" onclick="msgSelectTrash('+item.message_no+')">').html(item.message_title))
 		.append($('<input type="checkbox" id="c'+idx+'" name="ck" value="'+item.message_no+'">'))
-		.append($('<label id="ck_keep" for="c'+idx+'" />'))
+		.append($('<label id="ck_trash" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
 }
- 
+
+//휴지통 보낸이 그룹
+function msgSenderTrash(no) {
+	if(check_k == 0) {
+		$.ajax({
+			url:context+'/msg_sender_t',		
+			type:'GET',
+			data: {message_no: no},
+			dataType:'json',
+			success:msgTrashResult
+		});
+	check_k = 1
+	} else {
+		$.ajax({
+			url:context+'/msg',
+			type:'DELETE',
+			data: $("#form_body").serialize(),
+			dataType:'json',
+			success:msgTrashResult
+		});
+	check_k = 0
+	}
+}
+
+//쪽지읽기_선택 
+function msgSelectTrash(no) {
+	$.ajax({
+		url:context+'/msg_select',		
+		type:'GET',
+		data: {message_no: no},
+		dataType:'json',
+		success:msgSelectTrashResult
+	});
+}
+
+//쪽지읽기_내용확인
+function msgSelectTrashResult(result) {
+	$("#wrap").remove();
+	var $tag= "<div id='wrap'>"
+	$tag += "<div class='head_trash'>" + "Read" + "</div>"
+	$tag += "<p>"
+	$tag += "<span class='sender_tag_t'>" + "보낸이" + "</span>"
+	$tag += "<span class='sender_t'>" + result.sender_id + "</span>"
+	$tag += "<span class='date_t'>" + result.message_date + "</span>"
+	$tag += "</p>"
+	$tag += "<div class='content_t'>" + result.message_content + "</div>"
+	$tag += "</div>"
+	$("#form_body").append($tag);	
+}
+
+//휴지통 이전으로 복원
+function msgTrashReturning() {
+	var message_check = $('input:checkbox[name="ck"]').is(":checked")
+	if(message_check == false) {
+		alert("이전으로 복원할 쪽지를 선택해주세요.")
+	} else {
+		$.ajax({
+			url:context+'/msg_returning_t',
+			type:'GET',
+			data: $("#form_body").serialize(),
+			dataType:'json',			
+			success:function() { $("#trash_msg").click(); }
+		});
+	}
+}
+
+//휴지통 비우기_버튼
+function msgDelete() {
+	var message_check = $('input:checkbox[name="ck"]').is(":checked")
+	if(message_check == false) {
+		alert("휴지통에서 비울 쪽지를 선택해주세요.")
+	} else {
+		if(confirm("휴지통을 비우면 복원이 불가합니다. 완전히 삭제 하시겠습니까?") == true) {
+			$.ajax({
+				url:context+'/msg_delete',
+				type:'GET',
+				dataType:'json',
+				data: $("#form_body").serialize(),
+				success:function() { $("#trash_msg").click(); }
+			});
+		} else {
+			return false;
+		}
+	}
+}
  
  

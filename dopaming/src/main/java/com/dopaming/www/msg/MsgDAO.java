@@ -18,7 +18,17 @@ public class MsgDAO {
 	public List<MsgVO> all_receive_list(MsgVO vo) {
 		return mybatis.selectList("MsgDAO.all_receive_list",vo);
 	}
-		
+	
+	//받는쪽지 보낸이 id
+	public String sender_receive(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.sender_receive",vo);
+	}
+	
+	//받는쪽지 보낸이 그룹
+	public List<MsgVO> sender_receive_list(MsgVO vo) {
+		return mybatis.selectList("MsgDAO.sender_receive_list",vo);
+	}
+			
 	//읽지않은 쪽지 목록
 	public List<MsgVO> unselect_receive_list(MsgVO vo) {
 		return mybatis.selectList("MsgDAO.unselect_receive_list",vo);
@@ -63,6 +73,21 @@ public class MsgDAO {
 		return mybatis.selectList("MsgDAO.all_sent_list",vo);
 	}
 	
+	//보낸쪽지 받은이 id
+	public String receiver_sent(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.receiver_sent",vo);
+	}
+	
+	//보낸쪽지 받은이 그룹
+	public List<MsgVO> receiver_sent_list(MsgVO vo) {
+		return mybatis.selectList("MsgDAO.receiver_sent_list",vo);
+	}
+	
+	//보낸 쪽지 내용 확인하기
+	public MsgVO select_sent(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.select_sent", vo);
+	}
+	
 	//보낸 쪽지함에서 휴지통으로 이동
 	public void sent_trashing(MsgVO vo) {
 		mybatis.insert("MsgDAO.sent_trashing",vo);
@@ -90,8 +115,13 @@ public class MsgDAO {
 	public List<MsgVO> all_keep_list(MsgVO vo) {
 		return mybatis.selectList("MsgDAO.all_keep_list",vo);
 	}
+		
+	//보관함 보낸이 그룹
+	public List<MsgVO> sender_keep_list(MsgVO vo) {
+		return mybatis.selectList("MsgDAO.sender_keep_list",vo);
+	}
 	
-	//받은쪽지함에서 보관함으로 이동
+	//보관함 이전으로 복원
 	public void keep_returning(MsgVO vo) {
 		mybatis.insert("MsgDAO.keep_returning",vo);
 	}
@@ -100,7 +130,28 @@ public class MsgDAO {
 	public void keep_trashing(MsgVO vo) {
 		mybatis.insert("MsgDAO.keep_trashing",vo);
 	}
+
 	
 	
+//Trash
 	
+	//휴지통 전치 목록
+	public List<MsgVO> all_trash_list(MsgVO vo) {
+		return mybatis.selectList("MsgDAO.all_trash_list",vo);
+	}
+	
+	//보관함 보낸이 그룹
+	public List<MsgVO> sender_trash_list(MsgVO vo) {
+		return mybatis.selectList("MsgDAO.sender_trash_list",vo);
+	}
+	
+	//휴지통 이전으로 복원
+	public void trash_returning(MsgVO vo) {
+		mybatis.insert("MsgDAO.trash_returning",vo);
+	}
+	
+	//휴지통 비우기
+	public void delete(MsgVO vo) {
+		mybatis.insert("MsgDAO.delete",vo);
+	}
 }

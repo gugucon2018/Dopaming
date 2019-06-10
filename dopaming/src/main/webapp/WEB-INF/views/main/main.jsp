@@ -150,13 +150,12 @@
 
 		<form action="mdview" name="searchFrm" method="get">
 			<input type="hidden" name="page" value="1"> <input
-				type="text" name="searchKeyword" width="200%" placeholder="입력하세요" />
+				type="text" name="searchKeyword" width="200%" placeholder="전체검색" />
 			<button class="btn btn-success btn-sm">검색</button>
 		</form>
 
 		<!-- side menu (link) -->
-		<h3>Dopaming 이번주 위</h3>
-		<p>Dopmaing의 최신소식을 즐겨보세요!</p>
+		<h2>Dopaming BEST!</h2>
 		<ul class="list-group">
 			<c:forEach items="${list}" var="main" end="9" step="1"
 				varStatus="status">

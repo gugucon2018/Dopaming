@@ -117,7 +117,9 @@ $(function(){ //J쿼리형태
 						<c:otherwise>
 							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>						    
 						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="${pageContext.request.contextPath}/resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
-							<li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</a></li>
+						    <li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</a></li>
+						    <li><a class="navbar-brand">${memberSession.acorn_stock}아콘</a></li>
+							<li><a class="navbar-brand">${memberSession.member_grade}.</a></li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
 							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
 						</c:otherwise>
@@ -130,15 +132,16 @@ $(function(){ //J쿼리형태
 
 <div class="container-fluid">
 	<!--배너 -->
-	<div class="jumbotron">
+	<a href="${pageContext.request.contextPath}"><div class="jumbotron" >
 		<div class="container">
 			<div class="form-inline" role="form"></div>
 		</div>
 	</div>
+	</a>
 	<!--탭-->
 	<div class="navbar navbar-inverse col-xs-12 col-md-12 col-lg-12">
 		<div class="">
-			<div class="navbar-header">
+			<div class="navbar-header" >
 				<a class="navbar-brand" href="${pageContext.request.contextPath}">Dopaming</a>
 			</div>
 			<div>

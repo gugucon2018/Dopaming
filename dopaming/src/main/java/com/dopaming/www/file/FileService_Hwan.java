@@ -8,6 +8,10 @@ public interface FileService_Hwan {
 	public void board_file_upload(FileBoardVO_Hwan bvo, List<FileUploadVO_Hwan> fvolist);
 	//게시글 조회
 	public FilePostVO_Hwan select_post_hwan(FilePostVO_Hwan fpvo);
+	//게시글 수정
+	public void board_update_hwan(FileBoardVO_Hwan fbvo);
+	//게시글 수정 열람
+	public FileBoardVO_Hwan board_update_select_hwan(FileBoardVO_Hwan fbvo);
 	//게시글 파일 리스트
 	public List<FilePostVO_Hwan> select_post_fileList(FilePostVO_Hwan fpvo);
 	//게시글에 게시글 리스트

@@ -22,6 +22,15 @@ public class FileDAOMybatis_Hwan {
 	public FilePostVO_Hwan select_post_hwan(FilePostVO_Hwan fpvo) {		
 		return mybatis.selectOne("FileDAOHwan.filePost_hwan", fpvo);
 	}
+	//게시글 수정
+	public void board_update_hwan(FileBoardVO_Hwan fbvo) {
+		mybatis.update("FileDAOHwan.board_update_hwan",fbvo);
+	}
+	//게시글 수정 열람
+	public FileBoardVO_Hwan board_update_select_hwan(FileBoardVO_Hwan fbvo) {
+		return mybatis.selectOne("FileDAOHwan.board_update_select_hwan",fbvo);
+	}
+	
 	//게시글 파일 조회
 	public List<FilePostVO_Hwan> select_post_fileList(FilePostVO_Hwan fpvo){		
 		return mybatis.selectList("FileDAOHwan.Board_FileList", fpvo);		

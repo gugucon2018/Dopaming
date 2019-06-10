@@ -29,6 +29,16 @@ public class FileServiceImpl_Hwan implements FileService_Hwan{
 		// TODO Auto-generated method stub		
 		return dao.select_post_hwan(fpvo);
 	}
+	
+	//게시글 수정
+	public void board_update_hwan(FileBoardVO_Hwan fbvo) {
+			dao.board_update_hwan(fbvo);
+	}
+	
+	//게시글 수정 열람
+	public FileBoardVO_Hwan board_update_select_hwan(FileBoardVO_Hwan fbvo) {
+		return dao.board_update_select_hwan(fbvo);
+	}
 
 	//게시글 파일 리스트 열람
 	@Override

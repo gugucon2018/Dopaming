@@ -266,6 +266,14 @@ public class FileController_Hwan {
 		System.out.println("수정함");
 		return "redirect:/";
 	}
+	
+	/*//프로그레스바 테스트
+	@RequestMapping(value = "/progressbar_progressing")
+	@ResponseBody
+	public String progressbar_hwan(){
+		System.out.println("작동 확인됨");
+		return "123";
+	}*/
 
 	/**
 	 * Disposition 지정하기.

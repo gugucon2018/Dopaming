@@ -97,9 +97,8 @@ function complain_check_update(complain_no){
 		<c:forEach items="${list}" var="i" varStatus="s">
 			<tr align="center">
 				<td>${i.getRn()}</td>
-				<td><a href="/dopaming/complain_select_nomal?complain_no=${ i.getComplain_no()}">
+				<td><a href="${pageContext.request.contextPath}/complain_select_nomal?complain_no=${ i.getComplain_no()}">
 					${i.getComplain_title()}</a></td>
-				<%-- <td>${i.getMember_id() }</td> --%>
 				<td>${i.getComplain_date() }</td>
 				<td>${i.getComplain_check() }</td>
 			</tr>

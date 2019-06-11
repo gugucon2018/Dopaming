@@ -111,7 +111,7 @@ category_form.searchType.value='${boardListVO.searchType}';//????
 		<c:set var = "pn" value = "${paging.totalRecord - ((paging.page-1) * paging.pageUnit + status.index) }"/>
 		
 		<td>${pn}</td>
-		<td><a href="/dopaming/filepost?board_no=${ i.getBoard_no()}">
+		<td><a href="${pageContext.request.contextPath}/filepost?board_no=${ i.getBoard_no()}">
 			${ i.board_title}</a></td>
 		<td>${ i.getMember_id()}</td>
 		<td>${ i.getCategory_big()}</td>	

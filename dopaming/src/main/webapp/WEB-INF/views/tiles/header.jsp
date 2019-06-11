@@ -75,19 +75,6 @@ var id = "${sessionScope.Id}"
 	<c:remove var="error" scope="session" />
 </c:if>
 
-<script>
-//로그인이 안되었을 경우(고객센터)-joon
-$(function(){ //J쿼리형태
-	$(".complain").click(function(){
-		if("${sessionScope.Id}" == ""){
-			alert("로그인을 해주세요");
-			return false;
-		}
-	})
-})
-
-</script>
-
 </head>
 <div class="container-fluid">
 	<div class="navbar navbar-inverse">

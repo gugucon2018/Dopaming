@@ -16,6 +16,8 @@
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
 <meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
 <title>도파밍 프로젝트</title>
 
 <!-- Bootstrap core CSS -->
@@ -89,6 +91,21 @@ div.footer {
 
 </style>
 
+<script>
+<!-- 로그인이 안되었을 경우(고객센터)-joon -->
+var id = "${sessionScope.Id}"
+	
+	$(function(){ //J쿼리형태
+		$(".complain").click(function(){
+			if( id == ""){
+				alert("로그인을 해주세요");
+				return false;
+			}
+		})
+	})
+
+</script>
+
 </head>
 <body>
 
@@ -122,7 +139,6 @@ div.footer {
 	<div class="container-fluid">
 		<tiles:insertAttribute name="footer" />
 	</div>
-
 
 </body>
 </html>

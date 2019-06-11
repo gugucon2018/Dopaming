@@ -100,14 +100,16 @@ function complain_check_update(complain_no){
 		<c:forEach items="${list}" var="i" varStatus="s">
 			<tr align="center">
 				<td>${i.getRn()}</td>
-				<td><a href="/dopaming/admin/complain_select?complain_no=${ i.getComplain_no()}">
+				<td><a href="${pageContext.request.contextPath}/admin/complain_select?complain_no=${ i.getComplain_no()}">
 					${i.getComplain_title()}</a></td>
 				<td>${i.getMember_id() }</td>
-				<td>
+				
 				<c:if test="${i.getBoard_no() != 0}">
+				<td>
 					<a href="/dopaming/filepost?board_no=${i.getBoard_no()}">${i.getBoard_no() }</a>
-				</c:if>
 				</td>
+				</c:if>
+
 				<td>${i.getComplain_date() }</td>
 				<td>${i.getComplain_check() }</td>
 				<td><select name="complain_check" onchange="complain_check_update('${ i.getComplain_no()}')">

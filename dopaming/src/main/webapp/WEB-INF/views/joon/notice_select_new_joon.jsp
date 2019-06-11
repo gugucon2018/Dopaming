@@ -14,6 +14,8 @@ td {
 </style>
 </head>
 <body>
+<div style="width:90%; align-self: center;">
+
 
 <h1 align = "center"><u>공지사항</u></h1>
 
@@ -36,6 +38,7 @@ td {
     <table width="90%" height = "500px" align="center" border="1">
 	<tr><td valign="top"><pre>${list[0].getNotice_content()}</pre></td></tr>
 	</table><br>
-	
+
+</div>	
 </body>
 </html>

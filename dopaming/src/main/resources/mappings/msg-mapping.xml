@@ -170,7 +170,9 @@
 		            else receiver_id 
 		       end as receiver_id    
 		from message 
-		where sender_id=#{sender_id} and receiver_id=#{receiver_id} and message_check in ('N','Y','K','YRD','KRD','DRD')
+		where sender_id=#{sender_id} 
+		  and receiver_id=#{receiver_id} 
+		  and message_check in ('N','Y','K','YRD','KRD','DRD')
 		order by 1 desc
 	) b ) a where rn between #{first} and #{last}
 	</select>
@@ -223,6 +225,7 @@
 
 	<!-- 쪽지 보관함 전체 목록 -->
 	<select id="all_keep_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check, 
 			   case when sender_id=#{receiver_id} then '나' 
 		            when sender_id like '%admin%' then '관리자'
@@ -231,6 +234,14 @@
 		from message 
 		where receiver_id=#{receiver_id} and message_check in ('K','KSD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 보관함 쪽지 전체 수 -->
+	<select id="keep_cnt" resultType="int">
+		select count(*)
+		from message
+		where receiver_id=#{receiver_id} and message_check in ('K','KSD')
 	</select>
 		
 	<!-- 보관함 보낸이 그룹 -->

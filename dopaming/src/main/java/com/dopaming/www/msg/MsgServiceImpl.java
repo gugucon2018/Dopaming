@@ -135,6 +135,11 @@ public class MsgServiceImpl implements MsgService{
 	public List<MsgVO> all_keep_list(MsgVO vo) {
 		return dao.all_keep_list(vo);
 	}
+	
+	@Override
+	public int keep_cnt(MsgVO vo) {
+		return dao.keep_cnt(vo);
+	}
 		
 	@Override
 	public List<MsgVO> sender_keep_list(MsgVO vo) {

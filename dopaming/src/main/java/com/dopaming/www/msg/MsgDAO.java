@@ -135,6 +135,11 @@ public class MsgDAO {
 	public List<MsgVO> all_keep_list(MsgVO vo) {
 		return mybatis.selectList("MsgDAO.all_keep_list",vo);
 	}
+	
+	//보관함 쪽지 전체 수
+	public int keep_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.keep_cnt", vo);
+	}
 		
 	//보관함 보낸이 그룹
 	public List<MsgVO> sender_keep_list(MsgVO vo) {

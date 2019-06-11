@@ -41,7 +41,7 @@ $(document).ready(function () {
 //쪽지 최초 열기		
 function msgOpen() {
 	$.ajax({
-		url:context+'/msg',
+		url:context+'/msg_receive',
 		type:'GET',
 		contentType:'application/json;charset=utf-8',
 		dataType:'json',
@@ -83,7 +83,7 @@ function goList_r(p) {
 function msgReceive() {
 	$("#receive_msg").click(function(){			
 		$.ajax({
-			url:context+'/msg',
+			url:context+'/msg_receive',
 			type:'GET',
 			data: $("#form_body").serialize(),
 			dataType:'json',
@@ -147,7 +147,7 @@ function msgSenderReceive(no) {
 	check_r = 1
 	} else {
 		$.ajax({
-			url:context+'/msg',
+			url:context+'/msg_receive',
 			type:'GET',
 			data: $("#form_body").serialize(),
 			dataType:'json',
@@ -188,7 +188,7 @@ function msgSelectResult(result) {
 	$tag += "<span class='sender_r'>" + result.sender_id + "</span>"
 	$tag += "<span class='date_r'>" + result.message_date + "</span>"
 	$tag += "</p>"
-	$tag += "<div class='content_r'>" + result.message_content + "</div>"
+	$tag += "<textarea class='content_r'>" + result.message_content + "</textarea>"
 	$tag += "</div>"
 	$("#form_body").append($tag);	
 }
@@ -206,7 +206,7 @@ function msgUnselect() {
 	state = 1	
 	} else {
 		$.ajax({
-			url:context+'/msg',
+			url:context+'/msg_receive',
 			type:'GET',
 			contentType:'application/json;charset=utf-8',
 			dataType:'json',
@@ -296,12 +296,19 @@ function goList_s(p) {
 	$("#sent_msg").click();
 }
 
+//페이징 처리2
+function goList2_s(p) {
+	check_s = 0
+	form_body.page.value=p;
+	msgReceiverSent();
+}
+
 //보낸쪽지_버튼	
 function msgSent() {	
-	$("#sent_msg").click(function(){			
+	$("#sent_msg").click(function(){	
 		$.ajax({
-			url:context+'/msg',
-			type:'POST',
+			url:context+'/msg_sent',
+			type:'GET',
 			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgSentResult
@@ -337,33 +344,42 @@ function msgSentResult(data) {
 		.append($('<label id="ck_sent" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
-	for(i=data.paging.startPage; i <= data.paging.endPage; i++) {
-		$('<li>')
-		.append('<a href="javascript:goList_s('+i+')">'+i+'</a>')
-		.appendTo("#wrap");
+	if(check_s == 0) {
+		for(i=data.paging.startPage; i <= data.paging.endPage; i++) {
+			$('<span>')
+			.append('<a href="javascript:goList_s('+i+')">'+i+'</a>')
+			.appendTo("#wrap");
+
+		}
+	} else {
+		for(i=data.paging.startPage; i <= data.paging.endPage; i++) {
+			$('<span>')
+			.append('<a href="javascript:goList2_s('+i+')">'+i+'</a>')
+			.appendTo("#wrap");
+		}
 	}
 }
 
+
 //보낸쪽지 받은이 그룹
 function msgReceiverSent(no) {
+	if(no) {
+		form_body.message_no.value=no;
+		form_body.page.value=1;
+	} 
+		
 	if(check_s == 0) {
 		$.ajax({
 			url:context+'/msg_receiver',		
 			type:'GET',
-			data: {message_no: no},
+			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgSentResult
 		});
-	check_s = 1
+	check_s = 1	
 	} else {
-		$.ajax({
-			url:context+'/msg',
-			type:'POST',
-			contentType:'application/json;charset=utf-8',
-			dataType:'json',
-			success:msgSentResult
-		});
-	check_s = 0
+		$("#sent_msg").click();
+	check_s = 0	
 	}
 }
 
@@ -475,8 +491,8 @@ function msgSending() {
 		alert("쪽지 내용을 입력하여 주세요.")
 	} else {
 		$.ajax({
-			url:context+'/msg',
-			type:'PUT',
+			url:context+'/msg_write',
+			type:'POST',
 			data:JSON.stringify({ receiver_id:receiver_id, message_title:message_title, message_content:message_content }),
 			dataType:'json',			
 			contentType: 'application/json',
@@ -494,12 +510,18 @@ function msgSending() {
  * 
  */
 
+//페이징 처리
+function goList_k(p) {
+	form_body.page.value=p;
+	$("#keep_msg").click();
+}
+
 //쪽지보관함_버튼
 function msgKeep() {
 	$("#keep_msg").click(function(){			
 		$.ajax({
-			url:context+'/msg',
-			type:'PATCH',
+			url:context+'/msg_keep',
+			type:'GET',
 			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgKeepResult
@@ -526,7 +548,7 @@ function msgKeepResult(data) {
 	$tag += "</div>"
 	$("#form_body").append($tag);	
 	$("#list").find("span").remove();	
-	$.each(data,function(idx,item) {
+	$.each(data.list,function(idx,item) {
 		$('<p>')
 		.append($('<span class="sender_keep" onclick="msgSenderKeep('+item.message_no+')">').html(item.sender_id))
 		.append($('<span class="title_keep" onclick="msgSelectKeep('+item.message_no+')">').html(item.message_title))
@@ -534,6 +556,11 @@ function msgKeepResult(data) {
 		.append($('<label id="ck_keep" for="c'+idx+'" />'))
 		.appendTo("#list");
 	});
+	for(i=data.paging.startPage; i <= data.paging.endPage; i++) {
+		$('<span>')
+		.append('<a href="javascript:goList_k('+i+')">'+i+'</a>')
+		.appendTo("#wrap");
+	}
 }
 
 //보관함 보낸이 그룹
@@ -549,8 +576,8 @@ function msgSenderKeep(no) {
 	check_k = 1
 	} else {
 		$.ajax({
-			url:context+'/msg',
-			type:'PATCH',
+			url:context+'/msg_keep',
+			type:'GET',
 			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgKeepResult
@@ -629,8 +656,8 @@ function msgKeepTrashing() {
 function msgTrash() {
 	$("#trash_msg").click(function(){			
 		$.ajax({
-			url:context+'/msg',
-			type:'DELETE',
+			url:context+'/msg_trash',
+			type:'GET',
 			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgTrashResult
@@ -638,7 +665,7 @@ function msgTrash() {
 	});
 }
 
-//쪽지보관함_목록
+//휴지통_목록
 function msgTrashResult(data) {
 	$("#wrap").remove();
 	var $tag = "<div id='wrap'>"
@@ -680,8 +707,8 @@ function msgSenderTrash(no) {
 	check_k = 1
 	} else {
 		$.ajax({
-			url:context+'/msg',
-			type:'DELETE',
+			url:context+'/msg_trash',
+			type:'GET',
 			data: $("#form_body").serialize(),
 			dataType:'json',
 			success:msgTrashResult

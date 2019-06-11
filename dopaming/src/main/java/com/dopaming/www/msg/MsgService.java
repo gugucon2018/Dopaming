@@ -83,6 +83,9 @@ public interface MsgService {
 	
 	//all_keep_list
 	public List<MsgVO> all_keep_list(MsgVO vo);
+	
+	//keep_cnt
+	public int keep_cnt(MsgVO vo);
 		
 	//sender_keep_list
 	public List<MsgVO> sender_keep_list(MsgVO vo);

@@ -28,7 +28,7 @@ public class MsgController {
 //Receive
 	
 	//받은 쪽지 전체 목록
-	@RequestMapping(value="/msg", method=RequestMethod.GET)
+	@RequestMapping(value="/msg_receive", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> receiveAll(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
 		
@@ -159,7 +159,7 @@ public class MsgController {
 //Sent
 	
 	//보낸 쪽지 전체 목록
-	@RequestMapping(value="/msg", method=RequestMethod.POST)
+	@RequestMapping(value="/msg_sent", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> sentAll(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
 		
@@ -232,7 +232,7 @@ public class MsgController {
 //Write
 	
 	//쪽지 보내기
-	@RequestMapping(value="/msg", method=RequestMethod.PUT, headers = {"Content-type=application/json"})
+	@RequestMapping(value="/msg_write", method=RequestMethod.POST, headers = {"Content-type=application/json"})
 	@ResponseBody
 	public MsgVO sending(Model model, HttpSession session, MemberVO memberVO, @RequestBody MsgVO vo) {
 		memberVO = (MemberVO) session.getAttribute("memberSession");
@@ -248,12 +248,28 @@ public class MsgController {
 //Keep
 	
 	//쪽지 보관함 전체 목록
-	@RequestMapping(value="/msg", method=RequestMethod.PATCH)
+	@RequestMapping(value="/msg_keep", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> keepAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> keepAll(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setReceiver_id(memberVO.getMember_id());
-		return service.all_keep_list(vo);
+		
+		paging.setPageUnit(5);
+
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		paging.setTotalRecord(service.keep_cnt(vo));
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.all_keep_list(vo));
+			
+		return map;
 	}
 	
 	//보관함 보낸이 그룹
@@ -289,7 +305,7 @@ public class MsgController {
 	
 	//휴지통 전체 목록
 	//쪽지 보관함 전체 목록
-	@RequestMapping(value="/msg", method=RequestMethod.DELETE)
+	@RequestMapping(value="/msg_trash", method=RequestMethod.GET)
 	@ResponseBody
 	public List<MsgVO> trashAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
 		memberVO = (MemberVO) session.getAttribute("memberSession");

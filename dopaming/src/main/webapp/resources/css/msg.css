@@ -44,7 +44,7 @@ h5 {
 }
 
 .byte_position {
-	margin-left: 322px;
+	margin-left: 310px;
 }
 
 input[name="ck"] {
@@ -250,16 +250,19 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .content_r {
-	width: 92.6%;
-	height: 40%;
+	width: 92.8%;
+	height: 40%;	
 	border-radius: 10px;
+	border: 3px solid #F3E2A9;
 	background-color: #F3E2A9; 
 	color: #000;
 	font-weight: bold;
-	margin-left: 20px;	
+	margin-left: 20px;
+	outline: none;	
 }
 
 .content_r:hover {
+	outline: none;
 	border: 3px solid #F7D358;
 	background-color: #fff;	
 }

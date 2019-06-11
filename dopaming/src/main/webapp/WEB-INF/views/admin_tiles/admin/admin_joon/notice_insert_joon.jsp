@@ -8,14 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <title>KakaoLink v2 Demo(Default / Feed) - Kakao JavaScript SDK</title>
-
-<style type="text/css">
-
-hjh_btn{
-
-}
-</style>
-
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 //내용 입력 확인 기능
@@ -50,25 +42,7 @@ function notice_insert_btn2(){
 }
 
 </script>
-
-</head>
-<body>
-	<h3 align=center>공지사항-등록</h3>
-	
-	<form name="notice_frm">
-	공지제목 : <input type="text" id="notice_title" name="notice_title" 
-	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
-	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
-	
-	공지내용 :<textarea id="notice_content" name="notice_content" 
-	style="width:100%; height:500; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
-	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>
-	<a id="" href="javascript:notice_insert_btn()">
-	<button style="float:right;" type="button">등록</button>
-	</a>
-	</form>
+<!-- 카카오톡 api -->
 <script type='text/javascript'>
 // // 사용할 앱의 JavaScript 키를 설정해 주세요.
 Kakao.init('f98be4f404409ef11e38b90311e98ca0'); //내꺼
@@ -108,5 +82,28 @@ function notice_insert_btn(){
 					});//로그인버튼기능
 }
 </script>
+
+</head>
+<body>
+<div style="width:90%; align-self: center">
+
+	<h3 align=center>공지사항-등록</h3>
+	
+	<form name="notice_frm">
+	공지제목 : <input type="text" id="notice_title" name="notice_title" 
+	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
+	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
+	
+	공지내용 :<textarea id="notice_content" name="notice_content" 
+	style="width:100%; height:500; background-color:ivory; border:1 solid blue; 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
+	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>
+	<a id="" href="javascript:notice_insert_btn()">
+	<button style="float:right;" type="button">등록</button><br>
+	</a>
+	</form>
+	
+</div>
 </body>
 </html>

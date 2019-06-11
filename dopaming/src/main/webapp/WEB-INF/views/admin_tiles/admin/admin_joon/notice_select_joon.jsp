@@ -24,6 +24,8 @@ function notice_delete(){
 </script>
 </head>
 <body>
+<div style="width:90%; align-self: center">
+
 
 <h1 align = "center"><u>공지사항</u></h1>
 
@@ -35,7 +37,7 @@ function notice_delete(){
 <input type="hidden" name="notice_title" value="${notice.getNotice_title()}">
 <input type="hidden" name="notice_content" value="${notice.getNotice_content()}">
 
-<table width="95%" align="center" height = "40px" border="1">
+<table width="100%" align="center" height = "40px" border="1">
         <tr>        
             <td bgcolor="" width="80p"  align="center">제목</td>
             <td align="center" >${notice.getNotice_title()}</td>
@@ -46,14 +48,16 @@ function notice_delete(){
         </tr>
         </table>
         
-        <table width="95%" align="center" height = "500px" border="1">
+        <table width="100%" align="center" height = "500px" border="1">
 	<tr><td valign="top">
 	<pre>${notice.getNotice_content()}</pre>
 	</td></tr>
 	</table><br>
 	<input style="float:right;" type="submit" value="수정"/>
-	<button style="float:right;" type="button" onclick="notice_delete()">삭제</button>
+	<button style="float:right;" type="button" onclick="notice_delete()">삭제</button><br>
 </form>
+
+</div>
 	
 </body>
 </html>

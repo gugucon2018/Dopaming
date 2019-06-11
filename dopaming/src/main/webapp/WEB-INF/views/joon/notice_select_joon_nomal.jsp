@@ -37,13 +37,13 @@ function notice_delete(){
 <input type="hidden" name="notice_content" value="${notice.getNotice_content()}">
 
 <table width="90%" height = "40px" align="center">
-        <tr>        
-            <td bgcolor="" width="80p"  align="center">제목</td>
-            <td align="center" >${notice.getNotice_title()}</td>
-            <td bgcolor="" width="80p"  align="center">글쓴이</td>
-            <td width="200p"  align="center">관리자</td>
-            <td bgcolor="" width="80p"  align="center">날짜</td>
-            <td width="200p"  align="center">${notice.getNotice_date()}</td>     
+        <tr bgcolor="">        
+            <td width="80p"  align="center">제목 : </td>
+            <td>${notice.getNotice_title()}</td>
+            <td width="80p">글쓴이 : </td>
+            <td width="200p">관리자</td>
+            <td width="80p" align="center">날짜 : </td>
+            <td width="200p">${notice.getNotice_date()}</td>     
         </tr>
         </table>
         

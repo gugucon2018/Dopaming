@@ -18,8 +18,8 @@ function notice_update(){
 		return false;
 	}
 	
-	else if(chk.length >= 20){
-		alert("20 자 이내로 적어주세요");
+	else if(chk.length >= 30){
+		alert("30 자 이내로 적어주세요");
 		return false;
 	}
 	else if (chk2 == '') { // 내용 값이 없을시
@@ -41,6 +41,7 @@ function notice_update(){
 </script>
 </head>
 <body>
+<div style="width:90%; align-self: center">
 	
 	<h3 align=center>공지사항-수정</h3>
 	
@@ -60,7 +61,8 @@ function notice_update(){
 	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
 	onMouseOut="this.style.backgroundColor='ivory'">${notice.notice_content}</textarea><br><br>
 	
-	<button style="float:right;" type="button" class="" onclick="notice_update()">수정</button>
+	<button style="float:right;" type="button" class="" onclick="notice_update()">수정</button><br>
 </form>
+</div>
 </body>
 </html>

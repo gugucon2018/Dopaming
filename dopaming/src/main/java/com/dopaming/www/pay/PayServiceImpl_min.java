@@ -20,8 +20,8 @@ public class PayServiceImpl_min implements Payservice_min {
 
 	//결제한사람 (아이디만)리스트(중복제거)
 	@Override
-	public List<PayVO_min> returnPay() {
-		return mambersDAO.returnPay();
+	public List<PayVO_min> returnPay(PayVO_min vo) {
+		return mambersDAO.returnPay(vo);
 	}
 
 	//결제했는 사람(단건)에 대한 세부내용(아이디,결제금액,충전날짜,결제고유코드)

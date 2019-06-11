@@ -16,8 +16,8 @@ public class PayDAOMybatis_min {
 	}
 	
 	//결제한사람 (아이디만)리스트(중복제거)
-	public List<PayVO_min> returnPay(){
-		return mybatis.selectList("PayDAO.payReturn");
+	public List<PayVO_min> returnPay(PayVO_min vo){
+		return mybatis.selectList("PayDAO.payReturn", vo);
 	}
 	
 	//결제한사람 리스트 카운터

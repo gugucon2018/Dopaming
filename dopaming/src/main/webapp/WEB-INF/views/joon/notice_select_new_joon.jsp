@@ -14,6 +14,8 @@ td {
 </style>
 </head>
 <body>
+<div style="width:90%; align-self: center;">
+
 
 <h1 align = "center"><u>공지사항</u></h1>
 
@@ -24,18 +26,19 @@ td {
 
 <table width="90%" height = "40px" align="center">
         <tr>        
-            <td bgcolor="" width="80p"  align="center">제목</td>
-            <td align="center" >${list[0].getNotice_title()}</td>
-            <td bgcolor="" width="80p"  align="center">글쓴이</td>
-            <td width="200p"  align="center">관리자</td>
-            <td bgcolor="" width="80p"  align="center">날짜</td>
-            <td width="200p"  align="center">${list[0].getNotice_date()}</td>     
+            <td width="80p" align="center">제목 : </td>
+            <td>${list[0].getNotice_title()}</td>
+            <td width="80p"  align="center">글쓴이 : </td>
+            <td width="200p">관리자</td>
+            <td width="80p"  align="center">날짜 : </td>
+            <td width="200p">${list[0].getNotice_date()}</td>     
         </tr>
         </table>
         
     <table width="90%" height = "500px" align="center" border="1">
 	<tr><td valign="top"><pre>${list[0].getNotice_content()}</pre></td></tr>
 	</table><br>
-	
+
+</div>	
 </body>
 </html>

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div style="width:90%; align-self: center;">
 
 	<h3 align=left><u>고객센터</u></h3>
 	
@@ -30,7 +31,6 @@
 	</td></tr>
 	</table><br>
 	
-	<a href="../board/commentPost.jsp?complain_no=${ComplainVO.getComplain_no()}">
-	</a>
+</div>	
 </body>
 </html>

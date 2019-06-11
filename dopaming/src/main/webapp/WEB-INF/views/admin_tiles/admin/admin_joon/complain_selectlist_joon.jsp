@@ -66,6 +66,7 @@ function complain_check_update(complain_no){
 </script>
 </head>
 <body>
+<div style="width:90%; align-self: center">
 
 <!-- 답변 수정값(complain_check) 보내는 폼(category_form) -->
 <form name="check_form">
@@ -82,30 +83,33 @@ function complain_check_update(complain_no){
 <input type="hidden" name="complain_type" value="${list[0].getComplain_type()}" />
 </form>
 
-	<u><h3 align=center>${list[0].getComplain_type()}목록</h3></u><br>
+	<u><h3 align=center>${complainVO.getComplain_type()} 목록</h3></u><br>
 
-	<table width="90%" align="center">
-		<tr align="center">
-			<td bgcolor="" width="100px">번호</td>
-			<td bgcolor="">제목</td>
-			<td bgcolor="">작성자</td>
+	<table width="100%" align="center">
+		<tr align="center" bgcolor="silver" height= "40px">
+			<th width="100px">번호</th>
+			<th>제목</th>
+			<th>작성자</th>
 			<c:if test="${list[0].getComplain_type() == '신고' }"> <!-- 게시판번호가 있다면 출력 -->
-			<td bgcolor="">신고된 게시판</td></c:if>
-			<td bgcolor="">날짜</td>
-			<td bgcolor="">답변유무</td>
-			<td bgcolor="">답변</td>
+			<th>신고된 게시판</th></c:if>
+			<th>날짜</th>
+			<th>답변유무</th>
+			<th>답변</th>
 		</tr>
 		
 		<c:forEach items="${list}" var="i" varStatus="s">
 			<tr align="center">
 				<td>${i.getRn()}</td>
-				<td><a href="/dopaming/admin/complain_select?complain_no=${ i.getComplain_no()}">
+				<td><a href="${pageContext.request.contextPath}/admin/complain_select?complain_no=${ i.getComplain_no()}">
 					${i.getComplain_title()}</a></td>
 				<td>${i.getMember_id() }</td>
+				
 				<c:if test="${i.getBoard_no() != 0}">
-					<td><a href="/dopaming/filepost?board_no=${i.getBoard_no()}  ">
-					${i.getBoard_no() }</a></td>
+				<td>
+					<a href="/dopaming/filepost?board_no=${i.getBoard_no()}">${i.getBoard_no() }</a>
+				</td>
 				</c:if>
+
 				<td>${i.getComplain_date() }</td>
 				<td>${i.getComplain_check() }</td>
 				<td><select name="complain_check" onchange="complain_check_update('${ i.getComplain_no()}')">
@@ -113,16 +117,26 @@ function complain_check_update(complain_no){
 						<option value="Y">YES</option>	
 					</select>
 					<script> //답변상태값을 DB의 값과 맞추어 준다. 
-					document.getElementsByName("complain_check")[${s.count}].value='${ i.getComplain_check()}';
+					document.getElementsByName("complain_check")[${s.count}].value='${ i.getComplain_check()}'
 					</script>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<br>
-<!-- 페이징버튼 -->
+	
+	<c:if test="${empty list}">
+		<h3 align=center>요청하신 자료가 없습니다.</h3>
+		</c:if>
+	
+<!-- 페이징버튼 -->	
+<c:if test="${not empty list}">
 <div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
+</c:if>
+<br>
+
 </div>
 </body>
 </html>

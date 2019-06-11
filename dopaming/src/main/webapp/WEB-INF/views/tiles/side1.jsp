@@ -16,6 +16,8 @@
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
 <meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
 <title>도파밍 프로젝트</title>
 
 <!-- Bootstrap core CSS -->
@@ -89,12 +91,28 @@ div.footer {
 
 </style>
 
+<script>
+<!-- 로그인이 안되었을 경우(고객센터)-joon -->
+var id = "${sessionScope.Id}"
+	
+	$(function(){ //J쿼리형태
+		$(".complain").click(function(){
+			if( id == ""){
+				alert("로그인을 해주세요");
+				return false;
+			}
+		})
+	})
+
+</script>
+
 </head>
 <body>
 
 	<div class="container-fluid">
 		<tiles:insertAttribute name="header" />
 	</div>
+	<div class="container-fluid">
 		<div class="col-md-2">
 			<!-- 사이드 바 메뉴-->
 			<div class="panel panel-info ">
@@ -110,20 +128,17 @@ div.footer {
 					<li class="list-group-item complain"><a href="complain_insert_form">글쓰기</a></li>
 				</ul>
 			</div>
+			</div>
+		<div class="container-fluid" style="width:80%; float:right;">
+		<tiles:insertAttribute name="content"/>
 		</div>
-
-	<div class="container-fluid" style="width:80%; float:right;">
-		<tiles:insertAttribute name="content" />
 	</div>
-	
-
-	<div class="container-fluid" style="height:70%">
+	<div class="container-fluid">
 		<tiles:insertAttribute name="modal" />
 	</div>
 	<div class="container-fluid">
 		<tiles:insertAttribute name="footer" />
 	</div>
-
 
 </body>
 </html>

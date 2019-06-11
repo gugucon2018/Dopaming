@@ -85,8 +85,8 @@
 				<tr>
 					<th></th>
 					<th>아이디</th>
-					<th>Total 충전금액</th>
 					<th>등급(내림차순)</th>
+					<th>Total 충전금액</th>
 					<th>총 업로드횟수</th>
 				<tr>
 			</thead>
@@ -97,9 +97,9 @@
 					<td><input type="checkbox" name="td_checkbox"
 						value="${classs.member_id }"></td>
 					<td>${classs.member_id }</td>
-					<td>${classs.acron }</td>
 					<td>${classs.grade_kor }</td>
-					<td>${classs.upload_count }</td>
+					<td>${classs.acron }원</td>
+					<td>${classs.upload_count }개</td>
 				</tr>				
 				</c:forEach>
 			<tbody>

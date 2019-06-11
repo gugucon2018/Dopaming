@@ -151,7 +151,7 @@ public class MinController {
 	@RequestMapping(value = { "/admin/blackListForm" }, method = RequestMethod.GET)
 	public String getBlackList(Model model, BlackListVO vo, Paging paging) {
 
-		paging.setPageUnit(5);
+		paging.setPageUnit(10);
 		// 페이지번호 파라미터
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
@@ -192,7 +192,7 @@ public class MinController {
 		@RequestMapping(value = { "/admin/NormalListForm" }, method = RequestMethod.GET)
 		public String getNormalList(Model model, BlackListVO vo, Paging paging) {
 
-			paging.setPageUnit(5);
+			paging.setPageUnit(10);
 			// 페이지번호 파라미터
 			if (paging.getPage() == 0) {
 				paging.setPage(1);
@@ -292,7 +292,7 @@ public class MinController {
 		paging.setTotalRecord(service5.returnPayCount(vo));
 		
 		model.addAttribute("paging", paging);		
-		model.addAttribute("acornlist",service5.returnPay());
+		model.addAttribute("acornlist",service5.returnPay(vo));
 		return "admin/admin_min/acornlist_min";
 	}
 
@@ -313,43 +313,4 @@ public class MinController {
 		service5.deletePay(vo);
 		return "redirect:/admin/acornlist";
 	}
-	
-//	@RequestMapping(value = "/testLogin")
-//	public String isComplete(HttpSession session) {
-//	    return "min/loginView";
-//	}	
-//	
-//	
-//	  @RequestMapping(value = "/callback") public String
-//	  navLogin(HttpServletRequest request) throws Exception { return
-//	  "min/callback"; }
-//	 
-//	@RequestMapping(value = "/personalInfo")
-//	public void personalInfo(HttpServletRequest request) throws Exception {
-//	        String token = "AAAAOa7ErrEfURhFwkyDeXk1KsuFkaZ9n6xNDbk-eH1Ce_aBN6qjEDKhIQz-6r5ijAQhZddnNvgvJh07zyQPvt_Wf5w";// 네이버 로그인 접근 토큰; 여기에 복사한 토큰값을 넣어줍니다.
-//	        String header = "Bearer " + token; // Bearer 다음에 공백 추가
-//	        try {
-//	            String apiURL = "https://openapi.naver.com/v1/nid/me";
-//	            URL url = new URL(apiURL);
-//	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
-//	            con.setRequestMethod("GET");
-//	            con.setRequestProperty("Authorization", header);
-//	            int responseCode = con.getResponseCode();
-//	            BufferedReader br;
-//	            if(responseCode==200) { // 정상 호출
-//	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//	            } else {  // 에러 발생
-//	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-//	            }
-//	            String inputLine;
-//	            StringBuffer response = new StringBuffer();
-//	            while ((inputLine = br.readLine()) != null) {
-//	                response.append(inputLine);
-//	            }
-//	            br.close();
-//	            System.out.println(response.toString());
-//	        } catch (Exception e) {
-//	            System.out.println(e);
-//	        }
-//	}
 }

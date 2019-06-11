@@ -11,10 +11,10 @@
     
     <!-- 결제했는사람 (아이디만)리스트 -->
     <select id="payReturn" resultType="pay">
-    	select member_id , trunc(acorn_date) acorn_date
+    	select a.* from ( select b.*, rownum rn from (select member_id , to_char(acorn_date,'yy/mm/dd') acorn_date
 		from acorn 
 		where trunc(acorn_date) = trunc(sysdate) and pay_code = pay_code
-		group by member_id, trunc(acorn_date)
+		group by member_id, acorn_date order by member_id) b) a where rn between #{first} and #{last}
     </select>
     
     <!-- 결제했는사람 리스트 카운터 -->

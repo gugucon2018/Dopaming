@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 카톡 meta -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <title>KakaoLink v2 Demo(Default / Feed) - Kakao JavaScript SDK</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 //내용 입력 확인 기능
-function notice_insert_btn(){
+function notice_insert_btn2(){
 	//변수선언
 	var chk = document.getElementById("notice_title").value; //단건 id찾기
 	var chk2 = document.getElementById("notice_content").value; //단건 id찾기
@@ -20,8 +20,8 @@ function notice_insert_btn(){
 		alert("제목을 입력하세요");
 		return false;
 	}
-	else if(chk.length >= 20){
-		alert("20 자 이내로 적어주세요");
+	else if(chk.length >= 30){
+		alert("30 자 이내로 적어주세요");
 		return false;
 	}
 	
@@ -42,32 +42,14 @@ function notice_insert_btn(){
 }
 
 </script>
-
-</head>
-<body>
-	<h3 align=center>공지사항-등록</h3>
-	
-	<form name="notice_frm">
-	공지제목 : <input type="text" id="notice_title" name="notice_title" 
-	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
-	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
-	
-	공지내용 :<textarea id="notice_content" name="notice_content" 
-	style="width:100%; height:500; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
-	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>
-	
-	<button style="float:right;" type="button" id="kakao-login-btn" onclick="notice_insert_btn()">등록</button>
-	</form>
+<!-- 카카오톡 api -->
 <script type='text/javascript'>
-			// // 사용할 앱의 JavaScript 키를 설정해 주세요.
-			Kakao.init('f98be4f404409ef11e38b90311e98ca0'); //내꺼
-			
-			// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-			Kakao.Auth.createLoginButton({
-						scope : "PROFILE,TALK_MESSAGE", //동의창 뿌리고 동의 얻기
-						container : '#kakao-login-btn',
+// // 사용할 앱의 JavaScript 키를 설정해 주세요.
+Kakao.init('f98be4f404409ef11e38b90311e98ca0'); //내꺼
+function notice_insert_btn(){
+			// 로그인창. 처음 한번만 호출하면 됩니다.
+			   Kakao.Auth.login({ 
+				scope : "PROFILE,TALK_MESSAGE", //동의창 뿌리고 동의 얻기
 						success : function(authObj) {// 로그인 성공시, API를 호출합니다.
 							Kakao.API.request({//restAPI를 사용하기 위해서 request로 요청한다.
 										url : '/v2/api/talk/memo/default/send', //내게 보내기
@@ -82,22 +64,11 @@ function notice_insert_btn(){
 										        
 										        "button_title": "바로 확인"
 												
-												/* "content" : {
-													"title" : "공지사항",
-													"description" : "공지사항 내용 : 동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록동해물과 백두산이 마르고 닳도록",
-													"image_url" : "http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg",
-													"image_width" : 1,
-													"image_height" : 1,
-													"link" : {
-														"web_url": "http://localhost/dopaming/notice_select_new",
-											            "mobile_web_url": "http://localhost/dopaming/notice_select_new"												
-													}
-												} */
 											}//템플릿 오브젝트
 										},//데이타
 										success : function(res) {
 											//alert(JSON.stringify(res));
-											notice_insert_btn();
+											notice_insert_btn2();
 										},//메세지 성공시
 										fail : function(error) {
 											alert(JSON.stringify(error));
@@ -109,6 +80,30 @@ function notice_insert_btn(){
 						}
 
 					});//로그인버튼기능
+}
 </script>
+
+</head>
+<body>
+<div style="width:90%; align-self: center">
+
+	<h3 align=center>공지사항-등록</h3>
+	
+	<form name="notice_frm">
+	공지제목 : <input type="text" id="notice_title" name="notice_title" 
+	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
+	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
+	
+	공지내용 :<textarea id="notice_content" name="notice_content" 
+	style="width:100%; height:500; background-color:ivory; border:1 solid blue; 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
+	onMouseOut="this.style.backgroundColor='ivory'"></textarea><br><br>
+	<a id="" href="javascript:notice_insert_btn()">
+	<button style="float:right;" type="button">등록</button><br>
+	</a>
+	</form>
+	
+</div>
 </body>
 </html>

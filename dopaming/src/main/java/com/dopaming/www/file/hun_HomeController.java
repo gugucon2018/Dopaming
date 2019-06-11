@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dopaming.www.admin.chart.ChartVO;
 import com.dopaming.www.admin.chart.Chartservice;
@@ -60,7 +61,7 @@ public class hun_HomeController {
 	@RequestMapping(value = "/admin/chartList", method = RequestMethod.GET)
 	public String chart(Model model, ChartVO vo, Paging paging) {
 		// 페이징 처리
-		paging.setPageUnit(5); // 개당 출력건수
+		paging.setPageUnit(7); // 개당 출력건수
 		// 시작페이지 설정
 		if (paging.getPage() == 0) {
 			paging.setPage(1);
@@ -77,5 +78,11 @@ public class hun_HomeController {
 
 		return "admin/admin_hun/chart_hun";
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value = "/admin/chartMember", method = RequestMethod.GET)
+	public List<Map<String, Object>> ChartMember(ChartVO vo){
+		
+		return service1.getChartMember(vo);
+	}
 }

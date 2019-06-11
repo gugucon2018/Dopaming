@@ -58,12 +58,13 @@ function changeMenu2(){
 }
 </script>
 </head>
-<body>
+<body >
+<div style="height:700px; width:90%; align-self: center;">
 
 <h3 align=center><u>게시판 목록</u></h3><br>
 
 <!-- 페이징 값 보내는 폼(category_form) -->
-<span style= "align-self:center; width: 90%;">
+<span style= "align-self:center; width: 100%;">
 <form name="category_form">
 <input type="hidden" name="page" value="1"></input>
 <select style="float: left; height: 29px" name="category_small" onchange="changeMenu()">
@@ -91,23 +92,26 @@ category_form.searchType.value='${boardListVO.searchType}';//????
 </script>
 </form>
 </span>
-<br> 
+<br><br> 
 
 <!-- 테이블(컬럼명) -->
-<table width="90%" align="center">
-	<tr align= "center" >
-		<td bgcolor="">번호</td>
-		<td bgcolor="" width="200px">제목</td>
-		<td bgcolor="">아이디</td>
-		<td bgcolor="">대분류</td>
-		<td bgcolor="" width="200px">소분류</td>
+<table width="100%" align="center">
+	<tr align= "center" bgcolor="silver" height= "40px">
+		<th>번호</th>
+		<th>제목</th>
+		<th width="100px">아이디</th>
+		<th width="100px">대분류</th>
+		<th width="100px">소분류</th>
 	</tr>
 		
 <!--테이블(데이터값들)db에서 가져온 자료를 forEach로 반복해서 가져온다-->		
-<c:forEach items="${list}" var="i">
+<c:forEach items="${list}" var="i" varStatus="status">
 	<tr align = "center">
-		<td>${ i.getRn()}</td>
-		<td><a href="/dopaming/filepost?board_no=${ i.getBoard_no()}">
+		<!-- 역순 가상번호 -->
+		<c:set var = "pn" value = "${paging.totalRecord - ((paging.page-1) * paging.pageUnit + status.index) }"/>
+		
+		<td>${pn}</td>
+		<td><a href="${pageContext.request.contextPath}/filepost?board_no=${ i.getBoard_no()}">
 			${ i.board_title}</a></td>
 		<td>${ i.getMember_id()}</td>
 		<td>${ i.getCategory_big()}</td>	
@@ -115,10 +119,17 @@ category_form.searchType.value='${boardListVO.searchType}';//????
 	</tr>
 </c:forEach>
 </table>
+<br>
+<c:if test="${empty list}">
+		<h3 align=center>요청하신 자료가 없습니다.</h3>
+</c:if>
 
 <!-- 페이징버튼 -->
+<c:if test="${not empty list}">
 <div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
+</c:if>
 </div>
 </body>
 </html>

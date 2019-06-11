@@ -81,6 +81,7 @@ function goList(p){
 </script>
 </head>
 <body>
+<div style="height:800px; width:90%; align-self: center">
 
 <h3 align=center><u>공지사항 목록</u></h3><br>
 <!-- 페이징 값 보내는 폼(form2) -->
@@ -89,21 +90,25 @@ function goList(p){
 </form>
 <!-- 로우넘리스트 폼 -->		
 <form name="form">	
-	<table width="90%" align="center">
-		<tr align= "center" >
-			<td bgcolor="" width="200px">
-				<label for="td_checkAll"><input type="checkbox" id="td_checkAll" onclick="checkAll();"/>번호</label>
-			</td>
-			<td bgcolor="">제목</td>
-			<td width="200px" bgcolor="">날짜</td>
+	<table width="100%" align="center">
+		<tr align= "center" bgcolor="silver" height= "40px">
+			<th width="200px">
+				<label for="td_checkAll"><input type="checkbox" id="td_checkAll" onclick="checkAll();"/> 번호</label>
+			</th>
+			<th>제목</th>
+			<th width="200px">날짜</th>
 		</tr>
 		
-		<c:forEach items="${list}" var="i">
+		<c:forEach items="${list}" var="i" varStatus="status">
 		
 <!-- Notice_no가 필요하기 때문에 값을 받을 곳을 만들어둔다 -->
 <input type="hidden" name="notice_no" value="${i.getNotice_no()}">
+			
 			<tr align = "center">
-				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}">${i.getRn()}</label></td>
+				<!-- 역순 가상번호 -->
+				<c:set var = "pn" value = "${paging.totalRecord - ((paging.page-1) * paging.pageUnit + status.index) }"/>
+				
+				<td><label for="${i.getRn()}"><input type="checkbox" name="td_checkbox" id="${i.getRn()}" value="${ i.getNotice_no()}"> ${pn}</label></td>
 				<td><a href="${pageContext.request.contextPath}/admin/notice_select?notice_no=${ i.getNotice_no()}">${i.getNotice_title()}</a></td>
 				<td>${i.getNotice_date()}</td>
 			</tr>
@@ -111,12 +116,14 @@ function goList(p){
 </table><br>
 
 <button style="float:right;" type="button" onclick="td_delete()">삭제</button>	
-<a href="${pageContext.request.contextPath}/admin/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a>
+<a href="${pageContext.request.contextPath}/admin/notice_insert_form"><button style="float:right;" type="button" >공지사항 등록</button></a><br>
 </form>
 
 <!-- 페이징버튼 -->
 <div align="center">
 <my:paging_joon paging="${paging}" jsfunc="goList"/>
+</div>
+
 </div>
 </body>
 </html>

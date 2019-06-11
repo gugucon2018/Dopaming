@@ -158,14 +158,14 @@ public class JoonController {
 		}
 	
 	// 공지 단건 삭제(관리자)
-	@RequestMapping("/notice_delete")
+	@RequestMapping("admin/notice_delete")
 	public String notice_delete(NoticeVO vo) {
 		service.notice_delete(vo);
-		return "redirect:admin/notice_selectlist";
+		return "redirect:/admin/notice_selectlist";
 	}
 
-	// 선택 삭제(관리자)
-	@RequestMapping("/notice_deletelist")
+	// 공지 선택 삭제(관리자)
+	@RequestMapping("admin/notice_deletelist")
 	public String notice_deletelist(NoticeVO vo, HttpServletRequest request) throws ServletException, IOException {
 		// jsp에서 배열값 받는 함수
 		String[] td_checkbox = request.getParameterValues("td_checkbox");
@@ -179,7 +179,7 @@ public class JoonController {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:admin/notice_selectlist";
+		return "redirect:/admin/notice_selectlist";
 	}
 
 	//공지 수정폼(관리자)
@@ -193,7 +193,7 @@ public class JoonController {
 		}
 	
 	//공지사항 수정하기
-		@RequestMapping(value = "/notice_update", method = RequestMethod.POST) // 뷰에서 notice_update의 값이 보내어지면
+		@RequestMapping(value = "admin/notice_update", method = RequestMethod.POST) // 뷰에서 notice_update의 값이 보내어지면
 		public String notice_update(NoticeVO vo, Model model,   
 				HttpServletResponse response) throws IOException {
 			
@@ -210,7 +210,7 @@ public class JoonController {
 				return "admin/admin_joon/notice_update_joon";
 			} else {
 				// 돌아갈 화면
-				return "redirect:admin/notice_selectlist";
+				return "redirect:/admin/notice_selectlist";
 			}
 		}
 		

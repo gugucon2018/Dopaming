@@ -8,7 +8,7 @@ public interface Payservice_min {
 	public void insertPay(PayVO_min vo);
 	
 	//결제한사람 (아이디만)리스트(중복제거)
-	public List<PayVO_min> returnPay();
+	public List<PayVO_min> returnPay(PayVO_min vo);
 	
 	//결제한사람 리스트 카운터
 	public int returnPayCount(PayVO_min vo);

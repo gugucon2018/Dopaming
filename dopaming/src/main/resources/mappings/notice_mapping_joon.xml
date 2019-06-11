@@ -44,7 +44,7 @@ where notice_no= #{notice_no}
                                     ,notice_content
                                     ,notice_date
 						 from notice order by notice_date desc
- ) b) a where rn between #{first} and #{last}
+ ) b ) a where rn between #{first} and #{last}
 </select>
 
 <!--페이징 -->

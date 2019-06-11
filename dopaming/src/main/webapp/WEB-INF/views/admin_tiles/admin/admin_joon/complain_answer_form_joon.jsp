@@ -37,6 +37,7 @@ function answer_insert_btn(){
 </script>
 </head>
 <body>
+<div style="width:90%; align-self: center">
 
 <h3 align=left><u>고객센터 답변</u></h3>
 	
@@ -47,14 +48,14 @@ function answer_insert_btn(){
 	보내는 사람 : 관리자 <br>
 	제목 : 
 	<input type="text" id="message_title" name="message_title" 
-	style="width:90%; height:40px; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
+	style="width:100%; height:40px; background-color:ivory; border:1 solid blue; 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
 	onMouseOut="this.style.backgroundColor='ivory'"> <br><br>
 	
 	내용 :<br><div align="center">
 	<textarea id="message_content" name="message_content" 
-	style=" width:90%; height:500; background-color:ivory; border:1 solid blue; 
-	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor='yellow'" 
+	style=" width:100%; height:500; background-color:ivory; border:1 solid blue; 
+	font-family:굴림; font-size:10pt; color:red" onMouseOver="this.style.backgroundColor=''" 
 	onMouseOut="this.style.backgroundColor='ivory'">
 	
 	유형 : ${ComplainVO.complain_type}
@@ -64,12 +65,15 @@ function answer_insert_btn(){
 	내용 : 
 	      
 	      ${ComplainVO.complain_content}
-	=============================================================================================
+	      
+	=====================================================================================
 	
-	</textarea></div><br><br>
+	</textarea></div><br>
 	
-	<button style="float:right;" type="button" class="" onclick="answer_insert_btn()">보내기</button>&nbsp;&nbsp;
+	<button style="float:right;" type="button" onclick="answer_insert_btn()">보내기</button>&nbsp;&nbsp;
 
 </form>
+
+</div>
 </body>
 </html>

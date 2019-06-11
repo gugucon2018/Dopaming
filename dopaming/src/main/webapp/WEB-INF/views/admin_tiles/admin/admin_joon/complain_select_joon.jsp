@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div style="width:90%; align-self: center">
 
 	<h3 align=left><u>고객센터</u></h3>
 	
@@ -38,6 +39,8 @@
 	
 	<a href="${pageContext.request.contextPath}/admin/complain_answer_form?complain_no=${ComplainVO.getComplain_no()}">
 	<button style="float:right;" type="button" class="">답변하기</button>
-	</a>
+	</a><br><br>
+
+</div>	
 </body>
 </html>

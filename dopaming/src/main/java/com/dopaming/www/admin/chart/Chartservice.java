@@ -1,8 +1,7 @@
 package com.dopaming.www.admin.chart;
 
 import java.util.List;
-
-import com.dopaming.www.file.FileVO;
+import java.util.Map;
 
 public interface Chartservice {
 	
@@ -13,8 +12,9 @@ public interface Chartservice {
 	//차트 목록 조회
 	List<ChartVO> getChartList(ChartVO vo);
 	
-	int chartList_cnt(ChartVO vo);
+	public int chartList_cnt(ChartVO vo);
 	
-	public int getChartCount(ChartVO vo);
+	
+	public List<Map<String, Object>> getChartMember(ChartVO vo);
 
 }

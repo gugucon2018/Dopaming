@@ -15,7 +15,7 @@
 		on a.member_id = m.member_id
 		<where>
 			<if test="searchKeyword != null and searchKeyword !=''">
-				m.member_id = ${searchKeyword}
+				m.member_id = #{searchKeyword}
 			</if>
 
 		</where>
@@ -26,18 +26,23 @@
 
 
 	<!--페이징 -->
-	<select id="ChartList_cnt" resultType="int">
-		select count(*) down_count,m.upload_count,round(sum(m.upload_storage),2)
-		upload_storage,m.member_id,m.member_grade
-		from acorn a join members m
-		on a.member_id = m.member_id
+	<select id="chartList_cnt" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		MEMBERS
 		<where>
 			<if test="searchKeyword != null and searchKeyword !=''">
-				m.member_id = ${searchKeyword}
+				MEMBER_ID LIKE '%' || #{searchKeyword} || '%'
 			</if>
-
 		</where>
-		group by m.upload_count,m.member_id,m.member_grade
+	</select>
+	
+	<!-- 차트(멤버등급 분포) 1 -->
+	<select id="chartMember" resultType="map">
+		select  g.grade_kor "grade_kor", count(m.member_grade) "cnt"
+		from members m join grade g
+        on m.member_grade= g.member_grade
+        group by g.grade_kor
 	</select>
 
 </mapper>

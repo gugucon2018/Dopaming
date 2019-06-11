@@ -26,13 +26,46 @@
 #spann {
 	float: right;
 }
+
+.active {
+	color: red;
+}
 </style>
-<script>
+<script type="text/javascript">
 	function goList(p) {
-		category_form.page.value = p;
-		category_form.submit();
+		searchFrm.page.value = p;
+		searchFrm.submit();
 	}
 </script>
+
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        var options = {'title':'회원등급 분포',  'width':800,  'height':500  };
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        //ajax 호출
+       $.getJSON( { url :"${pageContext.request.contextPath }/admin/chartMember",
+    	   success : function(list){
+		        data.addColumn('string', '등급');
+		        data.addColumn('number', '회원수');		        
+		        var arr = [];
+		        for(i=0; i<list.length;i++ ){
+		        	arr.push([ list[i].grade_kor, list[i].cnt]);
+		        }		        
+		        data.addRows(arr);
+
+		        chart.draw(data, options);
+		    }
+		});
+      }
+    </script>
 </head>
 <body>
 	<div>
@@ -41,15 +74,14 @@
 		<span id="spann">
 			<div>
 				<form name="searchFrm" method="get">
-					아이디:<input type="hidden" name="page" value="1"> <input
+				<input type="hidden" name="page" value="1">
+					아이디: <input
 						name="searchKeyword" value="${ChartVO.searchKeyword}" />
 					<button class="btn btn-info" type="submit">검색</button>
 				</form>
 			</div>
 		</span>
 		<div>
-
-			<form name="form">
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -72,12 +104,13 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</form>
 		</div>
 		<div align="center">
 			<my:paging_joon paging="${paging}" jsfunc="goList" />
 		</div>
 		<br> <br> <br>
 	</div>
+	
+	<div id="chart_div" align ="center"></div>
 </body>
 </html>

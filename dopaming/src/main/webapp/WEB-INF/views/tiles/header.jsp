@@ -29,6 +29,10 @@ var id = "${sessionScope.Id}"
 	margin-top: 16.5px;
 	margin-right: 3px;
 }
+.home{
+color: red;
+font-size : 20pt;
+}
 </style>
 <!-- 메시지 세션 -->
 <c:if test="${sessionScope.message ne null}">
@@ -133,7 +137,8 @@ $(function(){ //J쿼리형태
 
 <div class="container-fluid">
 	<!--배너 -->
-	<a href="${pageContext.request.contextPath}"><div class="jumbotron" >
+	<a href="${pageContext.request.contextPath}">
+	<div class="jumbotron" >
 		<div class="container">
 			<div class="form-inline" role="form"></div>
 		</div>
@@ -143,7 +148,8 @@ $(function(){ //J쿼리형태
 	<div class="navbar navbar-inverse col-xs-12 col-md-12 col-lg-12">
 		<div class="">
 			<div class="navbar-header" >
-				<a class="navbar-brand" href="${pageContext.request.contextPath}">Dopaming</a>
+			<%-- <button onclick="location='${pageContext.request.contextPath}'"><img src="${pageContext.request.contextPath}/resources/images/logo1.png" width="80px" height="60px"></button> --%>
+				<b><a class="navbar-brand" href="${pageContext.request.contextPath}"><span class="home">Dopaming</span></a></b>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">

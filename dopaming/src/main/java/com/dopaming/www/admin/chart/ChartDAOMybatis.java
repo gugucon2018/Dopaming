@@ -1,6 +1,7 @@
 package com.dopaming.www.admin.chart;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,10 @@ public class ChartDAOMybatis {
 		return mybatis.selectOne("chartDAO.chartList_cnt",vo);
 	}
 	
+	public List<Map<String, Object>> getChartMember(ChartVO vo){
+		return mybatis.selectList("chartDAO.chartMember",vo);
+		
+	}
 
 
 }

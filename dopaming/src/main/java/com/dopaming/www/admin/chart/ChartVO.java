@@ -12,6 +12,7 @@ public class ChartVO {
 	private int rn;
 	private int member_upload_count;
 	private int down_count;
+	private String grade_kor;
 	//페이징하기위한 첫,마지막번호
 	private int first;
 	private int last;
@@ -92,15 +93,21 @@ public class ChartVO {
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}
+	public String getGrade_kor() {
+		return grade_kor;
+	}
+	public void setGrade_kor(String grade_kor) {
+		this.grade_kor = grade_kor;
+	}
 	@Override
 	public String toString() {
 		return "ChartVO [member_id=" + member_id + ", member_password=" + member_password + ", member_email="
 				+ member_email + ", member_date=" + member_date + ", member_grade=" + member_grade
 				+ ", member_upload_storage=" + member_upload_storage + ", rn=" + rn + ", member_upload_count="
-				+ member_upload_count + ", down_count=" + down_count + ", first=" + first + ", last=" + last
-				+ ", searchKeyword=" + searchKeyword + "]";
+				+ member_upload_count + ", down_count=" + down_count + ", grade_kor=" + grade_kor + ", first=" + first
+				+ ", last=" + last + ", searchKeyword=" + searchKeyword + "]";
 	}
-
+	
 	
 	
 	

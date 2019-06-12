@@ -12,6 +12,7 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
 <style>
+
 table {
   width: auto;
   height: 100px;
@@ -43,7 +44,7 @@ width:500px;
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp69493421'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
-	//결제api사용시 넘어가는 값 4개를 매개변수로 받아 저장후 컨트롤러로 넘김
+	//결제api사용시 넘어가는 값 2개를 매개변수로 받아 저장후 컨트롤러로 넘김
 	function payresult(param1,param2){
 		$('input[name="pay_code"]').val(param1);
 		$('input[name="acorn_charge"]').val(param2);
@@ -84,8 +85,6 @@ width:500px;
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
 				payresult(rsp.imp_uid,rsp.paid_amount);
-				/*msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num; */
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
@@ -99,7 +98,7 @@ width:500px;
 <form id="payresult" action="./acornForm" method="post">
 <input type="hidden" name="acorn_charge" value=""/>
 <input type="hidden" name="pay_code" value=""/>
-</form>
+</form> bootstrap 3 라디오버튼
 	<div>
 		<h1 style="text-align: center;">결제페이지</h1>
 		<hr>
@@ -110,7 +109,7 @@ width:500px;
 					<th style="width="350px;">세부충전금액</th>
 				</tr>
 				<tr>
-				    <td><input type="radio" name="pay" value="0">직접 입력</td>
+				    <td ><input type="radio" name="pay" value="0" class="magic-radio">직접 입력</td>
 				    <td class="acorn"><input type="text" name="inputpay" size='6'>아콘 충전</td>
 				</tr>
 				<tr>
@@ -138,11 +137,9 @@ width:500px;
 					<td class="acorn">100000원 충천 + 15000아콘 추가 충전</td>
 				</tr>
 			</table>
-		</div>
-		<div>
-			<span style="float: right">
-				<button type="button" onclick="payment()" class="btn btn-primary">결제하기</button>
-			</span>
+		</div><br><br>
+		<div style="text-align: center;">
+			<button type="button" onclick="payment()" class="btn btn-primary" >결제하기</button>
 		</div>
 		
 		<br> <br> <br>

@@ -64,6 +64,7 @@ public class MemberController {
 						session.setAttribute("Pass", memberVO.getMember_password());
 						session.setAttribute("Acorn_stock", memberVO.getAcorn_stock());
 						session.setAttribute("message", id + "님, 로그인 되었습니다.");
+						System.out.println("=====로그인한 아이디" + memberVO.getMember_id());
 					}
 				}else { //비밀번호 일치하지 않으면
 					System.out.println("해당 아이디==========="+ memberVO.getMember_id() +" 암호화된 비번 확인" + memberVO.getMember_password());

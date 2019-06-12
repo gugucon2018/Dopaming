@@ -21,7 +21,7 @@
           </if>
     
 	group by m.member_id, g.grade_kor, m.upload_count,m.member_grade
-	order by member_grade desc, acron desc) b) a 
+	order by member_grade desc, m.member_id asc, acron desc) b) a 
 	where rn between #{first} and #{last}
 	</select>
 

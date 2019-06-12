@@ -81,20 +81,24 @@
 	</style>
 </head>
 <body>
-	<div class="container-fluid">
-		<tiles:insertAttribute name="header" />
-		<tiles:insertAttribute name="msg" />
+	<div class="row">
+		<div class="col-md-12">
+			<tiles:insertAttribute name="header" />
+			<tiles:insertAttribute name="msg" />
+		</div>
 	</div>
-	<div class="container-fluid">
-		<tiles:insertAttribute name="left_side" />
-		<div class="container-fluid" style="width:80%; float:right;">
+	<div class="row" style="padding: 20px 50px 50px 20px; ">
+		<div class="col-md-2">
+			<tiles:insertAttribute name="left_side" />
+		</div>
+		<div class="col-md-10">
 			<tiles:insertAttribute name="content" />
 		</div>
 	</div>
-	<div class="container-fluid">
+	<div class="row">
 		<tiles:insertAttribute name="footer" />
 	</div>
-	<div class="container-fluid" style="height:70%">
+	<div style="height:70%">
 		<tiles:insertAttribute name="modal" />
 	</div>
 </body>

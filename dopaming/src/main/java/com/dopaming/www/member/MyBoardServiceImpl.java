@@ -42,12 +42,14 @@ public class MyBoardServiceImpl implements MyBoardService {
 
 	@Override
 	public void deleteBoard(FileUploadVO vo) {
-		FilePostVO_Hwan fvo = new FilePostVO_Hwan();
-		fvo.setBoard_no(vo.getBoard_no());
-		List<FilePostVO_Hwan> list = filedao.select_post_fileList(fvo);
-		for(int i = 0; i<list.size(); i++) {
-			File file = new File(vo.getPath(),list.get(i).getFileName_List());
-			file.delete();
+		for(String s :  vo.getSeqs()) {
+			FilePostVO_Hwan fvo = new FilePostVO_Hwan();
+			fvo.setBoard_no(Integer.parseInt(s));
+			List<FilePostVO_Hwan> list = filedao.select_post_fileList(fvo);
+			for(int i = 0; i<list.size(); i++) {
+				File file = new File(vo.getPath(),list.get(i).getFileName_List());
+				file.delete();
+			}
 		}
 		dao.deleteUpload(vo);
 		dao.deleteComments(vo);

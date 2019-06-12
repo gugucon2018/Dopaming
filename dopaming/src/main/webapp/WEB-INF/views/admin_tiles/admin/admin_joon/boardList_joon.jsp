@@ -79,6 +79,7 @@ function changeMenu2(){
 	<button style="float: right;" type="submit"> 검색</button>
 	<input name="searchKeyword" style="float: right;" type="text">
 	<select style="float: right; height: 29px" name="searchType" onchange="changeMenu2()">
+		<option value="">검색선택</option>
 		<option value="board_title">게시물 제목</option>
 		<option value="member_id" >아이디</option>
 	</select>

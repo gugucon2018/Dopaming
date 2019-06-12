@@ -99,12 +99,14 @@ function goList(p){
 			<td width="200px" bgcolor="">날짜</td>
 		</tr>
 		
-		<c:forEach items="${list}" var="i">
+		<c:forEach items="${list}" var="i" varStatus="status">
+		<!-- 역순 가상번호 -->
+		<c:set var = "pn" value = "${paging.totalRecord - ((paging.page-1) * paging.pageUnit + status.index) }"/>
+		<!-- Notice_no가 필요하기 때문에 값을 받을 곳을 만들어둔다 -->
+		<input type="hidden" name="notice_no" value="${i.getNotice_no()}">
 		
-<!-- Notice_no가 필요하기 때문에 값을 받을 곳을 만들어둔다 -->
-<input type="hidden" name="notice_no" value="${i.getNotice_no()}">
 			<tr align = "center">
-				<td><label for="${i.getRn()}">${i.getRn()}</label></td>
+				<td><label for="${i.getRn()}">${pn}</label></td>
 				<td><a href="${pageContext.request.contextPath}/notice_select_nomal?notice_no=${ i.getNotice_no()}">${i.getNotice_title()}</a></td>
 				<td>${i.getNotice_date()}</td>
 			</tr>

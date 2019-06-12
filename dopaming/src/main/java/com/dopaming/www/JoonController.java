@@ -115,7 +115,7 @@ public class JoonController {
 			return "jon/notice_selectlist_joon_nomal";
 		}
 
-	// 공지 목록 (최신)
+	// 공지 사항 뷰 (최신)
 	@RequestMapping("/notice_select_new")
 	public String notice_selectlist_nomal(Model model, NoticeVO vo) {
 		

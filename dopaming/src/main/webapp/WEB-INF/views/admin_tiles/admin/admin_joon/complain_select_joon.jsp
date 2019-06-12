@@ -14,8 +14,8 @@
 	
 	유형: ${ComplainVO.complain_type}<br>
 	
-	<!-- 신고타입일때만 등장 --> 
-	<c:if test="${ComplainVO.complain_type == '신고' }">
+	<!-- 게시판 번호가 있다면 번호를 출력 -->
+	<c:if test="${ComplainVO.board_no != 0}">
 	신고된 게시판: <a href="${pageContext.request.contextPath}/filepost?board_no=${ComplainVO.board_no}">${ComplainVO.board_no}</a>
 	</c:if>
 	

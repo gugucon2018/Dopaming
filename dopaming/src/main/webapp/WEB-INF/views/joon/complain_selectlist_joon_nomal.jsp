@@ -87,16 +87,18 @@ function complain_check_update(complain_no){
 
 	<table width="100%" >
 		<tr align="center">
-			<td bgcolor="" width="100px">번호</td>
-			<td bgcolor="">제목</td>
-			<!-- <td bgcolor="">작성자</td> -->
-			<td bgcolor="">날짜</td>
-			<td bgcolor="">답변유무</td>
+			<td width="100px">번호</td>
+			<td>제목</td>
+			<td>날짜</td>
+			<td>답변유무</td>
 		</tr>
 		
-		<c:forEach items="${list}" var="i" varStatus="s">
+		<c:forEach items="${list}" var="i" varStatus="status">
+		<!-- 역순 가상번호 -->
+		<c:set var = "pn" value = "${paging.totalRecord - ((paging.page-1) * paging.pageUnit + status.index) }"/>
+		
 			<tr align="center">
-				<td>${i.getRn()}</td>
+				<td>${pn}</td>
 				<td><a href="${pageContext.request.contextPath}/complain_select_nomal?complain_no=${ i.getComplain_no()}">
 					${i.getComplain_title()}</a></td>
 				<td>${i.getComplain_date() }</td>

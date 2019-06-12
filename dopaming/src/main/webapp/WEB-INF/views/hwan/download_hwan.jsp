@@ -141,12 +141,12 @@ th {
 				<tr>
 					<td style="border-right: none;"></td>
 					<td colspan="2" class="cen_table" style="border-left: none;">
-						<button type="button" class="btn btn-success btn-md btnDown"							 
+						<button type="button" class="btn btn-success btn-md btnDown" 
+						onclick="location.href='request_download?group_no=${downPost.group_no}&member_id=${sessionScope.Id}&seller=${downPost.member_id}'"				 
 							ic-post-to="/job">다운로드 하기</button>
 						<button type="button" class="btn btn-success btn-md"
-							onclick="location.href='download_cancel'">취소 하기</button>
-					</td>
-					<%-- onclick="location.href='request_download?group_no=${downPost.group_no}&member_id=${sessionScope.Id}&seller=${downPost.member_id}'" --%>
+							onclick="location.href='download_cancel'">취소 하기</button>							
+					</td>					
 				</tr>
 			</table>
 		</form>
@@ -161,7 +161,7 @@ th {
 	function fileDownload() {
 		$('.btnDown').on('click', function() {
 			$.ajax({
-				url : "request_download?group_no=${downPost.group_no}&member_id=${sessionScope.Id}&seller=${downPost.member_id}",
+				url : "request",
 				dataType : "json",				
 				beforesend : function() {
 					console.log("읽어오기 시작 전...");

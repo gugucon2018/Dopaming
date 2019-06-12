@@ -50,7 +50,7 @@ th, td {
 	 				<th>제목</th>
 	 				<th>종류</th>
 	 				<th>다운로드일</th>
-	 				<th>판매자</th>	
+	 				<th>판매자</th>
  				</tr>
  			</thead>
  			<tbody>

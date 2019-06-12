@@ -7,7 +7,7 @@
 	<select id="getDownList" resultType="myboard">
 		select a.*
 		from ( select b.*, rownum rn
-		from (select DISTINCT bo.board_no 
+		from (select distinct bo.board_no 
 		            , bo.board_title
 		            , bo.category_big
 		            , trunc(d.download_date) download_date
@@ -22,11 +22,9 @@
 	
 	<!-- 내가 받은 자료 카운트 -->
 	<select id="getDownCount" resultType="int">
-		select count(*)
-		from board bo 
-		inner join file_download d
-		on bo.board_no = d.group_no
-		where d.member_id = #{member_id}							
+		select count(distinct group_no) count
+	    from file_download
+	    where member_id = #{member_id}							
 	</select>
 	
 	<!-- 업로드관리 페이징 -->
@@ -50,10 +48,8 @@
 	<!-- 업로드관리 카운트 -->
 	<select id="getUploadCount" resultType="int">
 		select count(*)
-		from board b join file_upload f
-		on b.board_no = f.group_no
-		inner join members m on m.member_id=b.member_id
-        where m.member_id = #{member_id}
+		from board
+        where member_id = #{member_id}
 	</select>
 	
 	<!-- 게시글 삭제  -->

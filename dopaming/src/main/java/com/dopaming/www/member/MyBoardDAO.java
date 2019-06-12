@@ -36,7 +36,7 @@ public class MyBoardDAO {
 	//건수 조회(업로드 관리)
 	public Integer getUploadCount(FileUploadVO vo) {
 		System.out.println("===> Mybatis로 getDownCount() 기능 처리");
-		return mybatis.selectOne("MyBoardDAO.getDownCount", vo);
+		return mybatis.selectOne("MyBoardDAO.getUploadCount", vo);
 	}
 	
 	//게시글 삭제

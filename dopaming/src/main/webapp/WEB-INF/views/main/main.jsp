@@ -37,6 +37,7 @@ font-size : 25pt;
 
 </style>
 </head>
+
 <body>
 	<div class="container col-sm-8 container_center">
 		<div class="container col-sm-12 container_center1">
@@ -117,7 +118,7 @@ font-size : 25pt;
 			</div>
 		</div>
 		<div class="container col-sm-12">
-			<div id="genreCarousel2" class="carousel slide" data-ride="carousel"
+			<div id="genreCarousel3" class="carousel slide" data-ride="carousel"
 				data-interval="3000">
 				<ol class="carousel-indicators">
 					<li data-target="#genreCarousel3" data-slide-to="0" class="active"></li>
@@ -152,7 +153,7 @@ font-size : 25pt;
 		</div>
 		
 		<div class="container col-sm-12">
-			<div id="genreCarousel3" class="carousel slide" data-ride="carousel"
+			<div id="genreCarousel4" class="carousel slide" data-ride="carousel"
 				data-interval="3000">
 				<ol class="carousel-indicators">
 					<li data-target="#genreCarousel4" data-slide-to="0" class="active"></li>

@@ -4,12 +4,18 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.32.2/sweetalert2.css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/lib/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/lib/jquery-ui.min.js"></script>
 <script>
 var context = "${pageContext.request.contextPath}";
 var id = "${sessionScope.Id}"
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/statecode.js"></script>
 <style>
 .btn_msg {
 	background-color: #000;
@@ -101,8 +107,9 @@ font-size : 20pt;
 					<c:choose>
 						<%-- 로그인 안 한 상태 --%>
 						<c:when test="${sessionScope.memberSession eq null || sessionScope.Id eq 'admin'}">
-							<li><a class="navbar-brand" id="loginBtn" data-toggle="modal">로그인</a></li>
-							<li><a class="navbar-brand" id="joinBtn" onclick="location='${pageContext.request.contextPath }/register'">회원가입</a></li>
+							<li><a class="navbar-brand modal-user" data-user="login">로그인</a></li>
+							<li><a class="navbar-brand modal-user" data-user="join">회원가입</a></li>
+							<li><a class="navbar-brand" id="recovery-password">비밀번호 재설정</a></li>
 						</c:when>
 						<%-- 로그인한 상태 --%>
 						<c:otherwise>
@@ -112,7 +119,7 @@ font-size : 20pt;
 						    <li><a class="navbar-brand">아콘 : ${memberSession.acorn_stock}</a></li>
 							<li><a class="navbar-brand">등급 : ${memberSession.grade_kor}</a></li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
-							<li><button onclick="location='${pageContext.request.contextPath }/logoutA'" class="btn btn-primary btn-sm">로그아웃</button></li>
+							<li><a class="navbar-brand modal-user" data-user="logout" data-id="${sessionScope.Id}">로그아웃</a></li>
 						</c:otherwise>
 					</c:choose>					
 				</ul>

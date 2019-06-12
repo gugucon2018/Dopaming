@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.dopaming.www.login.MemberService;
+import com.dopaming.www.login.MemberDAO;
 import com.dopaming.www.login.MemberVO;
 
 //로그인처리를 담당하는 인터셉터
 public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
-	MemberService service;
+	private MemberDAO dao;
 	// preHandle() : 컨트롤러보다 먼저 수행되는 메서드
 	@Override
 	public boolean preHandle(HttpServletRequest request
@@ -33,7 +33,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
 			MemberVO memberVO =(MemberVO)request.getSession().getAttribute("memberSession");
 			// preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
 			// 따라서 true로하면 컨트롤러 uri로 가게 됨.
-			memberVO = service.login(memberVO);
+			memberVO = dao.login(memberVO);
 			request.getSession().setAttribute("memberSession",memberVO);
 			return true;
 		}		

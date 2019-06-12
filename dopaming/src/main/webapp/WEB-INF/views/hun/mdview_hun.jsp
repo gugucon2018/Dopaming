@@ -46,13 +46,14 @@ a {
 	text-decoration: none;
 }
 
-* {
-	box-sizing: border-box;
-}
 
-th, td {
+td {
 	border-bottom: 1px solid #444444;
 	padding: 10px;
+}
+
+th{
+text-align: center;
 }
 .thumb{
 width:80px;
@@ -60,6 +61,7 @@ height:100px;
 }
 </style>
 <body>
+<div style="padding: 10px 40px">
 	<h1 align=center>${small}${big}</h1>
 
 	<form name="searchFrm" method="get">
@@ -79,14 +81,16 @@ height:100px;
 			value="${fileVO.category_big}"></input>
 	</form>
 
-	<table align="center">
+	<table class="table">
+	<thead>
 		<tr>
-			<td width="150px">게시판번호</td>
-			<td width="200px" height="100px">썸네일</td>
-			<td>제목</td>
-			<td width="150px">용량(단위: MB)</td>
-			<td width="150px">아이디</td>
+			<th width="150px">게시판번호</th>
+			<th width="200px">썸네일</th>
+			<th>제목</th>
+			<th width="150px">용량(단위: MB)</th>
+			<th width="150px">아이디</th>
 		</tr>
+	</thead>
 		<c:forEach items="${list}" var="file">
 			<tr>
 				<td>${file.board_no}</td>
@@ -112,5 +116,6 @@ height:100px;
 	<div align="center">
 		<my:paging_joon paging="${paging}" jsfunc="goList" />
 	</div>
+</div>
 </body>
 </html>

@@ -49,7 +49,7 @@
 	 outline: none;	
 }
 
-.loginmodal_loginbtn {
+.modal-loginbtn {
     width: 90%;
     padding: 3%;
     font-weight: bold;
@@ -58,7 +58,7 @@
     background-color: #3c578e;
 }
 
-.loginmodal_loginbtn:hover {
+.modal-loginbtn:hover {
     color: #fff;
     background-color: #213c6f;
     border-color: #213c6f;
@@ -74,23 +74,21 @@
 **    소셜로그인
 */
 
-.social_warp {
-    position: absolute;
-    background-image: url("/images/main/social-back.jpg");
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-}
-
 .content_socialicon {
     width: 15%;
     margin-left: 4%;
     cursor: pointer;
+    vertical-align: bottom;
 }
 
 /*
 **    모달창 : 회원가입
 */
+.modal-input {
+    letter-spacing: 2px !important;
+    padding-left: 18px !important;
+    font-weight: bold !important;
+}
 
 .joinmodal_warp {
     top: 20%;
@@ -110,22 +108,28 @@
 .joinmodal_joinpass,
 .joinmodal_joinemail {
     width: 90%;
+    height: 30px;
     padding: 1.5% 3%;
+    text-align: center;
     padding-left: 8%;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 20px;
     margin-bottom: 4%;
-    border: 1px solid #4e96f4;
-    display: inline;
+    border: 3px solid #fff;
+    background-color: #00ffff;
+    color: #000;
+    font-weight: bold;
+    display: table-cell;
 }
 
 .joinmodal_joinid:focus,
 .joinmodal_joinpass:focus,
 .joinmodal_joinemail:focus {
-	 border: 2px solid #096ef2;
+	 border: 3px solid #00ffff;
+	 background-color: #fff;
+	 outline: none;	
 }
 
-.joinmodal_joinbtn {
+.modal-joinbtn {
     width: 70%;
     height: 55px;
     padding: 3%;
@@ -153,8 +157,9 @@
 */
 
 .form-check {
+	margin-left: 5%;
 	padding: 15px;
-	text-align: center;
+	text-align: left;
 }
 
 .form-check label {
@@ -233,4 +238,18 @@ input:checked + .slider:before {
   -webkit-transform: translateX(30px);
   -ms-transform: translateX(30px);
   transform: translateX(30px);
+}
+/* 
+**	모달창 : 미인증 회원 창
+*/
+.modal-resendtext {
+    font-weight: bold;
+}
+.modal-resendpoint {
+    color: #d75a4a;
+}
+.modal-loginbtn, .modal-joinbtn {
+    width: 100%;
+    font-weight: bold;
+    font-size: 15px;
 }

@@ -5,15 +5,22 @@ import java.sql.Date;
 public class MemberVO {
 	private String member_id;
 	private String member_password;
+	private String checkPassword;
 	private String member_email;
 	private Date member_date;
 	private String member_grade;
 	private Integer acorn_stock;
 	private Integer upload_storage;
 	private Integer upload_count;
-	private String approval_status;
-	private String approval_key;
+	private String member_type;
+	private String member_code;
+	private String member_auth;
 	private String grade_kor;
+	
+	//비밀번호 확인
+	public boolean isPwEqualToCheckPw() {
+		return member_password.equals(checkPassword);
+	}
 	
 	public String getMember_id() {
 		return member_id;
@@ -29,6 +36,14 @@ public class MemberVO {
 
 	public void setMember_password(String member_password) {
 		this.member_password = member_password;
+	}
+
+	public String getCheckPassword() {
+		return checkPassword;
+	}
+
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
 	}
 
 	public String getMember_email() {
@@ -79,22 +94,29 @@ public class MemberVO {
 		this.upload_count = upload_count;
 	}
 
-	public String getApproval_status() {
-		return approval_status;
+	public String getMember_type() {
+		return member_type;
 	}
 
-	public void setApproval_status(String approval_status) {
-		this.approval_status = approval_status;
-	}
-
-	public String getApproval_key() {
-		return approval_key;
-	}
-
-	public void setApproval_key(String approval_key) {
-		this.approval_key = approval_key;
+	public void setMember_type(String member_type) {
+		this.member_type = member_type;
 	}
 	
+	public String getMember_code() {
+		return member_code;
+	}
+
+	public void setMember_code(String member_code) {
+		this.member_code = member_code;
+	}
+
+	public String getMember_auth() {
+		return member_auth;
+	}
+
+	public void setMember_auth(String member_auth) {
+		this.member_auth = member_auth;
+	}
 
 	public String getGrade_kor() {
 		return grade_kor;
@@ -108,12 +130,7 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [member_id=" + member_id + ", member_password=" + member_password + ", member_email="
 				+ member_email + ", member_date=" + member_date + ", member_grade=" + member_grade + ", acorn_stock="
-				+ acorn_stock + ", upload_storage=" + upload_storage + ", upload_count=" + upload_count
-				+ ", approval_status=" + approval_status + ", approval_key=" + approval_key + ", grade_kor=" + grade_kor
-				+ "]";
-	}
-
-
-
-	
+				+ acorn_stock + ", upload_storage=" + upload_storage + ", member_type=" + member_type + ", member_code="
+				+ member_code + ", member_auth=" + member_auth + "]";
+	}	
 }

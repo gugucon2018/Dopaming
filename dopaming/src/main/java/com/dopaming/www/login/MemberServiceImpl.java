@@ -1,224 +1,349 @@
 package com.dopaming.www.login;
 
-import java.io.PrintWriter;
-import java.util.Random;
+import java.util.Properties;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.dopaming.www.encryption.EgovFileScrty;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO dao;
 	
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;	//스프링 암호화
+	
+	@Autowired
+	HttpSession httpSession;	//세션 객체
+	
+	/**
+	 *  회원로그인
+	 *  @Param MemberVO
+	 *  @Return 회원로그인 따른 상태메세지
+	 */
 	@Override
-	public MemberVO login(MemberVO vo) {
-		return dao.login(vo);
-	}
+	public String normalLogin(MemberVO vo) {
+		String stateCode = "LOGIN_STATE_ERROR";
+		// 회원정보데이터 조회
+        MemberVO memberData = dao.login(vo);
+        
+        if (memberData != null) {
+            // 입력된 비밀번호와 회원정보데이터와 매칭
+            if (passwordEncoder.matches(vo.getMember_password(), memberData.getMember_password())) {
+                // 회원상태정보가 승인검토중일경우 ID_STATE_WAITAPPROVAL 반환
+                if (memberData.getMember_type().toUpperCase().equals("NONE")) return "ID_STATE_WAITAPPROVAL";
+                stateCode = "LOGIN_STATE_SUCCESS";
 
-	@Override
-	public String valueCheckId(String value) {
-		return dao.valueCheckId(value);
+                // 세션등록
+                httpSession.setAttribute("memberSession", memberData);
+                httpSession.setAttribute("auth", memberData.getMember_auth());
+                httpSession.setAttribute("type", memberData.getMember_type());
+                httpSession.setAttribute("Id", memberData.getMember_id());
+                httpSession.setAttribute("grand", memberData.getMember_grade());
+                httpSession.setAttribute("email", memberData.getMember_email());
+                httpSession.setAttribute("storage", memberData.getUpload_storage());
+                httpSession.setAttribute("uploadCount", memberData.getUpload_count());
+                httpSession.setAttribute("Acorn_stock", memberData.getAcorn_stock());
+                httpSession.setAttribute("stateCode", stateCode);
+                httpSession.setAttribute("alarm", "on");
+            }
+        }
+        return stateCode;
 	}
 	
+	/**
+	 * 회원이메일 전송
+	 * @Param 아이디
+	 * @Retrun 이메일발송여부
+	 */
 	@Override
-	public String valueCheckPW(String value) {
-		return dao.valueCheckPW(value);
-	}
-
-	@Override
-	public void check_id(String id, HttpServletResponse response) throws Exception{
-		PrintWriter out = response.getWriter();
-		out.println(dao.check_id(id));
-		out.close();
-	}
-
-	@Override
-	public void check_email(String email, HttpServletResponse response) throws Exception{
-		PrintWriter out = response.getWriter();
-		out.println(dao.check_email(email));
-		out.close();
-	}
-	
-	@Override
-	public String create_key() throws Exception {
-		String key = "";
-		Random rd = new Random();
+	public boolean inviteUser(String id, String context) throws Exception {
 		
-		for(int i = 0; i < 8; i++) {
-			key += rd.nextInt(10);
-		}
-		return key;
+		//초대 여부 반환값
+		boolean inviteState = false;
+		
+		MemberVO member = new MemberVO();
+		member.setMember_id(id);
+		
+		int registStatus = dao.registStatus(member);
+		System.out.println("가입상태확인 : " + registStatus);
+		
+		// 회원등록되어있을경우 ( 0:ERROR , 1:진행 )
+        if (registStatus == 1) {
+            String checkStatus = dao.getType(member);
+            System.out.println("회원타입확인 : " + checkStatus);
+            
+            // 회원가입 대기상태일경우 ( NONE )
+            if (checkStatus.toUpperCase().equals("NONE")) {
+                send_mail(member, "register", context);
+                inviteState = true;
+            }
+        }
+		
+		return inviteState;
 	}
 	
+	/**
+	 * 메일전송
+	 * @Param MemberVO
+	 */
 	@Override
-	public void send_mail(MemberVO vo, String type) throws Exception {
+	public void send_mail(MemberVO vo, String type, String context) throws Exception {
 		// Mail Server 설정
-		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com";
 		final String username = "rlfls54@gmail.com"; 
 		final String password = "bqocuxhcktjkwlyp"; 
 
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", hostSMTP);
+		props.put("mail.smtp.port", "587");
+		
+		// Get the Session object.
+		Session session = Session.getInstance(props, new Authenticator() {
+		@Override
+		protected PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication(username, password);
+			}			
+		});
+		
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "rlfls54@gmail.com";
-		String fromName = "관리자";
 		String subject = "";
-		String msg = "";
+		StringBuffer msg = new StringBuffer();
+		String siteUrl = "dopaming.com";
+		
+		//이메일 & 코드 조회
+		vo.setMember_email(dao.getEmail(vo));
+		vo.setMember_code(dao.getCode(vo));
+	    System.out.println("회원이메일확인 : " + vo.getMember_email());
+	    System.out.println("회원코드확인 : " + vo.getMember_code());
 		
 		switch(type) {
 			case "register":
 				// 회원가입 메일 내용
-				subject = "[Dopaming] 회원가입 인증 메일입니다.";
-				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-				msg += "<h3 style='color: blue;'>";
-				msg += vo.getMember_id() + "님 회원가입을 환영합니다.</h3>";
-				msg += "<div style='font-size: 130%'>";
-				msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
-				msg += "<form method='post' action='http://dopaming.com:80/dopaming/approval_member'>";
-				msg += "<input type='hidden' name='member_email' value='" + vo.getMember_email() + "'>";
-				msg += "<input type='hidden' name='approval_key' value='" + vo.getApproval_key() + "'>";
-				msg += "<input type='submit' value='인증'></form><br/></div>";
+				subject = "[Dopaming] 회원가입 인증 메일 - " + vo.getMember_id() + "님에게";
+				msg.append("<div style='width:100%; text-align:center; margin-top:50px;'>");
+				msg.append("hellow");
+				msg.append("<a href='http://" + siteUrl + context + "/mail/invite");
+				msg.append("/" + vo.getMember_id());
+				msg.append("/" + vo.getMember_code());
+				msg.append("'>");
+				msg.append("<img src='https://i.imgur.com/y259Qhi.png' style='width:60%;max-width=400px'></a>");
+				msg.append("</div>");
+				System.out.println(msg.toString());
 				break;
 				
 			case "password":
-				//임시 비밀번호 찾기 내용
-				subject = "[Dopaming] 임시 비밀번호 입니다.";
-				msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-				msg += "<h3 style='color: blue;'>";
-				msg += vo.getMember_id() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
-				msg += "<p>임시 비밀번호 : ";
-				msg += vo.getMember_password() + "</p></div>";
+				//비밀번호 재설정 메일 내용
+				subject = "[Dopaming] 비밀번호 재 설정 - " + vo.getMember_id() + "님에게";
+				msg.append("<div style='width:100%; text-align:center; margin-top:50px;'>");
+				msg.append("<a href='http://" + siteUrl + context + "/mail/changepass");
+				msg.append("/" + vo.getMember_id());
+				msg.append("/" + vo.getMember_code());
+				msg.append("'>");
+				msg.append("<img src='https://i.imgur.com/y259Qhi.png' style='width:60%;max-width=400px'></a>");
+				msg.append("</div>");
 		}
-
 		
 		// 받는 사람 E-Mail 주소
 		String mail = vo.getMember_email();
 		try {
-			HtmlEmail email = new HtmlEmail();
-			email.setDebug(true);
-			email.setCharset(charSet);
-			email.setSSL(true);
-			email.setHostName(hostSMTP);
-			email.setSmtpPort(587);
-
-			email.setAuthenticator(new DefaultAuthenticator(username, password));
-			email.setTLS(true);
-			email.addTo(mail, charSet);
-			email.setFrom(fromEmail, fromName, charSet);
-			email.setSubject(subject);
-			email.setHtmlMsg(msg);
-			email.send();
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(fromEmail));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+			message.setSubject(subject);
+			message.setText(msg.toString(),"utf-8", "html");
+			Transport.send(message);
 			System.out.println("Sent message successfully....");
 		} catch (Exception e) {
 			System.out.println("메일발송 실패 : " + e);
 			throw new RuntimeException(e);
-		}
+		}	
+	}
+
+	/**
+	 * 회원가입
+	 * @return 회원가입절차에 따른 상태메시지
+	 */
+	@Override
+	public String register(MemberVO member) throws Exception {
+		String stateCode = "";
+		String[] variableNames = {"member_id", "member_password", "member_email"};
 		
+		// 입력 된 데이터 NULL 및 공백확인 [ 모든 데이터가 있을경우 VALUES_STATE_GOOD ]
+        stateCode = MemberValidation.findEmptyValue(member, variableNames);
+		if(stateCode.equals("VALUES_STATE_GOOD")) {
+		    // 아이디 검증 [ 영어 또는 숫자 포함 / 문자 길이 12까지 ]
+            if (!MemberValidation.checkEngAndNum(member.getMember_id()) || !MemberValidation.textLengthComparison(12, member.getMember_id())) {
+                stateCode = "ID_STATE_ERROR";
+                // 비밀번호 검증 [ 영어, 숫자 포함 / 문자 길이 5-16까지 ]
+            } else if (!MemberValidation.checkPassword(member.getMember_password())) {
+                stateCode = "PASS_STATE_ERROR";
+                // 비밀번호 일치하는지 검사
+            } else if(!member.isPwEqualToCheckPw()) {
+            	stateCode = "PASS_STATE_SAME";
+                // 이메일 검증
+            } else if (!MemberValidation.checkEmail(member.getMember_email())) {
+                stateCode = "EMAIL_STATE_ERROR";
+            // 회원가입 진행
+            } else {
+            	//아이디가 이미 등록되어져 있는 경우
+            	if(dao.check_id(member) == 1) {
+            		stateCode = "ID_STATE_USED";
+            		//아이디가 이메일 승인 대기중인 경우
+            		 if (stateCode.equals("ID_STATE_USED")) {
+                         stateCode = dao.check_email(member).toUpperCase().equals("NONE") ? "ID_STATE_WAITAPPROVAL" : "ID_STATE_USED";
+                     }
+            	}else {
+            		if(!member.isPwEqualToCheckPw()) {
+            			stateCode = "EMAIL_STATE_ERROR";
+        			}
+            		// 회원정보가 등록이 된 경우 => 패스워드 암호화 및 인증코드 발급
+            		member.setMember_password(passwordEncoder.encode(member.getMember_password()));
+            		member.setMember_code(RamdomPassword.getNewCode());
+            		stateCode = dao.register(member) == 1 ? "MEMBER_STATE_SUCCESS" : "SYSTEM_STATE_ERROR";
+            	}
+            }
+		}else {
+            // 데이터가 NULL 및 공백이 있을경우 상태코드로 변환
+            stateCode = stateCode.toUpperCase().replace("MEMBER", "").concat("_STATE_EMPTY");
+        }
+		return stateCode;
+	
+	}
+
+    /**
+     *  회원인증확인
+     *  @Param 아이디, 코드
+     *  @Return 인증확인여부
+     */
+	@Override
+	public String emailAuthentication(String id, String code) {
+        MemberVO member = new MemberVO();
+        member.setMember_id(id);
+        member.setMember_code(code);
+        // 회원인증확인
+        int informationCheckStatus = dao.informationCheckStatus(member);
+        if (informationCheckStatus == 1) {
+            // 회원 활성화 및 코드갱신
+            member.setMember_code(RamdomPassword.getNewCode());
+            try {
+                dao.chageStatud(member);
+                httpSession.setAttribute("stateCode", "AUTH_STATE_SUCCESS");
+            } catch (Exception e) {
+                e.printStackTrace();
+                httpSession.setAttribute("stateCode", "AUTH_STATE_ERROR");
+                return "AUTH_STATE_ERROR";
+            }
+        } else {
+            httpSession.setAttribute("stateCode", "AUTH_STATE_ERROR");
+        }
+        return informationCheckStatus == 1 ? "AUTH_STATE_SUCCESS" : "AUTH_STATE_ERROR";				
+	}
+    /**
+     *  회원로그아웃
+     *  @Param memberVO
+     *  @Return 회원로그아웃 상태코드 반환
+     */	
+	@Override
+	public String logout(MemberVO memberVO)
+	{
+        if (httpSession.getAttribute("Id") != null && !httpSession.getAttribute("Id").equals(memberVO.getMember_id()) ) return "LOGOUT_STATE_ERROR";
+        httpSession.invalidate(); //모든 세션 제게
+        httpSession.setAttribute("stateCode", "LOGOUT_STATE_SUCCESS");
+        return "LOGOUT_STATE_SUCCESS";
 	}
 	
+    /**
+     *  미승인회원정보삭제
+     *  @Param MemberVO
+     *  @Return 회원로그인 따른 상태메세지
+     */
 	@Override
-	public int register(MemberVO vo, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		String email = vo.getMember_email();
-		String id = vo.getMember_id();
-		
-		//회원가입시 비밀번호 암호화처리
-		String enpassword = EgovFileScrty.encryptPassword(vo.getMember_password(), vo.getMember_id());
-		vo.setMember_password(enpassword);
-		
-		if(dao.check_id(id) == 1) {
-			out.println("<script>");
-			out.println("alert('동일한 아이디가 있습니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-			return 0;
-		}else if(dao.check_email(email) == 1) {
-			out.println("<script>");
-			out.println("alert('동일한 이메일이 있습니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-			return 0;
-		}else {
-			//인증키 설정
-			vo.setApproval_key(create_key());
-			dao.register(vo);
-			//인증 메일 발송
-			send_mail(vo,"register");
-			return 1;
-		}
-	}
+    public String deleteInformation(MemberVO memberVO) {
+		int deleteState = 0;
+		if(dao.deleteMemberAcon(memberVO) == 1)
+			deleteState = dao.deleteInformation(memberVO);
+        return deleteState == 1 ? "INFODEL_STATE_SUCCESS" : "INFODEL_STATE_ERROR";
+    }
+	
+    /**
+     *  패스워드변경메일인증확인
+     *  @Param 아이디, 코드
+     *  @Return 인증확인여부
+     */
+    @Override
+    public String recoveryPassword(String member_id, String member_code) {
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMember_id(member_id);
+        memberVO.setMember_code(member_code);
+        // 회원인증확인
+        int passwordMailState = dao.informationCheckStatus(memberVO);
+        if (passwordMailState == 1) {
+            // 코드갱신
+            memberVO.setMember_code(RamdomPassword.getNewCode());
+            dao.renewCode(memberVO);
+            httpSession.setAttribute("stateCode", "PASSAUTH_STATE_SUCCESS");
+            httpSession.setAttribute("authId", memberVO.getMember_id());
+        } else {
+            httpSession.setAttribute("stateCode", "PASSAUTH_STATE_ERROR");
+        }
+        return passwordMailState == 1 ? "PASSAUTH_STATE_SUCCESS" : "PASSAUTH_STATE_ERROR";
+    }
 
-	@Override
-	public void approval_memeber(MemberVO vo, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		if (dao.approval_memeber(vo) == 0) { // 이메일 인증에 실패하였을 경우
-			out.println("<script>");
-			out.println("alert('잘못된 접근입니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-		} else { // 이메일 인증을 성공하였을 경우
-			out.println("<script>");
-			out.println("alert('인증이 완료되었습니다. 로그인 후 이용하세요.');");
-			out.println("location.href='/dopaming/';");
-			out.println("</script>");
-			out.close();
-		}
-		
-	}
 
+	 /**
+     *  이메일인증을통한비밀번호변경
+     *  @Param MemberVO
+     *  @Return 비밀번호변경여부에 따른 상태메세지
+     */
 	@Override
-	public void find_pw(HttpServletResponse response, MemberVO member) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		//가입에 사용한 이메일이 없으면
-		if(dao.check_email(member.getMember_email()) == 1) {
-			out.println("<script>");
-			out.println("alert('잘못된 이메일 입니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-		}else {
-			//임시 비밀번호 생성
-			String pw = "";
-			for (int i = 0; i < 12; i++) {
-				pw += (char) ((Math.random() * 26) + 97);
-			}
-			member.setMember_password(pw);
-			
-			// 비밀번호 변경 메일 발송
-			send_mail(member, "password");
-			
-			// 여기서 암호화된 비밀번호를 비교해서 맞으면 로그인패스한다 (암호화된비번 = 암호화된비번 비교)
-			try {
-				pw = EgovFileScrty.encryptPassword(pw, member.getMember_id());
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			
-			member.setMember_password(pw);
-			
-			// 비밀번호 변경
-			dao.changepass(member);
-			
-			out.println("<script>");
-			out.println("alert('이메일로 임시 비밀번호를 발송하였습니다.');");
-			out.println("location.href='/dopaming/';");
-			out.println("</script>");
-			out.close();
-		}
-		
+	public String changePasswordEmailAuth(MemberVO memberVO) {
+        String changePasswordState = "PASS_CHANGE_ERROR";
+        // 비밀번호 유효성 검사 실패시 
+        if (!MemberValidation.checkPassword(memberVO.getMember_password())) return changePasswordState;
+        String encodePassword = passwordEncoder.encode(memberVO.getMember_password());
+        memberVO.setMember_password(encodePassword);
+        int changeState = dao.changePasswordEmailAuth(memberVO);
+        if (changeState == 1) {
+            changePasswordState = "PASS_CHANGE_SUCCESS";
+            httpSession.removeAttribute("authId");
+            // 인증코드 갱신
+            memberVO.setMember_code(RamdomPassword.getNewCode());
+            dao.renewCode(memberVO);
+        }
+        return changePasswordState;
 	}
+	
+    /**
+     *  회원비밀번호변경메일발송
+     *  @Param 이메일
+     *  @Return 메일발송여부
+     */
+    @Override
+    public boolean sendMailPasswordChanger(String member_email, String context) throws Exception {
+        boolean sendState = false;
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMember_email(member_email);
+        String checkMailById = dao.checkMailState(memberVO);
+        if (checkMailById != null) {
+            sendState = true;
+            memberVO.setMember_id(checkMailById);
+            send_mail(memberVO, "password", context);
+        }
+        return sendState;
+    }
 }

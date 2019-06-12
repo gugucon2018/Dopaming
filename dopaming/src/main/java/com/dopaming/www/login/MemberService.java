@@ -1,35 +1,33 @@
 package com.dopaming.www.login;
 
-import javax.servlet.http.HttpServletResponse;
-
 public interface MemberService {
 	//로그인
-	public MemberVO login(MemberVO vo);
-
-	//아이디 체크
-	public String valueCheckId(String value);
+	public String normalLogin(MemberVO vo);
 	
-	//비밀번호 체크
-	public String valueCheckPW(String value);
+	//로그아웃
+	public String logout(MemberVO memberVO); 
 	
-	//아이디 중복 검사
-	public void check_id(String id,HttpServletResponse response) throws Exception;
-	
-	//이메일 중복 검사
-	public void check_email(String email, HttpServletResponse response) throws Exception;
+	//초대장 전송
+	public boolean inviteUser(String id, String context) throws Exception;
 	
 	//회원가입
-	public int register(MemberVO vo, HttpServletResponse response) throws Exception;
-	
-	//인증키 생성
-	public String create_key() throws Exception;
+	public String register(MemberVO member) throws Exception;
 	
 	//이메일 발송
-	public void send_mail(MemberVO vo, String type) throws Exception;
+	public void send_mail(MemberVO vo, String type, String context) throws Exception;
 	
 	//회원 인증
-	public void approval_memeber(MemberVO vo, HttpServletResponse response) throws Exception;
+	public String emailAuthentication(String id, String code);
 
-	//비밀번호 변경
-	public void find_pw(HttpServletResponse response, MemberVO member) throws Exception;
+	//미인증 회원 삭제
+	public String deleteInformation(MemberVO memberVO);
+	
+	//이메일 인증을 통한 비밀번호변경
+	public String changePasswordEmailAuth(MemberVO memberVO);
+	
+	//회원 비밀번호 변경 메일 발송
+	public boolean sendMailPasswordChanger(String mbrEmail, String context) throws Exception;
+	
+	//패스워드변경메일인증확인
+	public String recoveryPassword(String member_id, String member_code);
 }

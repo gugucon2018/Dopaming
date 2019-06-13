@@ -134,31 +134,30 @@ public class MemberServiceImpl implements MemberService {
 	    System.out.println("회원코드확인 : " + vo.getMember_code());
 		
 		switch(type) {
-			case "register":
-				// 회원가입 메일 내용
-				subject = "[Dopaming] 회원가입 인증 메일 - " + vo.getMember_id() + "님에게";
-				msg.append("<div style='width:100%; text-align:center; margin-top:50px;'>");
-				msg.append("hellow");
-				msg.append("<a href='http://" + siteUrl + context + "/mail/invite");
-				msg.append("/" + vo.getMember_id());
-				msg.append("/" + vo.getMember_code());
-				msg.append("'>");
-				msg.append("<img src='https://i.imgur.com/y259Qhi.png' style='width:60%;max-width=400px'></a>");
-				msg.append("</div>");
-				System.out.println(msg.toString());
-				break;
-				
-			case "password":
-				//비밀번호 재설정 메일 내용
-				subject = "[Dopaming] 비밀번호 재 설정 - " + vo.getMember_id() + "님에게";
-				msg.append("<div style='width:100%; text-align:center; margin-top:50px;'>");
-				msg.append("<a href='http://" + siteUrl + context + "/mail/changepass");
-				msg.append("/" + vo.getMember_id());
-				msg.append("/" + vo.getMember_code());
-				msg.append("'>");
-				msg.append("<img src='https://i.imgur.com/y259Qhi.png' style='width:60%;max-width=400px'></a>");
-				msg.append("</div>");
-		}
+		case "register":
+			// 회원가입 메일 내용
+			subject = "[Dopaming] 회원가입 인증 메일 - " + vo.getMember_id() + "님에게";
+			msg.append("<div style='width:100%; text-align:center; margin-top:50px;'>");
+			msg.append("<a href='http://" + siteUrl + context + "/mail/invite");
+			msg.append("/" + vo.getMember_id());
+			msg.append("/" + vo.getMember_code());
+			msg.append("'>");
+			msg.append("<img src='https://i.imgur.com/NwQn0fF.png' style='width:60%;max-width=400px'></a>");
+			msg.append("</div>");
+			System.out.println(msg.toString());
+			break;
+			
+		case "password":
+			//비밀번호 재설정 메일 내용
+			subject = "[Dopaming] 비밀번호 재 설정 - " + vo.getMember_id() + "님에게";
+			msg.append("<div style='width:100%; text-align:center; margin-top:50px;'>");
+			msg.append("<a href='http://" + siteUrl + context + "/mail/changepass");
+			msg.append("/" + vo.getMember_id());
+			msg.append("/" + vo.getMember_code());
+			msg.append("'>");
+			msg.append("<img src='https://i.imgur.com/qbV2JBU.png' style='width:60%;max-width=400px'></a>");
+			msg.append("</div>");
+	}
 		
 		// 받는 사람 E-Mail 주소
 		String mail = vo.getMember_email();

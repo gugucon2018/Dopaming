@@ -91,6 +91,7 @@
                     	<input type="hidden" id="authId" value="${sessionScope.authId}">
                   		<input type="password" class="form-control form-control-sm modal-input" id="changePass">
                     </div>
+                    <br>
                     <div class="text-center mt-4 modal-sendbox">
                        <button class="btn btn-warning mt-1 modal-resendbtn" id="modal-changepass">비밀번호변경</button>
                     </div>

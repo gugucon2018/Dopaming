@@ -126,7 +126,7 @@
 		<if test="searchKeyword != null and searchKeyword !=''">
 			and acorn_content like '%'||#{searchKeyword}||'%'
 		</if>
-		order by acorn_no
+		order by acorn_no desc
 		) c) a where rn between #{first} and #{last}
 	</select>
 	

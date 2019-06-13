@@ -13,7 +13,6 @@
 				<li class="list-group-item"><a href="${pageContext.request.contextPath }/mypage/myUpload">업로드관리</a></li>
 				<li class="list-group-item"><a href="${pageContext.request.contextPath }/mypage/myAcorn">캐시사용내역</a></li>
 				<li class="list-group-item"><a href="${pageContext.request.contextPath }/mypage/myReCash">환급조회/신청</a></li>
-				<li class="list-group-item"><a href="${pageContext.request.contextPath }/mypage/myDelete">회원탈퇴</a></li>
 			</ul>
 		</div>
 	</div>

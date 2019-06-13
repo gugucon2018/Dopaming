@@ -55,7 +55,7 @@ public class MemberController {
         member.setMember_id(member_id);
 		String stateCode = service.logout(member);
         System.out.println("로그아웃상태 : " + stateCode);
-        return "redirect:"+currentUrl; 
+        return "redirect:/"; //+currentUrl; 
 	}
 	
 	/**

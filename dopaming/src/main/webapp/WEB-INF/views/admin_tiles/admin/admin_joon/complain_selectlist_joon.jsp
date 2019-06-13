@@ -97,16 +97,23 @@ function complain_check_update(complain_no){
 			<th>답변</th>
 		</tr>
 		
-		<c:forEach items="${list}" var="i" varStatus="s">
+		<c:forEach items="${list}" var="i" varStatus="status">
+		<!-- 역순 가상번호 -->
+		<c:set var = "pn" value = "${paging.totalRecord - ((paging.page-1) * paging.pageUnit + status.index) }"/>
+		
 			<tr align="center">
-				<td>${i.getRn()}</td>
+				<td>${pn}</td>
 				<td><a href="${pageContext.request.contextPath}/admin/complain_select?complain_no=${ i.getComplain_no()}">
 					${i.getComplain_title()}</a></td>
 				<td>${i.getMember_id() }</td>
 				
-				<c:if test="${i.getBoard_no() != 0}">
+				<c:if test="${list[0].getComplain_type() == '신고' }"> <!-- 게시판번호가 있다면 태그출력 -->
 				<td>
-					<a href="/dopaming/filepost?board_no=${i.getBoard_no()}">${i.getBoard_no() }</a>
+					<c:if test="${i.getBoard_no() != 0}"> <!-- 게시판 번호가 있다면 번호를 출력 -->
+					<a href="${pageContext.request.contextPath}/filepost?board_no=${i.getBoard_no()}">
+					${i.getBoard_no() }
+					</a>
+					</c:if>
 				</td>
 				</c:if>
 
@@ -127,7 +134,7 @@ function complain_check_update(complain_no){
 	
 	<c:if test="${empty list}">
 		<h3 align=center>요청하신 자료가 없습니다.</h3>
-		</c:if>
+	</c:if>
 	
 <!-- 페이징버튼 -->	
 <c:if test="${not empty list}">

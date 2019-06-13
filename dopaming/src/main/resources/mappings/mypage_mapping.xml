@@ -126,7 +126,7 @@
 		<if test="searchKeyword != null and searchKeyword !=''">
 			and acorn_content like '%'||#{searchKeyword}||'%'
 		</if>
-		order by acorn_no
+		order by acorn_no desc
 		) c) a where rn between #{first} and #{last}
 	</select>
 	
@@ -165,4 +165,36 @@
 		</choose>
 	</where>
 	</delete>
+	
+	<!-- 회원별 환급조회 전체 건 수  -->
+	<select id="recashCount" resultType="int">
+		select count(*)
+		from recash
+        where member_id = #{member_id}
+	</select>
+		
+	<!-- 환급조회 -->
+	<select id="recashList" resultType="recash">
+		select a.* 
+		from ( select b.*, rownum rn 
+		from ( select reg_no
+		       , bank
+		       , account_no
+		       , account_own
+		       , reg_recash
+		       , reg_date
+		       , case when recash_date is null then 'N' 
+		         else 'Y' 
+		         end as state
+		from recash
+		where  member_id=#{member_id} ) b) a 
+		where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 환급신청 번호 부여 -->
+	<select id="recashNo" resultType="int">
+		select max(reg_no) + 1
+		from message
+	</select>
+	
 </mapper>

@@ -75,5 +75,14 @@ public class MyBoardServiceImpl implements MyBoardService {
 	public void deleteAcorn(MyAcornVO vo) {
 		dao.deleteAcorn(vo);
 	}
-
+	
+	@Override
+	public Integer recashCount(ReCashVO vo) {
+		return dao.recashCount(vo);
+	}
+	
+	@Override
+	public List<ReCashVO> recashList(ReCashVO vo) {
+		return dao.recashList(vo);
+	}
 }

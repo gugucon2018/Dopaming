@@ -58,6 +58,5 @@ function notice_delete(){
 </form>
 
 </div>
-	
 </body>
 </html>

@@ -47,7 +47,7 @@ function goList(p){
 	page_form.page.value = p;
 	page_form.submit();
 }
-
+ 
 //답변기능(답변기능의 필요한 값들을 전용 폼으로 만들어 보낸다.)
 function complain_check_update(complain_no){
 	//체크박스 입력 체크

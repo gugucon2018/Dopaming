@@ -37,7 +37,9 @@ public class MemberServiceImpl implements MemberService {
 		String stateCode = "LOGIN_STATE_ERROR";
 		// 회원정보데이터 조회
         MemberVO memberData = dao.login(vo);
-        
+        //차단된 아이디인지 검사
+    	if(memberData.getBlack_id() != null)
+         	return "LOGIN_BLACK_ERROR";
         if (memberData != null) {
             // 입력된 비밀번호와 회원정보데이터와 매칭
             if (passwordEncoder.matches(vo.getMember_password(), memberData.getMember_password())) {

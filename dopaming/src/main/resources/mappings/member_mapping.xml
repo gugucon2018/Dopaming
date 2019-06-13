@@ -21,6 +21,9 @@
             , (select grade_kor 
                from grade 
                where member_grade=m.member_grade) grade_kor
+            , (select member_id
+               from black_list
+               where member_id=#{member_id}) black_id
 		from members m
     	where member_id=#{member_id}
     </select>

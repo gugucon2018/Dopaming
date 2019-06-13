@@ -16,6 +16,7 @@ public class MemberVO {
 	private String member_code;
 	private String member_auth;
 	private String grade_kor;
+	private String black_id;
 	
 	//비밀번호 확인
 	public boolean isPwEqualToCheckPw() {
@@ -124,6 +125,14 @@ public class MemberVO {
 
 	public void setGrade_kor(String grade_kor) {
 		this.grade_kor = grade_kor;
+	}
+	
+	public String getBlack_id() {
+		return black_id;
+	}
+
+	public void setBlack_id(String black_id) {
+		this.black_id = black_id;
 	}
 
 	@Override

@@ -95,8 +95,7 @@ public class FileController_Hwan {
 	}
 
 	// 파일 다운로드 처리
-	@RequestMapping(value = "/request_download")
-	@ResponseBody
+	@RequestMapping(value = "/request_download")	
 	public String requestDownload_hwan(FileDownloadVO_Hwan fbvo, FileDownloadVO_Hwan fdvo, HttpSession session,
 			Model model, HttpServletRequest request, HttpServletResponse response, MemberVO mvo,
 			@RequestParam("seller") String id) throws Exception {
@@ -266,14 +265,6 @@ public class FileController_Hwan {
 		System.out.println("수정함");
 		return "redirect:/";
 	}
-	
-	/*//프로그레스바 테스트
-	@RequestMapping(value = "/progressbar_progressing")
-	@ResponseBody
-	public String progressbar_hwan(){
-		System.out.println("작동 확인됨");
-		return "123";
-	}*/
 
 	/**
 	 * Disposition 지정하기.

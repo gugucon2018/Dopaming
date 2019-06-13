@@ -170,9 +170,7 @@
 		            else receiver_id 
 		       end as receiver_id    
 		from message 
-		where sender_id=#{sender_id} 
-		  and receiver_id=#{receiver_id} 
-		  and message_check in ('N','Y','K','YRD','KRD','DRD')
+		where sender_id=#{sender_id} and receiver_id=#{receiver_id} and message_check in ('N','Y','K','YRD','KRD','DRD')
 		order by 1 desc
 	) b ) a where rn between #{first} and #{last}
 	</select>
@@ -243,9 +241,17 @@
 		from message
 		where receiver_id=#{receiver_id} and message_check in ('K','KSD')
 	</select>
+	
+	<!-- 보관함 보낸이 쪽지 수 -->
+	<select id="sender_keep_cnt" resultType="int">
+		select count(*)
+		from message
+		where receiver_id=#{receiver_id} and sender_id=#{sender_id} and message_check in ('K','KSD')
+	</select>
 		
 	<!-- 보관함 보낸이 그룹 -->
 	<select id="sender_keep_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check,
 		       case when sender_id=#{receiver_id} then '나' 
 		            when sender_id like '%admin%' then '관리자'
@@ -254,6 +260,7 @@
 		from message
 		where receiver_id=#{receiver_id} and sender_id=#{sender_id} and message_check in ('K','KSD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
 	</select>
 	
 	<!-- 보관함 이전으로 복원 -->
@@ -300,6 +307,7 @@
 
 	<!-- 휴지통 전체 목록 -->
 	<select id="all_trash_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check, 
 			   case when sender_id=#{receiver_id} then '나' 
 		            when sender_id like '%admin%' then '관리자'
@@ -308,10 +316,26 @@
 		from message 
 		where receiver_id=#{receiver_id} and message_check in ('YRD','KRD','YRDSD','YSDRD','KRDSD','KSDRD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
+	</select>
+	
+	<!-- 휴지통 쪽지 전체 수 -->
+	<select id="trash_cnt" resultType="int">
+		select count(*)
+		from message
+		where receiver_id=#{receiver_id} and message_check in ('YRD','KRD','YRDSD','YSDRD','KRDSD','KSDRD')
+	</select>
+	
+	<!-- 휴지통 보낸이 쪽지 수 -->
+	<select id="sender_trash_cnt" resultType="int">
+		select count(*)
+		from message
+		where receiver_id=#{receiver_id} and sender_id=#{sender_id} and message_check in ('YRD','KRD','YRDSD','YSDRD','KRDSD','KSDRD')
 	</select>
 	
 	<!-- 휴지통 보낸이 그룹 -->
 	<select id="sender_trash_list" resultType="msg">
+	select a.* from ( select b.*, rownum rn from (
 		select message_no, message_title, message_check,
 		       case when sender_id=#{receiver_id} then '나' 
 		            when sender_id like '%admin%' then '관리자'
@@ -320,6 +344,7 @@
 		from message
 		where receiver_id=#{receiver_id} and sender_id=#{sender_id} and message_check in ('YRD','KRD','YRDSD','YSDRD','KRDSD','KSDRD')
 		order by 1 desc
+	) b ) a where rn between #{first} and #{last}
 	</select>
 	
 	<!-- 휴지통 이전으로 복원 -->

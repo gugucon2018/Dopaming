@@ -11,6 +11,7 @@
 <title>마이페이지</title>
 <style>
 #spann {
+	color: red;
 	float: right;
 }
 
@@ -32,8 +33,9 @@
 .active {
 	color: red;
 }
+
 th, td {
-  text-align: center;
+	text-align: center;
 }
 </style>
 <script>
@@ -54,6 +56,7 @@ th, td {
 	<hr>
 	<form name="recashFrm" action="">
 		<span id="spann">
+			아콘과 현금의 환급 비율은 1:1 입니다.
 			<button class="btn btn-danger" type="button" onclick="insertPop()">아콘환급</button>
 		</span>
  		<table class="table table-striped table-hover">

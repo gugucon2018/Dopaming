@@ -82,6 +82,10 @@ input[name="ck"] {
 	border: 1px solid #000;
 }
 
+.btn_page {
+	text-align: center;
+}
+
 
 
 /*
@@ -193,6 +197,22 @@ input[name="ck"]:checked + label[id="ck_receive"] {
 }
 
 .btn_keeping:hover {
+	opacity: 1;
+}
+
+.btn_page_r {
+	width: 25px;
+	height: 25px;
+	border-radius: 8px;
+	border: none;
+	background-color: #eb9316;
+	margin-left: 5px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.btn_page_r:hover {
+	outline: none;
 	opacity: 1;
 }
 
@@ -445,6 +465,22 @@ input[name="ck"]:checked + label[id="ck_sent"] {
 	background-color: #31B404;
 }
 
+.btn_page_s {
+	width: 25px;
+	height: 25px;
+	border-radius: 8px;
+	border: none;
+	background-color: #088A08;
+	margin-left: 5px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.btn_page_s:hover {
+	outline: none;
+	opacity: 1;
+}
+
 
 
 /*
@@ -599,6 +635,22 @@ input[name="ck"]:checked + label[id="ck_keep"] {
 	background-color: #2E9AFE;
 }
 
+.btn_page_k {
+	width: 25px;
+	height: 25px;
+	border-radius: 8px;
+	border: none;
+	background-color: #265a88;
+	margin-left: 5px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.btn_page_k:hover {
+	outline: none;
+	opacity: 1;
+}
+
 
 
 /*
@@ -751,6 +803,22 @@ input[name="ck"] + label[id="ck_trash"] {
 input[name="ck"]:checked + label[id="ck_trash"] {
 	border: 5px solid #fff;
 	background-color: #848484;
+}
+
+.btn_page_t {
+	width: 25px;
+	height: 25px;
+	border-radius: 8px;
+	border: none;
+	background-color: #A4A4A4;
+	margin-left: 5px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.btn_page_t:hover {
+	outline: none;
+	opacity: 1;
 }
 
 

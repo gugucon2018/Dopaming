@@ -275,12 +275,29 @@ public class MsgController {
 	//보관함 보낸이 그룹
 	@RequestMapping(value="/msg_sender_k", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> keepSender(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> keepSender(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setReceiver_id(memberVO.getMember_id());
 		String id = service.sender_receive(vo);
 		vo.setSender_id(id);
-		return service.sender_keep_list(vo);
+		
+		paging.setPageUnit(5);
+		
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+				
+		paging.setTotalRecord(service.sender_keep_cnt(vo));
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.sender_keep_list(vo));
+				
+		return map;
 	}
 	
 	//보관함 이전으로 복원
@@ -307,21 +324,54 @@ public class MsgController {
 	//쪽지 보관함 전체 목록
 	@RequestMapping(value="/msg_trash", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> trashAll(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> trashAll(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setReceiver_id(memberVO.getMember_id());
-		return service.all_trash_list(vo);
+		
+		paging.setPageUnit(5);
+
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		paging.setTotalRecord(service.trash_cnt(vo));
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.all_trash_list(vo));
+			
+		return map;
 	}
 	
 	//휴지통 보낸이 그룹
 	@RequestMapping(value="/msg_sender_t", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MsgVO> trashSender(Model model, HttpSession session, MemberVO memberVO, MsgVO vo) {
+	public Map<String, Object> trashSender(Paging paging, HttpSession session, MemberVO memberVO, MsgVO vo) {
+		
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setReceiver_id(memberVO.getMember_id());
 		String id = service.sender_receive(vo);
 		vo.setSender_id(id);
-		return service.sender_trash_list(vo);
+		
+		paging.setPageUnit(5);
+		
+		if( paging.getPage() == 0) {
+			paging.setPage(1); 
+		}
+		
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+				
+		paging.setTotalRecord(service.sender_trash_cnt(vo));
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		map.put("paging", paging );
+		map.put("list", service.sender_trash_list(vo));
+				
+		return map;
 	}
 	
 	//보관함 이전으로 복원

@@ -84,6 +84,18 @@ font-size : 20pt;
 	</script>
 	<c:remove var="error" scope="session" />
 </c:if>
+<script>
+$(document).ready(function() {
+	myAcorn();
+	setInterval(myAcorn, 1000);
+});
+
+function myAcorn() {
+	var stock = "${memberSession.acorn_stock}";
+	$("#acorn").html(stock);	
+}
+
+</script>
 
 </head>
 <div class="container-fluid">
@@ -116,7 +128,7 @@ font-size : 20pt;
 							<li><label for='chk_msg'><span id="cnt" class="badge cnt_msg">0</span></label></li>						    
 						    <li><button class="btn_msg" id="chk_msg" type="button"><img src="${pageContext.request.contextPath}/resources/images/ho/icon_msg.png" width="22px" height="24px"></button></li>
 						    <li><a class="navbar-brand">${sessionScope.Id}님 안녕하세요.</a></li>
-						    <li><a class="navbar-brand">아콘 : ${memberSession.acorn_stock}</a></li>
+						    <li><a class="navbar-brand" >아콘 : <span id="acorn"></span></a></li>
 							<li><a class="navbar-brand">등급 : ${memberSession.grade_kor}</a></li>
 							<li><a class="navbar-brand" href="${pageContext.request.contextPath }/mypage/myDown">마이페이지</a></li>
 							<li><a class="navbar-brand modal-user" data-user="logout" data-id="${sessionScope.Id}">로그아웃</a></li>

@@ -86,6 +86,9 @@ public interface MsgService {
 	
 	//keep_cnt
 	public int keep_cnt(MsgVO vo);
+	
+	//sender_keep_cnt
+	public int sender_keep_cnt(MsgVO vo);
 		
 	//sender_keep_list
 	public List<MsgVO> sender_keep_list(MsgVO vo);
@@ -102,6 +105,12 @@ public interface MsgService {
 	
 	//all_trash_list
 	public List<MsgVO> all_trash_list(MsgVO vo);
+	
+	//trash_cnt
+	public int trash_cnt(MsgVO vo);
+	
+	//sender_trash_cnt
+	public int sender_trash_cnt(MsgVO vo);
 	
 	//sender_trash_list
 	public List<MsgVO> sender_trash_list(MsgVO vo);

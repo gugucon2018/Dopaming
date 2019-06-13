@@ -140,6 +140,11 @@ public class MsgServiceImpl implements MsgService{
 	public int keep_cnt(MsgVO vo) {
 		return dao.keep_cnt(vo);
 	}
+	
+	@Override
+	public int sender_keep_cnt(MsgVO vo) {
+		return dao.sender_keep_cnt(vo);
+	}
 		
 	@Override
 	public List<MsgVO> sender_keep_list(MsgVO vo) {
@@ -163,6 +168,16 @@ public class MsgServiceImpl implements MsgService{
 	@Override
 	public List<MsgVO> all_trash_list(MsgVO vo) {
 		return dao.all_trash_list(vo);
+	}
+	
+	@Override
+	public int trash_cnt(MsgVO vo) {
+		return dao.trash_cnt(vo);
+	}
+	
+	@Override
+	public int sender_trash_cnt(MsgVO vo) {
+		return dao.sender_trash_cnt(vo);
 	}
 	
 	@Override

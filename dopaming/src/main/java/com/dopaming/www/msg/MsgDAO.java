@@ -140,6 +140,11 @@ public class MsgDAO {
 	public int keep_cnt(MsgVO vo) {
 		return mybatis.selectOne("MsgDAO.keep_cnt", vo);
 	}
+	
+	//보관함 보낸이 쪽지 수
+	public int sender_keep_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.sender_keep_cnt", vo);
+	}
 		
 	//보관함 보낸이 그룹
 	public List<MsgVO> sender_keep_list(MsgVO vo) {
@@ -160,12 +165,22 @@ public class MsgDAO {
 	
 //Trash
 	
-	//휴지통 전치 목록
+	//휴지통 전체 목록
 	public List<MsgVO> all_trash_list(MsgVO vo) {
 		return mybatis.selectList("MsgDAO.all_trash_list",vo);
 	}
 	
-	//보관함 보낸이 그룹
+	//휴지통 쪽지 전체 수
+	public int trash_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.trash_cnt", vo);
+	}
+	
+	//휴지통 보낸이 쪽지 수
+	public int sender_trash_cnt(MsgVO vo) {
+		return mybatis.selectOne("MsgDAO.sender_trash_cnt", vo);
+	}
+	
+	//휴지통 보낸이 그룹
 	public List<MsgVO> sender_trash_list(MsgVO vo) {
 		return mybatis.selectList("MsgDAO.sender_trash_list",vo);
 	}

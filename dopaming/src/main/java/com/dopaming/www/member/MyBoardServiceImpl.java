@@ -1,7 +1,11 @@
 package com.dopaming.www.member;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.dopaming.www.acorn.AcornVO;
 import com.dopaming.www.file.FileDAOMybatis_Hwan;
 import com.dopaming.www.file.FilePostVO_Hwan;
+import com.dopaming.www.msg.MsgVO;
 
 
 @Service("myBoardService")
@@ -84,5 +89,24 @@ public class MyBoardServiceImpl implements MyBoardService {
 	@Override
 	public List<ReCashVO> recashList(ReCashVO vo) {
 		return dao.recashList(vo);
+	}
+	
+	@Override
+	public int recashNo(ReCashVO vo) {
+		return dao.recashNo(vo);
+	}
+	
+	@Override
+	public void recashIns(ReCashVO vo, HttpServletResponse response) throws IOException {
+				
+		PrintWriter out = response.getWriter();
+		
+		dao.recashIns(vo);
+	
+		out.print("<script>");
+		out.print("opener.location.href='./myReCash';");
+		out.print("window.close();");
+		out.print("</script>");
+		out.close();	
 	}
 }

@@ -1,15 +1,23 @@
 package com.dopaming.www.member;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dopaming.www.common.Paging;
+import com.dopaming.www.login.MemberVO;
+import com.dopaming.www.msg.MsgVO;
 
 @Controller
 @RequestMapping(value="/mypage")
@@ -130,9 +138,27 @@ public class MyBoardCotroller {
 		
 		//전체건수
 		paging.setTotalRecord(service.recashCount(vo));
-		System.out.println("gdgdgdgd");
 		model.addAttribute("paging",paging);
 		model.addAttribute("list",service.recashList(vo));
 		return "mypage_hong/myrecash";
 	}
+	
+	@RequestMapping(value ="/myReCashIns", method = RequestMethod.GET )
+	public String insertPop(HttpSession session) {
+		return "mypage_hong/empty/myrecashIns";
+	}
+	
+	//환급신청
+	@RequestMapping(value="/myReCashIns.do", method=RequestMethod.POST)
+	public void recashIns(ReCashVO vo, HttpSession session, HttpServletResponse response) throws IOException {	
+		//세션에서 아이디정보값 가져오기
+		String id = (String)session.getAttribute("Id");
+		vo.setMember_id(id);
+		
+		//환급신청 번호 부여
+		String no = String.valueOf(service.recashNo(vo));
+		vo.setReg_no(no);
+		
+		service.recashIns(vo, response);		
+	}	
 }

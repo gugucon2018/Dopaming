@@ -93,5 +93,17 @@ public class MyBoardDAO {
 		System.out.println("===> Mybatis로 recashList() 기능 처리");
 		return mybatis.selectList("MyBoardDAO.recashList",vo);
 	}
+	
+	//환급신청 번호 부여
+	public int recashNo(ReCashVO vo) {
+		System.out.println("===> Mybatis로 recashNo() 기능 처리");
+		return mybatis.selectOne("MyBoardDAO.recashNo",vo);
+	}
+	
+	//환급신청
+	public void recashIns(ReCashVO vo) {
+		System.out.println("===> Mybatis로 recashIns() 기능 처리");
+		mybatis.insert("MyBoardDAO.recashIns",vo);
+	}
 
 }

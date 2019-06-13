@@ -187,14 +187,21 @@
 		         else 'Y' 
 		         end as state
 		from recash
-		where  member_id=#{member_id} ) b) a 
+		where  member_id=#{member_id}
+		order by 1 desc ) b) a 
 		where rn between #{first} and #{last}
 	</select>
 	
 	<!-- 환급신청 번호 부여 -->
 	<select id="recashNo" resultType="int">
 		select max(reg_no) + 1
-		from message
+		from recash
 	</select>
 	
+	<!-- 환급신청 -->
+	<insert id="recashIns">
+		insert into recash(reg_no, member_id, bank, account_no, account_own, reg_recash, reg_date)
+		values (#{reg_no}, #{member_id}, #{bank}, #{account_no}, #{account_own}, #{reg_recash}, sysdate)
+	</insert>
+
 </mapper>

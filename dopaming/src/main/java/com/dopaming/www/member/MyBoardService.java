@@ -1,8 +1,12 @@
 package com.dopaming.www.member;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.dopaming.www.acorn.AcornVO;
+import com.dopaming.www.msg.MsgVO;
 
 public interface MyBoardService {
 	//내가 받은 자료 조회
@@ -27,4 +31,8 @@ public interface MyBoardService {
 	public Integer recashCount(ReCashVO vo);
 	//환급조회
 	public List<ReCashVO> recashList(ReCashVO vo);
+	//환급신청 번호 부여
+	public int recashNo(ReCashVO vo);
+	//환급신청
+	public void recashIns(ReCashVO vo, HttpServletResponse response) throws IOException;	
 }

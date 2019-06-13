@@ -39,15 +39,15 @@
 </style>
 </head>
 <body>
-<form action="myrecashIns.do">
+<form action="myReCashIns.do" method="post">
 	<h3>계좌은행</h3>
-		<input type="text" class="insertbar" name="bank"> 
+		<input type="text" class="insertbar" name="bank" required> 
 	<h3>계좌번호</h3>
-		<input type="text" class="insertbar" name="account_no" placeholder=' "-" 는 생략해주세요.'>
+		<input type="text" class="insertbar" name="account_no" placeholder=' "-" 는 생략해주세요.' required>
 	<h3>예금주</h3>
-		<input type="text" class="insertbar" name="account_own">
+		<input type="text" class="insertbar" name="account_own" required>
 	<h3>신청환급량</h3>
-		<input type="text" class="insertbar" name="reg_recash" id="myacorn">
+		<input type="text" class="insertbar" name="reg_recash" id="myacorn" required>
 			<label for="myacorn">현재 아콘 보유량:${memberSession.acorn_stock}</label>
 	<button type="submit" class="insertbtn">신청하기</button>
 </form>

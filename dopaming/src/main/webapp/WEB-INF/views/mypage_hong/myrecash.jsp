@@ -40,7 +40,13 @@ th, td {
 	function go_page(p) {
 		recashFrm.page.value = p;
 		recashFrm.submit();
-	}	
+	}
+	
+	function insertPop() {
+		window.open('myReCashIns','insert','width=600,height=500');
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -48,7 +54,7 @@ th, td {
 	<hr>
 	<form name="recashFrm" action="">
 		<span id="spann">
-			<button class="btn btn-danger" type="button" onclick="">아콘환급</button>
+			<button class="btn btn-danger" type="button" onclick="insertPop()">아콘환급</button>
 		</span>
  		<table class="table table-striped table-hover">
  			<thead>
@@ -57,8 +63,8 @@ th, td {
 	 				<th>계좌은행</th>
 	 				<th>계좌번호</th>
 	 				<th>예금주</th>
-	 				<th>신청날짜</th>
 	 				<th>아콘환급량</th>
+	 				<th>신청날짜</th>	 				
 	 				<th>환급여부</th>
  				</tr>
  			</thead>

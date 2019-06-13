@@ -315,7 +315,7 @@ public class JoonController {
 		}
 	
 	//고객센터 답변수정(관리자)
-	@RequestMapping(value = "/complain_check_update")
+	@RequestMapping(value = "/admin/complain_check_update")
 	public String complain_check_update(ComplainVO vo, HttpServletRequest request) throws UnsupportedEncodingException {
 		
 		//페이지 고정값

@@ -176,8 +176,8 @@ th {
 					alert("동작 성공...");
 				},*/
 				error : function(xhr, status, message) {
-					console.log("에러 발생...");
-					alert("에러 발생...");
+					//console.log("에러 발생...");
+					//alert("에러 발생...");
 				}
 			});
 		});

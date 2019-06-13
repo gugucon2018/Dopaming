@@ -113,8 +113,8 @@ th, td {
 	<form name="acornFrm">
 		<span id="spann">
 			<div class="input-group">
-				<span class="trashing">
-					<i class="fa fa-credit-card"></i>
+				<span class="trashing" style="font-weight: bold;">
+					남은캐시
 				</span>
 				<input type="text" class="title_c" value="${acorn}" readonly="readonly">
 				<button class="btn btn-danger btn-sm" type="button" onclick="td_delete()">삭제</button>
@@ -141,9 +141,15 @@ th, td {
  				<c:otherwise>
 		 			<c:forEach items="${list}" var="acorn">
 		 				<tr>
+		 					<c:set var="content" value="${acorn.acorn_content}"></c:set>
 		 					<td><input type="checkbox" name="seqs" value="${acorn.acorn_no}"></td>
 		 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${acorn.acorn_date}"/></td>
-		 					<td>${acorn.acorn_point}</td>
+		 					<c:if test="${fn:contains(content, '배당') or fn:contains(content, '회원가입') or fn:contains(content, '충전')}">
+		 						<td style="color: blue;">${acorn.acorn_point}</td>
+		 					</c:if>
+		 					<c:if test="${fn:contains(content, '다운로드')}">
+		 						<td style="color: red;">${acorn.acorn_point}</td>
+		 					</c:if>
 		 					<td>${acorn.acorn_content}</td>
 		 				</tr>
 		 			</c:forEach>

@@ -314,8 +314,8 @@ public class JoonController {
 			return "jon/complain_selectlist_joon_nomal"; 
 		}
 	
-	//고객센터 답변수정
-	@RequestMapping(value = "/admin/complain_check_update")
+	//고객센터 답변수정(관리자)
+	@RequestMapping(value = "admin/complain_check_update")
 	public String complain_check_update(ComplainVO vo, HttpServletRequest request) throws UnsupportedEncodingException {
 		
 		//페이지 고정값
@@ -325,7 +325,7 @@ public class JoonController {
 		ComplainService.complain_check_update(vo);	
 		
 		//redirect의 경우에는 값이 지워지기 때문에 다시 complain_type값을 보내고 돌아갈뷰 지정, 한글값이 깨져서 직접 인코딩해서 보낸다. 
-		return "redirect:admin/complain_selectlist?page="+page+"&complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
+		return "redirect:/admin/complain_selectlist?page="+page+"&complain_type="+ URLEncoder.encode(vo.getComplain_type(),"utf-8");
 	}
 	
 	// 고객센터 뷰(관리자)

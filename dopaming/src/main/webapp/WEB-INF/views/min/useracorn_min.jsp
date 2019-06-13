@@ -5,12 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/msg.js"></script>
+
 <style>
 
 table {
@@ -22,7 +20,7 @@ table {
 td, th {
 	border: 1px solid #dddddd;
 	text-align: center;
-	padding: 8px;
+	padding: 15px 8px;
 }
 tr:nth-child(even) {
 	background-color: #dddddd;
@@ -32,6 +30,7 @@ tr:nth-child(even) {
 text-align: left;
 width:500px;
 }
+
 </style>
 <script> 
 //1.결제방식 radio선택후 버튼클릭하여 value값을 넘기면서 api화면 띄움
@@ -95,42 +94,43 @@ width:500px;
 <form id="payresult" action="./acornForm" method="post">
 <input type="hidden" name="acorn_charge" value=""/>
 <input type="hidden" name="pay_code" value=""/>
-</form> bootstrap 3 라디오버튼
-	<div>
+</form> 
+	<div >
 		<h1 style="text-align: center;">결제페이지</h1>
 		<hr>
 		<div>
-			<table style="margin-left: auto; margin-right: auto;">
+			<table style="margin-left: auto; margin-right: auto; ">
 				<tr >
-					<th >구매금액</th>
+					<th colspan="2">구매금액</th>					
 					<th style="width="350px;">세부충전금액</th>
+					
 				</tr>
 				<tr>
-				    <td ><input type="radio" name="pay" value="0" class="magic-radio">직접 입력</td>
+				    <td style="BORDER-RIGHT : 0px SOLID;"><input type="radio" name="pay" value="0" style="width:20px;height:20px;"></td><td> 직접 입력</td>
 				    <td class="acorn"><input type="text" name="inputpay" size='6'>아콘 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="5000">5000 아콘</td>
+					<td style="BORDER-RIGHT : 2px SOLID white;"><input type="radio" name="pay" value="5000" style="width:20px;height:20px"></td><td> 5000 아콘</td>
 					<td class="acorn">5000아콘 충천 + 500아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="10000">10000 아콘</td>
+					<td style="BORDER-RIGHT : 0px SOLID;"><input type="radio" name="pay" value="10000" style="width:20px;height:20px"></td><td> 10000 아콘</td>
 					<td class="acorn">10000아콘 충전 + 1000아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="20000">20000 아콘</td>
+					<td style="BORDER-RIGHT : 2px SOLID white;"><input type="radio" name="pay" value="20000" style="width:20px;height:20px"></td><td> 20000 아콘</td>
 					<td class="acorn">20000원 충천 + 2500아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="25000">25000 아콘</td>
+					<td style="BORDER-RIGHT : 0px SOLID;"><input type="radio" name="pay" value="25000" style="width:20px;height:20px"></td><td> 25000 아콘</td>
 					<td class="acorn">25000원 충천 + 3000아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="50000">50000 아콘</td>
+					<td style="BORDER-RIGHT : 2px SOLID white;"><input type="radio" name="pay" value="50000" style="width:20px;height:20px"></td><td> 50000 아콘</td>
 					<td class="acorn">50000원 충천 + 6500아콘 추가 충전</td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="pay" value="100000">100000 아콘</td>
+					<td style="BORDER-RIGHT : 0px SOLID;"><input type="radio" name="pay" value="100000" style="width:20px;height:20px"></td><td> 100000 아콘</td>
 					<td class="acorn">100000원 충천 + 15000아콘 추가 충전</td>
 				</tr>
 			</table>
@@ -138,10 +138,7 @@ width:500px;
 		<div style="text-align: center;">
 			<button type="button" onclick="payment()" class="btn btn-primary" >결제하기</button>
 		</div>
-		
-		<br> <br> <br>
-		
+		<br><br><br>
 	</div>
-	
 </body>
 </html>

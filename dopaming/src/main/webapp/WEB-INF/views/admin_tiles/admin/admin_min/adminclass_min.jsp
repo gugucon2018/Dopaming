@@ -66,7 +66,7 @@
 	<h5>
 	브론즈도토리(기본)&nbsp; 1만원미만 + 업로드횟수 5회미만<br>
 	실버도토리 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1만원이상 ~ 15만원미만 + 업로드횟수 5회이상 ~ 50회미만<br>
-	골드도토리 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15만원이상 ~ 50만원미만 + 업로드횟수 50회이상 ~ 100미만<br>
+	골드도토리 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15만원이상 ~ 50만원미만 + 업로드횟수 50회이상 ~ 100회미만<br>
 	다이아도토리 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50만원이상 + 업로드횟수 100회이상
 	</h5>
 	</div>

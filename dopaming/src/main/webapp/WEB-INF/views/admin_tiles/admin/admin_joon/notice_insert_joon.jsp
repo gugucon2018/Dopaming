@@ -48,9 +48,9 @@ function notice_insert_btn2(){
 Kakao.init('f98be4f404409ef11e38b90311e98ca0'); //내꺼
 function notice_insert_btn(){
 			// 로그인창. 처음 한번만 호출하면 됩니다.
-			   Kakao.Auth.login({ 
-				scope : "PROFILE,TALK_MESSAGE", //동의창 뿌리고 동의 얻기
-						success : function(authObj) {// 로그인 성공시, API를 호출합니다.
+			   Kakao.Auth.login({ //카카오톡 객체에서 로그인을 하는 기능을 불러온다.
+				scope : "PROFILE,TALK_MESSAGE", //프로필에 대한 정보와, 메세지를 보낼 수있는 권한을 얻기 위한 동의 화면을 띄우고 얻기
+						success : function(authObj) {//로그인 성공시, 나에게 보내는 API를 호출합니다.
 							Kakao.API.request({//restAPI를 사용하기 위해서 request로 요청한다.
 										url : '/v2/api/talk/memo/default/send', //내게 보내기
 										data : { //본문

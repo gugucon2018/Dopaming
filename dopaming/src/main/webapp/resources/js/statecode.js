@@ -29,6 +29,7 @@ stateCode.set('INFODEL_STATE_ERROR', '회원님의 정보 삭제에 실패했습
 //로그인
 stateCode.set('LOGIN_STATE_SUCCESS', '로그인 되었습니다.');
 stateCode.set('LOGIN_STATE_ERROR', '아이디 혹은 패스워드가 다릅니다.');
+stateCode.set('LOGIN_BLACK_ERROR', '아이디가 차단되었습니다.');
 
 //소셜 로그인
 stateCode.set("SOCIAL_LOGIN_SUCCESS", "로그인 되었습니다.");

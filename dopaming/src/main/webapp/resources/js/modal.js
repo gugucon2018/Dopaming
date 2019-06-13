@@ -12,6 +12,8 @@ $(document).ready(function () {
         switch (user) {
             case 'login' :
                 $('#modalLogin').modal('show');
+                var userInputId = getCookie("userId");// 저장된 쿠기값 가져오기
+            	$("input[name='member_id']").val(userInputId);
                 break;
             case 'join' :
                 $('#joinModal').modal('show');

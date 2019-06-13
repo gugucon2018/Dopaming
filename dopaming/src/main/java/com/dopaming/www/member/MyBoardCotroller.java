@@ -110,4 +110,29 @@ public class MyBoardCotroller {
 		service.deleteAcorn(vo);
 		return "redirect:/mypage/myAcorn";
 	}
+	
+	//환급조회
+	@RequestMapping(value ="/myReCash", method = RequestMethod.GET )
+	public String recashList(ReCashVO vo, Paging paging, Model model, HttpSession session) {
+		//세션에서 아이디정보값 가져오기
+		String id = (String)session.getAttribute("Id");
+		vo.setMember_id(id);
+		
+		//페이징 처리
+		//페이지번호 파라미터
+		if(paging.getPage() == 0) {
+			paging.setPage(1);
+		}
+		
+		//시작,마지막 레코드 번호
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		//전체건수
+		paging.setTotalRecord(service.recashCount(vo));
+		System.out.println("gdgdgdgd");
+		model.addAttribute("paging",paging);
+		model.addAttribute("list",service.recashList(vo));
+		return "mypage_hong/myrecash";
+	}
 }

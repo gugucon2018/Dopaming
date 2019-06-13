@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dopaming.www.acorn.AcornVO;
+import com.dopaming.www.msg.MsgVO;
 
 @Repository
 public class MyBoardDAO {
@@ -80,4 +81,17 @@ public class MyBoardDAO {
 		System.out.println("===> Mybatis로 deleteAcorn() 기능 처리");
 		mybatis.delete("MyBoardDAO.deleteAcorn", vo);
 	}
+	
+	//건수 조회(회원별 환급목록)
+	public Integer recashCount(ReCashVO vo) {
+		System.out.println("===> Mybatis로 recashCount() 기능 처리");
+		return mybatis.selectOne("MyBoardDAO.recashCount", vo);
+	}
+	
+	//환급조회
+	public List<ReCashVO> recashList(ReCashVO vo) {
+		System.out.println("===> Mybatis로 recashList() 기능 처리");
+		return mybatis.selectList("MyBoardDAO.recashList",vo);
+	}
+
 }

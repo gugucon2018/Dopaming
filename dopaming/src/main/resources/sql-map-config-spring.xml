@@ -39,7 +39,8 @@
 		<typeAlias type="com.dopaming.www.member.MyAcornVO" alias="myacorn"/>		
 		
 		<!-- ho -->
-		<typeAlias type="com.dopaming.www.msg.MsgVO" alias="msg"/> 
+		<typeAlias type="com.dopaming.www.msg.MsgVO" alias="msg"/>
+		<typeAlias type="com.dopaming.www.member.ReCashVO" alias="recash"/>
 	</typeAliases>
 
 </configuration>

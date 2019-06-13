@@ -148,7 +148,7 @@ th, td {
 		 						<td style="color: blue;">${acorn.acorn_point}</td>
 		 					</c:if>
 		 					<c:if test="${fn:contains(content, '다운로드')}">
-		 						<td style="color: red;">${acorn.acorn_point}</td>
+		 						<td style="color: red;">-${acorn.acorn_point}</td>
 		 					</c:if>
 		 					<td>${acorn.acorn_content}</td>
 		 				</tr>
@@ -164,11 +164,8 @@ th, td {
 	<div align="right">
 		<form name="searchFrm" method="get">
 			<input type="hidden" name="page" value="1"> 
-			사용내역 : <input name="searchKeyword" value="${MyAcornVO.searchKeyword}" />
+			사용내역 : <input name="searchKeyword" value="${myAcornVO.searchKeyword}" />
 			<button class="btn btn-info" type="submit">검색</button>
-			<script>
-				document.searchFrm.searchKeyword.value="${MyAcornVO.searchKeyword}";
-			</script>
 		</form>
 	</div>
 </body>

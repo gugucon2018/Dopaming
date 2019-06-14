@@ -13,6 +13,7 @@ public class FileUploadVO {
 	private String path;
 	private Integer first;
 	private Integer last;
+	private int down_count;
 		
 	public Integer getFirst() {
 		return first;
@@ -94,4 +95,11 @@ public class FileUploadVO {
 		this.path = path;
 	}
 
+	public int getDown_count() {
+		return down_count;
+	}
+
+	public void setDown_count(int down_count) {
+		this.down_count = down_count;
+	}
 }

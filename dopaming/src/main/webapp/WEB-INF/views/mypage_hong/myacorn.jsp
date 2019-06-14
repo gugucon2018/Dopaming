@@ -108,13 +108,13 @@ th, td {
 </script>
 </head>
 <body>
-	<h1 style="text-align: center;">캐시사용내역</h1>
+	<h1 style="text-align: center;">아콘사용내역</h1>
 	<hr>
 	<form name="acornFrm">
 		<span id="spann">
 			<div class="input-group">
 				<span class="trashing" style="font-weight: bold;">
-					남은캐시
+					남은아콘
 				</span>
 				<input type="text" class="title_c" value="${acorn}" readonly="readonly">
 				<button class="btn btn-danger btn-sm" type="button" onclick="td_delete()">삭제</button>
@@ -125,7 +125,7 @@ th, td {
  				<tr>
 	 				<th><input type="checkbox" id="td_checkAll" onclick="checkAll();"/></th>	
 	 				<th>날짜</th>
-	 				<th>포인트</th>
+	 				<th>아콘</th>
 	 				<th>사용내역</th>
  				</tr>
  			</thead>

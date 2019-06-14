@@ -52,8 +52,10 @@ public class MyBoardServiceImpl implements MyBoardService {
 			fvo.setBoard_no(Integer.parseInt(s));
 			List<FilePostVO_Hwan> list = filedao.select_post_fileList(fvo);
 			for(int i = 0; i<list.size(); i++) {
-				File file = new File(vo.getPath(),list.get(i).getFileName_List());
-				file.delete();
+				if(list.get(i).getDown_count() == 0) {
+					File file = new File(vo.getPath(),list.get(i).getFileName_List());
+					file.delete();					
+				}
 			}
 		}
 		dao.deleteUpload(vo);

@@ -48,7 +48,7 @@ th, td {
 	//전체선택
 	function checkAll(){
 	      if( $("#td_checkAll").is(':checked') ){
-	        $("input[name=seqs]").prop("checked", true);
+	        $("input[name=seqs]:enabled").prop("checked", true);
 	      }else{
 	        $("input[name=seqs]").prop("checked", false);
 	      }
@@ -90,7 +90,7 @@ th, td {
 	 				<th>게시판번호</th>
 	 				<th>제목</th>
 	 				<th>종류</th>
-	 				<th>용량(단위: MB)</th>	
+	 				<th>용량(단위: MB)</th>
 	 				<th>등록일</th>	
  				</tr>
  			</thead>
@@ -106,7 +106,9 @@ th, td {
  				<c:otherwise>
 		 			<c:forEach items="${list}" var="upload">
 		 				<tr>
-		 					<td><input type="checkbox" name="seqs" value="${upload.board_no}"></td>
+		 					<td>
+		 						<input type="checkbox" name="seqs" value="${upload.board_no}" <c:if test="${upload.down_count > 0}">disabled="disabled"</c:if>>
+		 					</td>
 		 					<td>${upload.board_no}</td>
 		 					<td><a href="${pageContext.request.contextPath }/filepost?board_no=${upload.board_no}&member_id=${upload.member_id}">
 		 					${upload.board_title}</a></td>

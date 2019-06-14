@@ -190,7 +190,7 @@ public class MemberServiceImpl implements MemberService {
 		    // 아이디 검증 [ 영어 또는 숫자 포함 / 문자 길이 12까지 ]
             if (!MemberValidation.checkEngAndNum(member.getMember_id()) || !MemberValidation.textLengthComparison(12, member.getMember_id())) {
                 stateCode = "ID_STATE_ERROR";
-                // 비밀번호 검증 [ 영어, 숫자 포함 / 문자 길이 5-16까지 ]
+                // 비밀번호 검증 [ 영어, 숫자 포함 / 문자 길이 8-16까지 ]
             } else if (!MemberValidation.checkPassword(member.getMember_password())) {
                 stateCode = "PASS_STATE_ERROR";
                 // 비밀번호 일치하는지 검사

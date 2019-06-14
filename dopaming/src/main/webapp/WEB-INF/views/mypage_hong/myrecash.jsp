@@ -75,7 +75,7 @@ th, td {
  			<c:choose>
  				<c:when test="${fn:length(list) == 0}">
  					<tr>
- 						<td colspan="5" align="center">
+ 						<td colspan="7" align="center">
  							환급내역이 없습니다.
  						</td>
  					</tr>

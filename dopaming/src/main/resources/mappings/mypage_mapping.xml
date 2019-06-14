@@ -36,6 +36,9 @@
 	        ,b.category_big
 			,round(sum(f.file_storage),2) file_storage
 	        ,f.upload_date
+	        ,(select count(*) 
+			  from file_download d
+		      where d.group_no = b.board_no) down_count
 		from board b join file_upload f
 		on b.board_no = f.group_no
 		inner join members m on m.member_id=b.member_id

@@ -11,6 +11,7 @@ public class FilePostVO_Hwan {
 	private String board_img;	
 	private double board_file_storage;
 	private String fileName_List;
+	private int down_count;
 		
 	//페이징하기위한 첫,마지막 번호
 	private int first;
@@ -87,5 +88,11 @@ public class FilePostVO_Hwan {
 	}
 	public void setBoard_img(String board_img) {
 		this.board_img = board_img;
+	}
+	public int getDown_count() {
+		return down_count;
+	}
+	public void setDown_count(int down_count) {
+		this.down_count = down_count;
 	}
 }

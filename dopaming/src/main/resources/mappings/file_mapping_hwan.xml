@@ -107,7 +107,10 @@
 	<!-- 게시글 파일리스트 -->
 	<select id="Board_FileList"
 		resultType="com.dopaming.www.file.FilePostVO_Hwan">
-		select f.file_name as fileName_List
+		select f.file_name as fileName_List,
+		(select count(*) 
+		from file_download d
+		where d.file_no = f.file_no) down_count
 		from board b inner join file_upload
 		f
 		on b.board_no = f.group_no

@@ -69,7 +69,7 @@
 </head>
 <body>
 	<div>
-		<h1 style="text-align: center;">유저별 사용량</h1>
+		<h1 style="text-align: center;">사용통계</h1>
 		<hr>
 		<span id="spann">
 			<div>

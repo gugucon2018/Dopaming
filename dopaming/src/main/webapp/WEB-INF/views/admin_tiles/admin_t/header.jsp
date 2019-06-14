@@ -44,8 +44,10 @@
             <a class="collapse-item" href="${pageContext.request.contextPath }/admin/classForm">등급관리</a>
             <a class="collapse-item" href="${pageContext.request.contextPath }/admin/NormalListForm">일반회원관리</a>
             <a class="collapse-item" href="${pageContext.request.contextPath }/admin/blackListForm">블랙회원관리</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/uploadlistForm">업로드한 리스트 뷰 </a>
-            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/acornlist">환불처리 </a>              
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/uploadlistForm">업로드한 리스트 뷰</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath }/admin/acornlist">환불처리</a> 
+            <a class="collapse-item" href="">환급관리</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/chartList">사용통계</a>             
           </div>
         </div>
       </li>
@@ -72,40 +74,6 @@
       <div class="sidebar-heading">
         Addons
       </div> -->
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>통계관리</span>
-        </a>
-        <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">통계관리</h6>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/chartList">유저별 사용량</a>
-            <a class="collapse-item" href="utilities-border.html">파일별 용량</a>
-            <a class="collapse-item" href="utilities-animation.html">회사 파일 보유량</a>            
-          </div>
-        </div>
-      </li>
-      
-      
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>매출관리</span>
-        </a>
-        <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">매출관리</h6>
-            <a class="collapse-item" href="utilities-color.html">배분 수익</a>
-            <a class="collapse-item" href="utilities-border.html">배분 설정</a>
-            <a class="collapse-item" href="utilities-animation.html">사용자별 결제 상황도</a>
-            <a class="collapse-item" href="utilities-animation.html">캐시 관리</a>            
-          </div>
-        </div>
-      </li>
 
 	  <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">

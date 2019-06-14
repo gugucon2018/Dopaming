@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dopaming.www.acorn.AcornVO;
+import com.dopaming.www.admin.recash.ReCashVO;
 import com.dopaming.www.msg.MsgVO;
 
 @Repository

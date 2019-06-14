@@ -40,7 +40,7 @@
 		
 		<!-- ho -->
 		<typeAlias type="com.dopaming.www.msg.MsgVO" alias="msg"/>
-		<typeAlias type="com.dopaming.www.member.ReCashVO" alias="recash"/>
+		<typeAlias type="com.dopaming.www.admin.recash.ReCashVO" alias="recash"/>
 	</typeAliases>
 
 </configuration>

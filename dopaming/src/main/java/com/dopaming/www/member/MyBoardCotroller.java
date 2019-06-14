@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dopaming.www.admin.recash.ReCashVO;
 import com.dopaming.www.common.Paging;
 import com.dopaming.www.login.MemberVO;
 import com.dopaming.www.msg.MsgVO;

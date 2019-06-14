@@ -1,4 +1,4 @@
-package com.dopaming.www.member;
+package com.dopaming.www.admin.recash;
 
 public class ReCashVO {
 	

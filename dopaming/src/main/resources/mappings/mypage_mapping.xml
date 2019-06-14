@@ -50,8 +50,8 @@
 	
 	<!-- 업로드관리 카운트 -->
 	<select id="getUploadCount" resultType="int">
-		select count(*)
-		from board
+        select count(distinct group_no)
+        from file_upload
         where member_id = #{member_id}
 	</select>
 	

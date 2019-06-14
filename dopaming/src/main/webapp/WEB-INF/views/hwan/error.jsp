@@ -16,7 +16,7 @@ align="center">
 	<tr>
 		<td align="center">
 			<br><br><br><br>
-			코드에러입니다.
+			<h1>코드에러입니다.</h1>
 			<br><br><br><br>
 		</td>
 	</tr>

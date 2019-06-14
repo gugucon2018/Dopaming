@@ -3,6 +3,8 @@ package com.dopaming.www.main;
 import java.util.List;
 import java.util.Map;
 
+import com.dopaming.www.login.MemberVO;
+
 public interface MainService_hun {
 	
 	
@@ -11,6 +13,9 @@ public interface MainService_hun {
 	
 	//slide
 	List<Map<String,Object>> getMainSlide(MainVO_hun vo);
+	
+	//멤버 조회
+	public Integer login(MemberVO vo);
 	 
 	
 }

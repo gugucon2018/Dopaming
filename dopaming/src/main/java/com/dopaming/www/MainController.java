@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dopaming.www.common.ImgExtract;
+import com.dopaming.www.login.MemberService;
+import com.dopaming.www.login.MemberVO;
 import com.dopaming.www.main.MainService_hun;
 import com.dopaming.www.main.MainVO_hun;
 
@@ -28,6 +33,9 @@ public class MainController {
 
 	@Autowired
 	MainService_hun service;
+	
+	
+	
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String home(Locale locale, Model model, MainVO_hun vo) {
 			logger.info("Welcome home! The client locale is {}.", locale);
@@ -77,6 +85,19 @@ public class MainController {
 			model.addAttribute("slide4",slide4);
 			
 			return "main/main";
+		}
+		
+		
+		@RequestMapping(value = "/acornview", method = RequestMethod.GET)
+		@ResponseBody
+		public Integer head(HttpSession session, MemberVO vo) {
+			
+			
+			String Id = (String)session.getAttribute("Id");
+			vo.setMember_id(Id);//id값이 있어야 결제에서 이용자확인가능 or insert의 1번째로 받는 member_id
+			
+			return service.login(vo);
+			
 		}
 
 }

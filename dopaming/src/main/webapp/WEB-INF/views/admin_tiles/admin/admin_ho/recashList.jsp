@@ -9,9 +9,19 @@
 <head>
 <meta charset="UTF-8">
 <style>
-#spann {
-	color: red;
-	float: right;
+
+.dateBox {
+	width: 115px;
+	border: none;
+	color: #585858;
+	font-weight: bold;
+	font-size: 17px;
+	text-align: center;
+	float: left;
+}
+
+.dateBox:focus {
+	outline: none;
 }
 
 .pagination {
@@ -45,12 +55,11 @@ function go_page(p) {
 </script>
 </head>
 <body>
+	<% String reg_date = request.getParameter("reg_date"); %>
 	<h1 style="text-align: center;">환급신청목록</h1>
 	<hr>
-	<form name="recashFrm" action="">
-		<span id="spann">
-			<button class="btn btn-danger" type="button" onclick="">미 처리 목록</button>
-		</span>
+	<input type="text" class="dateBox" value="<%=reg_date%>" readonly>
+	<form name="recashFrm" action="">	
  		<table class="table table-striped table-hover">
  			<thead>
  				<tr>
@@ -88,7 +97,7 @@ function go_page(p) {
  			</c:choose>
  			</tbody>
  		</table>
- 		<% String reg_date = request.getParameter("reg_date"); %>
+ 		
  		<input type="hidden" name="page" value="1">
  		<input type="hidden" name="reg_date" value="<%=reg_date%>">
 	</form>

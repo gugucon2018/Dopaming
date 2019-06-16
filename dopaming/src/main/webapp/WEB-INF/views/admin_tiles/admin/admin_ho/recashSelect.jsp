@@ -5,13 +5,30 @@
 <html>
 <head>
 <style type="text/css">
-td {
-	width: 60px;
-	height: 60px;
-	text-align: center;
-	font-size: 20px;
-	border: 2px dotted #FF5E00;
-	border-radius: 13px;
+
+table {
+    width: 100%;
+    border-top: 1px solid #BDBDBD;
+    border-collapse: collapse;
+  }
+
+th, td {
+    border-bottom: 1px solid #BDBDBD;
+    text-align: center;
+    padding: 50px;
+  }
+  
+.btn_cal {
+	border-radius: 0px;
+}
+
+.sunday_bar {
+	color: red;
+}
+
+
+.saturday_bar {
+	color: blue;
 }
 
 .sunday {
@@ -19,7 +36,7 @@ td {
 }
 
 .sunday:hover {
-	background: yellow;
+	background: #E6E6E6;
 	cursor: pointer;
 }
 
@@ -28,7 +45,7 @@ td {
 }
 
 .saturday:hover {
-	background: yellow;
+	background: #E6E6E6;
 	cursor: pointer;
 }
 
@@ -37,7 +54,7 @@ td {
 }
 
 .general:hover {
-	background: yellow;
+	background: #E6E6E6;
 	cursor: pointer;
 }
 </style>
@@ -58,9 +75,9 @@ td {
 			d_of_w += "<tr>";
 			for (td = 0; td < 7; td++) { //요일을 쓰기위해 따로 반복문 써서 만들어줌
 				if (td == 0) {
-					d_of_w += "<td class='sunday'>" + array[td] + "</td>";
+					d_of_w += "<td class='sunday_bar'>" + array[td] + "</td>";
 				} else if (td == 6) {
-					d_of_w += "<td class='saturday'>" + array[td] + "</td>";
+					d_of_w += "<td class='saturday_bar'>" + array[td] + "</td>";
 				} else {
 					d_of_w += "<td >" + array[td] + "</td>";
 				}
@@ -113,33 +130,26 @@ td {
 		
 		var date = y.value + '/' + months + '/' + days;
 		
-		location.href='${pageContext.request.contextPath}/admin/myReCash?reg_date=' + date;	
-/* 		$.ajax({
-			url:'${pageContext.request.contextPath}/admin/myReCash',
-			type:'GET',
-			data: {reg_date: date},
-			dataType:'json',
-			success:function(data) {
-				location.href='${pageContext.request.contextPath}admin/admin_ho/recashList';
-			}
-			
-		}); */
+		window.open('${pageContext.request.contextPath}/admin/myReCash?reg_date=' + date, 'list', 'width=1000,height=750')
 	}
 </script>
 </head>
 <body>
-	<select id="y">
-		<c:forEach var="year" begin="2010" end="2099" step="1">
+	<h5>&nbspYear</h5>
+	<select class="form-control" id="y">
+		<c:forEach var="year" begin="2019" end="2030" step="1">
 			<option>${year}</option>
 		</c:forEach>
-	</select>년
-
-	<select id="m">
+	</select>
+	
+	<h5>&nbspMonth</h5>
+	<select class="form-control" id="m">
 		<c:forEach var="month" begin="1" end="12" step="1">
 			<option>${month}</option>
 		</c:forEach>
-	</select>월
-	<input type="button" id="showCal" value="달력보기">
+	</select>
+	
+	<input type="button" class="btn btn-primary btn_cal" id="showCal" value="달력보기">
 		<div id="week"></div>
 		<div id="con"></div>
 </body>

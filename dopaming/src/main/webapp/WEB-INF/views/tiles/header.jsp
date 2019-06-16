@@ -92,6 +92,28 @@
 			}
 		});
 	</script>
+<!-- 	<script>
+	$(document).ready(function() {
+		myAcorn();
+		setInterval(myAcorn, 3000);
+	});
+
+/* 	function myAcorn() {
+		var stock = "${memberSession.acorn_stock}";
+		$("#acorn").html(stock);
+	} */
+
+	function myAcorn() {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/acornview',
+			type : 'GET',
+			contentType : 'application/json;charset=utf-8',
+			success : function(result) {
+				$("#acorn").html(result)
+			}
+		});
+	}
+    </script> -->
 	<c:remove var="error" scope="session" />
 </c:if>
 </head>

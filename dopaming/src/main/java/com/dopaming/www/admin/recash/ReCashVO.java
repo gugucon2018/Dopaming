@@ -11,22 +11,22 @@ public class ReCashVO {
 	private String reg_date;
 	private String recash_date;
 	private String state;
-	private Integer first;
-	private Integer last;
-	
-	
+	private int first;
+	private int last;
+
+		
 	//first
-	public Integer getFirst() {
+	public int getFirst() {
 		return first;
 	}
-	public void setFirst(Integer first) {
+	public void setFirst(int first) {
 		this.first = first;
 	}
 	//last
-	public Integer getLast() {
+	public int getLast() {
 		return last;
 	}
-	public void setLast(Integer last) {
+	public void setLast(int last) {
 		this.last = last;
 	}
 	//reg_no
@@ -99,8 +99,7 @@ public class ReCashVO {
 		return "ReCashVO [reg_no=" + reg_no + ", member_id=" + member_id + ", bank=" + bank + ", account_no="
 				+ account_no + ", account_own=" + account_own + ", reg_recash=" + reg_recash + ", reg_date=" + reg_date
 				+ ", recash_date=" + recash_date + ", state=" + state + ", first=" + first + ", last=" + last + "]";
-	}
-		
+	}		
 }
 
 

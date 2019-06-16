@@ -186,9 +186,7 @@
 		       , account_own
 		       , reg_recash
 		       , reg_date
-		       , case when recash_date is null then 'N' 
-		         else 'Y' 
-		         end as state
+		       , nvl2(to_char(recash_date, 'yy/mm/dd'), 'Y', 'N') as state
 		from recash
 		where  member_id=#{member_id}
 		order by 1 desc ) b) a 

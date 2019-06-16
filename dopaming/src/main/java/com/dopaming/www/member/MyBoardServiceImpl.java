@@ -14,7 +14,7 @@ import com.dopaming.www.acorn.AcornVO;
 import com.dopaming.www.admin.recash.ReCashVO;
 import com.dopaming.www.file.FileDAOMybatis_Hwan;
 import com.dopaming.www.file.FilePostVO_Hwan;
-import com.dopaming.www.msg.MsgVO;
+
 
 
 @Service("myBoardService")

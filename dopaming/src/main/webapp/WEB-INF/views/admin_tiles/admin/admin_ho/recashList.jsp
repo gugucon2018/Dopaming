@@ -8,7 +8,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
 <style>
 #spann {
 	color: red;
@@ -39,23 +38,18 @@ th, td {
 }
 </style>
 <script>
-	function go_page(p) {
-		recashFrm.page.value = p;
-		recashFrm.submit();
-	}
-	
-	function insertPop() {
-		window.open('myReCashIns','insert','width=600,height=500');
-	}	
+function go_page(p) {
+	recashFrm.page.value = p;
+	recashFrm.submit();
+}
 </script>
 </head>
 <body>
-	<h1 style="text-align: center;">환급조회/신청</h1>
+	<h1 style="text-align: center;">환급신청목록</h1>
 	<hr>
 	<form name="recashFrm" action="">
 		<span id="spann">
-			아콘과 현금의 환급 비율은 1:1 입니다.
-			<button class="btn btn-danger" type="button" onclick="insertPop()">아콘환급</button>
+			<button class="btn btn-danger" type="button" onclick="">미 처리 목록</button>
 		</span>
  		<table class="table table-striped table-hover">
  			<thead>
@@ -66,7 +60,7 @@ th, td {
 	 				<th>예금주</th>
 	 				<th>아콘환급량</th>
 	 				<th>신청날짜</th>	 				
-	 				<th>환급여부</th>
+	 				<th>환급날짜</th>
  				</tr>
  			</thead>
  			<tbody>
@@ -74,7 +68,7 @@ th, td {
  				<c:when test="${fn:length(list) == 0}">
  					<tr>
  						<td colspan="7" align="center">
- 							환급내역이 없습니다.
+ 							신청내역이 없습니다.
  						</td>
  					</tr>
  				</c:when>
@@ -87,14 +81,16 @@ th, td {
 		 					<td>${recash.account_own}</td>
 		 					<td>${recash.reg_recash}</td>
 		 					<td>${recash.reg_date}</td>
-		 					<td>${recash.state}</td>
+		 					<td>${recash.recash_date}</td>
 		 				</tr>
 		 			</c:forEach>
  				</c:otherwise>
  			</c:choose>
  			</tbody>
  		</table>
+ 		<% String reg_date = request.getParameter("reg_date"); %>
  		<input type="hidden" name="page" value="1">
+ 		<input type="hidden" name="reg_date" value="<%=reg_date%>">
 	</form>
 	<div align="center">
 		<my:paging paging="${paging}"/>

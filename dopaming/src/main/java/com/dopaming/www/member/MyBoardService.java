@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dopaming.www.acorn.AcornVO;
 import com.dopaming.www.admin.recash.ReCashVO;
-import com.dopaming.www.msg.MsgVO;
+
 
 public interface MyBoardService {
 	//내가 받은 자료 조회

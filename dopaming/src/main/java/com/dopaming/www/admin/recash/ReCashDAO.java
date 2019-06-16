@@ -1,13 +1,10 @@
 package com.dopaming.www.admin.recash;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.dopaming.www.common.Paging;
 
 @Repository
 public class ReCashDAO {
@@ -15,23 +12,18 @@ public class ReCashDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
-	// 관리자 -  회원관리  - 업로드만 리스트 뷰 건수 
-	public int uploadListCount(ReCashVO vo) {
-		return mybatis.selectOne("chartDAO.ChartCount", vo);
+	//회원별 환급조회(관리자) 날자별 건 수
+	public int recashCount_admin(ReCashVO vo) {
+		return mybatis.selectOne("ReCashDAO.recashCount_admin", vo);
 	}
 	
-	public List<ReCashVO> getChartList(ReCashVO vo) {
-		return mybatis.selectList("chartDAO.chartList",vo);
-	}
-	//페이징 건수
-	public int chartList_cnt(ReCashVO vo) {
-		return mybatis.selectOne("chartDAO.chartList_cnt",vo);
+	//환급신청 목록(관리자)_날짜별
+	public List<ReCashVO> recashList_admin(ReCashVO vo) {
+		return mybatis.selectList("ReCashDAO.recashList_admin", vo);
 	}
 	
-	public List<Map<String, Object>> getChartMember(ReCashVO vo){
-		return mybatis.selectList("chartDAO.chartMember",vo);
-		
+	//환급금액 송금
+	public void recashing(ReCashVO vo) {
+		mybatis.insert("ReCashDAO.recashing", vo);
 	}
-
-
 }

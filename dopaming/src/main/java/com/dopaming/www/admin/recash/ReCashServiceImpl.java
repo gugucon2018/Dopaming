@@ -1,42 +1,31 @@
 package com.dopaming.www.admin.recash;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.dopaming.www.file.FileVO;
 
 
 @Service("ReCashService")
-public class ReCashServiceImpl implements ReCashservice {
+public class ReCashServiceImpl implements ReCashService {
 	
 	@Autowired 
 	private ReCashDAO dao;
-	
+
 	@Override
-	public ReCashVO getChart(ReCashVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public int recashCount_admin(ReCashVO vo) {
+		return dao.recashCount_admin(vo);
 	}
 
 	@Override
-	public List<ReCashVO> getChartList(ReCashVO vo) {
-		// TODO Auto-generated method stub
-		System.out.println("getChartList");
-		return dao.getChartList(vo);
-	}
-
-	@Override
-	public int chartList_cnt(ReCashVO vo) {
-		// TODO Auto-generated method stub
-		return dao.chartList_cnt(vo);
-	}
-
-	
-	@Override
-	public List<Map<String, Object>> getChartMember(ReCashVO vo){
-		return dao.getChartMember(vo);
+	public List<ReCashVO> recashList_admin(ReCashVO vo) {
+		return dao.recashList_admin(vo);
 	}
 	
+	@Override
+	public void recashing(ReCashVO vo) {
+		dao.recashing(vo);
+	}
 }

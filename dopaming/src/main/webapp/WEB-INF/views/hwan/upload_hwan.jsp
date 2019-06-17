@@ -16,6 +16,9 @@
 .cen_table {
 	margin: 0 auto;
 }
+.chk3{
+	margin: 0 auto;
+}
 
 table {
 	width: 500px;
@@ -106,6 +109,7 @@ textarea {
 									<script>
   								CKEDITOR.replace('p_content', {
   									uiColor:'#9AB8F3',
+  									width: '1060px',
   									filebrowserUploadUrl:'<%=request.getContextPath()%>/resources/ckeditor/fileUpload.jsp'
 														});
 									</script>
@@ -116,7 +120,7 @@ textarea {
 				</tr>
 				<tr>
 					<td colspan="4">						
-						<textarea rows="5" cols="130" name="boardContent" class="chk3" placeholder="게시글 내용을 입력하시오"></textarea><br>
+						<textarea rows="5" cols="130" name="boardContent" class="chk3 center-block" placeholder="게시글 내용을 입력하시오"></textarea><br>
 					</td>
 				</tr>
 				<tr>

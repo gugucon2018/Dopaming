@@ -46,7 +46,6 @@ pageEncoding="UTF-8"%>
 
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin/admin_vendor/jquery/jquery.min.js"></script>  
 

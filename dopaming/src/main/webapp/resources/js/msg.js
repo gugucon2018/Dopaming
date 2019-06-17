@@ -18,7 +18,7 @@ $(document).ready(function () {
 		return false;
 	}
 	msgCnt("0");	
-	setInterval(msgCnt, 100000000);
+	setInterval(msgCnt, 1000);
 		
 	msgReceive();
 		

@@ -52,20 +52,20 @@ th {
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"
 	data-semver="2.1.1" data-require="jquery@*"></script>
-<script
+<!-- <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
-	data-semver="3.1.1" data-require="bootstrap@3.1.1"></script>
+	data-semver="3.1.1" data-require="bootstrap@3.1.1"></script> -->
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.5.3/jquery.mockjax.min.js"></script>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.0.2/js/bootstrap-switch.js"></script>
+<!-- <script
+	src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.0.2/js/bootstrap-switch.js"></script> -->
 
-<link
+<!-- <link
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
-	rel="stylesheet" data-semver="3.1.1" data-require="bootstrap-css@3.1.1" />
-<link
+	rel="stylesheet" data-semver="3.1.1" data-require="bootstrap-css@3.1.1" /> -->
+<!-- <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.0.2/css/bootstrap2/bootstrap-switch.css"
-	rel="stylesheet" />
+	rel="stylesheet" / -->
 <script src="./resources/js/intercooler-1.2.2.js"></script>
 <!-- <script>
 	$(function() {

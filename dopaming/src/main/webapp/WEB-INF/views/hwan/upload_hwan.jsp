@@ -114,10 +114,9 @@ textarea {
 						</div>
 					</td>
 				</tr>
-				<tr>					
+				<tr>
 					<td colspan="4">						
-						<textarea rows="5" cols="130" name="boardContent" class="chk3" placeholder="게시글 내용을 입력하시오"></textarea><br>						
-						<button type="button" class="btn btn-danger btn-danger pull-right" onclick="checkUpload()">업로드 하기</button>
+						<textarea rows="5" cols="130" name="boardContent" class="chk3" placeholder="게시글 내용을 입력하시오"></textarea><br>
 					</td>
 				</tr>
 				<tr>
@@ -128,6 +127,11 @@ textarea {
 							<div id="afile3-list" style="border:2px solid #c9c9c9;min-height:50px" class="dropZone chk4">								
 							
 							</div>
+					</td>
+				</tr>
+				<tr>					
+					<td colspan="4">												
+						<button type="button" class="btn btn-danger btn-danger pull-right" onclick="checkUpload()">업로드 하기</button>
 					</td>
 				</tr>
 			</table>

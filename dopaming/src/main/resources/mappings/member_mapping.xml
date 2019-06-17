@@ -78,6 +78,13 @@
     	where member_id = #{member_id}
     </select>
     
+    <!-- 이메일 중복 검사 -->
+    <select id="emailReduplicationCheck" parameterType="member" resultType="int">
+    	select count(*)
+    	from members
+    	where member_email = #{member_email}
+    </select>
+    
     <!-- 이메일 인증상태 조회 -->
     <select id="check_email" parameterType="member" resultType="String">
     	select member_type 

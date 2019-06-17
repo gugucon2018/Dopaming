@@ -23,7 +23,7 @@ public class ReCashDAO {
 	}
 	
 	//환급금액 송금
-	public void recashing(ReCashVO vo) {
-		mybatis.insert("ReCashDAO.recashing", vo);
+	public void recashing() {
+		mybatis.insert("ReCashDAO.recashing");
 	}
 }

@@ -28,10 +28,10 @@
 	</select>
 	
 	<!-- 환급금액 송금 -->
-	<update id="recaching">
+	<update id="recashing">
 		update recash
 		set recash_date=sysdate
-		where recash_date is null
+		where recash_date is null and reg_date is not null
 	</update>
 	
 </mapper>

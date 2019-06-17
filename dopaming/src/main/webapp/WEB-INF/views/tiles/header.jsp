@@ -74,7 +74,7 @@
 	<c:remove var="message" scope="session" />
 </c:if>
 <!-- 에러 세션 -->
-<c:if test="${sessionScope.error ne null}">
+<c:if test="${not empty sessionScope.error}">
 	<script>
 		$(document).ready(function() {
 			sessionError();
@@ -92,30 +92,28 @@
 			}
 		});
 	</script>
-<!-- 	<script>
-	$(document).ready(function() {
-		myAcorn();
-		setInterval(myAcorn, 3000);
-	});
-
-/* 	function myAcorn() {
-		var stock = "${memberSession.acorn_stock}";
-		$("#acorn").html(stock);
-	} */
-
-	function myAcorn() {
-		$.ajax({
-			url : '${pageContext.request.contextPath}/acornview',
-			type : 'GET',
-			contentType : 'application/json;charset=utf-8',
-			success : function(result) {
-				$("#acorn").html(result)
-			}
-		});
-	}
-    </script> -->
 	<c:remove var="error" scope="session" />
 </c:if>
+
+<c:if test="${not empty sessionScope.Id}">
+<script>
+		$(function(){
+			myAcorn();
+			setInterval(myAcorn, 2000);
+		})
+		
+		function myAcorn() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/acornview',
+				type : 'GET',
+				contentType : 'application/json;charset=utf-8',
+				success : function(result) {
+					$("#acorn").html(result)
+				}
+			});
+		}
+</script>
+	</c:if>
 </head>
 <div class="container-fluid">
 	<div class="navbar navbar-inverse">
@@ -257,3 +255,9 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+
+
+</script>

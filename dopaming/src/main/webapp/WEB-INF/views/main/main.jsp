@@ -9,7 +9,7 @@
 <title>도파밍 프로젝트</title>
 <style>
 .rank_num {
-	font-size: 20pt;
+	font-size: 18pt;
 	align: left;
 }
 
@@ -204,10 +204,19 @@ font-size : 25pt;
 			<c:forEach items="${list}" var="main" end="9" step="1"
 				varStatus="status">
 				<li class="list-group-item list-group-item-action genre_rank">
-					<a
-					href="filepost?board_no=${main.board_no}&member_id=${main.member_id}">
-						<font class="rank_num">${main.rn}위</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<table>
+				<tr>
+				<td style="width:100px">
+				<font class="rank_num">${main.rn}위&emsp;&emsp;</font>
+				</td>
+				<td>
+				<a href="filepost?board_no=${main.board_no}&member_id=${main.member_id}">
 						<font class="rank">${main.board_title}</font>
+				</td>
+				</tr>
+				</table>
+						<%-- <font class="rank_num">${main.rn}위</font> --%>
+						
 				</a>
 				</li>
 			</c:forEach>

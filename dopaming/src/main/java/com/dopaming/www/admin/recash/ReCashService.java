@@ -11,5 +11,5 @@ public interface ReCashService {
 	public List<ReCashVO> recashList_admin(ReCashVO vo);
 	
 	//recashing
-	public void recashing(ReCashVO vo);
+	public void recashing();
 }

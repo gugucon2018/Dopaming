@@ -57,8 +57,8 @@ function notice_insert_btn(){
 											template_object : {
 												"object_type" : "text",
 												"link": {
-										            "web_url": "http://localhost/dopaming/notice_select_new",
-										            "mobile_web_url": "http://localhost/dopaming/notice_select_new"
+										            "web_url": "http://114.200.227.226/dopaming/notice_select_new",
+										            "mobile_web_url": "http://114.200.227.226/dopaming/notice_select_new"
 										        },
 												"text": "공지제목: "+notice_frm.notice_title.value +"\n"+"공지내용:\n"+notice_frm.notice_content.value,
 										        

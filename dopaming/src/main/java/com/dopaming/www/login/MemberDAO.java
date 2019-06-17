@@ -111,5 +111,11 @@ public class MemberDAO {
 		System.out.println("===> Mybatis로  checkMailState() 기능 처리");
 		return mybatis.selectOne("MemberDAO.checkMailState", vo);
 	}
+	
+	//회원 이메일 중복 체크
+	public int emailReduplicationCheck(MemberVO vo) {
+		System.out.println("===> Mybatis로  emailReduplicationCheck() 기능 처리");
+		return mybatis.selectOne("MemberDAO.emailReduplicationCheck", vo);
+	}
 }
 

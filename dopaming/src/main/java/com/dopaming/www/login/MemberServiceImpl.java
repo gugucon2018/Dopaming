@@ -209,13 +209,15 @@ public class MemberServiceImpl implements MemberService {
                          stateCode = dao.check_email(member).toUpperCase().equals("NONE") ? "ID_STATE_WAITAPPROVAL" : "ID_STATE_USED";
                      }
             	}else {
-            		if(!member.isPwEqualToCheckPw()) {
-            			stateCode = "EMAIL_STATE_ERROR";
+            		if(dao.emailReduplicationCheck(member) == 1) {
+            			stateCode = "EMAIL_STATE_USED";
         			}
-            		// 회원정보가 등록이 된 경우 => 패스워드 암호화 및 인증코드 발급
-            		member.setMember_password(passwordEncoder.encode(member.getMember_password()));
-            		member.setMember_code(RamdomPassword.getNewCode());
-            		stateCode = dao.register(member) == 1 ? "MEMBER_STATE_SUCCESS" : "SYSTEM_STATE_ERROR";
+            		else {
+            			// 회원정보가 등록이 된 경우 => 패스워드 암호화 및 인증코드 발급
+                		member.setMember_password(passwordEncoder.encode(member.getMember_password()));
+                		member.setMember_code(RamdomPassword.getNewCode());
+                		stateCode = dao.register(member) == 1 ? "MEMBER_STATE_SUCCESS" : "SYSTEM_STATE_ERROR";	
+            		}
             	}
             }
 		}else {

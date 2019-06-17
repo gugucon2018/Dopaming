@@ -23,7 +23,8 @@
        		   , to_char(reg_date, 'yyyy/mm/dd hh24:mi:ss') as reg_date 
                , nvl(to_char(recash_date, 'yyyy/mm/dd hh24:mi:ss'), 'N') as recash_date
 		from recash
-		where reg_date=#{reg_date}
+		where reg_date=#{reg_date}]
+		order by 1 desc
 	) b ) a where rn between #{first} and #{last}
 	</select>
 	

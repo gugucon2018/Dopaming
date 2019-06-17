@@ -12,7 +12,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">도파밍 프로젝트</div>
+        <div class="sidebar-brand-text mx-3 mt-3" >도파밍<p>프로젝트</p></div>
       </a>
 
       <!-- Divider -->

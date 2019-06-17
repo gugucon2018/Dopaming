@@ -61,14 +61,18 @@
 <body>
 	<!-- select + 검색 -->
 	<h1 style="text-align: center;">등급관리</h1>
-	<div class="p-3 bg-gray-600 text-white">
-	<h3>등급조건</h3>
-	<h5>
-	브론즈도토리(기본)&nbsp; 1만원미만 + 업로드횟수 5회미만<br>
-	실버도토리 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1만원이상 ~ 15만원미만 + 업로드횟수 5회이상 ~ 50회미만<br>
-	골드도토리 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15만원이상 ~ 50만원미만 + 업로드횟수 50회이상 ~ 100회미만<br>
-	다이아도토리 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50만원이상 + 업로드횟수 100회이상
+	<div class="p-3 bg-gray-200">
+	<h3> <span style="color:black; font-weight: bold;">등급조건</span></h3>
+	<h5 style="font-weight: bold;">
+	브론즈도토리(기본)&nbsp; 누적금액 <span style="color:black;">1만원↓</span> + 업로드횟수 <span style="color:black; ">5회↓</span><br>
+	실버도토리&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	누적금액 <span style="color:black">1만원↑</span> ~ <span style="color:black;">15만원↓</span> + 업로드횟수 <span style="color:black;">5회↑</span> ~ <span style="color:black; ">50회↓</span><br>
+	골드도토리&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	누적금액 <span style="color:black;">15만원↑</span> ~ <span style="color:black; ">50만원↓</span> + 업로드횟수 <span style="color:black; ">50회↑</span> ~ <span style="color:black; ">100회↓</span><br>
+	다이아도토리&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	누적금액 <span style="color:black;">50만원↑</span> + 업로드횟수 <span style="color:black;">100회↑</span>
 	</h5>
+	</B>
 	</div>
 	<hr>
 

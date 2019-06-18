@@ -104,8 +104,8 @@ public class MemberServiceImpl implements MemberService {
 	public void send_mail(MemberVO vo, String type, String context) throws Exception {
 		// Mail Server 설정
 		String hostSMTP = "smtp.gmail.com";
-		final String username = "rlfls54@gmail.com"; 
-		final String password = "bqocuxhcktjkwlyp"; 
+		final String username = "구글이메일"; 
+		final String password = "2차비밀번호"; 
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -122,7 +122,7 @@ public class MemberServiceImpl implements MemberService {
 		});
 		
 		// 보내는 사람 EMail, 제목, 내용
-		String fromEmail = "rlfls54@gmail.com";
+		String fromEmail = "보내는 이메일";
 		String subject = "";
 		StringBuffer msg = new StringBuffer();
 		String siteUrl = "dopaming.com";

@@ -204,20 +204,12 @@
 	
 
 <!-- Write -->
-	
-	<!-- 전송 쪽지 번호 부여 -->
-	<select id="write_no" resultType="int">
-		select max(message_no) + 1
-		from message
-	</select>
-	
+		
 	<!-- 쪽지 보내기 -->
 	<insert id="sending_write">
 		insert into message(message_no, sender_id, message_title, message_content, receiver_id)
-		values (#{message_no}, #{sender_id}, #{message_title}, #{message_content}, #{receiver_id})
+		values (complain_seq.nextval, #{sender_id}, #{message_title}, #{message_content}, #{receiver_id})
 	</insert>
-
-
 
 <!-- Keep -->
 

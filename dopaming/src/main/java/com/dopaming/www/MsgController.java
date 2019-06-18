@@ -237,8 +237,6 @@ public class MsgController {
 	public MsgVO sending(Model model, HttpSession session, MemberVO memberVO, @RequestBody MsgVO vo) {
 		memberVO = (MemberVO) session.getAttribute("memberSession");
 		vo.setSender_id(memberVO.getMember_id());
-		String no = String.valueOf(service.write_no(vo));
-		vo.setMessage_no(no);
 		service.sending_write(vo);
 		return vo;
 	}

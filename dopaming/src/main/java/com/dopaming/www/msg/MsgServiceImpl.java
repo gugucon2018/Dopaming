@@ -118,11 +118,6 @@ public class MsgServiceImpl implements MsgService{
 //Write
 	
 	@Override
-	public int write_no(MsgVO vo) {
-		return dao.write_no(vo);
-	}
-	
-	@Override
 	public void sending_write(MsgVO vo) {
 		dao.sending_write(vo);
 	}

@@ -117,11 +117,6 @@ public class MsgDAO {
 	
 //Write
 	
-	//전송 쪽지 번호 부여
-	public int write_no(MsgVO vo) {
-		return mybatis.selectOne("MsgDAO.write_no",vo);
-	}
-	
 	//쪽지 보내기
 	public void sending_write(MsgVO vo) {
 		mybatis.insert("MsgDAO.sending_write",vo);

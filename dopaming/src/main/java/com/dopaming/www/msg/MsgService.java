@@ -71,9 +71,6 @@ public interface MsgService {
 	
 //Write	
 	
-	//write_no
-	public int write_no(MsgVO vo);
-	
 	//sending_write
 	public void sending_write(MsgVO vo);
 	
